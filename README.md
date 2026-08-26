@@ -1,16 +1,82 @@
-# React + Vite
+# Chinlung Today
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Chinlung Today is a modern, community-focused news platform for stories about Chin people, culture, education, business, and global affairs. The interface combines a clean editorial layout with responsive navigation, featured reporting, curated quick reads, and a latest-stories section.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Responsive editorial homepage
+- Mobile navigation menu and expandable search
+- Featured hero story and curated quick reads
+- Latest stories with category filters
+- Newsletter sign-up interface
+- Reusable, data-driven React components
+- Responsive Tailwind CSS design
+- Accessible semantic HTML and controls
 
-## React Compiler
+## Built With
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [React](https://react.dev/)
+- [Vite](https://vite.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [ESLint](https://eslint.org/)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+Install [Node.js](https://nodejs.org/) version 20 or newer.
+
+### Installation
+
+```bash
+git clone git@github.com:JMIK-THANG/newsapp.git
+cd newsapp/chinlung-news-frontend
+npm install
+npm run dev
+```
+
+Open the local URL shown in the terminal, usually `http://localhost:5173`.
+
+## Available Scripts
+
+```bash
+npm run dev      # Start the development server
+npm run build    # Create a production build
+npm run preview  # Preview the production build
+npm run lint     # Check the code with ESLint
+```
+
+## Project Structure
+
+```text
+src/
+├── components/
+│   ├── home/
+│   │   ├── HeroSection.jsx
+│   │   └── LatestStories.jsx
+│   ├── layout/
+│   │   └── Navbar.jsx
+│   └── ui/
+│       └── Icon.jsx
+├── data/
+│   └── news.js
+├── App.jsx
+├── index.css
+└── main.jsx
+```
+
+## Design Direction
+
+The visual direction is inspired by modern editorial and news-media interfaces. Chinlung Today uses generous spacing, strong typography, warm neutral colors, rounded imagery, and a clear reading hierarchy to create an identity of its own.
+
+## Current Status
+
+The homepage navbar, hero, quick reads, newsletter card, and latest-stories section are complete. Article pages, category pages, working search, and backend news data can be added next.
+
+## Author
+
+Created by [JMIK-THANG](https://github.com/JMIK-THANG).
+
+## License
+
+This project is currently intended for personal and educational use.
