@@ -8,7 +8,7 @@ export const navigationItems = [
 ];
 
 export const leadStory = {
-  category: "Community",
+  category: "World",
   readTime: "12 min read",
   title: "The people building a brighter Chin future—together.",
   summary:
@@ -23,19 +23,43 @@ export const leadStory = {
 
 export const quickReads = [
   {
-    category: "Culture",
-    title: "The artists keeping Chin traditions alive",
+    category: "World",
+    title: "Global leaders meet as economic alliances begin to shift",
     time: "6 min",
   },
   {
-    category: "Education",
-    title: "A new scholarship opens doors for 40 students",
+    category: "Politics",
+    title: "Voters focus on the economy ahead of a pivotal election",
     time: "4 min",
   },
   {
-    category: "World",
-    title: "Five stories the Chin diaspora is following",
+    category: "Science",
+    title: "A major climate study offers a clearer view of the decade ahead",
     time: "8 min",
+  },
+];
+
+export const mostReadStories = [
+  {
+    category: "Technology",
+    title: "AI investment reshapes the global technology race",
+    time: "5 min",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80",
+    imageAlt: "Close view of a computer circuit board",
+  },
+  {
+    category: "Business",
+    title: "Markets respond as central banks signal a new direction",
+    time: "4 min",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=500&q=80",
+    imageAlt: "Financial market chart on a screen",
+  },
+  {
+    category: "Science",
+    title: "Researchers discover a promising path to cleaner energy",
+    time: "7 min",
+    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80",
+    imageAlt: "Scientist working in a modern laboratory",
   },
 ];
 
