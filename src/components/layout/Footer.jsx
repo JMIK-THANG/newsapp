@@ -24,7 +24,6 @@ export default function Footer() {
           <nav className="flex flex-wrap gap-x-6 gap-y-3" aria-label="Footer navigation">
             <a className="text-xs font-semibold text-white/65 transition hover:text-white" href="#top">Home</a>
             {navigationItems.map((item) => <a className="text-xs font-semibold text-white/65 transition hover:text-white" key={item} href={`#${item.toLowerCase()}`}>{item}</a>)}
-            <a className="text-xs font-semibold text-white/65 transition hover:text-white" href="#opinion">Opinion</a>
           </nav>
           <div className="flex gap-5 text-xs font-semibold text-white/65"><a className="hover:text-white" href="#about">About</a><a className="hover:text-white" href="#contact">Contact</a><a className="hover:text-white" href="#privacy">Privacy</a></div>
         </div>

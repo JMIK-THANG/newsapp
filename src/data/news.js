@@ -1,12 +1,10 @@
 export const navigationItems = [
-  "Latest",
-  "World",
-  "Politics",
-  "Business",
-  "Technology",
-  "Science",
+  "News",
+  "Editorial",
+  "Articles",
   "Sports",
-  "Culture",
+  "Business",
+  "Opinion",
 ];
 
 export const leadStory = {
