@@ -37,6 +37,16 @@ export const quickReads = [
     title: "A major climate study offers a clearer view of the decade ahead",
     time: "8 min",
   },
+  {
+    category: "Business",
+    title: "Small businesses adapt as consumer habits continue to change",
+    time: "5 min",
+  },
+  {
+    category: "Sports",
+    title: "A new generation of athletes steps onto the world stage",
+    time: "3 min",
+  },
 ];
 
 export const mostReadStories = [
@@ -60,6 +70,20 @@ export const mostReadStories = [
     time: "7 min",
     image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80",
     imageAlt: "Scientist working in a modern laboratory",
+  },
+  {
+    category: "World",
+    title: "Cities rethink public spaces for a rapidly changing climate",
+    time: "6 min",
+    image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=500&q=80",
+    imageAlt: "Modern city buildings viewed from below",
+  },
+  {
+    category: "Culture",
+    title: "Independent filmmakers find new audiences across borders",
+    time: "4 min",
+    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=500&q=80",
+    imageAlt: "Film production camera on a set",
   },
 ];
 

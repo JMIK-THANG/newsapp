@@ -3,20 +3,20 @@ import Icon from "../ui/Icon";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#151f33] px-3 pt-12 pb-6 text-white md:px-6 md:pt-16">
+    <footer className="bg-[#202938] px-3 pt-12 pb-6 text-white md:px-6 md:pt-16">
       <div className="mx-auto max-w-[1380px]">
         <div className="grid gap-12 border-b border-white/15 pb-14 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
           <div>
             <a className="flex w-fit items-center gap-3" href="#top" aria-label="Chinlung Today home">
-              <span className="grid size-12 place-items-center rounded-[15px_15px_15px_5px] bg-[#4f6fd8] font-serif font-bold text-white">CT.</span>
+              <span className="grid size-12 place-items-center rounded-[15px_15px_15px_5px] bg-[#60758a] font-serif font-bold text-white">CT.</span>
               <span className="grid leading-none"><strong className="font-serif text-2xl">Chinlung Today</strong><small className="mt-2 text-[9px] font-bold tracking-[.2em] text-white/55 uppercase">News · Community · Culture</small></span>
             </a>
             <p className="mt-6 mb-0 max-w-[520px] font-serif text-[clamp(24px,2.5vw,34px)] leading-[1.14] text-white/95">Independent stories for a stronger, more connected community.</p>
           </div>
 
           <div className="lg:justify-self-end">
-            <p className="mb-4 text-[10px] font-bold tracking-[.14em] text-[#b9c7f5] uppercase">The 5-minute brief</p>
-            <a className="flex max-w-[430px] items-center justify-between gap-8 rounded-[18px] bg-white px-5 py-4 text-sm font-bold text-[#1d2a44] transition hover:bg-[#e4e9fa]" href="#subscribe">Get thoughtful news in your inbox <Icon name="arrow" /></a>
+            <p className="mb-4 text-[10px] font-bold tracking-[.14em] text-[#bac6d1] uppercase">The 5-minute brief</p>
+            <a className="flex max-w-[430px] items-center justify-between gap-8 rounded-[18px] bg-white px-5 py-4 text-sm font-bold text-[#202938] transition hover:bg-[#e8edf2]" href="#subscribe">Get thoughtful news in your inbox <Icon name="arrow" /></a>
           </div>
         </div>
 
