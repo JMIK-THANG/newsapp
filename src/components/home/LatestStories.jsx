@@ -1,21 +1,16 @@
 import { latestStories } from "../../data/news";
 import Icon from "../ui/Icon";
 
-const filters = ["All stories", "Community", "Culture", "Education", "Business"];
-
 export default function LatestStories() {
   const [feature, ...stories] = latestStories;
 
   return (
     <section id="latest" className="border-t border-[#dcdde0] bg-white px-3 py-12 md:px-6 md:py-16" aria-labelledby="latest-title">
       <div className="mx-auto max-w-[1380px]">
-        <div className="flex flex-col gap-6 border-b border-[#dcdde0] pb-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="border-b border-[#dcdde0] pb-6">
           <div>
-            <p className="mb-2 text-[11px] font-bold tracking-[.08em] text-[#111318] uppercase">Fresh from the newsroom</p>
+            <p className="mb-3 inline-block bg-[#60758a] px-2 py-1 text-[10px] font-bold tracking-[.08em] text-white uppercase">Fresh from the newsroom</p>
             <h2 id="latest-title" className="m-0 max-w-3xl font-serif text-[clamp(30px,3.3vw,44px)] leading-[1.05] tracking-[-.035em]">Stories shaping our world.</h2>
-          </div>
-          <div className="flex max-w-full gap-2 overflow-x-auto pb-1" aria-label="Story categories">
-            {filters.map((filter, index) => <button key={filter} className={`shrink-0 cursor-pointer border-0 border-b-2 bg-transparent px-1 py-2 text-[12px] font-medium transition ${index === 0 ? "border-[#111318] text-[#111318]" : "border-transparent text-[#5f6368] hover:border-[#111318] hover:text-[#111318]"}`} type="button">{filter}</button>)}
           </div>
         </div>
 
@@ -50,7 +45,7 @@ export default function LatestStories() {
         </div>
 
         <div className="mt-9 flex justify-center">
-          <a href="#all-stories" className="flex items-center gap-3 border-b border-[#111318] pb-1 text-xs font-semibold text-[#111318] transition hover:opacity-60">Explore all stories <Icon name="arrow" /></a>
+          <a href="#/news" className="flex items-center gap-3 border-b border-[#111318] pb-1 text-xs font-semibold text-[#111318] transition hover:opacity-60">Explore all stories <Icon name="arrow" /></a>
         </div>
       </div>
     </section>

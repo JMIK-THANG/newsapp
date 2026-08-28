@@ -2,15 +2,14 @@ import { useState } from "react";
 import Icon from "../ui/Icon";
 
 const navigation = [
-  { label: "News", href: "#news", children: ["Chin News", "Myanmar News", "International News"] },
-  { label: "Editorial", href: "#editorial" },
-  { label: "Articles", href: "#articles", children: ["News Articles"] },
-  { label: "Sports", href: "#sports" },
-  { label: "Business", href: "#business" },
-  { label: "Opinion", href: "#opinion" },
+  { label: "News", href: "#/news", children: ["Chin News", "Myanmar News", "International News"] },
+  { label: "Editorial", href: "#/editorial" },
+  { label: "Articles", href: "#/articles", children: ["News Articles"] },
+  { label: "Sports", href: "#/sports" },
+  { label: "Business", href: "#/business" },
 ];
 
-const toId = (label) => `#${label.toLowerCase().replaceAll(" ", "-")}`;
+const toId = (label) => label === "News Articles" ? "#/articles/news" : label.endsWith("News") ? `#/news/${label.replace(" News", "").toLowerCase()}` : `#${label.toLowerCase().replaceAll(" ", "-")}`;
 
 function DesktopNavigation() {
   return (
@@ -18,7 +17,7 @@ function DesktopNavigation() {
       <a className="relative py-2.5 text-[13px] font-medium text-[#111318] after:absolute after:right-0 after:bottom-[3px] after:left-0 after:h-px after:bg-[#111318]" href="#top">Home</a>
       {navigation.map((item) => item.children ? (
         <div className="group relative" key={item.label}>
-          <button className="flex items-center gap-1.5 border-0 bg-transparent py-2.5 text-[13px] font-medium text-[#4f5359] transition hover:text-[#111318] group-focus-within:text-[#111318]" type="button" aria-haspopup="true">
+          <button className="flex items-center gap-1.5 border-0 bg-transparent py-2.5 text-[13px] font-medium text-[#4f5359] transition hover:text-[#111318] group-focus-within:text-[#111318]" type="button" aria-haspopup="true" onClick={() => { if (item.href.startsWith("#/")) window.location.hash = item.href.slice(1); }}>
             {item.label}<span className="transition group-hover:rotate-180 group-focus-within:rotate-180 [&_svg]:size-3.5"><Icon name="chevron" /></span>
           </button>
           <div className="invisible absolute top-full left-1/2 z-50 w-56 -translate-x-1/2 translate-y-2 rounded-[16px] border border-[#dcdde0] bg-white p-2 opacity-0 shadow-[0_18px_45px_rgba(32,41,56,.14)] transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
@@ -72,7 +71,7 @@ export default function Navbar() {
                   <button className="flex min-h-[48px] w-full items-center justify-between border-0 bg-transparent text-left text-base font-semibold" type="button" aria-expanded={expanded === item.label} onClick={() => setExpanded(expanded === item.label ? null : item.label)}>
                     {item.label}<span className={`grid place-items-center text-[#111318] transition duration-200 [&_svg]:size-[18px] [&_svg]:stroke-[2.4] ${expanded === item.label ? "rotate-180" : ""}`}><Icon name="chevron" /></span>
                   </button>
-                  <div className={`grid transition-[grid-template-rows,opacity] duration-300 ${expanded === item.label ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}><div className="overflow-hidden">{<div className="mb-3 rounded-[10px] bg-white p-2">{item.children.map((child) => <a className="flex min-h-10 items-center rounded-[8px] px-3 text-sm font-medium text-[#4f5359] hover:bg-[#e8edf2] hover:text-[#111318]" key={child} href={toId(child)} onClick={closeMenu}>{child}</a>)}</div>}</div></div>
+                  <div className={`grid transition-[grid-template-rows,opacity] duration-300 ${expanded === item.label ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}><div className="overflow-hidden"><div className="mb-3 rounded-[10px] bg-white p-2"><a className="flex min-h-10 items-center rounded-[8px] px-3 text-sm font-semibold text-[#111318] hover:bg-[#e8edf2]" href={item.href} onClick={closeMenu}>All {item.label}</a>{item.children.map((child) => <a className="flex min-h-10 items-center rounded-[8px] px-3 text-sm font-medium text-[#4f5359] hover:bg-[#e8edf2] hover:text-[#111318]" key={child} href={toId(child)} onClick={closeMenu}>{child}</a>)}</div></div></div>
                 </div>
               ) : <a className="flex min-h-[48px] items-center border-b border-[#dcdde0] text-base font-semibold" key={item.label} href={item.href} onClick={closeMenu}>{item.label}</a>)}
             </nav>

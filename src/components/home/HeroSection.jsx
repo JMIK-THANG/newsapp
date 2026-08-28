@@ -5,7 +5,7 @@ function SectionHeading({ eyebrow, title, href }) {
   return (
     <div className="flex items-end justify-between border-b border-[#dcdde0] pb-3">
       <div>
-        <p className="mb-2 inline-block bg-[#e8edf2] px-2 py-1 text-[10px] font-bold tracking-[.08em] text-[#111318] uppercase">{eyebrow}</p>
+        <p className="mb-2 inline-block bg-[#60758a] px-2 py-1 text-[10px] font-bold tracking-[.08em] text-white uppercase">{eyebrow}</p>
         <h2 className="m-0 text-[20px] font-bold tracking-[-.02em] text-[#111318]">{title}</h2>
       </div>
       <a className="flex items-center gap-1 text-[11px] font-semibold text-[#111318] transition hover:opacity-60" href={href} aria-label={`View ${title}`}>View <Icon name="arrow" /></a>
@@ -15,17 +15,17 @@ function SectionHeading({ eyebrow, title, href }) {
 
 export default function HeroSection() {
   return (
-    <main id="top" className="bg-white px-3 pt-2 pb-12 md:px-6">
+    <main id="top" className="bg-[#f4f2ed] px-3 pt-2 pb-12 md:px-6">
       <section className="mx-auto max-w-[1380px]" aria-labelledby="lead-title">
         <div className="flex min-h-[50px] items-center justify-between border-b border-[#dcdde0] text-[12px] font-medium text-[#4f5359]">
           <p className="flex items-center gap-2">Wednesday, August 26 <span>•</span> Morning edition</p>
           <p className="hidden tracking-[.13em] uppercase md:block">Independent reporting. Clear perspectives.</p>
         </div>
 
-        <div className="grid bg-white lg:grid-cols-[1.16fr_.84fr_.72fr]">
+        <div className="grid border-x border-b border-[#dcdde0] bg-white px-4 lg:grid-cols-[1.16fr_.84fr_.72fr] lg:px-0">
           <article className="group border-b border-[#dcdde0] py-6 lg:border-r lg:border-b-0 lg:pr-7">
             <div className="mb-4 flex items-end justify-between">
-              <div><p className="mb-2 inline-block bg-[#e8edf2] px-2 py-1 text-[10px] font-bold tracking-[.08em] text-[#111318] uppercase">Front page</p><h2 className="m-0 text-[20px] font-bold tracking-[-.02em] text-[#111318]">Top Story</h2></div>
+              <div><p className="mb-2 inline-block bg-[#60758a] px-2 py-1 text-[10px] font-bold tracking-[.08em] text-white uppercase">Front page</p><h2 className="m-0 text-[20px] font-bold tracking-[-.02em] text-[#111318]">Top Story</h2></div>
               <span className="text-[11px] font-semibold text-[#111318] uppercase">{leadStory.category}</span>
             </div>
 
@@ -45,7 +45,7 @@ export default function HeroSection() {
           </article>
 
           <section className="flex flex-col border-b border-[#dcdde0] py-6 lg:border-r lg:border-b-0 lg:px-7" aria-labelledby="latest-news-title">
-            <SectionHeading eyebrow="Live desk" title="Latest News" href="#latest" />
+            <SectionHeading eyebrow="Live desk" title="Latest News" href="#/news" />
             <div className="divide-y divide-[#dcdde0]">
               {quickReads.map((story, index) => (
                 <article className="py-3.5" key={story.title}>
@@ -54,23 +54,23 @@ export default function HeroSection() {
                 </article>
               ))}
             </div>
-            <a className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-4 text-[11px] font-semibold text-[#111318] transition hover:opacity-60" href="#latest">See all latest news <Icon name="arrow" /></a>
+            <a className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-4 text-[11px] font-semibold text-[#111318] transition hover:opacity-60" href="#/news">See all latest news <Icon name="arrow" /></a>
           </section>
 
           <aside className="flex flex-col py-6 lg:pl-7" aria-labelledby="most-read-title">
-            <SectionHeading eyebrow="Trending now" title="Most Read" href="#popular" />
+            <SectionHeading eyebrow="Trending now" title="Most Read" href="#/news" />
             <div className="mt-1 divide-y divide-[#dcdde0]">
               {mostReadStories.map((story, index) => (
                 <article className="group grid grid-cols-[1fr_88px] gap-3 py-3.5" key={story.title}>
                   <div className="flex flex-col justify-center">
                     <p className="mb-2 text-[11px] font-semibold text-[#111318] uppercase">{story.category} <span className="font-normal text-[#5f6368]">· {story.time}</span></p>
-                    <h3 className="m-0 text-[15px] leading-[1.35] font-semibold tracking-[-.01em] text-[#111318]"><a className="transition hover:opacity-65" href={`#most-read-${index + 1}`}>{story.title}</a></h3>
+                    <h3 className="m-0 text-[15px] leading-[1.35] font-semibold tracking-[-.01em] text-[#111318]"><a className="transition hover:opacity-65" href={`#/news/popular-${index + 1}`}>{story.title}</a></h3>
                   </div>
-                  <a className="aspect-[4/3] overflow-hidden rounded-[4px] bg-[#e8edf2]" href={`#most-read-${index + 1}`} tabIndex="-1"><img className="h-full w-full object-cover transition duration-500 group-hover:scale-105" src={story.image} alt={story.imageAlt} /></a>
+                  <a className="aspect-[4/3] overflow-hidden rounded-[4px] bg-[#e8edf2]" href={`#/news/popular-${index + 1}`} tabIndex="-1"><img className="h-full w-full object-cover transition duration-500 group-hover:scale-105" src={story.image} alt={story.imageAlt} /></a>
                 </article>
               ))}
             </div>
-            <a className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-4 text-[11px] font-semibold text-[#111318] transition hover:opacity-60" href="#popular">See all most read <Icon name="arrow" /></a>
+            <a className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-4 text-[11px] font-semibold text-[#111318] transition hover:opacity-60" href="#/news">See all most read <Icon name="arrow" /></a>
           </aside>
         </div>
       </section>
