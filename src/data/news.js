@@ -7,44 +7,81 @@ export const navigationItems = [
 ];
 
 export const leadStory = {
+  slug: "changing-world-global-leadership",
   category: "World",
   readTime: "12 min read",
-  title: "The people building a brighter Chin future—together.",
+  title: "A changing world demands a new kind of global leadership.",
   summary:
-    "Across generations and borders, a new wave of leaders is turning shared heritage into opportunity, belonging, and lasting change.",
+    "Governments and communities are navigating rapid change—and redefining what meaningful progress looks like.",
   author: "Salai Mazawn",
   initials: "MZ",
   date: "August 25, 2026",
   image:
     "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=88",
   imageAlt: "Friends sharing a joyful moment outdoors",
+  content: [
+    "Around the world, communities are confronting challenges that no institution or country can solve alone. Economic uncertainty, climate disruption, rapid technological change, and growing public distrust are reshaping what people expect from those in positions of responsibility.",
+    "The strongest responses are increasingly built through cooperation. Local organizers, researchers, public officials, and business leaders are sharing knowledge and designing solutions around the people most affected by change.",
+    "That approach requires leadership that listens before it acts. It also requires clear communication, honest acknowledgment of uncertainty, and decisions that can earn public confidence over time.",
+    "For communities, progress is measured not only through policy announcements but through practical results: safer neighborhoods, reliable services, wider opportunity, and a meaningful role in shaping the future.",
+  ],
 };
 
 export const quickReads = [
   {
+    slug: "global-leaders-economic-alliances",
     category: "World",
     title: "Global leaders meet as economic alliances begin to shift",
     time: "6 min",
+    summary: "Diplomatic and economic partnerships are being reconsidered as governments respond to new pressures at home and abroad.",
+    author: "Lian Hmung",
+    date: "August 28, 2026",
+    image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=85",
+    imageAlt: "International leaders meeting in a conference room",
   },
   {
+    slug: "voters-focus-economy-pivotal-election",
     category: "Politics",
     title: "Voters focus on the economy ahead of a pivotal election",
     time: "4 min",
+    summary: "Household costs, employment, and economic security are shaping voter priorities as election day approaches.",
+    author: "Mawi Cung",
+    date: "August 28, 2026",
+    image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1400&q=85",
+    imageAlt: "Government building beneath a cloudy sky",
   },
   {
+    slug: "climate-study-decade-ahead",
     category: "Science",
     title: "A major climate study offers a clearer view of the decade ahead",
     time: "8 min",
+    summary: "New findings give communities and policymakers a more detailed picture of the environmental risks expected during the next decade.",
+    author: "Esther Hniang",
+    date: "August 27, 2026",
+    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1400&q=85",
+    imageAlt: "Scientist conducting research in a laboratory",
   },
   {
+    slug: "small-businesses-changing-consumer-habits",
     category: "Business",
     title: "Small businesses adapt as consumer habits continue to change",
     time: "5 min",
+    summary: "Independent businesses are adjusting their services, technology, and customer relationships to remain resilient.",
+    author: "Sang Boih",
+    date: "August 27, 2026",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85",
+    imageAlt: "Small business owner working with a customer",
   },
   {
+    slug: "new-generation-athletes-world-stage",
     category: "Sports",
     title: "A new generation of athletes steps onto the world stage",
     time: "3 min",
+    summary: "Young competitors are bringing new energy, wider representation, and ambitious expectations to international sport.",
+    author: "Daniel Kima",
+    date: "August 26, 2026",
+    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1400&q=85",
+    imageAlt: "Athletes competing on an outdoor running track",
   },
 ];
 
@@ -88,6 +125,7 @@ export const mostReadStories = [
 
 export const latestStories = [
   {
+    slug: "neighborhood-kitchen-serving-community",
     category: "Community",
     title: "A neighborhood kitchen serving more than a warm meal",
     summary:
@@ -100,6 +138,7 @@ export const latestStories = [
     imageAlt: "Volunteers preparing food together",
   },
   {
+    slug: "new-sound-of-an-old-language",
     category: "Culture",
     title: "The new sound of an old language",
     summary:
@@ -112,6 +151,7 @@ export const latestStories = [
     imageAlt: "Musician performing under warm stage lights",
   },
   {
+    slug: "small-classrooms-ambitious-futures",
     category: "Education",
     title: "Small classrooms, ambitious futures",
     summary:
@@ -124,6 +164,7 @@ export const latestStories = [
     imageAlt: "Teacher speaking with students in a classroom",
   },
   {
+    slug: "family-recipe-growing-local-brand",
     category: "Business",
     title: "From family recipe to growing local brand",
     summary:
