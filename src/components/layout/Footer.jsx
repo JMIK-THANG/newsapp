@@ -32,44 +32,44 @@ export default function Footer() {
   };
 
   return (
-    <footer id="subscribe" className="bg-[#202938] px-3 pt-10 pb-5 text-white md:px-6 md:pt-12">
+    <footer id="subscribe" className="border-t border-[#cfd2d3] bg-[#efede7] px-3 pt-10 pb-5 text-[#182536] md:px-6 md:pt-12">
       <div className="mx-auto max-w-[1380px]">
-        <div className="grid gap-10 border-b border-white/15 pb-10 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
+        <div className="grid gap-10 border-b border-[#cfd2d3] pb-10 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
           <div>
             <Link className="flex w-fit items-center gap-3" to="/" aria-label="Chinlung Today home">
               <span className="grid size-12 place-items-center rounded-[15px_15px_15px_5px] bg-[#4f9488] text-base font-semibold text-white">CT.</span>
-              <span className="grid leading-none"><strong className="text-xl font-semibold">Chinlung Today</strong><small className="mt-2 text-[9px] font-medium tracking-[.18em] text-white/55 uppercase">Local · National · Global</small></span>
+              <span className="grid leading-none"><strong className="text-xl font-semibold">Chinlung Today</strong><small className="mt-2 text-[9px] font-medium tracking-[.18em] text-[#6b7075] uppercase">Local · National · Global</small></span>
             </Link>
-            <p className="mt-5 mb-0 max-w-[570px] text-[clamp(18px,1.8vw,24px)] leading-[1.4] font-normal text-white/85">Independent reporting and clear perspectives from our communities and around the world.</p>
+            <p className="mt-5 mb-0 max-w-[570px] text-[clamp(18px,1.8vw,24px)] leading-[1.4] font-normal text-[#303940]">Independent reporting and clear perspectives from our communities and around the world.</p>
           </div>
 
           <div className="lg:justify-self-end">
-            <p className="mb-4 text-[10px] font-medium tracking-[.14em] text-[#bac6d1] uppercase">The 5-minute brief</p>
-            <p className="mt-0 mb-3 max-w-[430px] text-xs leading-5 text-white/65">Get the day’s most important stories and updates delivered to your inbox.</p>
+            <p className="mb-4 text-[10px] font-semibold tracking-[.14em] text-[#4f9488] uppercase">The 5-minute brief</p>
+            <p className="mt-0 mb-3 max-w-[430px] text-xs leading-5 text-[#5f6368]">Get the day’s most important stories and updates delivered to your inbox.</p>
             <form id="newsletter-form" className="flex max-w-[430px] flex-col gap-2 sm:flex-row" onSubmit={handleSubscribe}>
               <label className="sr-only" htmlFor="newsletter-email">Email address</label>
-              <input className="min-w-0 flex-1 rounded-[8px] border border-white/20 bg-white px-4 py-3 text-sm text-[#202938] outline-none placeholder:text-[#7a828d] focus:border-[#4f9488]" id="newsletter-email" type="email" value={email} onChange={(event) => { setEmail(event.target.value); setStatus("idle"); }} placeholder="Email address" autoComplete="email" required />
-              <button className="flex cursor-pointer items-center justify-center gap-2 rounded-[8px] border border-white bg-transparent px-4 py-3 text-sm font-medium text-white transition hover:bg-white hover:text-[#202938] disabled:cursor-wait disabled:opacity-60" type="submit" disabled={status === "loading"}>{status === "loading" ? "Joining…" : "Subscribe"} <Icon name="arrow" /></button>
+              <input className="min-w-0 flex-1 rounded-[8px] border border-[#c8c9c7] bg-white px-4 py-3 text-sm text-[#182536] outline-none placeholder:text-[#7a828d] focus:border-[#4f9488]" id="newsletter-email" type="email" value={email} onChange={(event) => { setEmail(event.target.value); setStatus("idle"); }} placeholder="Email address" autoComplete="email" required />
+              <button className="flex cursor-pointer items-center justify-center gap-2 rounded-[8px] border border-[#182536] bg-[#182536] px-4 py-3 text-sm font-medium text-white transition hover:bg-[#2b4052] disabled:cursor-wait disabled:opacity-60" type="submit" disabled={status === "loading"}>{status === "loading" ? "Joining…" : "Subscribe"} <Icon name="arrow" /></button>
             </form>
             <div className="mt-2 min-h-4 text-[11px]" aria-live="polite">
-              {status === "demo" && <p className="m-0 text-[#bac6d1]">Email validated. Connect a newsletter service to activate delivery.</p>}
-              {status === "success" && <p className="m-0 text-[#a9d6cd]">You’re subscribed. Please check your inbox.</p>}
-              {status === "error" && <p className="m-0 text-white">We couldn’t subscribe you. Please try again.</p>}
+              {status === "demo" && <p className="m-0 text-[#5f6368]">Email validated. Connect a newsletter service to activate delivery.</p>}
+              {status === "success" && <p className="m-0 text-[#3f7f75]">You’re subscribed. Please check your inbox.</p>}
+              {status === "error" && <p className="m-0 text-[#182536]">We couldn’t subscribe you. Please try again.</p>}
             </div>
           </div>
         </div>
 
         <div className="grid gap-7 py-7 md:grid-cols-[1fr_auto] md:items-center">
           <nav className="flex flex-wrap gap-x-6 gap-y-3" aria-label="Footer navigation">
-            <Link className="text-xs font-medium text-white/65 transition hover:text-white" to="/">Home</Link>
-            {navigationItems.map((item) => <Link className="text-xs font-medium text-white/65 transition hover:text-white" key={item} to={`/${item.toLowerCase()}`}>{item}</Link>)}
+            <Link className="text-xs font-medium text-[#5f6368] transition hover:text-[#182536]" to="/">Home</Link>
+            {navigationItems.map((item) => <Link className="text-xs font-medium text-[#5f6368] transition hover:text-[#182536]" key={item} to={`/${item.toLowerCase()}`}>{item}</Link>)}
           </nav>
-          <div className="flex gap-5 text-xs font-medium text-white/65"><Link className="hover:text-white" to="/about">About</Link><Link className="hover:text-white" to="/contact">Contact</Link><Link className="hover:text-white" to="/privacy">Privacy</Link></div>
+          <div className="flex gap-5 text-xs font-medium text-[#5f6368]"><Link className="hover:text-[#182536]" to="/about">About</Link><Link className="hover:text-[#182536]" to="/contact">Contact</Link><Link className="hover:text-[#182536]" to="/privacy">Privacy</Link></div>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-white/10 pt-5 text-[11px] text-white/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 border-t border-[#cfd2d3] pt-5 text-[11px] text-[#74797d] sm:flex-row sm:items-center sm:justify-between">
           <p className="m-0">© 2026 Chinlung Today. All rights reserved.</p>
-          <p className="m-0">Designed and built by <a className="font-medium text-white underline decoration-white/35 underline-offset-4 transition hover:decoration-white" href="https://portfolio-website-sx94.onrender.com/" target="_blank" rel="noreferrer">JMIK Thang</a></p>
+          <p className="m-0">Designed and built by <a className="font-medium text-[#182536] underline decoration-[#4f9488]/60 underline-offset-4 transition hover:decoration-[#4f9488]" href="https://portfolio-website-sx94.onrender.com/" target="_blank" rel="noreferrer">JMIK Thang</a></p>
         </div>
       </div>
     </footer>

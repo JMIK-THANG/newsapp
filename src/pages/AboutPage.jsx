@@ -28,7 +28,7 @@ export default function AboutPage() {
           <div className="grid border-l border-[#dcdde0] sm:grid-cols-2 lg:grid-cols-4">{values.map((value) => <article className="border-r border-b border-[#dcdde0] p-5" key={value.title}><h3 className="mt-0 mb-3 text-lg font-semibold">{value.title}</h3><p className="mb-0 text-[13px] leading-5 text-[#4f5359]">{value.text}</p></article>)}</div>
         </section>
 
-        <div className="flex flex-col gap-4 border-b border-[#dcdde0] py-9 sm:flex-row sm:items-center sm:justify-between"><p className="m-0 text-sm text-[#4f5359]">Have a question, correction, or story suggestion?</p><Link className="flex w-fit items-center gap-2 bg-[#202938] px-5 py-3 text-sm font-semibold text-white" to="/contact">Contact Chinlung Today <Icon name="arrow" /></Link></div>
+        <div className="flex flex-col gap-4 border-b border-[#dcdde0] py-9 sm:flex-row sm:items-center sm:justify-between"><p className="m-0 text-sm text-[#4f5359]">Have a question, correction, or story suggestion?</p><Link className="flex w-fit items-center gap-2 bg-[#182536] px-5 py-3 text-sm font-semibold text-white" to="/contact">Contact Chinlung Today <Icon name="arrow" /></Link></div>
       </div>
     </main>
   );

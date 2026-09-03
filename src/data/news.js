@@ -7,23 +7,30 @@ export const navigationItems = [
 ];
 
 export const leadStory = {
-  slug: "changing-world-global-leadership",
-  category: "World",
-  readTime: "12 min read",
-  title: "A changing world demands a new kind of global leadership.",
+  slug: "mizoram-prison-escapes-accountability",
+  category: "Mizoram News",
+  readTime: "6 min read",
+  title: "Opposition seeks accountability after prisoner escapes in Mizoram",
   summary:
-    "Governments and communities are navigating rapid change—and redefining what meaningful progress looks like.",
-  author: "Salai Mazawn",
-  initials: "MZ",
-  date: "August 25, 2026",
+    "A recent escape from police custody has renewed scrutiny of prison security and the state Home Department.",
+  author: "Chinlung Today Newsroom",
+  initials: "CT",
+  date: "September 2, 2026",
   image:
-    "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=88",
-  imageAlt: "Friends sharing a joyful moment outdoors",
+    "https://upload.wikimedia.org/wikipedia/commons/0/0c/Aizawl_City.jpg",
+  imageAlt: "A panoramic view of Aizawl, the capital of Mizoram",
+  imageCredit: "Aizawl city image: Aizawl NIC/Wikimedia Commons. Used as a location image, not a photograph of the rally.",
   content: [
-    "Around the world, communities are confronting challenges that no institution or country can solve alone. Economic uncertainty, climate disruption, rapid technological change, and growing public distrust are reshaping what people expect from those in positions of responsibility.",
-    "The strongest responses are increasingly built through cooperation. Local organizers, researchers, public officials, and business leaders are sharing knowledge and designing solutions around the people most affected by change.",
-    "That approach requires leadership that listens before it acts. It also requires clear communication, honest acknowledgment of uncertainty, and decisions that can earn public confidence over time.",
-    "For communities, progress is measured not only through policy announcements but through practical results: safer neighborhoods, reliable services, wider opportunity, and a meaningful role in shaping the future.",
+    "Mizoram’s opposition Youth Congress has demanded accountability from the state government after a murder suspect escaped from police custody in Lunglei, renewing public scrutiny of security inside the state’s jails and police facilities.",
+    "Police said the 20-year-old suspect escaped at about 1 a.m. while being questioned in connection with the killing of a 15-year-old girl in Mualthuam North village. A search operation was continuing at the time of the latest report.",
+    "In a statement, the Mizoram Pradesh Youth Congress Committee accused the Home Department of negligence. It claimed that 74 prisoners escaped from jails across Mizoram between 2022 and August 2026, including people convicted of serious crimes.",
+    "Those figures and the opposition’s wider allegations are political claims and require an official response and independent verification. The available report did not include a detailed response from the state Home Department.",
+    "The immediate priority is locating the escaped suspect. Beyond the search, attention will turn to whether authorities publish findings on how the escape occurred and announce measures to prevent similar incidents.",
+  ],
+  sources: [
+    { label: "India Today NE/PTI: Youth Congress questions Mizoram government over prisoner escapes", url: "https://www.indiatodayne.in/amp/mizoram/story/mizoram-congress-youth-wing-blames-zpm-govt-over-prisoner-escapes-1446071-2026-09-02" },
+    { label: "Northeast Now: Search launched after Lunglei custody escape", url: "https://m.nenow.in/article/mizoram/mizoram-murder-accused-escapes-police-custody-in-lunglei-search-launched/532904" },
+    { label: "Wikimedia Commons: Aizawl city image and license information", url: "https://commons.wikimedia.org/wiki/File:Aizawl_City.jpg" },
   ],
 };
 
@@ -60,6 +67,13 @@ export const quickReads = [
     date: "August 27, 2026",
     image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1400&q=85",
     imageAlt: "Scientist conducting research in a laboratory",
+    content: [
+      "Researchers have released a new assessment examining how climate-related risks may develop over the next decade, giving communities a nearer-term view of changes that are often discussed through much longer projections.",
+      "The assessment brings together recent observations and climate models, with particular attention to patterns that can affect local planning. Its findings indicate that heat, heavy rainfall, drought, and pressure on infrastructure will vary by region rather than follow one uniform path.",
+      "The research could influence decisions about roads, water systems, emergency services, agriculture, and energy networks. A clearer understanding of near-term risk can help public agencies and communities decide which preparations require attention first.",
+      "Researchers caution that the assessment does not describe one unavoidable future. Outcomes will also depend on policy choices, investment, and how quickly institutions turn evidence into practical measures.",
+      "The next stage will be visible in local risk assessments and public planning. Communities will be watching whether officials set measurable priorities, explain proposed investments clearly, and include residents and local organizations in decisions that affect them.",
+    ],
   },
   {
     slug: "small-businesses-changing-consumer-habits",
@@ -84,6 +98,73 @@ export const quickReads = [
     imageAlt: "Athletes competing on an outdoor running track",
   },
 ];
+
+export const featuredExplainer = {
+  slug: "india-cockroach-youth-protests-explained",
+  category: "India · Politics",
+  readTime: "7 min read",
+  question: "Why did India’s medical entrance exam crisis send thousands into the streets?",
+  whatHappened:
+    "Alleged leaks and irregularities surrounding a highly competitive medical entrance examination left students questioning whether years of preparation could still lead to a fair result.",
+  whyItMatters:
+    "The examination determines access to a limited number of medical-college places, so failures in the process can disrupt education plans for an enormous number of students.",
+  whatToWatch:
+    "Students are watching whether investigations lead to transparent results, stronger exam security, fair retesting, and accountability for those responsible.",
+  introduction:
+    "What began with medical students’ anger over alleged examination failures became one of India’s most visible recent youth protests. The unusual ‘Cockroach’ name presents the movement as difficult to silence, but its central concern is straightforward: students want a medical admissions process they can trust.",
+  takeaway:
+    "For medical applicants, an examination failure can mean another year of preparation, additional expense, and uncertainty about a career they have worked toward for years.",
+  sections: [
+    {
+      title: "What happened",
+      paragraphs: [
+          "The immediate anger centered on alleged leaks and irregularities affecting India’s highly competitive medical entrance examination. Students depend on the test for admission to a limited number of medical-college places.",
+          "In July, thousands attempted to march toward Parliament in New Delhi. Police used tear gas and batons during confrontations, and images of the response brought wider attention and sympathy to the movement.",
+      ],
+    },
+    {
+      title: "Why it matters",
+      paragraphs: [
+          "Students often spend years and significant family resources preparing for medical admission. When the examination system appears vulnerable to cheating or leaked papers, they can feel that effort and academic merit no longer guarantee a fair opportunity.",
+          "The protests have also widened beyond students. Professionals, families, opposition figures, and civil-society activists have connected the examination dispute to unemployment, economic opportunity, policing, and the government’s treatment of dissent.",
+      ],
+    },
+    {
+      title: "What to watch next",
+      paragraphs: [
+          "The first test is whether investigations identify what went wrong and whether affected students receive a fair process. Protesters will judge reforms by practical changes to exam security, communication, retesting, and result review.",
+          "The second test is political: whether the movement remains focused and peaceful, whether it expands beyond major cities, and whether police tactics or surveillance create another wave of public anger.",
+      ],
+    },
+  ],
+};
+
+export const explainerSourceStory = {
+  slug: "india-cockroach-youth-protests-explained",
+  category: "India Politics",
+  title: "Medical entrance exam anger fuels India’s ‘Cockroach’ youth protests",
+  summary:
+    "Students demanding a fair medical admissions process have turned alleged examination failures into a wider test of government accountability.",
+  author: "Chinlung Today Newsroom",
+  date: "September 2, 2026",
+  time: "8 min read",
+  image:
+    "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1400&q=85",
+  imageAlt: "A crowd gathered near a government building",
+  content: [
+    "Thousands of young Indians have taken to the streets in a movement driven by anger over alleged leaks and irregularities surrounding a highly competitive medical entrance examination.",
+    "Calling themselves the ‘Cockroaches,’ organizers transformed an online identity into a political pressure movement. The name signals their claim that young people will continue returning to public life even when institutions try to dismiss their concerns.",
+    "The examination at the center of the dispute is a gateway to medical education. With intense competition for a limited number of places, allegations of cheating or leaked papers strike directly at students’ belief that preparation and merit will be rewarded fairly.",
+    "The movement drew national attention after thousands attempted to march toward Parliament in New Delhi in July. Police used tear gas and batons during clashes with demonstrators, and the response encouraged professionals, families, activists, and opposition politicians to express support.",
+    "The pressure contributed to a major political setback for the government, including the resignation of the education minister. Although the movement later absorbed wider concerns about jobs and accountability, examination reform remains central to its support among students.",
+    "What happens next depends on whether authorities provide a transparent investigation, a fair process for affected applicants, and stronger safeguards for future examinations. Police conduct and the movement’s ability to remain peaceful will also shape public support.",
+  ],
+  sources: [
+    { label: "Associated Press: What to know about the movement", url: "https://apnews.com/article/59d045fbd485635def01b01f3898307b" },
+    { label: "Associated Press: Protesters continue after crackdown", url: "https://apnews.com/article/dc9d61bf27f26510c0bd427f4d889699" },
+    { label: "Associated Press: Wangchuk ends hunger strike", url: "https://apnews.com/article/e2f114b6cf6568bb8f5d739fe36349ed" },
+  ],
+};
 
 export const mostReadStories = [
   {
@@ -113,13 +194,6 @@ export const mostReadStories = [
     time: "6 min",
     image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=500&q=80",
     imageAlt: "Modern city buildings viewed from below",
-  },
-  {
-    category: "Culture",
-    title: "Independent filmmakers find new audiences across borders",
-    time: "4 min",
-    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=500&q=80",
-    imageAlt: "Film production camera on a set",
   },
 ];
 

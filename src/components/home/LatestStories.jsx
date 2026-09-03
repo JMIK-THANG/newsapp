@@ -19,7 +19,7 @@ export default function LatestStories() {
           <article className="group">
             <Link to={`/news/story/${feature.slug}`} className="relative block aspect-[16/8.5] overflow-hidden rounded-[6px] bg-[#e8edf2]">
               <img className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" src={feature.image} alt={feature.imageAlt} />
-              <span className="absolute top-4 left-4 bg-white px-2.5 py-1.5 text-[9px] font-bold tracking-[.12em] text-[#202938] uppercase">Editor’s pick</span>
+              <span className="absolute top-4 left-4 bg-white px-2.5 py-1.5 text-[9px] font-bold tracking-[.12em] text-[#182536] uppercase">Editor’s pick</span>
             </Link>
             <div className="pt-6">
               <p className="mb-3 text-[11px] font-semibold text-[#4f9488] uppercase">{feature.category} <span className="font-normal text-[#5f6368]">• {feature.readTime}</span></p>
@@ -45,8 +45,11 @@ export default function LatestStories() {
           </div>
         </div>
 
-        <div className="mt-9 flex justify-center">
-          <Link to="/news" className="flex items-center gap-3 border-b border-[#111318] pb-1 text-xs font-semibold text-[#111318] transition hover:opacity-60">Explore all stories <Icon name="arrow" /></Link>
+        <div className="mt-10 flex justify-center border-t border-[#dcdde0] pt-8">
+          <Link to="/news" className="group flex items-center gap-4 rounded-full bg-[#182536] px-6 py-3.5 text-xs font-semibold text-white shadow-[0_10px_24px_rgba(24,37,54,.14)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#2b4052] hover:shadow-[0_14px_30px_rgba(24,37,54,.2)]">
+            Explore all stories
+            <span className="grid size-7 place-items-center rounded-full bg-white/12 transition-transform duration-300 group-hover:translate-x-1"><Icon name="arrow" /></span>
+          </Link>
         </div>
       </div>
     </section>

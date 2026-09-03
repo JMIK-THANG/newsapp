@@ -18,7 +18,7 @@ export default function PrivacyPage() {
         </header>
 
         <div className="grid gap-10 py-9 lg:grid-cols-[220px_1fr]">
-          <aside className="h-fit border-t-2 border-[#111318] bg-[#f4f2ed] p-5"><h2 className="m-0 text-base font-semibold">Plain-language summary</h2><p className="mb-0 text-[13px] leading-5 text-[#4f5359]">This portfolio demonstration currently does not save newsletter or contact-form data. This policy must be updated when real third-party services are connected.</p></aside>
+          <aside className="h-fit border-t-2 border-[#111318] bg-[#f7f5ef] p-5"><h2 className="m-0 text-base font-semibold">Plain-language summary</h2><p className="mb-0 text-[13px] leading-5 text-[#4f5359]">This portfolio demonstration currently does not save newsletter or contact-form data. This policy must be updated when real third-party services are connected.</p></aside>
           <article className="divide-y divide-[#dcdde0] border-y border-[#dcdde0]">
             <section className="py-6"><h2 className="mt-0 text-2xl font-semibold">Our commitment</h2><p className="mb-0 text-[15px] leading-7 text-[#4f5359]">Chinlung Today should collect only the information necessary to provide its services, explain its practices clearly, and give readers meaningful control over their personal information.</p></section>
             {sections.map((section) => <section className="py-6" key={section.title}><h2 className="mt-0 text-xl font-semibold text-[#111318]">{section.title}</h2><p className="mb-0 text-[15px] leading-7 text-[#4f5359]">{section.text}</p></section>)}

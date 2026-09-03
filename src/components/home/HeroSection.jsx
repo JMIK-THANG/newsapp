@@ -2,49 +2,25 @@ import { leadStory, mostReadStories, quickReads } from "../../data/news";
 import Icon from "../ui/Icon";
 import { Link } from "react-router-dom";
 
-function SectionHeading({ eyebrow, title, href }) {
+function SectionHeading({ title }) {
   return (
-    <div className="flex items-end justify-between border-b border-[#dcdde0] pb-3">
-      <div>
-        <p className="mb-2 inline-flex items-center gap-2 text-[11px] font-bold tracking-[.04em] text-[#4f9488] uppercase after:h-px after:w-9 after:bg-[#4f9488]">
-          {eyebrow}
-        </p>
-        <h2 className="m-0 text-[20px] font-bold tracking-[-.02em] text-[#111318]">
-          {title}
-        </h2>
-      </div>
-      <Link
-        className="flex items-center gap-1 text-[11px] font-semibold text-[#111318] transition hover:opacity-60"
-        to={href}
-        aria-label={`View ${title}`}
-      >
-        View <Icon name="arrow" />
-      </Link>
+    <div className="border-b border-[#dcdde0] pb-3">
+      <h2 className="m-0 inline-flex items-center gap-2 text-[20px] font-bold tracking-[-.02em] text-[#111318] after:h-px after:w-9 after:bg-[#4f9488]">
+        {title}
+      </h2>
     </div>
   );
 }
 
 export default function HeroSection() {
   return (
-    <main id="top" className="bg-[#f4f2ed] px-3 pt-2 pb-12 md:px-6">
+    <main id="top" className="bg-[#f7f5ef] px-3 pb-12 md:px-6">
       <section className="mx-auto max-w-[1380px]" aria-labelledby="lead-title">
-        <div className="flex min-h-[50px] items-center justify-between border-b border-[#dcdde0] text-[12px] font-medium text-[#4f5359]">
-          <p className="flex items-center gap-2">
-            Wednesday, August 26 <span>•</span> Morning edition
-          </p>
-          <p className="hidden tracking-[.13em] uppercase md:block">
-            Independent reporting. Clear perspectives.
-          </p>
-        </div>
-
         <div className="grid border-x border-b border-[#dcdde0] bg-white px-4 lg:grid-cols-[1.16fr_.84fr_.72fr] lg:px-0">
           <article className="group border-b border-[#dcdde0] py-6 lg:border-r lg:border-b-0 lg:px-7">
             <div className="mb-4 flex items-end justify-between">
               <div>
-                <p className="mb-2 inline-flex items-center gap-2 text-[11px] font-bold tracking-[.04em] text-[#4f9488] uppercase after:h-px after:w-9 after:bg-[#4f9488]">
-                  Front page
-                </p>
-                <h2 className="m-0 text-[20px] font-bold tracking-[-.02em] text-[#111318]">
+                <h2 className="m-0 inline-flex items-center gap-2 text-[20px] font-bold tracking-[-.02em] text-[#111318] after:h-px after:w-9 after:bg-[#4f9488]">
                   Top Story
                 </h2>
               </div>
@@ -77,8 +53,7 @@ export default function HeroSection() {
                 </Link>
               </h1>
               <p className="mb-0 max-w-[690px] pt-2.5 text-[13px] leading-5 text-[#4f5359]">
-                Governments and communities are navigating rapid change—and
-                redefining progress.
+                {leadStory.summary}
               </p>
               <div className="mt-3 flex items-center justify-between border-t border-[#dcdde0] pt-3">
                 <p className="m-0 text-[11px] font-medium text-[#5f6368]">
@@ -88,7 +63,7 @@ export default function HeroSection() {
                   </span>
                 </p>
                 <Link
-                  className="flex items-center gap-2 text-xs font-bold text-[#202938]"
+                  className="flex items-center gap-2 text-xs font-bold text-[#182536]"
                   to={`/news/story/${leadStory.slug}`}
                 >
                   Read full story <Icon name="arrow" />
@@ -102,9 +77,7 @@ export default function HeroSection() {
             aria-labelledby="latest-news-title"
           >
             <SectionHeading
-              eyebrow="Live desk"
               title="Latest News"
-              href="/news"
             />
             <div className="divide-y divide-[#dcdde0]">
               {quickReads.map((story) => (
@@ -141,9 +114,7 @@ export default function HeroSection() {
             aria-labelledby="most-read-title"
           >
             <SectionHeading
-              eyebrow="Trending now"
               title="Most Read"
-              href="/news"
             />
             <div className="mt-1 divide-y divide-[#dcdde0]">
               {mostReadStories.map((story, index) => (

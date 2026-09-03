@@ -3,6 +3,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import HeroSection from "./components/home/HeroSection";
 import LatestStories from "./components/home/LatestStories";
+import StoryExplained from "./components/home/StoryExplained";
 import Footer from "./components/layout/Footer";
 import NewsPage from "./pages/NewsPage";
 import EditorialPage from "./pages/EditorialPage";
@@ -13,6 +14,7 @@ import ArticleDetailPage from "./pages/ArticleDetailPage";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import AboutPage from "./pages/AboutPage";
+import ExplainerPage from "./pages/ExplainerPage";
 
 function ScrollToTop() {
   const location = useLocation();
@@ -23,7 +25,7 @@ function ScrollToTop() {
 }
 
 function HomePage() {
-  return <><HeroSection /><LatestStories /></>;
+  return <><HeroSection /><LatestStories /><StoryExplained /></>;
 }
 
 export default function App() {
@@ -43,6 +45,7 @@ export default function App() {
     <Route path="/contact" element={<ContactPage />} />
     <Route path="/privacy" element={<PrivacyPage />} />
     <Route path="/about" element={<AboutPage />} />
+    <Route path="/explainers/:slug" element={<ExplainerPage />} />
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes><Footer /></>;
 }

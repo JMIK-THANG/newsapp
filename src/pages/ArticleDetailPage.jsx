@@ -1,5 +1,5 @@
 import Icon from "../components/ui/Icon";
-import { latestStories, leadStory, mostReadStories, newsPageStories, quickReads } from "../data/news";
+import { explainerSourceStory, latestStories, leadStory, mostReadStories, newsPageStories, quickReads } from "../data/news";
 import { articleStories, businessStories, editorialStories, sportsStories } from "../data/sectionPageData";
 import { Link, useParams } from "react-router-dom";
 
@@ -9,6 +9,7 @@ const authors = { news: "Chinlung Today Newsroom", editorial: "Chinlung Today Ed
 
 function findStory(section, stories, storyKey) {
   if (section === "news" && storyKey === leadStory.slug) return leadStory;
+  if (section === "news" && storyKey === explainerSourceStory.slug) return explainerSourceStory;
   if (section === "news") {
     const quickRead = quickReads.find((story) => story.slug === storyKey);
     if (quickRead) return quickRead;
@@ -48,7 +49,7 @@ export default function ArticleDetailPage({ section }) {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-[#5f6368]"><span>By <strong className="font-semibold text-[#111318]">{story.author || authors[section]}</strong></span><span>•</span><span>{publishedDate}</span><span>•</span><span>{story.time || "6 min read"}</span></div>
         </header>
 
-        <figure className="my-9"><img className="aspect-[16/8.5] w-full object-cover" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">Reporting and photography for Chinlung Today.</figcaption></figure>
+        <figure className="my-9"><img className="aspect-[16/8.5] w-full object-cover" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
 
         <div className="mx-auto grid max-w-[900px] gap-8 lg:grid-cols-[120px_1fr]">
           <aside><p className="m-0 border-t border-[#111318] pt-3 text-[10px] font-semibold tracking-[.08em] uppercase">Share this story</p></aside>
@@ -56,6 +57,7 @@ export default function ArticleDetailPage({ section }) {
             {story.content ? story.content.slice(0, 2).map((paragraph, index) => <p className={index === 0 ? "mt-0 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-6xl first-letter:leading-[.82]" : undefined} key={paragraph}>{paragraph}</p>) : <><p className="mt-0 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-6xl first-letter:leading-[.82]">{summary} The issue reaches beyond a single announcement or moment. It reflects broader changes already affecting institutions, families, and communities in visible and less visible ways.</p><p>People closest to the story describe a situation that requires patience, reliable information, and careful attention to local experience. Their accounts add context that can be lost when events are reduced to a headline.</p></>}
             <h2 className="mt-10 mb-4 font-serif text-[30px] leading-tight tracking-[-.025em] text-[#111318]">What happens next</h2>
             {story.content ? story.content.slice(2).map((paragraph) => <p key={paragraph}>{paragraph}</p>) : <><p>Questions remain about implementation, access, and long-term impact. Officials and community leaders say the next phase will depend on transparent decisions and meaningful public participation.</p><p>Chinlung Today will continue following the story, verifying new information, and explaining what developments mean for readers locally and around the world.</p></>}
+            {story.sources && <aside className="mt-10 border-t border-[#dcdde0] pt-5"><h2 className="mt-0 mb-3 text-sm font-semibold text-[#111318]">Sources and further reading</h2><ul className="m-0 space-y-2 pl-5 text-sm leading-6">{story.sources.map((source) => <li key={source.url}><a className="text-[#397d73] underline underline-offset-3" href={source.url} target="_blank" rel="noreferrer">{source.label}</a></li>)}</ul></aside>}
           </div>
         </div>
       </article>
