@@ -15,7 +15,7 @@ function SectionHeading({ title }) {
 
 function LatestNewsCard({ story, className = "" }) {
   return (
-    <article className={`group snap-start ${className}`}>
+    <article className={`group min-w-0 snap-start ${className}`}>
       <Link
         className="block aspect-[16/8.5] overflow-hidden rounded-[6px] bg-[#e8edf2]"
         to={`/news/story/${story.slug}`}
@@ -75,7 +75,7 @@ function LatestNewsCarousel() {
     <>
       <div
         ref={carouselRef}
-        className="mt-4 grid snap-x snap-mandatory auto-cols-[84%] grid-flow-col gap-5 overflow-x-auto pb-3 [scrollbar-color:#aeb9b5_transparent] [scrollbar-width:thin] sm:auto-cols-[47%] lg:grid-flow-row lg:grid-cols-4 lg:auto-cols-auto lg:overflow-visible"
+        className="mt-4 grid w-full max-w-full min-w-0 snap-x snap-mandatory auto-cols-[84%] grid-flow-col gap-5 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-color:#aeb9b5_transparent] [scrollbar-width:thin] sm:auto-cols-[47%] lg:grid-flow-row lg:grid-cols-4 lg:auto-cols-auto lg:overflow-visible"
         onScroll={updateActiveStory}
       >
         {stories.map((story, index) => (
@@ -111,8 +111,8 @@ export default function HeroSection() {
   return (
     <main id="top" className="bg-[#f7f5ef] px-3 pb-6 md:px-6 md:pb-8">
       <section className="mx-auto max-w-[1380px]" aria-labelledby="lead-title">
-        <div className="grid border-x border-b border-[#dcdde0] bg-white px-4 lg:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] lg:px-0">
-          <article className="group order-1 border-b border-[#dcdde0] py-4 lg:border-r lg:border-b-0 lg:px-6">
+        <div className="grid min-w-0 overflow-hidden border-x border-b border-[#dcdde0] bg-white px-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] xl:px-0">
+          <article className="group order-1 min-w-0 border-b border-[#dcdde0] py-4 xl:border-r xl:border-b-0 xl:px-6">
             <div className="mb-2.5 flex items-end justify-between">
               <div>
                 <h2 className="m-0 inline-flex items-center gap-2 text-[20px] font-bold tracking-[-.02em] text-[#111318] after:h-px after:w-9 after:bg-[#4f9488]">
@@ -124,9 +124,9 @@ export default function HeroSection() {
               </span>
             </div>
 
-            <div className="lg:grid lg:grid-cols-[minmax(0,1.5fr)_minmax(240px,.7fr)] lg:gap-5">
+            <div className="xl:grid xl:grid-cols-[minmax(0,1.5fr)_minmax(240px,.7fr)] xl:gap-5">
               <Link
-                className="relative block h-[clamp(230px,58vw,340px)] overflow-hidden rounded-[6px] bg-[#e8edf2] lg:h-full lg:min-h-[270px]"
+                className="relative block h-[clamp(230px,58vw,340px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-full xl:min-h-[270px]"
                 to={`/news/story/${leadStory.slug}`}
               >
                 <img
@@ -136,7 +136,7 @@ export default function HeroSection() {
                 />
               </Link>
 
-              <div className="flex flex-col pt-3 lg:pt-1">
+              <div className="flex min-w-0 flex-col pt-3 xl:pt-1">
                 <p className="mb-2 text-[11px] font-medium text-[#5f6368] uppercase">
                   {leadStory.date} · {leadStory.readTime}
                 </p>
@@ -151,7 +151,7 @@ export default function HeroSection() {
                 <p className="mb-0 pt-2.5 text-[12px] leading-[1.55] text-[#4f5359]">
                   {leadStory.summary}
                 </p>
-                <div className="mt-3 flex flex-col items-start gap-2 border-t border-[#dcdde0] pt-2.5 lg:mt-auto 2xl:flex-row 2xl:items-center 2xl:justify-between">
+                <div className="mt-3 flex flex-col items-start gap-2 border-t border-[#dcdde0] pt-2.5 xl:mt-auto 2xl:flex-row 2xl:items-center 2xl:justify-between">
                   <p className="m-0 text-[11px] font-medium text-[#5f6368]">
                     By{" "}
                     <span className="font-semibold text-[#111318]">
@@ -170,7 +170,7 @@ export default function HeroSection() {
           </article>
 
           <aside
-            className="order-3 flex flex-col border-t border-[#dcdde0] py-4 lg:order-2 lg:border-t-0 lg:border-l lg:px-6"
+            className="order-3 flex min-w-0 flex-col border-t border-[#dcdde0] py-4 xl:order-2 xl:border-t-0 xl:border-l xl:px-6"
             aria-labelledby="most-read-title"
           >
             <SectionHeading
@@ -221,7 +221,7 @@ export default function HeroSection() {
           </aside>
 
           <section
-            className="order-2 py-5 lg:order-3 lg:col-span-2 lg:border-t lg:border-[#dcdde0] lg:px-7"
+            className="order-2 min-w-0 py-5 xl:order-3 xl:col-span-2 xl:border-t xl:border-[#dcdde0] xl:px-7"
             aria-labelledby="latest-news-title"
           >
             <div className="flex items-end justify-between border-b border-[#dcdde0] pb-3">
