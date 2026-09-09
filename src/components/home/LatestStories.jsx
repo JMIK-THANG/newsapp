@@ -6,7 +6,7 @@ export default function LatestStories() {
   const [feature, ...stories] = latestStories;
 
   return (
-    <section id="latest" className="border-t border-[#dcdde0] bg-white px-3 py-12 md:px-6 md:py-16" aria-labelledby="latest-title">
+    <section id="latest" className="border-t border-[#dcdde0] bg-white px-3 pt-10 pb-12 md:px-6 md:pt-12 md:pb-16" aria-labelledby="latest-title">
       <div className="mx-auto max-w-[1380px]">
         <div className="border-b border-[#dcdde0] pb-6">
           <div>
@@ -22,7 +22,7 @@ export default function LatestStories() {
               <span className="absolute top-4 left-4 bg-white px-2.5 py-1.5 text-[9px] font-bold tracking-[.12em] text-[#182536] uppercase">Editor’s pick</span>
             </Link>
             <div className="pt-6">
-              <p className="mb-3 text-[11px] font-semibold text-[#4f9488] uppercase">{feature.category} <span className="font-normal text-[#5f6368]">• {feature.readTime}</span></p>
+              <p className="mb-3 text-[11px] font-semibold text-[#4f9488] uppercase">{feature.topic || feature.category} <span className="font-normal text-[#5f6368]">• {feature.readTime}</span></p>
               <h3 className="m-0 max-w-3xl font-serif text-[clamp(27px,2.5vw,38px)] leading-[1.08] tracking-[-.025em] text-[#111318]"><Link className="transition hover:opacity-65" to={`/news/story/${feature.slug}`}>{feature.title}</Link></h3>
               <p className="mb-0 max-w-2xl text-[13px] leading-5 text-[#4f5359]">{feature.summary}</p>
               <p className="mt-5 text-[11px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{feature.author}</span> · {feature.date}</p>
@@ -33,7 +33,7 @@ export default function LatestStories() {
             {stories.map((story) => (
               <article className="group grid grid-cols-[1fr_104px] gap-4 py-5 sm:grid-cols-[1fr_140px]" key={story.title}>
                 <div className="flex flex-col">
-                  <p className="mb-3 text-[11px] font-semibold text-[#4f9488] uppercase">{story.category} <span className="font-normal text-[#5f6368]">• {story.readTime}</span></p>
+                  <p className="mb-3 text-[11px] font-semibold text-[#4f9488] uppercase">{story.topic || story.category} <span className="font-normal text-[#5f6368]">• {story.readTime}</span></p>
                   <h3 className="m-0 text-[clamp(17px,1.5vw,22px)] leading-[1.3] font-semibold tracking-[-.015em] text-[#111318]"><Link className="transition hover:opacity-65" to={`/news/story/${story.slug}`}>{story.title}</Link></h3>
                   <p className="mt-auto mb-0 pt-4 text-[11px] font-medium text-[#5f6368]">{story.author} · {story.date}</p>
                 </div>

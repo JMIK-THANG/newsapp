@@ -8,7 +8,7 @@ export const navigationItems = [
 
 export const leadStory = {
   slug: "mizoram-prison-escapes-accountability",
-  category: "Mizoram News",
+  category: "Chin News",
   readTime: "6 min read",
   title: "Opposition seeks accountability after prisoner escapes in Mizoram",
   summary:
@@ -37,7 +37,7 @@ export const leadStory = {
 export const quickReads = [
   {
     slug: "global-leaders-economic-alliances",
-    category: "World",
+    category: "International News",
     title: "Global leaders meet as economic alliances begin to shift",
     time: "6 min",
     summary: "Diplomatic and economic partnerships are being reconsidered as governments respond to new pressures at home and abroad.",
@@ -48,7 +48,7 @@ export const quickReads = [
   },
   {
     slug: "voters-focus-economy-pivotal-election",
-    category: "Politics",
+    category: "Myanmar News",
     title: "Voters focus on the economy ahead of a pivotal election",
     time: "4 min",
     summary: "Household costs, employment, and economic security are shaping voter priorities as election day approaches.",
@@ -59,10 +59,10 @@ export const quickReads = [
   },
   {
     slug: "climate-study-decade-ahead",
-    category: "Science",
-    title: "A major climate study offers a clearer view of the decade ahead",
+    category: "Chin News",
+    title: "Chin communities turn climate research into local preparedness plans",
     time: "8 min",
-    summary: "New findings give communities and policymakers a more detailed picture of the environmental risks expected during the next decade.",
+    summary: "Local organizers are using new findings to better understand environmental risks and prepare communities for the decade ahead.",
     author: "Esther Hniang",
     date: "August 27, 2026",
     image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1400&q=85",
@@ -101,7 +101,7 @@ export const quickReads = [
 
 export const featuredExplainer = {
   slug: "india-cockroach-youth-protests-explained",
-  category: "India · Politics",
+  category: "International News",
   readTime: "7 min read",
   question: "Why did India’s medical entrance exam crisis send thousands into the streets?",
   whatHappened:
@@ -141,7 +141,7 @@ export const featuredExplainer = {
 
 export const explainerSourceStory = {
   slug: "india-cockroach-youth-protests-explained",
-  category: "India Politics",
+  category: "International News",
   title: "Medical entrance exam anger fuels India’s ‘Cockroach’ youth protests",
   summary:
     "Students demanding a fair medical admissions process have turned alleged examination failures into a wider test of government accountability.",
@@ -168,7 +168,7 @@ export const explainerSourceStory = {
 
 export const mostReadStories = [
   {
-    category: "Technology",
+    category: "International News",
     title: "AI investment reshapes the global technology race",
     time: "5 min",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80",
@@ -182,14 +182,14 @@ export const mostReadStories = [
     imageAlt: "Financial market chart on a screen",
   },
   {
-    category: "Science",
+    category: "International News",
     title: "Researchers discover a promising path to cleaner energy",
     time: "7 min",
     image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80",
     imageAlt: "Scientist working in a modern laboratory",
   },
   {
-    category: "World",
+    category: "International News",
     title: "Cities rethink public spaces for a rapidly changing climate",
     time: "6 min",
     image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=500&q=80",
@@ -200,7 +200,8 @@ export const mostReadStories = [
 export const latestStories = [
   {
     slug: "neighborhood-kitchen-serving-community",
-    category: "Community",
+    category: "Chin News",
+    topic: "Community",
     title: "A neighborhood kitchen serving more than a warm meal",
     summary:
       "Inside the volunteer network turning food, conversation, and care into a weekly ritual.",
@@ -213,7 +214,8 @@ export const latestStories = [
   },
   {
     slug: "new-sound-of-an-old-language",
-    category: "Culture",
+    category: "Chin News",
+    topic: "Culture",
     title: "The new sound of an old language",
     summary:
       "Young musicians are carrying Chin languages into a bold and unexpected creative era.",
@@ -226,7 +228,8 @@ export const latestStories = [
   },
   {
     slug: "small-classrooms-ambitious-futures",
-    category: "Education",
+    category: "Chin News",
+    topic: "Education",
     title: "Small classrooms, ambitious futures",
     summary:
       "Meet the teachers rethinking how rural students connect to opportunity beyond the classroom.",
@@ -239,7 +242,8 @@ export const latestStories = [
   },
   {
     slug: "family-recipe-growing-local-brand",
-    category: "Business",
+    category: "Chin News",
+    topic: "Business",
     title: "From family recipe to growing local brand",
     summary:
       "How one founder built a business that keeps community values at the center of every decision.",
@@ -324,5 +328,68 @@ export const newsPageStories = [
     date: "August 22, 2026",
     image: "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85",
     imageAlt: "Crowd watching a live cultural performance",
+  },
+  {
+    category: "Myanmar News",
+    title: "Local health teams extend mobile clinics to remote communities",
+    summary: "Community health workers are coordinating regular visits and essential care for families living far from permanent clinics.",
+    author: "Mawi Cung",
+    date: "August 21, 2026",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=85",
+    imageAlt: "Healthcare professional speaking with a patient",
+  },
+  {
+    category: "International News",
+    title: "Cities test new approaches to affordable public transportation",
+    summary: "Transit agencies are studying simpler fares and expanded routes as commuting patterns continue to change.",
+    author: "Lian Hmung",
+    date: "August 21, 2026",
+    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=85",
+    imageAlt: "Public buses traveling through a city",
+  },
+  {
+    category: "Chin News",
+    title: "Community archives preserve photographs and family histories",
+    summary: "A volunteer-led project is digitizing fragile records so younger generations can explore stories from their communities.",
+    author: "Masiam",
+    date: "August 20, 2026",
+    image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=900&q=85",
+    imageAlt: "Books and historical records arranged in a library",
+  },
+  {
+    category: "Myanmar News",
+    title: "Farmers share new methods for protecting crops during unpredictable seasons",
+    summary: "Local farming networks are exchanging practical knowledge about water use, soil health, and changing weather conditions.",
+    author: "Thawng No",
+    date: "August 20, 2026",
+    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85",
+    imageAlt: "Green agricultural fields beneath an open sky",
+  },
+  {
+    category: "International News",
+    title: "Universities rethink how students prepare for an AI-shaped workplace",
+    summary: "New courses are combining technical literacy with communication, critical thinking, and responsible use of emerging tools.",
+    author: "Esther Hniang",
+    date: "August 19, 2026",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85",
+    imageAlt: "University students collaborating around a table",
+  },
+  {
+    category: "Chin News",
+    title: "Youth sports programs create new connections across the diaspora",
+    summary: "Weekend competitions are helping young people form friendships while staying connected to community identity.",
+    author: "Daniel Kima",
+    date: "August 19, 2026",
+    image: "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=900&q=85",
+    imageAlt: "Young football players competing on a field",
+  },
+  {
+    category: "Myanmar News",
+    title: "Independent educators build flexible learning spaces for displaced students",
+    summary: "Teachers are adapting schedules, materials, and community spaces to help children continue their education during disruption.",
+    author: "Lal Tha",
+    date: "August 18, 2026",
+    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=85",
+    imageAlt: "School supplies and books arranged on a desk",
   },
 ];
