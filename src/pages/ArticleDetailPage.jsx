@@ -1,7 +1,9 @@
 import Icon from "../components/ui/Icon";
 import { explainerSourceStory, latestStories, leadStory, mostReadStories, newsPageStories, quickReads } from "../data/news";
 import { articleStories, businessStories, editorialStories, sportsStories } from "../data/sectionPageData";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { getNewsArticle } from "../hooks/useNews";
 
 const sectionStories = { news: newsPageStories, editorial: editorialStories, articles: articleStories, sports: sportsStories, business: businessStories };
 const sectionNames = { news: "News", editorial: "Editorial", articles: "Articles", sports: "Sports", business: "Business" };
@@ -19,8 +21,11 @@ function findStory(section, stories, storyKey) {
   if (section === "news" && storyKey.startsWith("article-")) return stories[Number(storyKey.replace("article-", "")) - 1] || stories[0];
   if (section === "news" && storyKey.startsWith("popular-")) return mostReadStories[Number(storyKey.replace("popular-", "")) - 1] || mostReadStories[0];
   if (storyKey === "featured") return stories[0];
-  const index = Number(storyKey.replace("story-", ""));
-  return stories[index] || stories[0];
+  if (storyKey.startsWith("story-")) {
+    const index = Number(storyKey.replace("story-", ""));
+    return stories[index] || stories[0];
+  }
+  return section === "news" ? null : stories[0];
 }
 
 const storyRouteKey = (stories, story) => {
@@ -31,8 +36,23 @@ const storyRouteKey = (stories, story) => {
 export default function ArticleDetailPage({ section }) {
   const { storyKey } = useParams();
   const stories = sectionStories[section];
-  const story = findStory(section, stories, storyKey);
+  const staticStory = findStory(section, stories, storyKey);
+  const [databaseStory, setDatabaseStory] = useState(null);
+  const [loadError, setLoadError] = useState("");
+  const story = databaseStory || staticStory;
   const sectionName = sectionNames[section];
+  useEffect(() => {
+    if (section !== "news" || staticStory) return;
+
+    getNewsArticle(storyKey)
+      .then(setDatabaseStory)
+      .catch((error) => setLoadError(error.message));
+  }, [section, staticStory, storyKey]);
+
+  if (!story) {
+    return <main className="min-h-[60vh] bg-white px-6 py-16 text-center"><h1 className="font-serif text-4xl">{loadError || "Loading article…"}</h1><Link className="mt-5 inline-block underline" to="/news">Return to Latest News</Link></main>;
+  }
+
   const related = stories.filter((item) => item.title !== story.title).slice(0, 3);
   const summary = story.summary || `A closer look at ${story.title.toLowerCase()}, why readers are following it, and what may happen next.`;
   const publishedDate = story.date || "August 26, 2026";

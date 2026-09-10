@@ -2,15 +2,21 @@ import { useMemo, useState } from "react";
 import { mostReadStories, newsPageStories } from "../data/news";
 import Icon from "../components/ui/Icon";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import useNews from "../hooks/useNews";
 
 const filters = ["All News", "Chin News", "Myanmar News", "International News"];
 
 export default function NewsPage() {
+  const { news: databaseNews } = useNews();
   const { filter } = useParams();
   const navigate = useNavigate();
   const activeFilter = filters.find((item) => item.toLowerCase().startsWith(filter || "all")) || "All News";
   const [visibleCount, setVisibleCount] = useState(6);
-  const stories = useMemo(() => activeFilter === "All News" ? newsPageStories : newsPageStories.filter((story) => story.category === activeFilter), [activeFilter]);
+  const allStories = databaseNews.length > 0 ? databaseNews : newsPageStories;
+  const stories = useMemo(() => activeFilter === "All News" ? allStories : allStories.filter((story) => story.category === activeFilter), [activeFilter, allStories]);
+  const storyPath = (story) => story.slug
+    ? `/news/story/${story.slug}`
+    : `/news/story/article-${newsPageStories.indexOf(story) + 1}`;
 
   const selectFilter = (filter) => {
     setVisibleCount(6);
@@ -40,10 +46,10 @@ export default function NewsPage() {
             <div className="divide-y divide-[#dcdde0] border-y border-[#dcdde0]">
               {stories.slice(0, visibleCount).map((story) => (
                 <article className="group grid gap-5 py-6 sm:grid-cols-[210px_1fr]" key={story.title}>
-                  <Link className="aspect-[16/10] overflow-hidden bg-[#e8edf2]" to={`/news/story/article-${newsPageStories.indexOf(story) + 1}`} tabIndex="-1"><img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" src={story.image} alt={story.imageAlt} /></Link>
+                  <Link className="aspect-[16/10] overflow-hidden bg-[#e8edf2]" to={storyPath(story)} tabIndex="-1"><img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" src={story.image} alt={story.imageAlt} /></Link>
                   <div className="flex min-w-0 flex-col py-0.5">
                     <p className="mb-2 text-[11px] font-semibold text-[#4f9488] uppercase">{story.category} <span className="font-normal text-[#5f6368]">· {story.date}</span></p>
-                    <h2 className="m-0 text-[clamp(20px,2vw,27px)] leading-[1.15] font-semibold tracking-[-.025em] text-[#111318]"><Link className="transition hover:opacity-60" to={`/news/story/article-${newsPageStories.indexOf(story) + 1}`}>{story.title}</Link></h2>
+                    <h2 className="m-0 text-[clamp(20px,2vw,27px)] leading-[1.15] font-semibold tracking-[-.025em] text-[#111318]"><Link className="transition hover:opacity-60" to={storyPath(story)}>{story.title}</Link></h2>
                     <p className="my-3 text-[13px] leading-5 text-[#4f5359]">{story.summary}</p>
                     <p className="mt-auto mb-0 text-[11px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{story.author}</span></p>
                   </div>

@@ -15,6 +15,9 @@ import ContactPage from "./pages/ContactPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import AboutPage from "./pages/AboutPage";
 import ExplainerPage from "./pages/ExplainerPage";
+import Admin from "./pages/Admin/Admin";
+import AdminLogin from "./pages/Admin/AdminLogin";
+import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
 
 function ScrollToTop() {
   const location = useLocation();
@@ -46,6 +49,8 @@ export default function App() {
     <Route path="/privacy" element={<PrivacyPage />} />
     <Route path="/about" element={<AboutPage />} />
     <Route path="/explainers/:slug" element={<ExplainerPage />} />
+    <Route path="/admin/login" element={<AdminLogin />} />
+    <Route path="/admin" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes><Footer /></>;
 }

@@ -1,4 +1,5 @@
 import { leadStory, mostReadStories, quickReads } from "../../data/news";
+import useNews from "../../hooks/useNews";
 import Icon from "../ui/Icon";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -44,10 +45,9 @@ function LatestNewsCard({ story, className = "" }) {
   );
 }
 
-function LatestNewsCarousel() {
+function LatestNewsCarousel({ stories }) {
   const carouselRef = useRef(null);
   const [activeStory, setActiveStory] = useState(0);
-  const stories = quickReads.slice(0, 5);
 
   const updateActiveStory = () => {
     const carousel = carouselRef.current;
@@ -108,6 +108,21 @@ function LatestNewsCarousel() {
 }
 
 export default function HeroSection() {
+  const { news } = useNews();
+  const databaseTopStory = news.find((story) => story.isTopStory);
+  const currentLeadStory = databaseTopStory || leadStory;
+  const databaseLatest = news
+    .filter((story) => story.slug !== databaseTopStory?.slug)
+    .slice(0, 5);
+  const latestNews = databaseLatest.length > 0 ? databaseLatest : quickReads.slice(0, 5);
+  const databaseMostRead = [...news]
+    .filter((story) => story.slug !== databaseTopStory?.slug)
+    .sort((first, second) => second.views - first.views)
+    .slice(0, 3);
+  const currentMostRead = databaseMostRead.length >= 3
+    ? databaseMostRead
+    : mostReadStories.slice(0, 3);
+
   return (
     <main id="top" className="bg-[#f7f5ef] px-3 pb-6 md:px-6 md:pb-8">
       <section className="mx-auto max-w-[1380px]" aria-labelledby="lead-title">
@@ -120,47 +135,47 @@ export default function HeroSection() {
                 </h2>
               </div>
               <span className="text-[11px] font-semibold text-[#4f9488] uppercase">
-                {leadStory.category}
+                {currentLeadStory.category}
               </span>
             </div>
 
             <div className="xl:grid xl:grid-cols-[minmax(0,1.5fr)_minmax(240px,.7fr)] xl:gap-5">
               <Link
                 className="relative block h-[clamp(230px,58vw,340px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-full xl:min-h-[270px]"
-                to={`/news/story/${leadStory.slug}`}
+                to={`/news/story/${currentLeadStory.slug}`}
               >
                 <img
                   className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]"
-                  src={leadStory.image}
-                  alt={leadStory.imageAlt}
+                  src={currentLeadStory.image}
+                  alt={currentLeadStory.imageAlt}
                 />
               </Link>
 
               <div className="flex min-w-0 flex-col pt-3 xl:pt-1">
                 <p className="mb-2 text-[11px] font-medium text-[#5f6368] uppercase">
-                  {leadStory.date} · {leadStory.readTime}
+                  {currentLeadStory.date} · {currentLeadStory.readTime}
                 </p>
                 <h1
                   id="lead-title"
                   className="m-0 font-serif text-[clamp(25px,1.75vw,30px)] leading-[1.06] tracking-[-.025em] text-[#111318]"
                 >
-                  <Link className="transition hover:opacity-65" to={`/news/story/${leadStory.slug}`}>
-                    {leadStory.title}
+                  <Link className="transition hover:opacity-65" to={`/news/story/${currentLeadStory.slug}`}>
+                    {currentLeadStory.title}
                   </Link>
                 </h1>
                 <p className="mb-0 pt-2.5 text-[12px] leading-[1.55] text-[#4f5359]">
-                  {leadStory.summary}
+                  {currentLeadStory.summary}
                 </p>
                 <div className="mt-3 flex flex-col items-start gap-2 border-t border-[#dcdde0] pt-2.5 xl:mt-auto 2xl:flex-row 2xl:items-center 2xl:justify-between">
                   <p className="m-0 text-[11px] font-medium text-[#5f6368]">
                     By{" "}
                     <span className="font-semibold text-[#111318]">
-                      {leadStory.author}
+                      {currentLeadStory.author}
                     </span>
                   </p>
                   <Link
                     className="flex items-center gap-2 text-xs font-bold text-[#182536]"
-                    to={`/news/story/${leadStory.slug}`}
+                    to={`/news/story/${currentLeadStory.slug}`}
                   >
                     Read full story <Icon name="arrow" />
                   </Link>
@@ -177,7 +192,7 @@ export default function HeroSection() {
               title="Most Read"
             />
             <div className="mt-1 divide-y divide-[#dcdde0]">
-              {mostReadStories.slice(0, 3).map((story, index) => (
+              {currentMostRead.map((story, index) => (
                 <article
                   className="group grid grid-cols-[1fr_78px] gap-3 py-3"
                   key={story.title}
@@ -192,7 +207,7 @@ export default function HeroSection() {
                     <h3 className="m-0 text-[15px] leading-[1.35] font-semibold tracking-[-.01em] text-[#111318]">
                       <Link
                         className="transition hover:opacity-65"
-                        to={`/news/story/popular-${index + 1}`}
+                        to={story.slug ? `/news/story/${story.slug}` : `/news/story/popular-${index + 1}`}
                       >
                         {story.title}
                       </Link>
@@ -200,7 +215,7 @@ export default function HeroSection() {
                   </div>
                   <Link
                     className="aspect-[4/3] overflow-hidden rounded-[4px] bg-[#e8edf2]"
-                    to={`/news/story/popular-${index + 1}`}
+                    to={story.slug ? `/news/story/${story.slug}` : `/news/story/popular-${index + 1}`}
                     tabIndex="-1"
                   >
                     <img
@@ -239,7 +254,7 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            <LatestNewsCarousel />
+            <LatestNewsCarousel stories={latestNews} />
           </section>
         </div>
       </section>
