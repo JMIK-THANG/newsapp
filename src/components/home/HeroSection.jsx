@@ -1,4 +1,4 @@
-import { leadStory, mostReadStories, quickReads } from "../../data/news";
+import { leadStory, mostReadStories, newsPageStories, quickReads } from "../../data/news";
 import useNews from "../../hooks/useNews";
 import Icon from "../ui/Icon";
 import { useRef, useState } from "react";
@@ -71,37 +71,41 @@ function LatestNewsCarousel({ stories }) {
     setActiveStory(index);
   };
 
+  const currentPage = activeStory >= 4 ? 2 : 1;
+
+  const goToPage = (page) => {
+    goToStory(page === 2 ? 4 : 0);
+  };
+
   return (
     <>
       <div
         ref={carouselRef}
-        className="mt-4 grid w-full max-w-full min-w-0 snap-x snap-mandatory auto-cols-[84%] grid-flow-col gap-5 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-color:#aeb9b5_transparent] [scrollbar-width:thin] sm:auto-cols-[47%] lg:grid-flow-row lg:grid-cols-4 lg:auto-cols-auto lg:overflow-visible"
+        className="mt-4 grid w-full max-w-full min-w-0 snap-x snap-mandatory auto-cols-[84%] grid-flow-col gap-5 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-color:#aeb9b5_transparent] [scrollbar-width:thin] sm:auto-cols-[47%] lg:auto-cols-[calc((100%_-_3.75rem)/4)] lg:overflow-hidden"
         onScroll={updateActiveStory}
       >
-        {stories.map((story, index) => (
-          <LatestNewsCard
-            className={index === 4 ? "lg:hidden" : ""}
-            key={story.slug}
-            story={story}
-          />
-        ))}
+        {stories.map((story) => <LatestNewsCard key={story.slug} story={story} />)}
       </div>
 
-      <div className="mt-2 flex justify-center gap-2 lg:hidden" aria-label="Latest News slides">
-        {stories.map((story, index) => (
-          <button
-            aria-label={`Show story ${index + 1}: ${story.title}`}
-            aria-current={activeStory === index ? "true" : undefined}
-            className={`h-2 cursor-pointer rounded-full border-0 p-0 transition-all duration-300 ${
-              activeStory === index
-                ? "w-6 bg-[#4f9488]"
-                : "w-2 bg-[#c8cfcc] hover:bg-[#8eaaa4]"
-            }`}
-            key={story.slug}
-            onClick={() => goToStory(index)}
-            type="button"
-          />
-        ))}
+      <div className="mt-2 flex min-h-9 items-center justify-center gap-2" aria-label="Latest News carousel controls">
+        <div className="flex gap-2 lg:hidden">
+          {stories.map((story, index) => (
+            <button
+              aria-label={`Show story ${index + 1}: ${story.title}`}
+              aria-current={activeStory === index ? "true" : undefined}
+              className={`h-2.5 cursor-pointer rounded-full border-0 p-0 transition-all duration-300 ${activeStory === index ? "w-7 bg-[#4f9488]" : "w-2.5 bg-[#b8c4c0] hover:bg-[#789d96]"}`}
+              key={story.slug}
+              onClick={() => goToStory(index)}
+              type="button"
+            />
+          ))}
+        </div>
+
+        <div className="ml-auto hidden items-center gap-3 lg:flex">
+          <span className="text-[10px] font-bold tracking-[.12em] text-[#5f6368]" aria-live="polite">{currentPage} / 2</span>
+          <button className="grid size-9 cursor-pointer place-items-center rounded-full border border-[#cfd3d5] bg-white text-[#182536] transition hover:border-[#4f9488] hover:bg-[#eef3f1] disabled:cursor-default disabled:opacity-30" disabled={currentPage === 1} onClick={() => goToPage(1)} type="button" aria-label="Show first four latest stories"><span className="rotate-180"><Icon name="arrow" /></span></button>
+          <button className="grid size-9 cursor-pointer place-items-center rounded-full border border-[#cfd3d5] bg-white text-[#182536] transition hover:border-[#4f9488] hover:bg-[#eef3f1] disabled:cursor-default disabled:opacity-30" disabled={currentPage === 2} onClick={() => goToPage(2)} type="button" aria-label="Show next four latest stories"><Icon name="arrow" /></button>
+        </div>
       </div>
     </>
   );
@@ -113,8 +117,15 @@ export default function HeroSection() {
   const currentLeadStory = databaseTopStory || leadStory;
   const databaseLatest = news
     .filter((story) => story.slug !== databaseTopStory?.slug)
-    .slice(0, 5);
-  const latestNews = databaseLatest.length > 0 ? databaseLatest : quickReads.slice(0, 5);
+    .slice(0, 8);
+  const fallbackLatest = [
+    ...quickReads,
+    ...newsPageStories.filter((story) => !quickReads.some((item) => item.slug === story.slug)),
+  ];
+  const latestNews = [
+    ...databaseLatest,
+    ...fallbackLatest.filter((story) => !databaseLatest.some((item) => item.slug === story.slug)),
+  ].slice(0, 8);
   const databaseMostRead = [...news]
     .filter((story) => story.slug !== databaseTopStory?.slug)
     .sort((first, second) => second.views - first.views)
