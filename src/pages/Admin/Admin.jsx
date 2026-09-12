@@ -129,7 +129,7 @@ export default function Admin() {
               </label>
               <label className="block text-sm font-semibold">
                 Writer name
-                <input className="mt-2 w-full rounded-lg border border-[#cfd2d4] px-4 py-3 font-normal outline-none focus:border-[#4f9488]" name="author" list="saved-writers" placeholder="Example: Lian Hmung" value={form.author} onChange={handleChange} required />
+                <input className="mt-2 w-full rounded-lg border border-[#cfd2d4] px-4 py-3 font-normal outline-none focus:border-[#4f9488]" name="author" list="saved-writers" maxLength="100" placeholder="Example: Lian Hmung" value={form.author} onChange={handleChange} required />
                 <datalist id="saved-writers">{authorSuggestions.map((author) => <option value={author} key={author} />)}</datalist>
                 <span className="mt-1 block text-[11px] font-normal text-[#5f6368]">Enter the reporter or writer for this article.</span>
               </label>
@@ -202,7 +202,7 @@ export default function Admin() {
         </div>
 
         <p className="mt-6 text-xs text-[#5f6368]">
-          This page is for local development only. Admin login protection is the next backend step.
+          Private newsroom dashboard · Your admin session expires after 8 hours.
         </p>
       </div>
     </main>
