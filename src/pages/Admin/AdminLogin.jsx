@@ -36,7 +36,7 @@ export default function AdminLogin() {
       navigate("/admin", { replace: true });
     } catch (requestError) {
       setError(requestError.message === "Failed to fetch"
-        ? "Cannot reach the backend. Make sure it is running on port 5000."
+        ? "Cannot reach the news server. Please try again shortly or check the backend deployment."
         : requestError.message);
     } finally {
       setIsLoading(false);
