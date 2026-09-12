@@ -10,6 +10,7 @@ export function normalizeNewsArticle(article) {
 
   return {
     ...article,
+    rawContent: article.content || "",
     image:
       article.image_url ||
       "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1400&q=85",
@@ -42,7 +43,7 @@ export async function getNewsArticle(slug) {
   return normalizeNewsArticle(data);
 }
 
-export default function useNews() {
+export default function useNews({ admin = false } = {}) {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -97,10 +98,64 @@ export default function useNews() {
     }
   };
 
+  const getAdminNews = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError("");
+      const token = localStorage.getItem("adminToken");
+      const response = await fetch(`${backendUrl}/news/admin/all`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Unable to load admin news.");
+      setNews(data.map(normalizeNewsArticle));
+    } catch (requestError) {
+      setError(requestError.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const updateNews = async (id, article) => {
+    try {
+      const token = localStorage.getItem("adminToken");
+      const response = await fetch(`${backendUrl}/news/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify(article),
+      });
+      const data = await response.json();
+      if (!response.ok) return { success: false, message: data.message || "Unable to update news." };
+      setNews((items) => items.map((item) => item.id === id ? normalizeNewsArticle(data) : item));
+      return { success: true, message: "News updated successfully." };
+    } catch {
+      return { success: false, message: "Could not connect to the backend." };
+    }
+  };
+
+  const deleteNews = async (id) => {
+    try {
+      const token = localStorage.getItem("adminToken");
+      const response = await fetch(`${backendUrl}/news/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await response.json();
+      if (!response.ok) return { success: false, message: data.message || "Unable to delete news." };
+      setNews((items) => items.filter((item) => item.id !== id));
+      return { success: true, message: data.message };
+    } catch {
+      return { success: false, message: "Could not connect to the backend." };
+    }
+  };
+
   useEffect(() => {
     let cancelled = false;
 
-    fetch(`${backendUrl}/news?limit=100`)
+    const token = localStorage.getItem("adminToken");
+    fetch(admin ? `${backendUrl}/news/admin/all` : `${backendUrl}/news?limit=100`, {
+      headers: admin ? { Authorization: `Bearer ${token}` } : undefined,
+    })
       .then(async (response) => {
         const data = await response.json();
         if (!response.ok) {
@@ -120,7 +175,7 @@ export default function useNews() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [admin]);
 
-  return { news, isLoading, error, addNews, getNews };
+  return { news, isLoading, error, addNews, updateNews, deleteNews, getNews, getAdminNews };
 }

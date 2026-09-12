@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import useNews from "../../hooks/useNews";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const emptyForm = {
   summary: "",
   content: "",
   category: "Chin News",
-  author: "Chinlung Today Newsroom",
+  author: "",
   imageUrl: "",
   imageAlt: "",
   status: "published",
@@ -24,10 +24,15 @@ const emptyForm = {
 
 export default function Admin() {
   const navigate = useNavigate();
-  const { news, isLoading, error, addNews } = useNews();
+  const { news, isLoading, error, addNews, updateNews, deleteNews } = useNews({ admin: true });
   const [form, setForm] = useState(emptyForm);
+  const [editingId, setEditingId] = useState(null);
   const [message, setMessage] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const authorSuggestions = useMemo(
+    () => [...new Set(news.map((article) => article.author).filter(Boolean))],
+    [news],
+  );
 
   const handleChange = (event) => {
     const { name, type, checked, value } = event.target;
@@ -42,14 +47,54 @@ export default function Admin() {
     setIsSaving(true);
     setMessage("");
 
-    const result = await addNews(form);
+    const result = editingId ? await updateNews(editingId, form) : await addNews(form);
     setMessage(result.message);
 
     if (result.success) {
       setForm(emptyForm);
+      setEditingId(null);
     }
 
     setIsSaving(false);
+  };
+
+  const startEditing = (article) => {
+    setEditingId(article.id);
+    setForm({
+      title: article.title,
+      summary: article.summary,
+      content: article.rawContent,
+      category: article.category,
+      author: article.author || "",
+      imageUrl: article.image_url || "",
+      imageAlt: article.image_alt || "",
+      status: article.status,
+      isTopStory: Boolean(article.is_top_story),
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const cancelEditing = () => { setEditingId(null); setForm(emptyForm); setMessage(""); };
+
+  const handleDelete = async (article) => {
+    if (!window.confirm(`Delete “${article.title}”? This cannot be undone.`)) return;
+    const result = await deleteNews(article.id);
+    setMessage(result.message);
+    if (result.success && editingId === article.id) cancelEditing();
+  };
+
+  const handleImageFile = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) { setMessage("Please choose an image file."); return; }
+    if (file.size > 2 * 1024 * 1024) { setMessage("Please choose an image smaller than 2 MB."); return; }
+    const reader = new FileReader();
+    reader.onload = () => setForm((current) => ({
+      ...current,
+      imageUrl: reader.result,
+      imageAlt: current.imageAlt || file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " "),
+    }));
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -60,7 +105,7 @@ export default function Admin() {
             Chinlung Today Admin
           </p>
           <h1 className="m-0 font-serif text-[clamp(36px,5vw,58px)] leading-none text-[#111318]">
-            Post News
+            {editingId ? "Edit News" : "Post News"}
           </h1>
           <p className="mb-0 mt-3 text-sm text-[#4f5359]">
             Development version: create an article and save it in PostgreSQL.
@@ -83,8 +128,10 @@ export default function Admin() {
                 </select>
               </label>
               <label className="block text-sm font-semibold">
-                Author
-                <input className="mt-2 w-full rounded-lg border border-[#cfd2d4] px-4 py-3 font-normal outline-none focus:border-[#4f9488]" name="author" value={form.author} onChange={handleChange} required />
+                Writer name
+                <input className="mt-2 w-full rounded-lg border border-[#cfd2d4] px-4 py-3 font-normal outline-none focus:border-[#4f9488]" name="author" list="saved-writers" placeholder="Example: Lian Hmung" value={form.author} onChange={handleChange} required />
+                <datalist id="saved-writers">{authorSuggestions.map((author) => <option value={author} key={author} />)}</datalist>
+                <span className="mt-1 block text-[11px] font-normal text-[#5f6368]">Enter the reporter or writer for this article.</span>
               </label>
             </div>
 
@@ -100,14 +147,21 @@ export default function Admin() {
 
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block text-sm font-semibold">
-                Image URL
-                <input className="mt-2 w-full rounded-lg border border-[#cfd2d4] px-4 py-3 font-normal outline-none focus:border-[#4f9488]" name="imageUrl" type="url" value={form.imageUrl} onChange={handleChange} />
+                Image URL (optional)
+                <input className="mt-2 w-full rounded-lg border border-[#cfd2d4] px-4 py-3 font-normal outline-none focus:border-[#4f9488]" name="imageUrl" type="text" value={form.imageUrl} onChange={handleChange} />
               </label>
               <label className="block text-sm font-semibold">
                 Image description
                 <input className="mt-2 w-full rounded-lg border border-[#cfd2d4] px-4 py-3 font-normal outline-none focus:border-[#4f9488]" name="imageAlt" value={form.imageAlt} onChange={handleChange} />
               </label>
             </div>
+
+            <label className="block text-sm font-semibold">
+              Or upload an image from your computer
+              <input className="mt-2 block w-full rounded-lg border border-[#cfd2d4] bg-white px-4 py-3 text-sm font-normal" type="file" accept="image/*" onChange={handleImageFile} />
+              <span className="mt-1 block text-[11px] font-normal text-[#5f6368]">Maximum 2 MB. A wide landscape image works best.</span>
+            </label>
+            {form.imageUrl && <img className="max-h-56 w-full rounded-lg bg-[#eef1f3] object-contain" src={form.imageUrl} alt={form.imageAlt || "Article preview"} />}
 
             <div className="flex flex-wrap items-center gap-6">
               <label className="text-sm font-semibold">
@@ -123,9 +177,9 @@ export default function Admin() {
               </label>
             </div>
 
-            <button className="rounded-lg border-0 bg-[#182536] px-6 py-3 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-50" disabled={isSaving} type="submit">
-              {isSaving ? "Saving…" : form.status === "draft" ? "Save draft" : "Publish news"}
-            </button>
+            <div className="flex flex-wrap gap-3"><button className="rounded-lg border-0 bg-[#182536] px-6 py-3 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-50" disabled={isSaving} type="submit">
+              {isSaving ? "Saving…" : editingId ? "Update news" : form.status === "draft" ? "Save draft" : "Publish news"}
+            </button>{editingId && <button className="rounded-lg border border-[#cfd2d4] bg-white px-6 py-3 text-sm font-semibold" type="button" onClick={cancelEditing}>Cancel edit</button>}</div>
             {message && <p className="mb-0 text-sm font-medium">{message}</p>}
           </form>
 
@@ -133,12 +187,14 @@ export default function Admin() {
             <h2 className="mt-0 text-xl">Saved news</h2>
             {isLoading && <p className="text-sm text-[#5f6368]">Loading…</p>}
             {error && <p className="text-sm text-[#8a3d3d]">{error}</p>}
-            {!isLoading && !error && news.length === 0 && <p className="text-sm text-[#5f6368]">No published news yet.</p>}
+            {!isLoading && !error && news.length === 0 && <p className="text-sm text-[#5f6368]">No saved news yet.</p>}
             <div className="divide-y divide-[#dcdde0]">
               {news.map((article) => (
                 <article className="py-4" key={article.id}>
                   <p className="mb-1 text-[10px] font-bold text-[#4f9488] uppercase">{article.category}</p>
                   <h3 className="m-0 text-sm leading-5">{article.title}</h3>
+                  <p className="my-1 text-[11px] text-[#5f6368]">By {article.author} · {article.status}</p>
+                  <div className="mt-3 flex gap-2"><button className="rounded border border-[#cfd2d4] bg-white px-3 py-1.5 text-xs font-semibold" type="button" onClick={() => startEditing(article)}>Edit</button><button className="rounded border border-[#cfd2d4] bg-white px-3 py-1.5 text-xs font-semibold text-[#7a3030]" type="button" onClick={() => handleDelete(article)}>Delete</button></div>
                 </article>
               ))}
             </div>
