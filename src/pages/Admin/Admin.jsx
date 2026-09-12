@@ -17,6 +17,7 @@ const emptyForm = {
   category: "Chin News",
   author: "",
   imageUrl: "",
+  imagePublicId: "",
   imageAlt: "",
   status: "published",
   isTopStory: false,
@@ -24,11 +25,12 @@ const emptyForm = {
 
 export default function Admin() {
   const navigate = useNavigate();
-  const { news, isLoading, error, addNews, updateNews, deleteNews } = useNews({ admin: true });
+  const { news, isLoading, error, addNews, updateNews, deleteNews, uploadNewsImage } = useNews({ admin: true });
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null);
   const [message, setMessage] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [pendingImage, setPendingImage] = useState("");
   const authorSuggestions = useMemo(
     () => [...new Set(news.map((article) => article.author).filter(Boolean))],
     [news],
@@ -39,7 +41,9 @@ export default function Admin() {
     setForm((currentForm) => ({
       ...currentForm,
       [name]: type === "checkbox" ? checked : value,
+      ...(name === "imageUrl" ? { imagePublicId: "" } : {}),
     }));
+    if (name === "imageUrl") setPendingImage("");
   };
 
   const handleSubmit = async (event) => {
@@ -47,12 +51,24 @@ export default function Admin() {
     setIsSaving(true);
     setMessage("");
 
-    const result = editingId ? await updateNews(editingId, form) : await addNews(form);
+    let articleData = form;
+    if (pendingImage) {
+      const uploadResult = await uploadNewsImage(pendingImage);
+      if (!uploadResult.success) {
+        setMessage(uploadResult.message);
+        setIsSaving(false);
+        return;
+      }
+      articleData = { ...form, imageUrl: uploadResult.imageUrl, imagePublicId: uploadResult.imagePublicId };
+    }
+
+    const result = editingId ? await updateNews(editingId, articleData) : await addNews(articleData);
     setMessage(result.message);
 
     if (result.success) {
       setForm(emptyForm);
       setEditingId(null);
+      setPendingImage("");
     }
 
     setIsSaving(false);
@@ -67,6 +83,7 @@ export default function Admin() {
       category: article.category,
       author: article.author || "",
       imageUrl: article.image_url || "",
+      imagePublicId: article.image_public_id || "",
       imageAlt: article.image_alt || "",
       status: article.status,
       isTopStory: Boolean(article.is_top_story),
@@ -74,7 +91,7 @@ export default function Admin() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const cancelEditing = () => { setEditingId(null); setForm(emptyForm); setMessage(""); };
+  const cancelEditing = () => { setEditingId(null); setPendingImage(""); setForm(emptyForm); setMessage(""); };
 
   const handleDelete = async (article) => {
     if (!window.confirm(`Delete “${article.title}”? This cannot be undone.`)) return;
@@ -89,11 +106,13 @@ export default function Admin() {
     if (!file.type.startsWith("image/")) { setMessage("Please choose an image file."); return; }
     if (file.size > 2 * 1024 * 1024) { setMessage("Please choose an image smaller than 2 MB."); return; }
     const reader = new FileReader();
-    reader.onload = () => setForm((current) => ({
-      ...current,
-      imageUrl: reader.result,
-      imageAlt: current.imageAlt || file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " "),
-    }));
+    reader.onload = () => {
+      setPendingImage(reader.result);
+      setForm((current) => ({
+        ...current,
+        imageAlt: current.imageAlt || file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " "),
+      }));
+    };
     reader.readAsDataURL(file);
   };
 
@@ -161,7 +180,7 @@ export default function Admin() {
               <input className="mt-2 block w-full rounded-lg border border-[#cfd2d4] bg-white px-4 py-3 text-sm font-normal" type="file" accept="image/*" onChange={handleImageFile} />
               <span className="mt-1 block text-[11px] font-normal text-[#5f6368]">Maximum 2 MB. A wide landscape image works best.</span>
             </label>
-            {form.imageUrl && <img className="max-h-56 w-full rounded-lg bg-[#eef1f3] object-contain" src={form.imageUrl} alt={form.imageAlt || "Article preview"} />}
+            {(pendingImage || form.imageUrl) && <img className="max-h-56 w-full rounded-lg bg-[#eef1f3] object-contain" src={pendingImage || form.imageUrl} alt={form.imageAlt || "Article preview"} />}
 
             <div className="flex flex-wrap items-center gap-6">
               <label className="text-sm font-semibold">

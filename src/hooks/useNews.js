@@ -149,6 +149,22 @@ export default function useNews({ admin = false } = {}) {
     }
   };
 
+  const uploadNewsImage = async (imageData) => {
+    try {
+      const token = localStorage.getItem("adminToken");
+      const response = await fetch(`${backendUrl}/uploads/image`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ imageData }),
+      });
+      const data = await response.json();
+      if (!response.ok) return { success: false, message: data.message || "Unable to upload image." };
+      return { success: true, ...data };
+    } catch {
+      return { success: false, message: "Could not upload the image." };
+    }
+  };
+
   useEffect(() => {
     let cancelled = false;
 
@@ -177,5 +193,5 @@ export default function useNews({ admin = false } = {}) {
     };
   }, [admin]);
 
-  return { news, isLoading, error, addNews, updateNews, deleteNews, getNews, getAdminNews };
+  return { news, isLoading, error, addNews, updateNews, deleteNews, uploadNewsImage, getNews, getAdminNews };
 }
