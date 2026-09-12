@@ -151,7 +151,7 @@ export default function HeroSection() {
 
             <div className="xl:grid xl:grid-cols-[minmax(0,1.5fr)_minmax(240px,.7fr)] xl:gap-5">
               <Link
-                className="relative block h-[clamp(230px,58vw,340px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-full xl:min-h-[270px]"
+                className="relative block h-[clamp(230px,58vw,340px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[300px] 2xl:h-[320px]"
                 to={`/news/story/${currentLeadStory.slug}`}
               >
                 <img
