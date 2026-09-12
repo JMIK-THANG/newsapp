@@ -1,4 +1,4 @@
-import { leadStory, mostReadStories, newsPageStories, quickReads } from "../../data/news";
+import { leadStory, mostReadStories } from "../../data/news";
 import useNews from "../../hooks/useNews";
 import Icon from "../ui/Icon";
 import { useRef, useState } from "react";
@@ -48,6 +48,8 @@ function LatestNewsCard({ story, className = "" }) {
 function LatestNewsCarousel({ stories }) {
   const carouselRef = useRef(null);
   const [activeStory, setActiveStory] = useState(0);
+  const pageSize = 4;
+  const pageCount = Math.max(1, Math.ceil(stories.length / pageSize));
 
   const updateActiveStory = () => {
     const carousel = carouselRef.current;
@@ -71,11 +73,15 @@ function LatestNewsCarousel({ stories }) {
     setActiveStory(index);
   };
 
-  const currentPage = activeStory >= 4 ? 2 : 1;
+  const currentPage = Math.min(pageCount, Math.floor(activeStory / pageSize) + 1);
 
   const goToPage = (page) => {
-    goToStory(page === 2 ? 4 : 0);
+    goToStory((page - 1) * pageSize);
   };
+
+  if (stories.length === 0) {
+    return <p className="my-6 text-sm text-[#5f6368]">No latest news has been published yet.</p>;
+  }
 
   return (
     <>
@@ -102,9 +108,9 @@ function LatestNewsCarousel({ stories }) {
         </div>
 
         <div className="ml-auto hidden items-center gap-3 lg:flex">
-          <span className="text-[10px] font-bold tracking-[.12em] text-[#5f6368]" aria-live="polite">{currentPage} / 2</span>
-          <button className="grid size-9 cursor-pointer place-items-center rounded-full border border-[#cfd3d5] bg-white text-[#182536] transition hover:border-[#4f9488] hover:bg-[#eef3f1] disabled:cursor-default disabled:opacity-30" disabled={currentPage === 1} onClick={() => goToPage(1)} type="button" aria-label="Show first four latest stories"><span className="rotate-180"><Icon name="arrow" /></span></button>
-          <button className="grid size-9 cursor-pointer place-items-center rounded-full border border-[#cfd3d5] bg-white text-[#182536] transition hover:border-[#4f9488] hover:bg-[#eef3f1] disabled:cursor-default disabled:opacity-30" disabled={currentPage === 2} onClick={() => goToPage(2)} type="button" aria-label="Show next four latest stories"><Icon name="arrow" /></button>
+          <span className="text-[10px] font-bold tracking-[.12em] text-[#5f6368]" aria-live="polite">{currentPage} / {pageCount}</span>
+          <button className="grid size-9 cursor-pointer place-items-center rounded-full border border-[#cfd3d5] bg-white text-[#182536] transition hover:border-[#4f9488] hover:bg-[#eef3f1] disabled:cursor-default disabled:opacity-30" disabled={currentPage === 1} onClick={() => goToPage(currentPage - 1)} type="button" aria-label="Show previous latest stories"><span className="rotate-180"><Icon name="arrow" /></span></button>
+          <button className="grid size-9 cursor-pointer place-items-center rounded-full border border-[#cfd3d5] bg-white text-[#182536] transition hover:border-[#4f9488] hover:bg-[#eef3f1] disabled:cursor-default disabled:opacity-30" disabled={currentPage === pageCount} onClick={() => goToPage(currentPage + 1)} type="button" aria-label="Show next latest stories"><Icon name="arrow" /></button>
         </div>
       </div>
     </>
@@ -118,14 +124,7 @@ export default function HeroSection() {
   const databaseLatest = news
     .filter((story) => story.slug !== databaseTopStory?.slug)
     .slice(0, 8);
-  const fallbackLatest = [
-    ...quickReads,
-    ...newsPageStories.filter((story) => !quickReads.some((item) => item.slug === story.slug)),
-  ];
-  const latestNews = [
-    ...databaseLatest,
-    ...fallbackLatest.filter((story) => !databaseLatest.some((item) => item.slug === story.slug)),
-  ].slice(0, 8);
+  const latestNews = databaseLatest;
   const databaseMostRead = [...news]
     .filter((story) => story.slug !== databaseTopStory?.slug)
     .sort((first, second) => second.views - first.views)
