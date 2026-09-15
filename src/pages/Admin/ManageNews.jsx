@@ -23,9 +23,16 @@ export default function ManageNews() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => { setIsLoading(true); setError(""); setPage(1); setSearch(searchInput.trim()); }, 350);
+    const timeout = setTimeout(() => {
+      const nextSearch = searchInput.trim();
+      if (nextSearch === search) return;
+      setIsLoading(true);
+      setError("");
+      setPage(1);
+      setSearch(nextSearch);
+    }, 350);
     return () => clearTimeout(timeout);
-  }, [searchInput]);
+  }, [search, searchInput]);
 
   useEffect(() => {
     getAdminNewsPage({ page, limit: 12, search, sort })
@@ -80,7 +87,7 @@ export default function ManageNews() {
                     {article.isTopStory && <span className="rounded-full bg-[#182536] px-2 py-0.5 text-white">Top Story</span>}
                   </div>
                   <h3 className="m-0 truncate text-base font-semibold text-[#111318]" title={article.title}>{article.title}</h3>
-                  <p className="mt-1 mb-0 truncate text-xs leading-5 text-[#5f6368]" title={article.summary}>{article.summary}</p>
+                  <p className="mt-1 mb-0 text-xs leading-5 text-[#5f6368]">{article.summary}</p>
                   <p className="mt-1 mb-0 text-[11px] text-[#70747a]">By {article.author} · {article.date}</p>
                 </div>
                 <div className="flex gap-2 sm:justify-end">
