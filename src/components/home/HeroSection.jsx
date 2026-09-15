@@ -137,7 +137,7 @@ export default function HeroSection() {
     <main id="top" className="bg-[#f7f5ef] px-3 pb-6 md:px-6 md:pb-8">
       <section className="mx-auto max-w-[1380px]" aria-labelledby="lead-title">
         <div className="grid min-w-0 overflow-hidden border-x border-b border-[#dcdde0] bg-white px-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] xl:px-0">
-          <article className="group order-1 min-w-0 border-b border-[#dcdde0] py-4 xl:border-r xl:border-b-0 xl:px-6">
+          <article className="group order-1 min-w-0 border-b border-[#dcdde0] py-4 xl:min-h-[clamp(580px,calc(100svh-185px),720px)] xl:border-r xl:border-b-0 xl:px-6">
             <div className="mb-2.5 flex items-end justify-between">
               <div>
                 <h2 className="m-0 inline-flex items-center gap-2 text-[20px] font-bold tracking-[-.02em] text-[#111318] after:h-px after:w-9 after:bg-[#4f9488]">
@@ -149,9 +149,9 @@ export default function HeroSection() {
               </span>
             </div>
 
-            <div className="xl:grid xl:grid-cols-[minmax(0,1.5fr)_minmax(240px,.7fr)] xl:gap-5">
+            <div>
               <Link
-                className="relative block h-[clamp(230px,58vw,340px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[300px] 2xl:h-[320px]"
+                className="relative block h-[clamp(230px,58vw,340px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(340px,38svh,420px)]"
                 to={`/news/story/${currentLeadStory.slug}`}
               >
                 <img
@@ -161,22 +161,22 @@ export default function HeroSection() {
                 />
               </Link>
 
-              <div className="flex min-w-0 flex-col pt-3 xl:pt-1">
+              <div className="flex min-w-0 flex-col pt-3">
                 <p className="mb-2 text-[11px] font-medium text-[#5f6368] uppercase">
                   {currentLeadStory.date} · {currentLeadStory.readTime}
                 </p>
                 <h1
                   id="lead-title"
-                  className="m-0 font-serif text-[clamp(25px,1.75vw,30px)] leading-[1.06] tracking-[-.025em] text-[#111318]"
+                  className="m-0 max-w-[900px] font-serif text-[clamp(27px,2.5vw,38px)] leading-[1.06] tracking-[-.025em] text-[#111318]"
                 >
                   <Link className="transition hover:opacity-65" to={`/news/story/${currentLeadStory.slug}`}>
                     {currentLeadStory.title}
                   </Link>
                 </h1>
-                <p className="mb-0 pt-2.5 text-[12px] leading-[1.55] text-[#4f5359]">
+                <p className="mb-0 max-w-[850px] pt-2 text-[12px] leading-[1.55] text-[#4f5359]">
                   {currentLeadStory.summary}
                 </p>
-                <div className="mt-3 flex flex-col items-start gap-2 border-t border-[#dcdde0] pt-2.5 xl:mt-auto 2xl:flex-row 2xl:items-center 2xl:justify-between">
+                <div className="mt-3 flex flex-col items-start gap-2 border-t border-[#dcdde0] pt-2.5 sm:flex-row sm:items-center sm:justify-between">
                   <p className="m-0 text-[11px] font-medium text-[#5f6368]">
                     By{" "}
                     <span className="font-semibold text-[#111318]">
@@ -195,7 +195,7 @@ export default function HeroSection() {
           </article>
 
           <aside
-            className="order-3 flex min-w-0 flex-col border-t border-[#dcdde0] py-4 xl:order-2 xl:border-t-0 xl:border-l xl:px-6"
+            className="order-3 flex min-w-0 flex-col border-t border-[#dcdde0] py-4 xl:order-2 xl:min-h-[clamp(580px,calc(100svh-185px),720px)] xl:border-t-0 xl:border-l xl:px-6"
             aria-labelledby="most-read-title"
           >
             <SectionHeading
