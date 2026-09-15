@@ -39,7 +39,7 @@ export default function ArticlesPage() {
                 · {feature.date}
               </span>
             </p>
-            <h2 className="m-0 font-serif text-[clamp(30px,3.4vw,46px)] leading-[1.07] tracking-[-.04em]">
+            <h2 className="m-0 line-clamp-2 font-serif text-[clamp(30px,3.4vw,46px)] leading-[1.07] tracking-[-.04em]" title={feature.title}>
               <Link to="/articles/featured">{feature.title}</Link>
             </h2>
             <p className="my-4 text-sm leading-6 text-[#4f5359]">
@@ -76,7 +76,7 @@ export default function ArticlesPage() {
               <p className="mb-2 text-[10px] font-semibold text-[#4f9488] uppercase">
                 {story.category} <span className="font-normal text-[#5f6368]">· {story.date}</span>
               </p>
-              <h2 className="m-0 text-[22px] leading-[1.2] font-semibold tracking-[-.025em]">
+              <h2 className="m-0 line-clamp-2 text-[22px] leading-[1.2] font-semibold tracking-[-.025em]" title={story.title}>
                 <Link
                   className="hover:opacity-60"
                   to={`/articles/story-${index + 1}`}
