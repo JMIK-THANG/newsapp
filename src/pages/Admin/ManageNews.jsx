@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AdminHeader from "../../components/admin/AdminHeader";
 import ConfirmDeleteModal from "../../components/admin/ConfirmDeleteModal";
-import useNews, { getAdminNewsPage } from "../../hooks/useNews";
+import { deleteAdminNewsArticle, getAdminNewsPage } from "../../hooks/useNews";
 
 const sortOptions = [
   ["newest", "Newest"], ["oldest", "Oldest"], ["az", "A–Z"], ["za", "Z–A"],
 ];
 
 export default function ManageNews() {
-  const { deleteNews } = useNews();
   const [articles, setArticles] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState("");
@@ -29,23 +28,20 @@ export default function ManageNews() {
   }, [searchInput]);
 
   useEffect(() => {
-    let cancelled = false;
     getAdminNewsPage({ page, limit: 12, search, sort })
       .then((data) => {
-        if (cancelled) return;
         setArticles(data.articles);
         setTotal(data.total);
         setTotalPages(data.totalPages);
       })
-      .catch((requestError) => { if (!cancelled) setError(requestError.message); })
-      .finally(() => { if (!cancelled) setIsLoading(false); });
-    return () => { cancelled = true; };
+      .catch((requestError) => setError(requestError.message))
+      .finally(() => setIsLoading(false));
   }, [page, search, sort]);
 
   const confirmDelete = async () => {
     if (!deleteTarget) return;
     setIsDeleting(true);
-    const result = await deleteNews(deleteTarget.id);
+    const result = await deleteAdminNewsArticle(deleteTarget.id);
     setIsDeleting(false);
     if (!result.success) { setError(result.message); setDeleteTarget(null); return; }
     setArticles((items) => items.filter((item) => item.id !== deleteTarget.id));
@@ -83,8 +79,8 @@ export default function ManageNews() {
                     <span className="text-[#4f9488]">{article.category}</span>
                     {article.isTopStory && <span className="rounded-full bg-[#182536] px-2 py-0.5 text-white">Top Story</span>}
                   </div>
-                  <h3 className="m-0 overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold text-[#111318]" title={article.title}>{article.title}</h3>
-                  <p className="mt-1 mb-0 line-clamp-1 text-ellipsis text-xs leading-5 text-[#5f6368]" title={article.summary}>{article.summary}</p>
+                  <h3 className="m-0 truncate text-base font-semibold text-[#111318]" title={article.title}>{article.title}</h3>
+                  <p className="mt-1 mb-0 truncate text-xs leading-5 text-[#5f6368]" title={article.summary}>{article.summary}</p>
                   <p className="mt-1 mb-0 text-[11px] text-[#70747a]">By {article.author} · {article.date}</p>
                 </div>
                 <div className="flex gap-2 sm:justify-end">

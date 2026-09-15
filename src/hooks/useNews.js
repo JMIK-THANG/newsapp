@@ -79,6 +79,17 @@ export async function getAdminNewsArticle(id) {
   return normalizeNewsArticle(data);
 }
 
+export async function deleteAdminNewsArticle(id) {
+  const token = localStorage.getItem("adminToken");
+  const response = await fetch(`${backendUrl}/news/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const data = await response.json();
+  if (!response.ok) return { success: false, message: data.message || "Unable to delete news." };
+  return { success: true, message: data.message };
+}
+
 export default function useNews({ admin = false } = {}) {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
