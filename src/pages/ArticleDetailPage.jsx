@@ -3,7 +3,7 @@ import { explainerSourceStory, latestStories, leadStory, mostReadStories, newsPa
 import { articleStories, businessStories, editorialStories, sportsStories } from "../data/sectionPageData";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getNewsArticle } from "../hooks/useNews";
+import { getNewsArticle, getRelatedNewsArticles } from "../hooks/useNews";
 
 const sectionStories = { news: newsPageStories, editorial: editorialStories, articles: articleStories, sports: sportsStories, business: businessStories };
 const sectionNames = { news: "News", editorial: "Editorial", articles: "Articles", sports: "Sports", business: "Business" };
@@ -38,6 +38,7 @@ export default function ArticleDetailPage({ section }) {
   const stories = sectionStories[section];
   const staticStory = findStory(section, stories, storyKey);
   const [databaseStory, setDatabaseStory] = useState(null);
+  const [databaseRelated, setDatabaseRelated] = useState([]);
   const [loadError, setLoadError] = useState("");
   const story = databaseStory || staticStory;
   const sectionName = sectionNames[section];
@@ -49,11 +50,20 @@ export default function ArticleDetailPage({ section }) {
       .catch((error) => setLoadError(error.message));
   }, [section, staticStory, storyKey]);
 
+  useEffect(() => {
+    if (!databaseStory) return;
+    getRelatedNewsArticles(databaseStory.slug)
+      .then(setDatabaseRelated)
+      .catch(() => setDatabaseRelated([]));
+  }, [databaseStory]);
+
   if (!story) {
     return <main className="min-h-[60vh] bg-white px-6 py-16 text-center"><h1 className="font-serif text-4xl">{loadError || "Loading article…"}</h1><Link className="mt-5 inline-block underline" to="/news">Return to Latest News</Link></main>;
   }
 
-  const related = stories.filter((item) => item.title !== story.title).slice(0, 3);
+  const related = databaseStory
+    ? databaseRelated
+    : stories.filter((item) => item.title !== story.title).slice(0, 3);
   const summary = story.summary || `A closer look at ${story.title.toLowerCase()}, why readers are following it, and what may happen next.`;
   const publishedDate = story.date || "August 26, 2026";
 
@@ -74,18 +84,18 @@ export default function ArticleDetailPage({ section }) {
         <div className="mx-auto grid max-w-[900px] gap-8 lg:grid-cols-[120px_1fr]">
           <aside><p className="m-0 border-t border-[#111318] pt-3 text-[10px] font-semibold tracking-[.08em] uppercase">Share this story</p></aside>
           <div className="text-[17px] leading-8 text-[#292c31]">
-            {story.content ? story.content.slice(0, 2).map((paragraph, index) => <p className={index === 0 ? "mt-0 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-6xl first-letter:leading-[.82]" : undefined} key={paragraph}>{paragraph}</p>) : <><p className="mt-0 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-6xl first-letter:leading-[.82]">{summary} The issue reaches beyond a single announcement or moment. It reflects broader changes already affecting institutions, families, and communities in visible and less visible ways.</p><p>People closest to the story describe a situation that requires patience, reliable information, and careful attention to local experience. Their accounts add context that can be lost when events are reduced to a headline.</p></>}
-            <h2 className="mt-10 mb-4 font-serif text-[30px] leading-tight tracking-[-.025em] text-[#111318]">What happens next</h2>
-            {story.content ? story.content.slice(2).map((paragraph) => <p key={paragraph}>{paragraph}</p>) : <><p>Questions remain about implementation, access, and long-term impact. Officials and community leaders say the next phase will depend on transparent decisions and meaningful public participation.</p><p>Chinlung Today will continue following the story, verifying new information, and explaining what developments mean for readers locally and around the world.</p></>}
+            {story.content?.length
+              ? story.content.map((paragraph, index) => <p className={index === 0 ? "mt-0 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-6xl first-letter:leading-[.82]" : undefined} key={`${index}-${paragraph}`}>{paragraph}</p>)
+              : <p className="mt-0 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-6xl first-letter:leading-[.82]">{summary}</p>}
             {story.sources && <aside className="mt-10 border-t border-[#dcdde0] pt-5"><h2 className="mt-0 mb-3 text-sm font-semibold text-[#111318]">Sources and further reading</h2><ul className="m-0 space-y-2 pl-5 text-sm leading-6">{story.sources.map((source) => <li key={source.url}><a className="text-[#397d73] underline underline-offset-3" href={source.url} target="_blank" rel="noreferrer">{source.label}</a></li>)}</ul></aside>}
           </div>
         </div>
       </article>
 
-      <section className="mx-auto mt-14 max-w-[1100px] border-t-2 border-[#111318] pt-6" aria-labelledby="related-title">
-        <div className="mb-5 flex items-center justify-between"><h2 id="related-title" className="m-0 text-2xl font-bold">More from {sectionName}</h2><Link className="flex items-center gap-2 text-xs font-semibold" to={`/${section}`}>View section <Icon name="arrow" /></Link></div>
-        <div className="grid gap-6 sm:grid-cols-3">{related.map((item) => { const relatedKey = section === "news" ? `article-${stories.indexOf(item) + 1}` : storyRouteKey(stories, item); const relatedPath = section === "news" ? `/news/story/${relatedKey}` : `/${section}/${relatedKey}`; return <article key={item.title}><Link className="mb-3 block aspect-[16/9] overflow-hidden bg-[#e8edf2]" to={relatedPath}><img className="h-full w-full object-cover" src={item.image} alt={item.imageAlt} /></Link><h3 className="m-0 text-base leading-[1.3] font-semibold"><Link to={relatedPath}>{item.title}</Link></h3></article>; })}</div>
-      </section>
+      {(!databaseStory || related.length > 0) && <section className="mx-auto mt-14 max-w-[1100px] border-t-2 border-[#111318] pt-6" aria-labelledby="related-title">
+        <div className="mb-5 flex items-end justify-between gap-4"><div><h2 id="related-title" className="m-0 text-2xl font-bold">Related News</h2><p className="mt-1 mb-0 text-xs text-[#5f6368]">Stories connected to this report</p></div><Link className="flex items-center gap-2 text-xs font-semibold" to={`/${section}`}>View section <Icon name="arrow" /></Link></div>
+        {related.length > 0 && <div className="grid gap-6 sm:grid-cols-3">{related.map((item) => { const relatedKey = section === "news" ? `article-${stories.indexOf(item) + 1}` : storyRouteKey(stories, item); const relatedPath = databaseStory ? `/news/story/${item.slug}` : section === "news" ? `/news/story/${relatedKey}` : `/${section}/${relatedKey}`; return <article key={item.id || item.title}><Link className="mb-3 block aspect-[16/9] overflow-hidden bg-[#e8edf2]" to={relatedPath}><img className="h-full w-full object-cover" src={item.image} alt={item.imageAlt} /></Link><p className="mb-2 text-[10px] font-semibold text-[#4f9488] uppercase">{item.category} <span className="font-normal text-[#5f6368]">· {item.time || item.date}</span></p><h3 className="m-0 text-base leading-[1.3] font-semibold"><Link to={relatedPath}>{item.title}</Link></h3></article>; })}</div>}
+      </section>}
     </main>
   );
 }

@@ -43,6 +43,17 @@ export async function getNewsArticle(slug) {
   return normalizeNewsArticle(data);
 }
 
+export async function getRelatedNewsArticles(slug) {
+  const response = await fetch(`${backendUrl}/news/${slug}/related`);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Unable to load related news.");
+  }
+
+  return data.map(normalizeNewsArticle);
+}
+
 export default function useNews({ admin = false } = {}) {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
