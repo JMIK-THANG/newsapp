@@ -54,6 +54,31 @@ export async function getRelatedNewsArticles(slug) {
   return data.map(normalizeNewsArticle);
 }
 
+export async function getAdminNewsPage({ page = 1, limit = 12, search = "", sort = "newest" } = {}) {
+  const token = localStorage.getItem("adminToken");
+  const params = new URLSearchParams({ page, limit, search, sort });
+  const response = await fetch(`${backendUrl}/news/admin/all?${params}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const data = await response.json();
+
+  if (!response.ok) throw new Error(data.message || "Unable to load admin news.");
+  return {
+    ...data,
+    articles: data.articles.map(normalizeNewsArticle),
+  };
+}
+
+export async function getAdminNewsArticle(id) {
+  const token = localStorage.getItem("adminToken");
+  const response = await fetch(`${backendUrl}/news/admin/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message || "Unable to load this article.");
+  return normalizeNewsArticle(data);
+}
+
 export default function useNews({ admin = false } = {}) {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -69,7 +94,8 @@ export default function useNews({ admin = false } = {}) {
         throw new Error(data.message || "Unable to load news.");
       }
 
-      setNews(data.map(normalizeNewsArticle));
+      const articles = Array.isArray(data) ? data : data.articles;
+      setNews(articles.map(normalizeNewsArticle));
     } catch (requestError) {
       setError(requestError.message);
     } finally {
@@ -119,7 +145,8 @@ export default function useNews({ admin = false } = {}) {
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Unable to load admin news.");
-      setNews(data.map(normalizeNewsArticle));
+      const articles = Array.isArray(data) ? data : data.articles;
+      setNews(articles.map(normalizeNewsArticle));
     } catch (requestError) {
       setError(requestError.message);
     } finally {
@@ -189,7 +216,8 @@ export default function useNews({ admin = false } = {}) {
           throw new Error(data.message || "Unable to load news.");
         }
         if (!cancelled) {
-          setNews(data.map(normalizeNewsArticle));
+          const articles = Array.isArray(data) ? data : data.articles;
+          setNews(articles.map(normalizeNewsArticle));
         }
       })
       .catch((requestError) => {
