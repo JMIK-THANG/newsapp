@@ -1,98 +1,28 @@
-import { articleStories } from "../data/sectionPageData";
-import Icon from "../components/ui/Icon";
 import { Link } from "react-router-dom";
 import useNews from "../hooks/useNews";
+import { articleStories } from "../data/sectionPageData";
+import Icon from "../components/ui/Icon";
 
 export default function ArticlesPage() {
   const { news: publishedArticles } = useNews({ contentType: "article" });
-  const [feature, ...stories] = publishedArticles.length ? publishedArticles : articleStories;
-  const articlePath = (story, index = 0) => story.slug ? `/articles/${story.slug}` : index === 0 ? "/articles/featured" : `/articles/story-${index}`;
+  const allArticles = publishedArticles.length ? publishedArticles : articleStories;
+  const [feature, ...articles] = allArticles;
+  const pathFor = (article, index = 0) => article.slug ? `/articles/${article.slug}` : index === 0 ? "/articles/featured" : `/articles/story-${index}`;
 
   return (
-    <main className="bg-white px-3 py-10 md:px-6 md:py-14">
-      <div className="mx-auto max-w-[1380px]">
-        <header className="border-b border-[#dcdde0] pb-7">
-          <p className="mb-2 text-[11px] font-bold tracking-[.08em] uppercase">
-            Features and analysis
-          </p>
-          <h1 className="m-0 font-serif text-[clamp(42px,6vw,72px)] leading-none tracking-[-.045em]">
-            Articles
-          </h1>
-          <p className="mt-4 mb-0 max-w-2xl text-sm leading-6 text-[#4f5359]">
-            Explanations, profiles, and deeply reported features that take
-            readers beyond the daily headline.
-          </p>
+    <main className="bg-[#f1eee8] px-3 py-10 md:px-6 md:py-14">
+      <div className="mx-auto max-w-[1320px]">
+        <header className="grid gap-6 border-y border-[#182536] py-7 md:grid-cols-[1fr_1fr] md:items-end">
+          <div><p className="mb-3 text-[11px] font-bold tracking-[.16em] text-[#4f9488] uppercase">The Chinlung Review</p><h1 className="m-0 font-serif text-[clamp(50px,8vw,96px)] leading-[.88] tracking-[-.055em] text-[#182536]">Articles</h1></div>
+          <p className="m-0 max-w-xl text-[15px] leading-7 text-[#4f5359] md:justify-self-end">Features, profiles, essays, and analysis written for slower, deeper reading. Every published article is available on this page.</p>
         </header>
 
-        <article className="group grid gap-7 border-b border-[#dcdde0] py-8 lg:grid-cols-[1.35fr_.65fr]">
-          <Link
-            className="aspect-[16/9] overflow-hidden bg-[#e8edf2]"
-            to={articlePath(feature)}
-          >
-            <img
-              className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.02]"
-              src={feature.image}
-              alt={feature.imageAlt}
-            />
-          </Link>
-          <div className="flex flex-col justify-center">
-            <p className="mb-3 text-[11px] font-semibold text-[#4f9488] uppercase">
-              {feature.category}{" "}
-              <span className="font-normal text-[#5f6368]">
-                · {feature.date}
-              </span>
-            </p>
-            <h2 className="m-0 line-clamp-2 font-serif text-[clamp(30px,3.4vw,46px)] leading-[1.07] tracking-[-.04em]" title={feature.title}>
-              <Link to={articlePath(feature)}>{feature.title}</Link>
-            </h2>
-            <p className="my-4 text-sm leading-6 text-[#4f5359]">
-              {feature.summary}
-            </p>
-            <Link
-              className="flex w-fit items-center gap-2 text-xs font-semibold"
-              to={articlePath(feature)}
-            >
-              Read the full article <Icon name="arrow" />
-            </Link>
-          </div>
-        </article>
+        {feature && <article className="group grid overflow-hidden border-b border-[#c8c6c0] bg-[#182536] text-white lg:grid-cols-[1.25fr_.75fr]">
+          <Link className="min-h-[330px] overflow-hidden lg:min-h-[560px]" to={pathFor(feature)}><img className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.02]" src={feature.image} alt={feature.imageAlt} /></Link>
+          <div className="flex flex-col justify-between p-7 md:p-10 lg:p-12"><div><p className="mb-5 text-[10px] font-bold tracking-[.18em] text-[#8fc1b7] uppercase">Featured article</p><h2 className="m-0 line-clamp-3 font-serif text-[clamp(34px,4vw,58px)] leading-[1.02] tracking-[-.04em]" title={feature.title}><Link to={pathFor(feature)}>{feature.title}</Link></h2><p className="mt-6 mb-0 line-clamp-4 text-[15px] leading-7 text-[#d7dde2]">{feature.summary}</p></div><div className="mt-9 border-t border-white/25 pt-5"><p className="mb-5 text-xs text-[#c9d0d5]">By <strong className="text-white">{feature.author || "Chinlung Today"}</strong> · {feature.date}</p><Link className="inline-flex items-center gap-3 rounded-full bg-[#f8f6f1] px-5 py-3 text-xs font-bold text-[#182536]" to={pathFor(feature)}>Read article <Icon name="arrow" /></Link></div></div>
+        </article>}
 
-        <section
-          className="grid gap-x-7 sm:grid-cols-2 lg:grid-cols-3"
-          aria-label="More articles"
-        >
-          {stories.map((story, index) => (
-            <article
-              className="group border-b border-[#dcdde0] py-7"
-              key={story.title}
-            >
-              <Link
-                className="mb-4 block aspect-[16/10] overflow-hidden bg-[#e8edf2]"
-                to={articlePath(story, index + 1)}
-              >
-                <img
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
-                  src={story.image}
-                  alt={story.imageAlt}
-                />
-              </Link>
-              <p className="mb-2 text-[10px] font-semibold text-[#4f9488] uppercase">
-                {story.category} <span className="font-normal text-[#5f6368]">· {story.date}</span>
-              </p>
-              <h2 className="m-0 line-clamp-2 text-[22px] leading-[1.2] font-semibold tracking-[-.025em]" title={story.title}>
-                <Link
-                  className="hover:opacity-60"
-                  to={articlePath(story, index + 1)}
-                >
-                  {story.title}
-                </Link>
-              </h2>
-              <p className="mt-3 mb-0 text-[13px] leading-5 text-[#4f5359]">
-                {story.summary}
-              </p>
-            </article>
-          ))}
-        </section>
+        {articles.length > 0 && <section className="pt-10" aria-labelledby="all-articles-title"><div className="mb-6 flex items-end justify-between border-b border-[#c8c6c0] pb-4"><h2 id="all-articles-title" className="m-0 font-serif text-3xl">All articles</h2><span className="text-xs text-[#5f6368]">{allArticles.length} published</span></div><div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">{articles.map((article, index) => <article className="group" key={article.id || article.title}><Link className="block aspect-[4/3] overflow-hidden rounded-sm bg-[#ddd9d1]" to={pathFor(article, index + 1)}><img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" src={article.image} alt={article.imageAlt} /></Link><div className="border-b border-[#c8c6c0] py-5"><p className="mb-2 text-[10px] font-bold tracking-[.14em] text-[#4f9488] uppercase">Article · {article.date}</p><h3 className="m-0 line-clamp-2 font-serif text-[clamp(23px,2.3vw,31px)] leading-[1.12] tracking-[-.025em]" title={article.title}><Link to={pathFor(article, index + 1)}>{article.title}</Link></h3><p className="mt-3 mb-0 line-clamp-3 text-[13px] leading-6 text-[#4f5359]">{article.summary}</p><p className="mt-4 mb-0 text-[11px] font-semibold">By {article.author || "Chinlung Today"}</p></div></article>)}</div></section>}
       </div>
     </main>
   );

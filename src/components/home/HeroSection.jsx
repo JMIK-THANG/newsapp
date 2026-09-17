@@ -155,7 +155,7 @@ export default function HeroSection() {
                 to={`/news/story/${currentLeadStory.slug}`}
               >
                 <img
-                  className="h-full w-full object-contain transition duration-700 group-hover:scale-[1.01]"
+                  className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-[1.015]"
                   src={currentLeadStory.image}
                   alt={currentLeadStory.imageAlt}
                 />
