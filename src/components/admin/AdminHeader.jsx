@@ -24,6 +24,7 @@ export default function AdminHeader({ eyebrow = "Private newsroom", title, descr
       </div>
       <nav className="mt-6 flex flex-wrap gap-2" aria-label="Admin navigation">
         <NavLink className={linkClass} to="/admin" end>Post News</NavLink>
+        <NavLink className={linkClass} to="/admin/articles/new">Post Article</NavLink>
         <NavLink className={linkClass} to="/admin/manage">Manage News</NavLink>
         <NavLink className={linkClass} to="/admin/explainers">Explainers</NavLink>
       </nav>

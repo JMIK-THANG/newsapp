@@ -53,6 +53,7 @@ export default function App() {
     <Route path="/explainers/:slug" element={<ExplainerPage />} />
     <Route path="/admin/login" element={<AdminLogin />} />
     <Route path="/admin" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
+    <Route path="/admin/articles/new" element={<ProtectedAdminRoute><Admin defaultContentType="article" /></ProtectedAdminRoute>} />
     <Route path="/admin/manage" element={<ProtectedAdminRoute><ManageNews /></ProtectedAdminRoute>} />
     <Route path="/admin/manage/:articleId/edit" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
     <Route path="/admin/explainers" element={<ProtectedAdminRoute><ExplainerAdmin /></ProtectedAdminRoute>} />

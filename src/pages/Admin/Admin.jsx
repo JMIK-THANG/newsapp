@@ -5,14 +5,14 @@ import ArticlePreviewModal from "../../components/admin/ArticlePreviewModal";
 import useNews, { getAdminNewsArticle } from "../../hooks/useNews";
 
 const categories = ["Chin News", "Myanmar News", "International News", "Sports", "Business"];
-const emptyForm = { title: "", summary: "", content: "", category: "Chin News", author: "", imageUrl: "", imagePublicId: "", imageAlt: "", status: "published", contentType: "news", isTopStory: false };
+const makeEmptyForm = (contentType = "news") => ({ title: "", summary: "", content: "", category: "Chin News", author: "", imageUrl: "", imagePublicId: "", imageAlt: "", status: "published", contentType, isTopStory: false });
 const fieldClass = "mt-2 w-full rounded-lg border border-[#cfd2d4] bg-white px-4 py-3 font-normal outline-none transition focus:border-[#4f9488] focus:ring-2 focus:ring-[#4f9488]/15";
 
-export default function Admin() {
+export default function Admin({ defaultContentType = "news" }) {
   const { articleId } = useParams();
   const navigate = useNavigate();
   const { news, addNews, updateNews, uploadNewsImage } = useNews({ admin: true });
-  const [form, setForm] = useState(emptyForm);
+  const [form, setForm] = useState(() => makeEmptyForm(defaultContentType));
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("success");
   const [isSaving, setIsSaving] = useState(false);
@@ -68,14 +68,14 @@ export default function Admin() {
     const result = isEditing ? await updateNews(Number(articleId), articleData) : await addNews(articleData);
     setMessageType(result.success ? "success" : "error");
     setMessage(result.success ? (isEditing ? "Article updated successfully." : "Article published successfully.") : result.message);
-    if (result.success && !isEditing) { setForm(emptyForm); setPendingImage(""); event.currentTarget.reset(); }
+    if (result.success && !isEditing) { setForm(makeEmptyForm(defaultContentType)); setPendingImage(""); event.currentTarget.reset(); }
     setIsSaving(false);
   };
 
   return (
     <main className="min-h-[70vh] bg-[#f1eee8] px-3 py-8 md:px-6 md:py-10">
       <div className="mx-auto max-w-[1050px]">
-        <AdminHeader title={isEditing ? "Edit News" : "Post News"} description={isEditing ? "Update the complete article while preserving its published URL." : "Create and publish a complete story for Chinlung Today."} />
+        <AdminHeader title={isEditing ? "Edit Publication" : defaultContentType === "article" ? "Post Article" : "Post News"} description={isEditing ? "Update the complete publication while preserving its published URL." : defaultContentType === "article" ? "Publish a feature, analysis, profile, or other article that is not breaking news." : "Create and publish a complete news story for Chinlung Today."} />
         {isLoadingArticle ? <div className="rounded-xl border border-[#dcdde0] bg-white p-10 text-center text-sm text-[#5f6368]">Loading article…</div> : (
           <form className="space-y-6 rounded-xl border border-[#dcdde0] bg-white p-5 shadow-[0_14px_40px_rgba(24,37,54,.06)] md:p-8 lg:p-10" onSubmit={handleSubmit}>
             <label className="block text-sm font-semibold">Headline<input className={`${fieldClass} text-lg`} name="title" value={form.title} onChange={handleChange} required /></label>
