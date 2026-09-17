@@ -151,11 +151,11 @@ export default function HeroSection() {
 
             <div>
               <Link
-                className="relative block h-[clamp(230px,58vw,340px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(380px,42svh,480px)]"
+                className="relative block h-[clamp(250px,62vw,380px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(420px,48svh,540px)]"
                 to={`/news/story/${currentLeadStory.slug}`}
               >
                 <img
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]"
+                  className="h-full w-full object-contain transition duration-700 group-hover:scale-[1.01]"
                   src={currentLeadStory.image}
                   alt={currentLeadStory.imageAlt}
                 />
@@ -167,7 +167,7 @@ export default function HeroSection() {
                 </p>
                 <h1
                   id="lead-title"
-                  className="m-0 line-clamp-2 max-w-[900px] font-serif text-[clamp(27px,2.5vw,38px)] leading-[1.06] tracking-[-.025em] text-[#111318]"
+                  className="m-0 line-clamp-2 max-w-[900px] font-serif text-[clamp(25px,2.1vw,32px)] leading-[1.08] tracking-[-.025em] text-[#111318]"
                   title={currentLeadStory.title}
                 >
                   <Link className="transition hover:opacity-65" to={`/news/story/${currentLeadStory.slug}`}>
