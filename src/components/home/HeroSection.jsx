@@ -151,11 +151,11 @@ export default function HeroSection() {
 
             <div>
               <Link
-                className="relative block h-[clamp(230px,58vw,340px)] w-full overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[390px]"
+                className="relative block h-[clamp(250px,62vw,380px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(420px,48svh,540px)]"
                 to={`/news/story/${currentLeadStory.slug}`}
               >
                 <img
-                  className="h-full w-full object-contain transition duration-700 group-hover:scale-[1.01]"
+                  className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-[1.015]"
                   src={currentLeadStory.image}
                   alt={currentLeadStory.imageAlt}
                 />
