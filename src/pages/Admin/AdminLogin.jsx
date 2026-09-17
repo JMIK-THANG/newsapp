@@ -44,7 +44,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <main className="grid min-h-[70vh] place-items-center bg-[#f7f5ef] px-4 py-12">
+    <main className="grid min-h-[70vh] place-items-center bg-[#f1eee8] px-4 py-12">
       <section className="w-full max-w-md rounded-2xl border border-[#dcdde0] bg-white p-6 shadow-[0_18px_50px_rgba(24,37,54,.08)] md:p-8">
         <p className="mb-2 text-[11px] font-bold tracking-[.1em] text-[#4f9488] uppercase">Private newsroom</p>
         <h1 className="m-0 font-serif text-4xl text-[#111318]">Admin login</h1>

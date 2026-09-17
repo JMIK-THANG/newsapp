@@ -18,6 +18,7 @@ import ExplainerPage from "./pages/ExplainerPage";
 import Admin from "./pages/Admin/Admin";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import ManageNews from "./pages/Admin/ManageNews";
+import ExplainerAdmin from "./pages/Admin/ExplainerAdmin";
 import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
 
 function ScrollToTop() {
@@ -54,6 +55,7 @@ export default function App() {
     <Route path="/admin" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
     <Route path="/admin/manage" element={<ProtectedAdminRoute><ManageNews /></ProtectedAdminRoute>} />
     <Route path="/admin/manage/:articleId/edit" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
+    <Route path="/admin/explainers" element={<ProtectedAdminRoute><ExplainerAdmin /></ProtectedAdminRoute>} />
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes><Footer /></>;
 }

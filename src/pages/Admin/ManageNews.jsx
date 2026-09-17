@@ -59,7 +59,7 @@ export default function ManageNews() {
   };
 
   return (
-    <main className="min-h-[70vh] bg-[#f7f5ef] px-3 py-8 md:px-6 md:py-10">
+    <main className="min-h-[70vh] bg-[#f1eee8] px-3 py-8 md:px-6 md:py-10">
       <div className="mx-auto max-w-[1200px]">
         <AdminHeader title="Manage News" description="Search, organize, edit, and remove published articles from one scalable newsroom view." />
 
@@ -84,6 +84,7 @@ export default function ManageNews() {
                 <div className="min-w-0">
                   <div className="mb-1.5 flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[.04em]">
                     <span className="text-[#4f9488]">{article.category}</span>
+                    <span className="rounded-full bg-[#e9ece9] px-2 py-0.5 text-[#4f5359]">{article.content_type === "article" ? "Article" : "News"}</span>
                     {article.isTopStory && <span className="rounded-full bg-[#182536] px-2 py-0.5 text-white">Top Story</span>}
                   </div>
                   <h3 className="m-0 truncate text-base font-semibold text-[#111318]" title={article.title}>{article.title}</h3>

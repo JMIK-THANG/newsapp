@@ -6,5 +6,8 @@
   --font-serif: "Playfair Display", Georgia, serif;
 }
 
-html { max-width: 100%; overflow-x: clip; scroll-behavior: smooth; }
-body { min-width: 320px; max-width: 100%; overflow-x: clip; background: #f7f5ef; color: #182536; }
+html { max-width: 100%; overflow-x: clip; scroll-behavior: smooth; background: #f1eee8; }
+body { min-width: 320px; max-width: 100%; overflow-x: clip; background: #f1eee8; color: #182536; }
+
+/* A soft paper surface reduces glare while preserving the publication's contrast. */
+.bg-white { background-color: #fcfbf8; }

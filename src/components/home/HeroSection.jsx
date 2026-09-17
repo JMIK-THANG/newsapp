@@ -134,7 +134,7 @@ export default function HeroSection() {
     : mostReadStories.slice(0, 3);
 
   return (
-    <main id="top" className="bg-[#f7f5ef] px-3 pb-6 md:px-6 md:pb-8">
+    <main id="top" className="bg-[#f1eee8] px-3 pb-6 md:px-6 md:pb-8">
       <section className="mx-auto max-w-[1380px]" aria-labelledby="lead-title">
         <div className="grid min-w-0 overflow-hidden border-x border-b border-[#dcdde0] bg-white px-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] xl:px-0">
           <article className="group order-1 min-w-0 border-b border-[#dcdde0] py-4 xl:min-h-[clamp(580px,calc(100svh-185px),720px)] xl:border-r xl:border-b-0 xl:px-6">

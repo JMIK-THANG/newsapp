@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 
 const linkClass = ({ isActive }) =>
-  `rounded-lg px-4 py-2 text-sm font-semibold transition ${isActive ? "bg-[#182536] text-white" : "text-[#30343a] hover:bg-[#edf1ef]"}`;
+  `rounded-lg border px-4 py-2 text-sm font-semibold transition ${isActive ? "border-[#182536] bg-[#182536] text-white" : "border-[#d1d2ce] bg-[#fcfbf8] text-[#30343a] hover:border-[#4f9488] hover:bg-[#eef2ef]"}`;
 
 export default function AdminHeader({ eyebrow = "Private newsroom", title, description }) {
   const navigate = useNavigate();
@@ -25,6 +25,7 @@ export default function AdminHeader({ eyebrow = "Private newsroom", title, descr
       <nav className="mt-6 flex flex-wrap gap-2" aria-label="Admin navigation">
         <NavLink className={linkClass} to="/admin" end>Post News</NavLink>
         <NavLink className={linkClass} to="/admin/manage">Manage News</NavLink>
+        <NavLink className={linkClass} to="/admin/explainers">Explainers</NavLink>
       </nav>
     </header>
   );

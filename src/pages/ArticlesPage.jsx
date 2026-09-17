@@ -1,9 +1,12 @@
 import { articleStories } from "../data/sectionPageData";
 import Icon from "../components/ui/Icon";
 import { Link } from "react-router-dom";
+import useNews from "../hooks/useNews";
 
 export default function ArticlesPage() {
-  const [feature, ...stories] = articleStories;
+  const { news: publishedArticles } = useNews({ contentType: "article" });
+  const [feature, ...stories] = publishedArticles.length ? publishedArticles : articleStories;
+  const articlePath = (story, index = 0) => story.slug ? `/articles/${story.slug}` : index === 0 ? "/articles/featured" : `/articles/story-${index}`;
 
   return (
     <main className="bg-white px-3 py-10 md:px-6 md:py-14">
@@ -24,7 +27,7 @@ export default function ArticlesPage() {
         <article className="group grid gap-7 border-b border-[#dcdde0] py-8 lg:grid-cols-[1.35fr_.65fr]">
           <Link
             className="aspect-[16/9] overflow-hidden bg-[#e8edf2]"
-            to="/articles/featured"
+            to={articlePath(feature)}
           >
             <img
               className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.02]"
@@ -40,14 +43,14 @@ export default function ArticlesPage() {
               </span>
             </p>
             <h2 className="m-0 line-clamp-2 font-serif text-[clamp(30px,3.4vw,46px)] leading-[1.07] tracking-[-.04em]" title={feature.title}>
-              <Link to="/articles/featured">{feature.title}</Link>
+              <Link to={articlePath(feature)}>{feature.title}</Link>
             </h2>
             <p className="my-4 text-sm leading-6 text-[#4f5359]">
               {feature.summary}
             </p>
             <Link
               className="flex w-fit items-center gap-2 text-xs font-semibold"
-              to="/articles/featured"
+              to={articlePath(feature)}
             >
               Read the full article <Icon name="arrow" />
             </Link>
@@ -65,7 +68,7 @@ export default function ArticlesPage() {
             >
               <Link
                 className="mb-4 block aspect-[16/10] overflow-hidden bg-[#e8edf2]"
-                to={`/articles/story-${index + 1}`}
+                to={articlePath(story, index + 1)}
               >
                 <img
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
@@ -79,7 +82,7 @@ export default function ArticlesPage() {
               <h2 className="m-0 line-clamp-2 text-[22px] leading-[1.2] font-semibold tracking-[-.025em]" title={story.title}>
                 <Link
                   className="hover:opacity-60"
-                  to={`/articles/story-${index + 1}`}
+                  to={articlePath(story, index + 1)}
                 >
                   {story.title}
                 </Link>

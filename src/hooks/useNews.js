@@ -90,7 +90,7 @@ export async function deleteAdminNewsArticle(id) {
   return { success: true, message: data.message };
 }
 
-export default function useNews({ admin = false } = {}) {
+export default function useNews({ admin = false, contentType = "news" } = {}) {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -98,7 +98,7 @@ export default function useNews({ admin = false } = {}) {
   const getNews = useCallback(async () => {
     try {
       setError("");
-      const response = await fetch(`${backendUrl}/news?limit=100`);
+      const response = await fetch(`${backendUrl}/news?limit=100&type=${contentType}`);
       const data = await response.json();
 
       if (!response.ok) {
@@ -112,7 +112,7 @@ export default function useNews({ admin = false } = {}) {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [contentType]);
 
   const addNews = async (newArticle) => {
     try {
@@ -218,7 +218,7 @@ export default function useNews({ admin = false } = {}) {
     let cancelled = false;
 
     const token = localStorage.getItem("adminToken");
-    fetch(admin ? `${backendUrl}/news/admin/all` : `${backendUrl}/news?limit=100`, {
+    fetch(admin ? `${backendUrl}/news/admin/all` : `${backendUrl}/news?limit=100&type=${contentType}`, {
       headers: admin ? { Authorization: `Bearer ${token}` } : undefined,
     })
       .then(async (response) => {
@@ -241,7 +241,7 @@ export default function useNews({ admin = false } = {}) {
     return () => {
       cancelled = true;
     };
-  }, [admin]);
+  }, [admin, contentType]);
 
   return { news, isLoading, error, addNews, updateNews, deleteNews, uploadNewsImage, getNews, getAdminNews };
 }
