@@ -11,3 +11,108 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 
 /* A soft paper surface reduces glare while preserving the publication's contrast. */
 .bg-white { background-color: #f8f6f1; }
+
+@keyframes latest-ticker-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.latest-ticker {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  max-width: 100%;
+  overflow: hidden;
+  background: #182536;
+  color: #f8f6f1;
+}
+
+.latest-ticker__label {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  background: #8f2427;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  box-shadow: 8px 0 18px rgb(10 21 34 / 18%);
+}
+
+.latest-ticker__pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #f8f6f1;
+  opacity: .9;
+}
+
+.latest-ticker__viewport {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.latest-ticker__track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  will-change: transform;
+  animation: latest-ticker-scroll 46s linear infinite;
+}
+
+.latest-ticker__set {
+  display: flex;
+  flex: none;
+  align-items: center;
+}
+
+.latest-ticker__item {
+  display: flex;
+  flex: none;
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+}
+
+.latest-ticker__link {
+  padding: 0 22px;
+  color: #f8f6f1;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.latest-ticker__link:hover,
+.latest-ticker__link:focus-visible {
+  color: #d9b3b4;
+}
+
+.latest-ticker__separator {
+  width: 1px;
+  height: 14px;
+  background: #526479;
+}
+
+@media (min-width: 768px) {
+  .latest-ticker { height: 42px; }
+  .latest-ticker__label { padding-inline: 22px; font-size: 12px; }
+  .latest-ticker__link { padding-inline: 28px; font-size: 14px; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .latest-ticker:hover .latest-ticker__track { animation-play-state: paused; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .latest-ticker__viewport { overflow-x: auto; scrollbar-width: none; }
+  .latest-ticker__viewport::-webkit-scrollbar { display: none; }
+  .latest-ticker__track { animation: none; transform: none; }
+  .latest-ticker__set--duplicate { display: none; }
+}
