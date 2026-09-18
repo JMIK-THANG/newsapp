@@ -70,16 +70,16 @@ export default function ArticleDetailPage({ section }) {
   return (
     <main className="bg-white px-3 py-9 md:px-6 md:py-12">
       <article className="mx-auto max-w-[1100px]">
-        <nav className="mb-8 flex items-center gap-2 text-[11px] font-medium text-[#5f6368]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><Link className="hover:text-[#111318]" to={`/${section}`}>{sectionName}</Link></nav>
+        <nav className="mb-6 flex items-center gap-2 text-[11px] font-medium text-[#5f6368]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><Link className="hover:text-[#111318]" to={`/${section}`}>{sectionName}</Link></nav>
 
-        <header className="mx-auto max-w-[900px] text-center">
-          <p className="mb-4 text-[11px] font-semibold tracking-[.06em] text-[#4f9488] uppercase">{story.category}</p>
-          <h1 className="m-0 font-serif text-[clamp(38px,6vw,68px)] leading-[1.02] tracking-[-.045em] text-[#111318]">{story.title}</h1>
-          <p className="mx-auto mt-5 mb-0 max-w-2xl text-[16px] leading-7 text-[#4f5359]">{summary}</p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-[#5f6368]"><span>By <strong className="font-semibold text-[#111318]">{story.author || authors[section]}</strong></span><span>•</span><span>{publishedDate}</span><span>•</span><span>{story.time || "6 min read"}</span></div>
+        <header className="mx-auto max-w-[860px] text-center">
+          <p className="mb-3 text-[10px] font-semibold tracking-[.06em] text-[#4f9488] uppercase">{story.category}</p>
+          <h1 className="m-0 font-serif text-[clamp(30px,4.2vw,48px)] leading-[1.08] tracking-[-.035em] text-[#111318]">{story.title}</h1>
+          <p className="mx-auto mt-4 mb-0 max-w-2xl text-[15px] leading-6 text-[#4f5359]">{summary}</p>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-[#5f6368]"><span>By <strong className="font-semibold text-[#111318]">{story.author || authors[section]}</strong></span><span>•</span><span>{publishedDate}</span><span>•</span><span>{story.time || "6 min read"}</span></div>
         </header>
 
-        <figure className="my-9"><img className="aspect-[16/8.5] w-full object-cover" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
+        <figure className="my-7 md:my-8"><img className="aspect-[16/8.5] w-full object-cover" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
 
         <div className="mx-auto grid max-w-[900px] gap-8 lg:grid-cols-[120px_1fr]">
           <aside><p className="m-0 border-t border-[#111318] pt-3 text-[10px] font-semibold tracking-[.08em] uppercase">Share this story</p></aside>
