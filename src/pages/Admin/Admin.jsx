@@ -5,7 +5,7 @@ import ArticlePreviewModal from "../../components/admin/ArticlePreviewModal";
 import useNews, { getAdminNewsArticle } from "../../hooks/useNews";
 
 const categories = ["Chin News", "Myanmar News", "International News", "Sports", "Business"];
-const makeEmptyForm = (contentType = "news") => ({ title: "", summary: "", content: "", category: contentType === "article" ? "Articles" : "Chin News", author: "", imageUrl: "", imagePublicId: "", imageAlt: "", status: "published", contentType, isTopStory: false });
+const makeEmptyForm = (contentType = "news") => ({ title: "", summary: "", content: "", category: contentType === "article" ? "Articles" : "Chin News", author: "", imageUrl: "", imagePublicId: "", status: "published", contentType, isTopStory: false, isEditorPick: false });
 const fieldClass = "mt-2 w-full rounded-lg border border-[#cfd2d4] bg-white px-4 py-3 font-normal outline-none transition focus:border-[#4f9488] focus:ring-2 focus:ring-[#4f9488]/15";
 
 export default function Admin({ defaultContentType = "news" }) {
@@ -28,7 +28,7 @@ export default function Admin({ defaultContentType = "news" }) {
     getAdminNewsArticle(articleId)
       .then((article) => {
         if (cancelled) return;
-        setForm({ title: article.title, summary: article.summary, content: article.rawContent, category: article.category, author: article.author || "", imageUrl: article.image_url || "", imagePublicId: article.image_public_id || "", imageAlt: article.image_alt || "", status: "published", contentType: article.content_type || "news", isTopStory: Boolean(article.is_top_story) });
+        setForm({ title: article.title, summary: article.summary, content: article.rawContent, category: article.category, author: article.author || "", imageUrl: article.image_url || "", imagePublicId: article.image_public_id || "", status: "published", contentType: article.content_type || "news", isTopStory: Boolean(article.is_top_story), isEditorPick: Boolean(article.is_editor_pick) });
       })
       .catch((error) => { if (!cancelled) { setMessageType("error"); setMessage(error.message); } })
       .finally(() => { if (!cancelled) setIsLoadingArticle(false); });
@@ -50,7 +50,6 @@ export default function Admin({ defaultContentType = "news" }) {
     const reader = new FileReader();
     reader.onload = () => {
       setPendingImage(reader.result);
-      setForm((current) => ({ ...current, imageAlt: current.imageAlt || file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ") }));
     };
     reader.readAsDataURL(file);
   };
@@ -59,7 +58,7 @@ export default function Admin({ defaultContentType = "news" }) {
     event.preventDefault();
     setIsSaving(true);
     setMessage("");
-    let articleData = { ...form, category: form.contentType === "article" ? "Articles" : form.category, status: "published", isTopStory: form.contentType === "news" && form.isTopStory };
+    let articleData = { ...form, imageAlt: form.title, category: form.contentType === "article" ? "Articles" : form.category, status: "published", isTopStory: form.contentType === "news" && form.isTopStory, isEditorPick: form.contentType === "news" && form.isEditorPick };
     if (pendingImage) {
       const uploadResult = await uploadNewsImage(pendingImage);
       if (!uploadResult.success) { setMessageType("error"); setMessage(uploadResult.message); setIsSaving(false); return; }
@@ -83,13 +82,10 @@ export default function Admin({ defaultContentType = "news" }) {
             <label className="block text-sm font-semibold">Writer name<input className={fieldClass} name="author" list="saved-writers" maxLength="100" placeholder="Example: Salai Mazawn" value={form.author} onChange={handleChange} required /><datalist id="saved-writers">{authorSuggestions.map((author) => <option value={author} key={author} />)}</datalist></label>
             <label className="block text-sm font-semibold">Short summary<textarea className={`${fieldClass} min-h-24 resize-y`} name="summary" value={form.summary} onChange={handleChange} required /></label>
             <label className="block text-sm font-semibold">Full article<textarea className={`${fieldClass} min-h-[340px] resize-y leading-7`} name="content" value={form.content} onChange={handleChange} required /></label>
-            <div className="grid gap-5 sm:grid-cols-2">
-              <label className="block text-sm font-semibold">Image URL (optional)<input className={fieldClass} name="imageUrl" type="text" value={form.imageUrl} onChange={handleChange} /></label>
-              <label className="block text-sm font-semibold">Image description<input className={fieldClass} name="imageAlt" value={form.imageAlt} onChange={handleChange} /></label>
-            </div>
+            <label className="block text-sm font-semibold">Image URL (optional)<input className={fieldClass} name="imageUrl" type="text" value={form.imageUrl} onChange={handleChange} /></label>
             <label className="block text-sm font-semibold">Or upload an image from your computer<input className={`${fieldClass} text-sm`} type="file" accept="image/*" onChange={handleImageFile} /><span className="mt-1 block text-[11px] font-normal text-[#5f6368]">Maximum 2 MB. A wide landscape image works best.</span></label>
-            {(pendingImage || form.imageUrl) && <img className="max-h-80 w-full rounded-lg bg-[#eef1f3] object-contain" src={pendingImage || form.imageUrl} alt={form.imageAlt || "Article preview"} />}
-            {form.contentType === "news" && <label className="flex items-center gap-2 text-sm font-semibold"><input name="isTopStory" type="checkbox" checked={form.isTopStory} onChange={handleChange} />Make this the Top Story</label>}
+            {(pendingImage || form.imageUrl) && <img className="max-h-80 w-full rounded-lg bg-[#eef1f3] object-contain" src={pendingImage || form.imageUrl} alt={form.title || "Article preview"} />}
+            {form.contentType === "news" && <div className="flex flex-wrap gap-x-7 gap-y-3"><label className="flex items-center gap-2 text-sm font-semibold"><input name="isTopStory" type="checkbox" checked={form.isTopStory} onChange={handleChange} />Make this the Top Story</label><label className="flex items-center gap-2 text-sm font-semibold"><input name="isEditorPick" type="checkbox" checked={form.isEditorPick} onChange={handleChange} />Add to Editor’s Picks <span className="font-normal text-[#5f6368]">(maximum 4)</span></label></div>}
             {message && <div className={`rounded-lg border px-4 py-3 text-sm font-semibold ${messageType === "success" ? "border-[#b9d8ce] bg-[#eff8f5] text-[#286a5d]" : "border-[#e0bcbc] bg-[#fbf0f0] text-[#8a3030]"}`} role="status">{message}</div>}
             <div className="flex flex-wrap gap-3 border-t border-[#dcdde0] pt-6">
               <button className="rounded-lg border-0 bg-[#182536] px-7 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#2b4052] disabled:opacity-50" disabled={isSaving} type="submit">{isSaving ? "Publishing…" : isEditing ? "Update article" : "Publish"}</button>
