@@ -63,11 +63,10 @@ function LatestNewsCarousel({ stories }) {
   };
 
   const goToStory = (index) => {
-    carouselRef.current?.children[index]?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "start",
-    });
+    const carousel = carouselRef.current;
+    const story = carousel?.children[index];
+    if (!carousel || !story) return;
+    carousel.scrollTo({ left: story.offsetLeft, behavior: "smooth" });
     setActiveStory(index);
   };
 
@@ -79,7 +78,7 @@ function LatestNewsCarousel({ stories }) {
     <>
       <div
         ref={carouselRef}
-        className="mt-4 grid w-full max-w-full min-w-0 snap-x snap-mandatory auto-cols-[86%] scroll-smooth grid-flow-col gap-4 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:auto-cols-[47%] lg:auto-cols-[calc((100%_-_3rem)/4)] xl:auto-cols-[calc((100%_-_4rem)/5)]"
+        className="mt-4 grid w-full max-w-full min-w-0 snap-x snap-proximity auto-cols-[86%] scroll-smooth grid-flow-col gap-4 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:auto-cols-[47%] lg:auto-cols-[calc((100%_-_3rem)/4)] xl:auto-cols-[calc((100%_-_4rem)/5)]"
         onScroll={updateActiveStory}
       >
         {stories.map((story) => <LatestNewsCard key={story.slug} story={story} />)}

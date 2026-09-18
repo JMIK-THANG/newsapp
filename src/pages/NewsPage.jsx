@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { mostReadStories, newsPageStories } from "../data/news";
 import Icon from "../components/ui/Icon";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useNews from "../hooks/useNews";
 
 const filters = ["All News", "Chin News", "Myanmar News", "International News"];
@@ -10,17 +10,29 @@ export default function NewsPage() {
   const { news: databaseNews } = useNews();
   const { filter } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search")?.trim() || "";
   const activeFilter = filters.find((item) => item.toLowerCase().startsWith(filter || "all")) || "All News";
   const [visibleCount, setVisibleCount] = useState(6);
   const allStories = databaseNews.length > 0 ? databaseNews : newsPageStories;
-  const stories = useMemo(() => activeFilter === "All News" ? allStories : allStories.filter((story) => story.category === activeFilter), [activeFilter, allStories]);
+  const stories = useMemo(() => {
+    const categoryStories = activeFilter === "All News"
+      ? allStories
+      : allStories.filter((story) => story.category === activeFilter);
+    if (!searchQuery) return categoryStories;
+    const normalizedQuery = searchQuery.toLocaleLowerCase();
+    return categoryStories.filter((story) => [story.title, story.summary, story.category, story.author]
+      .filter(Boolean)
+      .some((value) => value.toLocaleLowerCase().includes(normalizedQuery)));
+  }, [activeFilter, allStories, searchQuery]);
   const storyPath = (story) => story.slug
     ? `/news/story/${story.slug}`
     : `/news/story/article-${newsPageStories.indexOf(story) + 1}`;
 
   const selectFilter = (filter) => {
     setVisibleCount(6);
-    navigate(filter === "All News" ? "/news" : `/news/category/${filter.replace(" News", "").toLowerCase()}`);
+    const path = filter === "All News" ? "/news" : `/news/category/${filter.replace(" News", "").toLowerCase()}`;
+    navigate(searchQuery ? `${path}?search=${encodeURIComponent(searchQuery)}` : path);
   };
 
   return (
@@ -30,8 +42,8 @@ export default function NewsPage() {
           <p className="mb-2 text-[11px] font-bold tracking-[.08em] text-[#111318] uppercase">The newsroom</p>
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <h1 id="news-page-title" className="m-0 font-serif text-[clamp(38px,5vw,64px)] leading-none tracking-[-.04em] text-[#111318]">Latest News</h1>
-              <p className="mt-4 mb-0 max-w-2xl text-sm leading-6 text-[#4f5359]">The latest reporting from Chin communities, Myanmar, and around the world—updated throughout the day.</p>
+              <h1 id="news-page-title" className="m-0 font-serif text-[clamp(32px,4vw,48px)] leading-[1.05] tracking-[-.035em] text-[#111318]">{searchQuery ? "Search results" : "Latest News"}</h1>
+              <p className="mt-3 mb-0 max-w-2xl text-sm leading-6 text-[#4f5359]">{searchQuery ? `${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”` : "The latest reporting from Chin communities, Myanmar, and around the world—updated throughout the day."}</p>
             </div>
             <p className="m-0 text-[11px] font-medium text-[#5f6368]">Wednesday, August 26, 2026</p>
           </div>
@@ -55,6 +67,7 @@ export default function NewsPage() {
                   </div>
                 </article>
               ))}
+              {stories.length === 0 && <div className="px-4 py-14 text-center"><h2 className="m-0 font-serif text-2xl text-[#111318]">No matching stories</h2><p className="mt-3 mb-0 text-sm text-[#5f6368]">Try a different headline, topic, author, or category.</p></div>}
             </div>
             {visibleCount < stories.length && <div className="mt-8 flex justify-center"><button className="flex cursor-pointer items-center gap-3 border border-[#111318] bg-white px-6 py-3 text-xs font-semibold text-[#111318] transition hover:bg-[#111318] hover:text-white" type="button" onClick={() => setVisibleCount((count) => count + 4)}>Load more stories <Icon name="arrow" /></button></div>}
           </section>
