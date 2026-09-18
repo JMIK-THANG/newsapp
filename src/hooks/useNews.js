@@ -16,6 +16,7 @@ export function normalizeNewsArticle(article) {
       "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1400&q=85",
     imageAlt: article.image_alt || article.title,
     isTopStory: article.is_top_story,
+    isEditorPick: article.is_editor_pick,
     publishedAt: publishedDate,
     date: publishedDate
       ? new Intl.DateTimeFormat("en-US", {
@@ -88,6 +89,18 @@ export async function deleteAdminNewsArticle(id) {
   const data = await response.json();
   if (!response.ok) return { success: false, message: data.message || "Unable to delete news." };
   return { success: true, message: data.message };
+}
+
+export async function setAdminEditorPick(id, isEditorPick) {
+  const token = localStorage.getItem("adminToken");
+  const response = await fetch(`${backendUrl}/news/${id}/editor-pick`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ isEditorPick }),
+  });
+  const data = await response.json();
+  if (!response.ok) return { success: false, message: data.message || "Unable to update Editor’s Picks." };
+  return { success: true, article: normalizeNewsArticle(data) };
 }
 
 export default function useNews({ admin = false, contentType = "news" } = {}) {

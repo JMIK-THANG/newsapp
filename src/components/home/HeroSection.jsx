@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function SectionHeading({ title }) {
   return (
     <div className="border-b border-[#dcdde0] pb-3">
-      <h2 className="m-0 inline-flex items-center gap-2 text-[20px] font-bold tracking-[-.02em] text-[#111318] after:h-px after:w-9 after:bg-[#4f9488]">
+      <h2 className="m-0 inline-flex items-center gap-2 text-[20px] xl:text-[21px] font-bold tracking-[-.02em] text-[#111318] after:h-px after:w-9 after:bg-[#4f9488]">
         {title}
       </h2>
     </div>
@@ -32,7 +32,7 @@ function LatestNewsCard({ story, className = "" }) {
           {story.category}{" "}
           <span className="font-normal text-[#5f6368]">· {story.time}</span>
         </p>
-        <h3 className="m-0 line-clamp-3 text-[15px] leading-[1.28] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
+        <h3 className="m-0 line-clamp-3 text-[15px] xl:text-[16px] leading-[1.28] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
           <Link
             className="transition hover:opacity-65"
             to={`/news/story/${story.slug}`}
@@ -145,7 +145,7 @@ export default function HeroSection() {
           <article className="group order-1 min-w-0 border-b border-[#dcdde0] py-4 xl:border-r xl:border-b-0 xl:px-6">
             <div className="mb-2.5 flex items-end justify-between">
               <div>
-                <h2 className="m-0 inline-flex items-center gap-2 text-[20px] font-bold tracking-[-.02em] text-[#111318] after:h-px after:w-9 after:bg-[#4f9488]">
+                <h2 className="m-0 inline-flex items-center gap-2 text-[20px] xl:text-[21px] font-bold tracking-[-.02em] text-[#111318] after:h-px after:w-9 after:bg-[#4f9488]">
                   Top Story
                 </h2>
               </div>
@@ -156,7 +156,7 @@ export default function HeroSection() {
 
             <div>
               <Link
-                className="relative block h-[clamp(250px,62vw,380px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(400px,45svh,500px)]"
+                className="relative block h-[clamp(250px,62vw,380px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(430px,48svh,540px)]"
                 to={`/news/story/${currentLeadStory.slug}`}
               >
                 <img
@@ -172,7 +172,7 @@ export default function HeroSection() {
                 </p>
                 <h1
                   id="lead-title"
-                  className="m-0 line-clamp-2 max-w-[900px] font-serif text-[clamp(23px,1.8vw,29px)] leading-[1.12] tracking-[-.02em] text-[#111318]"
+                  className="m-0 line-clamp-2 max-w-[900px] font-serif text-[clamp(23px,1.95vw,32px)] leading-[1.12] tracking-[-.02em] text-[#111318]"
                   title={currentLeadStory.title}
                 >
                   <Link className="transition hover:opacity-65" to={`/news/story/${currentLeadStory.slug}`}>
@@ -220,7 +220,7 @@ export default function HeroSection() {
                         · {story.time}
                       </span>
                     </p>
-                    <h3 className="m-0 line-clamp-2 text-[15px] leading-[1.35] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
+                    <h3 className="m-0 line-clamp-2 text-[15px] xl:text-[16px] leading-[1.35] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
                       <Link
                         className="transition hover:opacity-65"
                         to={story.slug ? `/news/story/${story.slug}` : `/news/story/popular-${index + 1}`}
@@ -287,7 +287,7 @@ export default function HeroSection() {
             <div className="flex items-end justify-between">
               <h2
                 id="latest-news-title"
-                className="m-0 text-[20px] font-bold tracking-[-.02em] text-[#111318]"
+                className="m-0 text-[20px] xl:text-[21px] font-bold tracking-[-.02em] text-[#111318]"
               >
                 Latest News
               </h2>

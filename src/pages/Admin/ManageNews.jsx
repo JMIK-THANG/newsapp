@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AdminHeader from "../../components/admin/AdminHeader";
 import ConfirmDeleteModal from "../../components/admin/ConfirmDeleteModal";
-import { deleteAdminNewsArticle, getAdminNewsPage } from "../../hooks/useNews";
+import { deleteAdminNewsArticle, getAdminNewsPage, setAdminEditorPick } from "../../hooks/useNews";
 
 const sortOptions = [
   ["newest", "Newest"], ["oldest", "Oldest"], ["az", "A–Z"], ["za", "Z–A"],
@@ -21,6 +21,7 @@ export default function ManageNews() {
   const [message, setMessage] = useState("");
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [updatingPickId, setUpdatingPickId] = useState(null);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -58,10 +59,21 @@ export default function ManageNews() {
     if (articles.length === 1 && page > 1) setPage((current) => current - 1);
   };
 
+  const toggleEditorPick = async (article) => {
+    setUpdatingPickId(article.id);
+    setError("");
+    setMessage("");
+    const result = await setAdminEditorPick(article.id, !article.isEditorPick);
+    setUpdatingPickId(null);
+    if (!result.success) { setError(result.message); return; }
+    setArticles((items) => items.map((item) => item.id === article.id ? result.article : item));
+    setMessage(result.article.isEditorPick ? "Story added to Editor’s Picks." : "Story removed from Editor’s Picks.");
+  };
+
   return (
     <main className="min-h-[70vh] bg-[#f1eee8] px-3 py-8 md:px-6 md:py-10">
       <div className="mx-auto max-w-[1200px]">
-        <AdminHeader title="Manage News" description="Search, organize, edit, and remove published articles from one scalable newsroom view." />
+        <AdminHeader title="Manage News" description="Search, organize, edit, remove, and select up to four published news stories for Editor’s Picks." />
 
         <section className="rounded-xl border border-[#dcdde0] bg-white p-4 shadow-[0_14px_40px_rgba(24,37,54,.05)] md:p-6" aria-labelledby="manage-list-title">
           <div className="flex flex-col gap-4 border-b border-[#dcdde0] pb-5 md:flex-row md:items-end md:justify-between">
@@ -86,12 +98,14 @@ export default function ManageNews() {
                     <span className="text-[#4f9488]">{article.category}</span>
                     <span className="rounded-full bg-[#e9ece9] px-2 py-0.5 text-[#4f5359]">{article.content_type === "article" ? "Article" : "News"}</span>
                     {article.isTopStory && <span className="rounded-full bg-[#182536] px-2 py-0.5 text-white">Top Story</span>}
+                    {article.isEditorPick && <span className="rounded-full bg-[#dceee9] px-2 py-0.5 text-[#286a5d]">Editor’s Pick</span>}
                   </div>
                   <h3 className="m-0 truncate text-base font-semibold text-[#111318]" title={article.title}>{article.title}</h3>
                   <p className="mt-1 mb-0 text-xs leading-5 text-[#5f6368]">{article.summary}</p>
                   <p className="mt-1 mb-0 text-[11px] text-[#70747a]">By {article.author} · {article.date}</p>
                 </div>
                 <div className="flex gap-2 sm:justify-end">
+                  {article.content_type !== "article" && <button className={`rounded-lg border px-4 py-2 text-xs font-bold disabled:cursor-wait disabled:opacity-50 ${article.isEditorPick ? "border-[#b9d8ce] bg-[#eff8f5] text-[#286a5d]" : "border-[#cfd2d4] bg-white text-[#182536] hover:border-[#4f9488]"}`} type="button" disabled={updatingPickId === article.id} onClick={() => toggleEditorPick(article)}>{updatingPickId === article.id ? "Saving…" : article.isEditorPick ? "Remove Pick" : "Add to Picks"}</button>}
                   <Link className="rounded-lg border border-[#cfd2d4] bg-white px-4 py-2 text-xs font-bold text-[#182536] hover:border-[#182536]" to={`/admin/manage/${article.id}/edit`}>Edit</Link>
                   <button className="rounded-lg border border-[#dfc3c3] bg-white px-4 py-2 text-xs font-bold text-[#8a3030] hover:bg-[#fbf0f0]" type="button" onClick={() => { setMessage(""); setDeleteTarget(article); }}>Delete</button>
                 </div>
