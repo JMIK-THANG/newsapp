@@ -33,6 +33,21 @@ const storyRouteKey = (stories, story) => {
   return index === 0 ? "featured" : `story-${index}`;
 };
 
+const cleanArticleParagraph = (paragraph, story) => paragraph
+  .split(/\r?\n/)
+  .map((line) => line.trim())
+  .filter((line) => {
+    if (!line) return false;
+    const normalizedLine = line.toLocaleLowerCase().replace(/\s+/g, " ");
+    const normalizedTitle = story.title.toLocaleLowerCase().replace(/\s+/g, " ");
+    if (normalizedLine === normalizedTitle) return false;
+    if (/^chinlung today\s*[|·-]/i.test(line)) return false;
+    if (story.date && normalizedLine === story.date.toLocaleLowerCase()) return false;
+    return true;
+  })
+  .join("\n")
+  .trim();
+
 export default function ArticleDetailPage({ section }) {
   const { storyKey } = useParams();
   const stories = sectionStories[section];
@@ -66,6 +81,9 @@ export default function ArticleDetailPage({ section }) {
     : stories.filter((item) => item.title !== story.title).slice(0, 3);
   const summary = story.summary || `A closer look at ${story.title.toLowerCase()}, why readers are following it, and what may happen next.`;
   const publishedDate = story.date || "August 26, 2026";
+  const articleParagraphs = story.content?.length
+    ? story.content.map((paragraph) => cleanArticleParagraph(paragraph, story)).filter(Boolean)
+    : [summary];
 
   return (
     <main className="bg-white px-3 py-9 md:px-6 md:py-12">
@@ -82,12 +100,18 @@ export default function ArticleDetailPage({ section }) {
 
         <figure className="my-7 md:my-8"><img className="aspect-[16/8.5] w-full object-cover" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
 
-        <div className="mx-auto grid max-w-[900px] gap-8 lg:grid-cols-[120px_1fr]">
-          <aside><p className="m-0 border-t border-[#111318] pt-3 text-[10px] font-semibold tracking-[.08em] uppercase">Share this story</p></aside>
-          <div className="text-[17px] leading-8 text-[#292c31]">
-            {story.content?.length
-              ? story.content.map((paragraph, index) => <p className={index === 0 ? "mt-0 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-6xl first-letter:leading-[.82]" : undefined} key={`${index}-${paragraph}`}>{paragraph}</p>)
-              : <p className="mt-0 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-6xl first-letter:leading-[.82]">{summary}</p>}
+        <div className="mx-auto max-w-[760px]">
+          <div className="border-t border-[#dcdde0] pt-7 text-[17px] leading-[1.9] text-[#292c31] md:text-[18px]">
+            {articleParagraphs.map((paragraph, index) => {
+              const isNumberedItem = /^\d+[.)]\s/.test(paragraph);
+              const isColorKey = /^[🔴🟢🔵]/u.test(paragraph);
+              const isShortHeading = paragraph.length < 90 && !/[.!?]$/.test(paragraph) && index > 0;
+
+              if (isShortHeading) return <h2 className="mt-10 mb-3 font-serif text-[25px] leading-tight tracking-[-.02em] text-[#111318]" key={`${index}-${paragraph}`}>{paragraph}</h2>;
+              if (isNumberedItem) return <p className="my-3 border-l-2 border-[#4f9488] py-1 pl-4" key={`${index}-${paragraph}`}>{paragraph}</p>;
+              if (isColorKey) return <p className="my-4 bg-[#f1eee8] px-4 py-3 text-[16px] leading-7" key={`${index}-${paragraph}`}>{paragraph}</p>;
+              return <p className={`${index === 0 ? "mt-0" : "mt-5"} mb-0 whitespace-pre-line`} key={`${index}-${paragraph}`}>{paragraph}</p>;
+            })}
             {story.sources && <aside className="mt-10 border-t border-[#dcdde0] pt-5"><h2 className="mt-0 mb-3 text-sm font-semibold text-[#111318]">Sources and further reading</h2><ul className="m-0 space-y-2 pl-5 text-sm leading-6">{story.sources.map((source) => <li key={source.url}><a className="text-[#397d73] underline underline-offset-3" href={source.url} target="_blank" rel="noreferrer">{source.label}</a></li>)}</ul></aside>}
           </div>
         </div>
