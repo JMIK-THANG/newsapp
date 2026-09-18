@@ -28,11 +28,11 @@ function LatestNewsCard({ story, className = "" }) {
         />
       </Link>
       <div className="pt-2.5">
-        <p className="mb-1 text-[10px] font-bold tracking-[.06em] uppercase text-[#4f9488]">
+        <p className="mb-1 text-[12px] font-bold tracking-[.05em] uppercase text-[#4f9488]">
           {story.category}{" "}
           <span className="font-normal text-[#5f6368]">· {story.time}</span>
         </p>
-        <h3 className="m-0 line-clamp-3 text-[15px] xl:text-[16px] leading-[1.28] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
+        <h3 className="m-0 line-clamp-3 text-[17px] leading-[1.3] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
           <Link
             className="transition hover:opacity-65"
             to={`/news/story/${story.slug}`}
@@ -149,7 +149,7 @@ export default function HeroSection() {
                   Top Story
                 </h2>
               </div>
-              <span className="text-[11px] font-semibold text-[#4f9488] uppercase">
+              <span className="text-[12px] font-semibold text-[#4f9488] uppercase">
                 {currentLeadStory.category}
               </span>
             </div>
@@ -167,7 +167,7 @@ export default function HeroSection() {
               </Link>
 
               <div className="flex min-w-0 flex-col pt-3">
-                <p className="mb-2 text-[11px] font-medium text-[#5f6368] uppercase">
+                <p className="mb-2 text-[12px] font-medium text-[#5f6368] uppercase">
                   {currentLeadStory.date} · {currentLeadStory.readTime}
                 </p>
                 <h1
@@ -179,18 +179,18 @@ export default function HeroSection() {
                     {currentLeadStory.title}
                   </Link>
                 </h1>
-                <p className="mb-0 line-clamp-2 max-w-[850px] pt-2 text-[12px] leading-[1.55] text-[#4f5359]" title={currentLeadStory.summary}>
+                <p className="mb-0 line-clamp-2 max-w-[850px] pt-2 text-[15px] leading-[1.55] text-[#4f5359]" title={currentLeadStory.summary}>
                   {currentLeadStory.summary}
                 </p>
                 <div className="mt-2.5 flex flex-col items-start gap-2 border-t border-[#dcdde0] pt-2 sm:flex-row sm:items-center sm:justify-between">
-                  <p className="m-0 text-[11px] font-medium text-[#5f6368]">
+                  <p className="m-0 text-[12px] font-medium text-[#5f6368]">
                     By{" "}
                     <span className="font-semibold text-[#111318]">
                       {currentLeadStory.author}
                     </span>
                   </p>
                   <Link
-                    className="flex items-center gap-2 text-xs font-bold text-[#182536]"
+                    className="flex items-center gap-2 text-sm font-bold text-[#182536]"
                     to={`/news/story/${currentLeadStory.slug}`}
                   >
                     Read full story <Icon name="arrow" />
@@ -214,13 +214,13 @@ export default function HeroSection() {
                   key={story.title}
                 >
                   <div className="flex flex-col justify-center">
-                    <p className="mb-2 text-[11px] font-semibold text-[#4f9488] uppercase">
+                    <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">
                       {story.category}{" "}
                       <span className="font-normal text-[#5f6368]">
                         · {story.time}
                       </span>
                     </p>
-                    <h3 className="m-0 line-clamp-2 text-[15px] xl:text-[16px] leading-[1.35] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
+                    <h3 className="m-0 line-clamp-2 text-[17px] leading-[1.35] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
                       <Link
                         className="transition hover:opacity-65"
                         to={story.slug ? `/news/story/${story.slug}` : `/news/story/popular-${index + 1}`}
@@ -273,7 +273,7 @@ export default function HeroSection() {
               </p>
             </form>
             <Link
-              className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-4 text-[11px] font-semibold text-[#111318] transition hover:opacity-60"
+              className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-4 text-[13px] font-semibold text-[#111318] transition hover:opacity-60"
               to="/news"
             >
               See all most read <Icon name="arrow" />
@@ -292,7 +292,7 @@ export default function HeroSection() {
                 Latest News
               </h2>
               <Link
-                className="flex items-center gap-2 text-[10px] font-bold tracking-[.06em] text-[#111318] uppercase transition hover:text-[#9b1c1f]"
+                className="flex items-center gap-2 text-[12px] font-bold tracking-[.05em] text-[#111318] uppercase transition hover:text-[#9b1c1f]"
                 to="/news"
               >
                 View all news <Icon name="arrow" />

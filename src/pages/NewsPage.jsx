@@ -60,10 +60,10 @@ export default function NewsPage() {
                 <article className="group grid gap-5 py-6 sm:grid-cols-[210px_1fr]" key={story.title}>
                   <Link className="aspect-[16/10] overflow-hidden bg-[#e8edf2]" to={storyPath(story)} tabIndex="-1"><img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" src={story.image} alt={story.imageAlt} /></Link>
                   <div className="flex min-w-0 flex-col py-0.5">
-                    <p className="mb-2 text-[11px] font-semibold text-[#4f9488] uppercase">{story.category} <span className="font-normal text-[#5f6368]">· {story.date}</span></p>
+                    <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">{story.category} <span className="font-normal text-[#5f6368]">· {story.date}</span></p>
                     <h2 className="m-0 line-clamp-2 text-[clamp(20px,2vw,27px)] leading-[1.15] font-semibold tracking-[-.025em] text-[#111318]" title={story.title}><Link className="transition hover:opacity-60" to={storyPath(story)}>{story.title}</Link></h2>
-                    <p className="my-3 line-clamp-2 text-[13px] leading-5 text-[#4f5359]" title={story.summary}>{story.summary}</p>
-                    <p className="mt-auto mb-0 text-[11px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{story.author}</span></p>
+                    <p className="my-3 line-clamp-2 text-[15px] leading-6 text-[#4f5359]" title={story.summary}>{story.summary}</p>
+                    <p className="mt-auto mb-0 text-[12px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{story.author}</span></p>
                   </div>
                 </article>
               ))}
@@ -79,8 +79,8 @@ export default function NewsPage() {
                 {mostReadStories.map((story, index) => (
                   <article className="grid grid-cols-[1fr_88px] gap-4 py-4" key={story.title}>
                     <div>
-                      <p className="mb-2 text-[10px] font-semibold text-[#4f9488] uppercase">{story.category} <span className="font-normal text-[#5f6368]">· {story.time}</span></p>
-                      <h3 className="m-0 line-clamp-2 text-[15px] leading-[1.35] font-semibold text-[#111318]" title={story.title}><Link className="transition hover:opacity-60" to={`/news/story/popular-${index + 1}`}>{story.title}</Link></h3>
+                      <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">{story.category} <span className="font-normal text-[#5f6368]">· {story.time}</span></p>
+                      <h3 className="m-0 line-clamp-2 text-[17px] leading-[1.35] font-semibold text-[#111318]" title={story.title}><Link className="transition hover:opacity-60" to={`/news/story/popular-${index + 1}`}>{story.title}</Link></h3>
                     </div>
                     <Link className="aspect-square overflow-hidden bg-[#e8edf2]" to={`/news/story/popular-${index + 1}`} tabIndex="-1"><img className="h-full w-full object-cover" src={story.image} alt={story.imageAlt} /></Link>
                   </article>

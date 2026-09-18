@@ -1,12 +1,11 @@
-import { latestStories } from "../../data/news";
 import Icon from "../ui/Icon";
 import { Link } from "react-router-dom";
 import useNews from "../../hooks/useNews";
 
 export default function LatestStories() {
   const { news } = useNews();
-  const selectedStories = news.filter((story) => story.isEditorPick).slice(0, 4);
-  const editorPicks = selectedStories.length ? selectedStories : latestStories.slice(0, 4);
+  const editorPicks = news.filter((story) => story.isEditorPick).slice(0, 4);
+  if (editorPicks.length === 0) return null;
   const [feature, ...stories] = editorPicks;
 
   return (
@@ -23,13 +22,13 @@ export default function LatestStories() {
           <article className="group">
             <Link to={`/news/story/${feature.slug}`} className="relative block aspect-[16/8.5] overflow-hidden rounded-[6px] bg-[#e8edf2]">
               <img className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" src={feature.image} alt={feature.imageAlt} />
-              <span className="absolute top-4 left-4 bg-white px-2.5 py-1.5 text-[9px] font-bold tracking-[.12em] text-[#182536] uppercase">Editor’s pick</span>
+              <span className="absolute top-4 left-4 bg-white px-2.5 py-1.5 text-[11px] font-bold tracking-[.1em] text-[#182536] uppercase">Editor’s pick</span>
             </Link>
             <div className="pt-6">
-              <p className="mb-3 text-[11px] font-semibold text-[#4f9488] uppercase">{feature.topic || feature.category} <span className="font-normal text-[#5f6368]">• {feature.readTime}</span></p>
+              <p className="mb-3 text-[12px] font-semibold text-[#4f9488] uppercase">{feature.topic || feature.category} <span className="font-normal text-[#5f6368]">• {feature.readTime}</span></p>
               <h3 className="m-0 line-clamp-2 max-w-3xl font-serif text-[clamp(27px,2.5vw,38px)] leading-[1.08] tracking-[-.025em] text-[#111318]" title={feature.title}><Link className="transition hover:opacity-65" to={`/news/story/${feature.slug}`}>{feature.title}</Link></h3>
-              <p className="mb-0 max-w-2xl text-[13px] leading-5 text-[#4f5359]">{feature.summary}</p>
-              <p className="mt-5 text-[11px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{feature.author}</span> · {feature.date}</p>
+              <p className="mb-0 max-w-2xl text-[15px] leading-6 text-[#4f5359]">{feature.summary}</p>
+              <p className="mt-5 text-[12px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{feature.author}</span> · {feature.date}</p>
             </div>
           </article>
 
@@ -37,9 +36,9 @@ export default function LatestStories() {
             {stories.map((story) => (
               <article className="group grid grid-cols-[1fr_104px] gap-4 py-5 sm:grid-cols-[1fr_140px]" key={story.title}>
                 <div className="flex flex-col">
-                  <p className="mb-3 text-[11px] font-semibold text-[#4f9488] uppercase">{story.topic || story.category} <span className="font-normal text-[#5f6368]">• {story.readTime}</span></p>
+                  <p className="mb-3 text-[12px] font-semibold text-[#4f9488] uppercase">{story.topic || story.category} <span className="font-normal text-[#5f6368]">• {story.readTime}</span></p>
                   <h3 className="m-0 line-clamp-2 text-[clamp(17px,1.5vw,22px)] leading-[1.3] font-semibold tracking-[-.015em] text-[#111318]" title={story.title}><Link className="transition hover:opacity-65" to={`/news/story/${story.slug}`}>{story.title}</Link></h3>
-                  <p className="mt-auto mb-0 pt-4 text-[11px] font-medium text-[#5f6368]">{story.author} · {story.date}</p>
+                  <p className="mt-auto mb-0 pt-4 text-[12px] font-medium text-[#5f6368]">{story.author} · {story.date}</p>
                 </div>
                 <Link className="relative min-h-[130px] overflow-hidden rounded-[4px] bg-[#e8edf2]" to={`/news/story/${story.slug}`} tabIndex="-1">
                   <img className="h-full w-full object-cover transition duration-500 group-hover:scale-105" src={story.image} alt={story.imageAlt} />

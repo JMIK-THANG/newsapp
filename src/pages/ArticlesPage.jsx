@@ -38,14 +38,14 @@ export default function ArticlesPage() {
                   />
                 </Link>
                 <div className="border-b border-[#c8c6c0] py-4">
-                  <p className="mb-2 text-[10px] font-bold tracking-[.14em] text-[#4f9488] uppercase">
+                  <p className="mb-2 text-[12px] font-bold tracking-[.1em] text-[#4f9488] uppercase">
                     Article · {article.date}
                   </p>
                   <h3 className="m-0 font-serif text-[clamp(21px,2vw,27px)] leading-[1.12] tracking-[-.025em]">
                     <Link to={pathFor(article, index)}>{article.title}</Link>
                   </h3>
-                  <p className="mt-3 line-clamp-3 text-[13px] leading-5 text-[#4f5359]">{article.summary}</p>
-                  <p className="mt-3 text-[11px] font-semibold">By {article.author || "Chinlung Today"}</p>
+                  <p className="mt-3 line-clamp-3 text-[15px] leading-6 text-[#4f5359]">{article.summary}</p>
+                  <p className="mt-3 text-[12px] font-semibold">By {article.author || "Chinlung Today"}</p>
                 </div>
               </article>
             ))}

@@ -25,7 +25,7 @@ export default function EditorialPage() {
 
         <section className="grid gap-10 py-8 lg:grid-cols-[1fr_280px]" aria-label="More editorials">
           <div className="divide-y divide-[#dcdde0] border-y border-[#dcdde0]">
-            {stories.map((story, index) => <article className="py-6" key={story.title}><p className="mb-2 text-[10px] font-medium text-[#5f6368] uppercase">Editorial · {story.date}</p><h2 className="m-0 line-clamp-2 text-[clamp(22px,2.5vw,30px)] leading-[1.18] font-semibold tracking-[-.025em]" title={story.title}><Link className="hover:opacity-60" to={`/editorial/story-${index + 1}`}>{story.title}</Link></h2><p className="mt-3 mb-0 max-w-3xl text-sm leading-6 text-[#4f5359]">{story.summary}</p></article>)}
+            {stories.map((story, index) => <article className="py-6" key={story.title}><p className="mb-2 text-[12px] font-medium text-[#5f6368] uppercase">Editorial · {story.date}</p><h2 className="m-0 line-clamp-2 text-[clamp(22px,2.5vw,30px)] leading-[1.18] font-semibold tracking-[-.025em]" title={story.title}><Link className="hover:opacity-60" to={`/editorial/story-${index + 1}`}>{story.title}</Link></h2><p className="mt-3 mb-0 max-w-3xl text-[15px] leading-6 text-[#4f5359]">{story.summary}</p></article>)}
           </div>
           <aside className="h-fit border-t-2 border-[#111318] bg-[#f7f5ef] p-5"><h2 className="m-0 text-base font-bold">About our editorials</h2><p className="mb-0 text-[13px] leading-5 text-[#4f5359]">Editorials represent the collective view of the publication, not an individual writer. News reporting remains separate and independent.</p></aside>
         </section>
