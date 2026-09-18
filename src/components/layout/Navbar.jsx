@@ -14,15 +14,15 @@ const childPath = (label) => label.endsWith("News") ? `/news/category/${label.re
 
 function DesktopNavigation() {
   const navigate = useNavigate();
-  return <nav className="ml-auto hidden items-center gap-[clamp(18px,2vw,30px)] xl:flex" aria-label="Main navigation">
-    <NavLink className={({ isActive }) => `relative rounded-sm py-2.5 text-[13px] font-medium outline-none focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2 ${isActive ? "text-[#111318] after:absolute after:right-0 after:bottom-[3px] after:left-0 after:h-px after:bg-[#111318]" : "text-[#4f5359] hover:text-[#111318]"}`} to="/">Home</NavLink>
+  return <nav className="hidden items-center gap-[clamp(18px,2vw,32px)] xl:col-start-2 xl:row-start-1 xl:flex" aria-label="Main navigation">
+    <NavLink className={({ isActive }) => `relative py-7 text-[11px] font-bold tracking-[.06em] uppercase outline-none focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2 ${isActive ? "text-[#111318] after:absolute after:right-0 after:bottom-[18px] after:left-0 after:h-[2px] after:bg-[#9b1c1f]" : "text-[#3f454b] hover:text-[#9b1c1f]"}`} to="/">Home</NavLink>
     {navigation.map((item) => item.children ? <div className="group relative" key={item.label}>
-      <button className="flex items-center gap-1.5 rounded-sm border-0 bg-transparent py-2.5 text-[13px] font-medium text-[#4f5359] outline-none transition hover:text-[#111318] focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2 group-focus-within:text-[#111318]" type="button" aria-haspopup="true" onClick={() => navigate(item.to)}>{item.label}<span className="transition group-hover:rotate-180 group-focus-within:rotate-180 [&_svg]:size-3.5"><Icon name="chevron" /></span></button>
+      <button className="flex items-center gap-1.5 border-0 bg-transparent py-7 text-[11px] font-bold tracking-[.06em] text-[#3f454b] uppercase outline-none transition hover:text-[#9b1c1f] focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2 group-focus-within:text-[#9b1c1f]" type="button" aria-haspopup="true" onClick={() => navigate(item.to)}>{item.label}<span className="transition group-hover:rotate-180 group-focus-within:rotate-180 [&_svg]:size-3.5"><Icon name="chevron" /></span></button>
       <div className="invisible absolute top-full left-1/2 z-50 w-56 -translate-x-1/2 translate-y-2 rounded-[16px] border border-[#dcdde0] bg-white p-2 opacity-0 shadow-[0_18px_45px_rgba(32,41,56,.14)] transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
         <Link className="block rounded-xl px-4 py-3 text-xs font-bold text-[#182536] hover:bg-[#f0f1f3]" to={item.to}>All {item.label}</Link>
         {item.children.map((child) => <Link className="block rounded-xl px-4 py-3 text-xs font-medium text-[#4f5359] transition hover:bg-[#e8edf2] hover:text-[#111318]" key={child} to={childPath(child)}>{child}</Link>)}
       </div>
-    </div> : <NavLink className={({ isActive }) => `relative rounded-sm py-2.5 text-[13px] font-medium whitespace-nowrap outline-none transition focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2 ${isActive ? "text-[#111318] after:absolute after:right-0 after:bottom-[3px] after:left-0 after:h-px after:bg-[#111318]" : "text-[#4f5359] hover:text-[#111318]"}`} key={item.label} to={item.to}>{item.label}</NavLink>)}
+    </div> : <NavLink className={({ isActive }) => `relative py-7 text-[11px] font-bold tracking-[.06em] whitespace-nowrap uppercase outline-none transition focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2 ${isActive ? "text-[#111318] after:absolute after:right-0 after:bottom-[18px] after:left-0 after:h-[2px] after:bg-[#9b1c1f]" : "text-[#3f454b] hover:text-[#9b1c1f]"}`} key={item.label} to={item.to}>{item.label}</NavLink>)}
   </nav>;
 }
 
@@ -32,16 +32,16 @@ export default function Navbar() {
   const [expanded, setExpanded] = useState(null);
   const closeMenu = () => { setMenuOpen(false); setExpanded(null); };
 
-  return <header className="relative z-40 bg-[#f1eee8] px-3 pt-3 pb-5 md:px-6">
-    <div className="mx-auto flex min-h-[64px] max-w-[1380px] items-center gap-3 rounded-[12px] border border-[#dcdde0] bg-white py-1.5 pr-2.5 pl-3.5 lg:gap-7">
-      <Link className="flex shrink-0 items-center gap-2.5" to="/" aria-label="Chinlung Today home">
-        <span className="relative block h-10 w-[58px] shrink-0 overflow-hidden" aria-hidden="true">
-          <img className="absolute top-0 left-0 w-[58px] max-w-none" src="/chinlung-today-logo.png" alt="" />
+  return <header className="sticky top-0 z-40 border-b border-[#d9d9d6] bg-white px-3 md:px-6">
+    <div className="mx-auto grid min-h-[72px] max-w-[1380px] grid-cols-[1fr_auto] items-center gap-3 bg-white xl:grid-cols-[1fr_auto_1fr]">
+      <Link className="col-start-1 row-start-1 flex shrink-0 items-center gap-2.5 justify-self-start" to="/" aria-label="Chinlung Today home">
+        <span className="relative block h-11 w-[64px] shrink-0 overflow-hidden" aria-hidden="true">
+          <img className="absolute top-0 left-0 w-[64px] max-w-none" src="/chinlung-today-logo.png" alt="" />
         </span>
         <span className="grid leading-[.9]"><strong className="font-serif text-xl">Chinlung</strong><small className="mt-[5px] text-[9px] font-bold tracking-[.23em] text-[#4f5359] uppercase">Today</small></span>
       </Link>
       <DesktopNavigation />
-      <div className="ml-auto flex items-center gap-2 xl:ml-2"><button className="hidden size-11 cursor-pointer place-items-center rounded-full border-0 bg-[#e8edf2] text-[#182536] sm:grid" type="button" aria-label="Open search" onClick={() => setSearchOpen(!searchOpen)}><Icon name={searchOpen ? "close" : "search"} /></button><button className="hidden h-10 cursor-pointer items-center gap-3 rounded-[9px] border-0 bg-[#182536] px-4 text-[11px] font-bold text-white transition hover:bg-[#304356] md:flex" type="button" onClick={() => document.getElementById("subscribe")?.scrollIntoView({ behavior: "smooth" })}>Join the brief <Icon name="arrow" /></button><button className="grid size-11 cursor-pointer place-items-center rounded-full border-0 bg-[#182536] text-white xl:hidden" type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Icon name={menuOpen ? "close" : "menu"} /></button></div>
+      <div className="col-start-2 row-start-1 flex items-center gap-1 justify-self-end xl:col-start-3"><button className="grid size-10 cursor-pointer place-items-center border-0 bg-transparent text-[#182536] transition hover:text-[#9b1c1f]" type="button" aria-label="Open search" onClick={() => setSearchOpen(!searchOpen)}><Icon name={searchOpen ? "close" : "search"} /></button><button className="grid size-10 cursor-pointer place-items-center border-0 bg-[#182536] text-white xl:hidden" type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Icon name={menuOpen ? "close" : "menu"} /></button></div>
     </div>
 
     {searchOpen && <form className="mx-auto mt-2.5 max-w-[720px] rounded-[18px] border border-[#dcdde0] bg-white p-[18px] shadow-[0_15px_40px_rgba(32,41,56,.1)]" onSubmit={(event) => event.preventDefault()}><label className="mb-2 block text-[11px] font-bold tracking-[.12em] uppercase" htmlFor="site-search">Search Chinlung Today</label><div className="flex gap-2"><input className="w-full rounded-[10px] border border-[#dcdde0] px-[15px] py-3 outline-none focus:border-[#4f9488]" id="site-search" autoFocus placeholder="Stories, people, places…"/><button className="rounded-[10px] border-0 bg-[#182536] px-[18px] font-bold text-white" type="submit">Search</button></div></form>}

@@ -1,4 +1,4 @@
-import { leadStory, mostReadStories } from "../../data/news";
+import { latestStories, leadStory, mostReadStories } from "../../data/news";
 import useNews from "../../hooks/useNews";
 import Icon from "../ui/Icon";
 import { useRef, useState } from "react";
@@ -16,9 +16,9 @@ function SectionHeading({ title }) {
 
 function LatestNewsCard({ story, className = "" }) {
   return (
-    <article className={`group min-w-0 snap-start ${className}`}>
+    <article className={`group min-w-0 snap-start border-t-[3px] border-[#182536] pt-2.5 ${className}`}>
       <Link
-        className="block aspect-[16/8.5] overflow-hidden rounded-[6px] bg-[#e8edf2]"
+        className="block aspect-[16/9] overflow-hidden bg-[#e8edf2]"
         to={`/news/story/${story.slug}`}
       >
         <img
@@ -28,11 +28,11 @@ function LatestNewsCard({ story, className = "" }) {
         />
       </Link>
       <div className="pt-2.5">
-        <p className="mb-1.5 text-[10px] font-semibold uppercase text-[#4f9488]">
+        <p className="mb-1 text-[10px] font-bold tracking-[.06em] uppercase text-[#4f9488]">
           {story.category}{" "}
           <span className="font-normal text-[#5f6368]">· {story.time}</span>
         </p>
-        <h3 className="m-0 line-clamp-2 text-[16px] leading-[1.28] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
+        <h3 className="m-0 line-clamp-3 text-[15px] leading-[1.28] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
           <Link
             className="transition hover:opacity-65"
             to={`/news/story/${story.slug}`}
@@ -48,8 +48,6 @@ function LatestNewsCard({ story, className = "" }) {
 function LatestNewsCarousel({ stories }) {
   const carouselRef = useRef(null);
   const [activeStory, setActiveStory] = useState(0);
-  const pageSize = 4;
-  const pageCount = Math.max(1, Math.ceil(stories.length / pageSize));
 
   const updateActiveStory = () => {
     const carousel = carouselRef.current;
@@ -73,12 +71,6 @@ function LatestNewsCarousel({ stories }) {
     setActiveStory(index);
   };
 
-  const currentPage = Math.min(pageCount, Math.floor(activeStory / pageSize) + 1);
-
-  const goToPage = (page) => {
-    goToStory((page - 1) * pageSize);
-  };
-
   if (stories.length === 0) {
     return <p className="my-6 text-sm text-[#5f6368]">No latest news has been published yet.</p>;
   }
@@ -87,13 +79,13 @@ function LatestNewsCarousel({ stories }) {
     <>
       <div
         ref={carouselRef}
-        className="mt-4 grid w-full max-w-full min-w-0 snap-x snap-mandatory auto-cols-[84%] grid-flow-col gap-5 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-color:#aeb9b5_transparent] [scrollbar-width:thin] sm:auto-cols-[47%] lg:auto-cols-[calc((100%_-_3.75rem)/4)] lg:overflow-hidden"
+        className="mt-4 grid w-full max-w-full min-w-0 snap-x snap-mandatory auto-cols-[86%] scroll-smooth grid-flow-col gap-4 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:auto-cols-[47%] lg:auto-cols-[calc((100%_-_3rem)/4)] xl:auto-cols-[calc((100%_-_4rem)/5)]"
         onScroll={updateActiveStory}
       >
         {stories.map((story) => <LatestNewsCard key={story.slug} story={story} />)}
       </div>
 
-      <div className="mt-2 flex min-h-9 items-center justify-center gap-2" aria-label="Latest News carousel controls">
+      <div className="mt-3 flex min-h-9 items-center justify-center gap-2" aria-label="Latest News carousel controls">
         <div className="flex gap-2 lg:hidden">
           {stories.map((story, index) => (
             <button
@@ -108,9 +100,21 @@ function LatestNewsCarousel({ stories }) {
         </div>
 
         <div className="ml-auto hidden items-center gap-3 lg:flex">
-          <span className="text-[10px] font-bold tracking-[.12em] text-[#5f6368]" aria-live="polite">{currentPage} / {pageCount}</span>
-          <button className="grid size-9 cursor-pointer place-items-center rounded-full border border-[#cfd3d5] bg-white text-[#182536] transition hover:border-[#4f9488] hover:bg-[#eef3f1] disabled:cursor-default disabled:opacity-30" disabled={currentPage === 1} onClick={() => goToPage(currentPage - 1)} type="button" aria-label="Show previous latest stories"><span className="rotate-180"><Icon name="arrow" /></span></button>
-          <button className="grid size-9 cursor-pointer place-items-center rounded-full border border-[#cfd3d5] bg-white text-[#182536] transition hover:border-[#4f9488] hover:bg-[#eef3f1] disabled:cursor-default disabled:opacity-30" disabled={currentPage === pageCount} onClick={() => goToPage(currentPage + 1)} type="button" aria-label="Show next latest stories"><Icon name="arrow" /></button>
+          <span className="text-[10px] font-bold tracking-[.12em] text-[#5f6368]" aria-live="polite">{activeStory + 1} / {stories.length}</span>
+          <div className="flex items-center gap-1.5" aria-label="Latest News pages">
+            {stories.map((story, index) => (
+              <button
+                aria-label={`Show story ${index + 1}: ${story.title}`}
+                aria-current={activeStory === index ? "true" : undefined}
+                className={`h-2 cursor-pointer rounded-full border-0 p-0 transition-all ${activeStory === index ? "w-6 bg-[#9b1c1f]" : "w-2 bg-[#b8c4c0] hover:bg-[#789d96]"}`}
+                key={story.slug}
+                onClick={() => goToStory(index)}
+                type="button"
+              />
+            ))}
+          </div>
+          <button className="grid size-9 cursor-pointer place-items-center border border-[#182536] bg-white text-[#182536] transition hover:bg-[#182536] hover:text-white disabled:cursor-default disabled:opacity-25" disabled={activeStory === 0} onClick={() => goToStory(activeStory - 1)} type="button" aria-label="Show previous latest story"><span className="rotate-180"><Icon name="arrow" /></span></button>
+          <button className="grid size-9 cursor-pointer place-items-center border border-[#182536] bg-[#182536] text-white transition hover:bg-[#9b1c1f] disabled:cursor-default disabled:opacity-25" disabled={activeStory === stories.length - 1} onClick={() => goToStory(activeStory + 1)} type="button" aria-label="Show next latest story"><Icon name="arrow" /></button>
         </div>
       </div>
     </>
@@ -119,12 +123,14 @@ function LatestNewsCarousel({ stories }) {
 
 export default function HeroSection() {
   const { news } = useNews();
+  const [briefEmail, setBriefEmail] = useState("");
+  const [briefStatus, setBriefStatus] = useState("idle");
   const databaseTopStory = news.find((story) => story.isTopStory);
   const currentLeadStory = databaseTopStory || leadStory;
   const databaseLatest = news
     .filter((story) => story.slug !== databaseTopStory?.slug)
     .slice(0, 8);
-  const latestNews = databaseLatest;
+  const latestNews = databaseLatest.length ? databaseLatest : latestStories;
   const databaseMostRead = [...news]
     .filter((story) => story.slug !== databaseTopStory?.slug)
     .sort((first, second) => second.views - first.views)
@@ -238,6 +244,35 @@ export default function HeroSection() {
                 </article>
               ))}
             </div>
+            <form
+              className="mt-4 border border-[#cfd3d5] bg-[#f1eee8] p-4"
+              onSubmit={(event) => {
+                event.preventDefault();
+                setBriefStatus("demo");
+              }}
+            >
+              <p className="mb-2 text-[10px] font-bold tracking-[.12em] text-[#9b1c1f] uppercase">Get daily email updates</p>
+              <p className="mt-0 mb-3 text-[12px] leading-5 text-[#4f5359]">A concise briefing of the day’s most important stories.</p>
+              <label className="sr-only" htmlFor="hero-brief-email">Email address</label>
+              <div className="flex">
+                <input
+                  className="min-w-0 flex-1 border border-[#bfc4c5] bg-white px-3 py-2.5 text-[12px] outline-none focus:border-[#4f9488]"
+                  id="hero-brief-email"
+                  onChange={(event) => {
+                    setBriefEmail(event.target.value);
+                    setBriefStatus("idle");
+                  }}
+                  placeholder="Email address"
+                  required
+                  type="email"
+                  value={briefEmail}
+                />
+                <button className="cursor-pointer border-0 bg-[#182536] px-3 text-[10px] font-bold tracking-[.06em] text-white uppercase transition hover:bg-[#9b1c1f]" type="submit">Subscribe</button>
+              </div>
+              <p className={`mb-0 text-[10px] leading-4 text-[#5f6368] ${briefStatus === "demo" ? "mt-2" : "sr-only"}`} aria-live="polite">
+                Email delivery is coming soon. No address has been saved yet.
+              </p>
+            </form>
             <Link
               className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-4 text-[11px] font-semibold text-[#111318] transition hover:opacity-60"
               to="/news"
@@ -247,18 +282,18 @@ export default function HeroSection() {
           </aside>
 
           <section
-            className="order-2 min-w-0 py-5 xl:order-3 xl:col-span-2 xl:border-t xl:border-[#dcdde0] xl:px-7"
+            className="order-2 min-w-0 py-5 xl:order-3 xl:col-span-2 xl:border-t xl:border-[#dcdde0] xl:px-7 xl:py-6"
             aria-labelledby="latest-news-title"
           >
-            <div className="flex items-end justify-between border-b border-[#dcdde0] pb-3">
+            <div className="flex items-end justify-between">
               <h2
                 id="latest-news-title"
-                className="m-0 inline-flex items-center gap-2 text-[20px] font-bold tracking-[-.02em] text-[#111318] after:h-px after:w-9 after:bg-[#4f9488]"
+                className="m-0 text-[20px] font-bold tracking-[-.02em] text-[#111318]"
               >
                 Latest News
               </h2>
               <Link
-                className="flex items-center gap-2 text-[11px] font-semibold text-[#111318] transition hover:opacity-60"
+                className="flex items-center gap-2 text-[10px] font-bold tracking-[.06em] text-[#111318] uppercase transition hover:text-[#9b1c1f]"
                 to="/news"
               >
                 View all news <Icon name="arrow" />

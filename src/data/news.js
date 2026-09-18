@@ -254,6 +254,20 @@ export const latestStories = [
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85",
     imageAlt: "Small business owner working behind a counter",
   },
+  {
+    slug: "young-athletes-building-community",
+    category: "Sports",
+    topic: "Community",
+    title: "Young athletes building confidence through community sport",
+    summary:
+      "Local coaches are creating welcoming spaces where the next generation can train, compete, and grow together.",
+    author: "Chinlung Today Sports Desk",
+    date: "Aug 20",
+    readTime: "4 min",
+    image:
+      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=85",
+    imageAlt: "Athletes running together on an outdoor track",
+  },
 ];
 
 export const newsPageStories = [
