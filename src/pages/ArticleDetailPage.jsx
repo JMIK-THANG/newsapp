@@ -40,8 +40,10 @@ const cleanArticleParagraph = (paragraph, story) => paragraph
     if (!line) return false;
     const normalizedLine = line.toLocaleLowerCase().replace(/\s+/g, " ");
     const normalizedTitle = story.title.toLocaleLowerCase().replace(/\s+/g, " ");
+    const publicationDateLine = /^(?:by\s+)?chinlung today(?:\s+newsroom)?(?:\s*[|/·•:—–-]\s*(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2},?\s+\d{4})?\.?$/i;
+    const standaloneDateLine = /^(?:published\s*:?[ ]*)?(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2},?\s+\d{4}\.?$/i;
     if (normalizedLine === normalizedTitle) return false;
-    if (/^chinlung today\s*[|·-]/i.test(line)) return false;
+    if (publicationDateLine.test(line) || standaloneDateLine.test(line)) return false;
     if (story.date && normalizedLine === story.date.toLocaleLowerCase()) return false;
     return true;
   })
