@@ -15,7 +15,7 @@ export default function LatestArticles() {
         <header className="mb-6 flex items-end justify-between gap-5 border-b border-[#182536] pb-4">
           <div>
             <p className="mb-2 text-[10px] font-bold tracking-[.16em] text-[#8f2427] uppercase">The Chinlung Review</p>
-            <h2 id="latest-articles-title" className="m-0 font-serif text-[clamp(28px,3vw,40px)] leading-none tracking-[-.035em] text-[#182536]">Latest Articles</h2>
+            <h2 id="latest-articles-title" className="m-0 font-serif text-[clamp(28px,3vw,40px)] leading-none tracking-[-.035em] text-[#182536]"> Articles</h2>
           </div>
           <Link className="hidden items-center gap-2 text-[11px] font-bold tracking-[.05em] uppercase sm:flex" to="/articles">View all articles <Icon name="arrow" /></Link>
         </header>
