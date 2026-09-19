@@ -15,11 +15,13 @@ function SectionHeading({ title }) {
 }
 
 function LatestNewsCard({ story, className = "" }) {
+  const storyPath = story.content_type === "article" ? `/articles/${story.slug}` : `/news/story/${story.slug}`;
+
   return (
     <article className={`group min-w-0 snap-start border-t-[3px] border-[#182536] pt-2.5 ${className}`}>
       <Link
         className="block aspect-[16/9] overflow-hidden bg-[#e8edf2]"
-        to={`/news/story/${story.slug}`}
+        to={storyPath}
       >
         <img
           className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
@@ -35,7 +37,7 @@ function LatestNewsCard({ story, className = "" }) {
         <h3 className="m-0 line-clamp-3 text-[17px] leading-[1.3] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
           <Link
             className="transition hover:opacity-65"
-            to={`/news/story/${story.slug}`}
+            to={storyPath}
           >
             {story.title}
           </Link>
@@ -125,12 +127,14 @@ function LatestNewsCarousel({ stories }) {
 
 export default function HeroSection() {
   const { news, isLoading } = useNews();
+  const { news: articles, isLoading: articlesLoading } = useNews({ contentType: "article" });
   const [briefEmail, setBriefEmail] = useState("");
   const [briefStatus, setBriefStatus] = useState("idle");
   const databaseTopStory = news.find((story) => story.isTopStory);
   const currentLeadStory = databaseTopStory || leadStory;
-  const databaseLatest = news
+  const databaseLatest = [...news, ...articles]
     .filter((story) => story.slug !== databaseTopStory?.slug)
+    .sort((first, second) => new Date(second.publishedAt || 0) - new Date(first.publishedAt || 0))
     .slice(0, 30);
   const latestNews = databaseLatest.length ? databaseLatest : latestStories;
   const databaseMostRead = [...news]
@@ -141,7 +145,7 @@ export default function HeroSection() {
     ? databaseMostRead
     : mostReadStories.slice(0, 3);
 
-  if (isLoading) {
+  if (isLoading || articlesLoading) {
     return (
       <main className="bg-[#f1eee8] px-3 pt-3 pb-6 md:px-6 md:pt-4 md:pb-8" aria-label="Loading homepage stories">
         <div className="mx-auto max-w-[1380px] border-x border-b border-[#dcdde0] bg-white p-4 xl:p-6">
