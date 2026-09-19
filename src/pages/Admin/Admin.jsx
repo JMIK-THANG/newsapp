@@ -4,7 +4,7 @@ import AdminHeader from "../../components/admin/AdminHeader";
 import ArticlePreviewModal from "../../components/admin/ArticlePreviewModal";
 import useNews, { getAdminNewsArticle } from "../../hooks/useNews";
 
-const categories = ["Chin News", "Myanmar News", "International News", "Sports", "Business"];
+const categories = ["Chin News", "Myanmar News", "International News", "Sports", "Business", "Editorial"];
 const articleCategories = ["News Article", "Cahram"];
 const makeEmptyForm = (contentType = "news") => ({ title: "", summary: "", content: "", category: contentType === "article" ? "News Article" : "Chin News", author: "", imageUrl: "", imagePublicId: "", status: "published", contentType, isTopStory: false, isEditorPick: false });
 const fieldClass = "mt-2 w-full rounded-lg border border-[#cfd2d4] bg-white px-4 py-3 font-normal outline-none transition focus:border-[#4f9488] focus:ring-2 focus:ring-[#4f9488]/15";

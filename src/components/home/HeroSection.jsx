@@ -70,6 +70,9 @@ function LatestNewsCarousel({ stories }) {
     setActiveStory(index);
   };
 
+  const desktopPageCount = Math.ceil(stories.length / 10);
+  const desktopPage = Math.min(Math.floor(activeStory / 10), desktopPageCount - 1);
+
   if (stories.length === 0) {
     return <p className="my-6 text-sm text-[#5f6368]">No latest news has been published yet.</p>;
   }
@@ -78,13 +81,13 @@ function LatestNewsCarousel({ stories }) {
     <>
       <div
         ref={carouselRef}
-        className="mt-4 grid w-full max-w-full min-w-0 snap-x snap-proximity auto-cols-[86%] scroll-smooth grid-flow-col gap-4 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:auto-cols-[47%] lg:auto-cols-[calc((100%_-_3rem)/4)] xl:auto-cols-[calc((100%_-_4rem)/5)]"
+        className="mt-4 grid w-full max-w-full min-w-0 snap-x snap-proximity auto-cols-[86%] grid-rows-1 scroll-smooth grid-flow-col gap-x-4 gap-y-7 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:auto-cols-[47%] lg:auto-cols-[calc((100%_-_3rem)/4)] lg:grid-rows-2 xl:auto-cols-[calc((100%_-_4rem)/5)]"
         onScroll={updateActiveStory}
       >
         {stories.map((story) => <LatestNewsCard key={story.slug} story={story} />)}
       </div>
 
-      <div className="mt-3 flex min-h-9 items-center justify-center gap-2" aria-label="Latest News carousel controls">
+      <div className={`mt-3 min-h-9 items-center justify-center gap-2 ${stories.length > 1 ? "flex" : "hidden"}`} aria-label="Latest News carousel controls">
         <div className="flex gap-2 lg:hidden">
           {stories.map((story, index) => (
             <button
@@ -98,23 +101,23 @@ function LatestNewsCarousel({ stories }) {
           ))}
         </div>
 
-        <div className="ml-auto hidden items-center gap-3 lg:flex">
-          <span className="text-[10px] font-bold tracking-[.12em] text-[#5f6368]" aria-live="polite">{activeStory + 1} / {stories.length}</span>
+        {desktopPageCount > 1 && <div className="ml-auto hidden items-center gap-3 lg:flex">
+          <span className="text-[10px] font-bold tracking-[.12em] text-[#5f6368]" aria-live="polite">{desktopPage + 1} / {desktopPageCount}</span>
           <div className="flex items-center gap-1.5" aria-label="Latest News pages">
-            {stories.map((story, index) => (
+            {Array.from({ length: desktopPageCount }, (_, index) => (
               <button
-                aria-label={`Show story ${index + 1}: ${story.title}`}
-                aria-current={activeStory === index ? "true" : undefined}
-                className={`h-2 cursor-pointer rounded-full border-0 p-0 transition-all ${activeStory === index ? "w-6 bg-[#9b1c1f]" : "w-2 bg-[#b8c4c0] hover:bg-[#789d96]"}`}
-                key={story.slug}
-                onClick={() => goToStory(index)}
+                aria-label={`Show latest news page ${index + 1}`}
+                aria-current={desktopPage === index ? "true" : undefined}
+                className={`h-2 cursor-pointer rounded-full border-0 p-0 transition-all ${desktopPage === index ? "w-6 bg-[#9b1c1f]" : "w-2 bg-[#b8c4c0] hover:bg-[#789d96]"}`}
+                key={index}
+                onClick={() => goToStory(index * 10)}
                 type="button"
               />
             ))}
           </div>
-          <button className="grid size-9 cursor-pointer place-items-center border border-[#182536] bg-white text-[#182536] transition hover:bg-[#182536] hover:text-white disabled:cursor-default disabled:opacity-25" disabled={activeStory === 0} onClick={() => goToStory(activeStory - 1)} type="button" aria-label="Show previous latest story"><span className="rotate-180"><Icon name="arrow" /></span></button>
-          <button className="grid size-9 cursor-pointer place-items-center border border-[#182536] bg-[#182536] text-white transition hover:bg-[#9b1c1f] disabled:cursor-default disabled:opacity-25" disabled={activeStory === stories.length - 1} onClick={() => goToStory(activeStory + 1)} type="button" aria-label="Show next latest story"><Icon name="arrow" /></button>
-        </div>
+          <button className="grid size-9 cursor-pointer place-items-center border border-[#182536] bg-white text-[#182536] transition hover:bg-[#182536] hover:text-white disabled:cursor-default disabled:opacity-25" disabled={desktopPage === 0} onClick={() => goToStory((desktopPage - 1) * 10)} type="button" aria-label="Show previous latest news page"><span className="rotate-180"><Icon name="arrow" /></span></button>
+          <button className="grid size-9 cursor-pointer place-items-center border border-[#182536] bg-[#182536] text-white transition hover:bg-[#9b1c1f] disabled:cursor-default disabled:opacity-25" disabled={desktopPage === desktopPageCount - 1} onClick={() => goToStory((desktopPage + 1) * 10)} type="button" aria-label="Show next latest news page"><Icon name="arrow" /></button>
+        </div>}
       </div>
     </>
   );
@@ -128,7 +131,7 @@ export default function HeroSection() {
   const currentLeadStory = databaseTopStory || leadStory;
   const databaseLatest = news
     .filter((story) => story.slug !== databaseTopStory?.slug)
-    .slice(0, 8);
+    .slice(0, 30);
   const latestNews = databaseLatest.length ? databaseLatest : latestStories;
   const databaseMostRead = [...news]
     .filter((story) => story.slug !== databaseTopStory?.slug)
@@ -284,15 +287,10 @@ export default function HeroSection() {
             className="order-2 min-w-0 py-5 xl:order-3 xl:col-span-2 xl:border-t xl:border-[#dcdde0] xl:px-7 xl:py-6"
             aria-labelledby="latest-news-title"
           >
-            <div className="flex items-end justify-between">
-              <h2
-                id="latest-news-title"
-                className="m-0 text-[20px] xl:text-[21px] font-bold tracking-[-.02em] text-[#111318]"
-              >
-                Latest News
-              </h2>
+            <div className="flex items-end justify-end">
+              <h2 id="latest-news-title" className="sr-only">Latest News</h2>
               <Link
-                className="flex items-center gap-2 text-[12px] font-bold tracking-[.05em] text-[#111318] uppercase transition hover:text-[#9b1c1f]"
+                className="flex items-center gap-2 bg-[#182536] px-4 py-2.5 text-[11px] font-bold tracking-[.05em] text-white uppercase transition hover:bg-[#9b1c1f]"
                 to="/news"
               >
                 View all news <Icon name="arrow" />
