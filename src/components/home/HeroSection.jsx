@@ -127,14 +127,12 @@ function LatestNewsCarousel({ stories }) {
 
 export default function HeroSection() {
   const { news, isLoading } = useNews();
-  const { news: articles, isLoading: articlesLoading } = useNews({ contentType: "article" });
   const [briefEmail, setBriefEmail] = useState("");
   const [briefStatus, setBriefStatus] = useState("idle");
   const databaseTopStory = news.find((story) => story.isTopStory);
   const currentLeadStory = databaseTopStory || leadStory;
-  const databaseLatest = [...news, ...articles]
+  const databaseLatest = news
     .filter((story) => story.slug !== databaseTopStory?.slug)
-    .sort((first, second) => new Date(second.publishedAt || 0) - new Date(first.publishedAt || 0))
     .slice(0, 30);
   const latestNews = databaseLatest.length ? databaseLatest : latestStories;
   const databaseMostRead = [...news]
@@ -145,7 +143,7 @@ export default function HeroSection() {
     ? databaseMostRead
     : mostReadStories.slice(0, 3);
 
-  if (isLoading || articlesLoading) {
+  if (isLoading) {
     return (
       <main className="bg-[#f1eee8] px-3 pt-3 pb-6 md:px-6 md:pt-4 md:pb-8" aria-label="Loading homepage stories">
         <div className="mx-auto max-w-[1380px] border-x border-b border-[#dcdde0] bg-white p-4 xl:p-6">
