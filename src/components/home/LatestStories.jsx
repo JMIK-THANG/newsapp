@@ -9,12 +9,11 @@ export default function LatestStories() {
   const [feature, ...stories] = editorPicks;
 
   return (
-    <section id="latest" className="border-t border-[#dcdde0] bg-white px-3 pt-10 pb-12 md:px-6 md:pt-12 md:pb-16" aria-labelledby="latest-title">
+    <section id="latest" className="border-t border-[#dcdde0] bg-white px-3 pt-10 pb-12 md:px-6 md:pt-12 md:pb-16" aria-label="Editor’s Picks">
       <div className="mx-auto max-w-[1380px]">
         <div className="border-b border-[#dcdde0] pb-6">
           <div>
-            <p className="mb-3 inline-flex items-center gap-2 text-[11px] font-bold tracking-[.04em] text-[#4f9488] uppercase after:h-px after:w-9 after:bg-[#4f9488]">Editor’s Picks</p>
-            <h2 id="latest-title" className="m-0 max-w-3xl font-serif text-[clamp(30px,3.3vw,46px)] leading-[1.05] tracking-[-.035em]">Stories shaping our world.</h2>
+            <h2 className="m-0 inline-flex items-center gap-2 text-[18px] font-bold tracking-[-.01em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Editor’s Picks</h2>
           </div>
         </div>
 
