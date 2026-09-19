@@ -55,7 +55,7 @@ function LatestNewsCarousel({ stories }) {
     const carousel = carouselRef.current;
     if (!carousel) return;
 
-    const cards = Array.from(carousel.children);
+    const cards = Array.from(carousel.children).filter((card) => card.offsetParent !== null);
     const closestCard = cards.reduce((closest, card, index) => {
       const distance = Math.abs(card.offsetLeft - carousel.scrollLeft);
       return distance < closest.distance ? { distance, index } : closest;
@@ -86,12 +86,12 @@ function LatestNewsCarousel({ stories }) {
         className="mt-4 grid w-full max-w-full min-w-0 snap-x snap-proximity auto-cols-[86%] grid-rows-1 scroll-smooth grid-flow-col gap-x-4 gap-y-7 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:auto-cols-[47%] lg:auto-cols-[calc((100%_-_3rem)/4)] lg:grid-rows-2 xl:auto-cols-[calc((100%_-_4rem)/5)]"
         onScroll={updateActiveStory}
       >
-        {stories.map((story) => <LatestNewsCard key={story.slug} story={story} />)}
+        {stories.map((story, index) => <LatestNewsCard className={index >= 5 ? "hidden lg:block" : ""} key={story.slug} story={story} />)}
       </div>
 
       <div className={`mt-3 min-h-9 items-center justify-center gap-2 ${stories.length > 1 ? "flex" : "hidden"}`} aria-label="Latest News carousel controls">
         <div className="flex gap-2 lg:hidden">
-          {stories.map((story, index) => (
+          {stories.slice(0, 5).map((story, index) => (
             <button
               aria-label={`Show story ${index + 1}: ${story.title}`}
               aria-current={activeStory === index ? "true" : undefined}
