@@ -65,7 +65,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   width: max-content;
   height: 100%;
   will-change: transform;
-  animation: latest-ticker-scroll 38s linear infinite;
+  animation: latest-ticker-scroll 76s linear infinite;
 }
 
 .latest-ticker__set {
@@ -109,6 +109,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   .latest-ticker { height: 42px; }
   .latest-ticker__label { padding-inline: 14px; font-size: 11px; }
   .latest-ticker__link { padding-inline: 28px; font-size: 14px; }
+  .latest-ticker__track { animation-duration: 34s; }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -116,5 +117,5 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .latest-ticker__track { animation-duration: 76s; }
+  .latest-ticker__track { animation-duration: 100s; }
 }
