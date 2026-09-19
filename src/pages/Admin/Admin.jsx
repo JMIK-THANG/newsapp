@@ -5,7 +5,8 @@ import ArticlePreviewModal from "../../components/admin/ArticlePreviewModal";
 import useNews, { getAdminNewsArticle } from "../../hooks/useNews";
 
 const categories = ["Chin News", "Myanmar News", "International News", "Sports", "Business"];
-const makeEmptyForm = (contentType = "news") => ({ title: "", summary: "", content: "", category: contentType === "article" ? "Articles" : "Chin News", author: "", imageUrl: "", imagePublicId: "", status: "published", contentType, isTopStory: false, isEditorPick: false });
+const articleCategories = ["News Article", "Cahram"];
+const makeEmptyForm = (contentType = "news") => ({ title: "", summary: "", content: "", category: contentType === "article" ? "News Article" : "Chin News", author: "", imageUrl: "", imagePublicId: "", status: "published", contentType, isTopStory: false, isEditorPick: false });
 const fieldClass = "mt-2 w-full rounded-lg border border-[#cfd2d4] bg-white px-4 py-3 font-normal outline-none transition focus:border-[#4f9488] focus:ring-2 focus:ring-[#4f9488]/15";
 
 export default function Admin({ defaultContentType = "news" }) {
@@ -58,7 +59,7 @@ export default function Admin({ defaultContentType = "news" }) {
     event.preventDefault();
     setIsSaving(true);
     setMessage("");
-    let articleData = { ...form, imageAlt: form.title, category: form.contentType === "article" ? "Articles" : form.category, status: "published", isTopStory: form.contentType === "news" && form.isTopStory, isEditorPick: form.contentType === "news" && form.isEditorPick };
+    let articleData = { ...form, imageAlt: form.title, status: "published", isTopStory: form.contentType === "news" && form.isTopStory, isEditorPick: form.contentType === "news" && form.isEditorPick };
     if (pendingImage) {
       const uploadResult = await uploadNewsImage(pendingImage);
       if (!uploadResult.success) { setMessageType("error"); setMessage(uploadResult.message); setIsSaving(false); return; }
@@ -79,6 +80,7 @@ export default function Admin({ defaultContentType = "news" }) {
           <form className="space-y-6 rounded-xl border border-[#dcdde0] bg-white p-5 shadow-[0_14px_40px_rgba(24,37,54,.06)] md:p-8 lg:p-10" onSubmit={handleSubmit}>
             <label className="block text-sm font-semibold">Headline<input className={`${fieldClass} text-lg`} name="title" value={form.title} onChange={handleChange} required /></label>
             {form.contentType === "news" && <label className="block text-sm font-semibold">Category<select className={fieldClass} name="category" value={form.category} onChange={handleChange}>{categories.map((category) => <option key={category}>{category}</option>)}</select></label>}
+            {form.contentType === "article" && <label className="block text-sm font-semibold">Article section<select className={fieldClass} name="category" value={form.category} onChange={handleChange}>{articleCategories.map((category) => <option key={category}>{category}</option>)}</select><span className="mt-1 block text-[11px] font-normal text-[#5f6368]">Choose where this article will appear on the public website.</span></label>}
             <label className="block text-sm font-semibold">Writer name<input className={fieldClass} name="author" list="saved-writers" maxLength="100" placeholder="Example: Salai Mazawn" value={form.author} onChange={handleChange} required /><datalist id="saved-writers">{authorSuggestions.map((author) => <option value={author} key={author} />)}</datalist></label>
             <label className="block text-sm font-semibold">Short summary<textarea className={`${fieldClass} min-h-24 resize-y`} name="summary" value={form.summary} onChange={handleChange} required /></label>
             <label className="block text-sm font-semibold">Full article<textarea className={`${fieldClass} min-h-[340px] resize-y leading-7`} name="content" value={form.content} onChange={handleChange} required /></label>

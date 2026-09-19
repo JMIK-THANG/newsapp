@@ -10,7 +10,11 @@ const navigation = [
   { label: "Business", to: "/business" },
 ];
 
-const childPath = (label) => label.endsWith("News") ? `/news/category/${label.replace(" News", "").toLowerCase()}` : "/articles";
+const childPath = (label) => {
+  if (label === "News Articles") return "/articles/category/news-articles";
+  if (label === "Cahram") return "/articles/category/cahram";
+  return label.endsWith("News") ? `/news/category/${label.replace(" News", "").toLowerCase()}` : "/articles";
+};
 
 function DesktopNavigation({ openDropdown, setOpenDropdown, closePanels }) {
   return <nav className="hidden items-center gap-[clamp(24px,2.25vw,38px)] xl:col-start-2 xl:row-start-1 xl:flex" aria-label="Main navigation">

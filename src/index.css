@@ -23,8 +23,9 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   height: 40px;
   max-width: 100%;
   overflow: hidden;
-  background: #182536;
-  color: #f8f6f1;
+  border-block: 1px solid #d6d2ca;
+  background: #f1eee8;
+  color: #182536;
 }
 
 .latest-ticker__label {
@@ -33,22 +34,24 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 8px;
-  padding: 0 16px;
-  background: #8f2427;
-  font-size: 11px;
+  gap: 6px;
+  padding: 0 10px;
+  border-right: 1px solid #cbc5bb;
+  background: #e8e3da;
+  color: #8f2427;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
-  box-shadow: 8px 0 18px rgb(10 21 34 / 18%);
+  box-shadow: 6px 0 14px rgb(24 37 54 / 7%);
 }
 
 .latest-ticker__pulse {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 999px;
-  background: #f8f6f1;
-  opacity: .9;
+  background: #8f2427;
+  opacity: .85;
 }
 
 .latest-ticker__viewport {
@@ -62,7 +65,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   width: max-content;
   height: 100%;
   will-change: transform;
-  animation: latest-ticker-scroll 46s linear infinite;
+  animation: latest-ticker-scroll 38s linear infinite;
 }
 
 .latest-ticker__set {
@@ -81,7 +84,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 
 .latest-ticker__link {
   padding: 0 22px;
-  color: #f8f6f1;
+  color: #182536;
   font-size: 13px;
   font-weight: 500;
   line-height: 1;
@@ -91,18 +94,20 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 
 .latest-ticker__link:hover,
 .latest-ticker__link:focus-visible {
-  color: #d9b3b4;
+  color: #8f2427;
 }
 
 .latest-ticker__separator {
-  width: 1px;
-  height: 14px;
-  background: #526479;
+  width: 5px;
+  height: 5px;
+  margin-inline: 4px;
+  border-radius: 999px;
+  background: #9b958b;
 }
 
 @media (min-width: 768px) {
   .latest-ticker { height: 42px; }
-  .latest-ticker__label { padding-inline: 22px; font-size: 12px; }
+  .latest-ticker__label { padding-inline: 14px; font-size: 11px; }
   .latest-ticker__link { padding-inline: 28px; font-size: 14px; }
 }
 
@@ -111,8 +116,5 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .latest-ticker__viewport { overflow-x: auto; scrollbar-width: none; }
-  .latest-ticker__viewport::-webkit-scrollbar { display: none; }
-  .latest-ticker__track { animation: none; transform: none; }
-  .latest-ticker__set--duplicate { display: none; }
+  .latest-ticker__track { animation-duration: 76s; }
 }

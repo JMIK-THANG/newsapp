@@ -44,6 +44,7 @@ export default function App() {
     <Route path="/editorial" element={<EditorialPage />} />
     <Route path="/editorial/:storyKey" element={<ArticleDetailPage section="editorial" />} />
     <Route path="/articles" element={<ArticlesPage />} />
+    <Route path="/articles/category/:categorySlug" element={<ArticlesPage />} />
     <Route path="/articles/:storyKey" element={<FeatureArticlePage />} />
     <Route path="/sports" element={<SportsPage />} />
     <Route path="/sports/:storyKey" element={<ArticleDetailPage section="sports" />} />
