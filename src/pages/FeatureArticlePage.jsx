@@ -31,9 +31,9 @@ export default function FeatureArticlePage() {
       <p className="m-0 text-right text-[10px] font-semibold tracking-[.07em] text-[#4f9488] uppercase">{article.category || "Feature"}</p>
     </div>
     <header className="mx-auto max-w-[900px] text-center">
-      <h1 className="m-0 font-serif text-[clamp(32px,4.4vw,50px)] leading-[1.1] tracking-[-.03em] text-[#0c0c0c]">{article.title}</h1>
-      <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[12px] text-[#5f6368]"><span>By <strong className="font-semibold text-[#111318]">{article.author || "Chinlung Today"}</strong></span><span>•</span><span>{article.date}</span><span>•</span><span>{article.readTime || article.time || "5 min read"}</span></div>
-      <div className="mt-5"><ShareStoryButton story={article} /></div>
+      <h1 className="m-0 font-serif text-[clamp(29px,3.7vw,42px)] leading-[1.14] tracking-[-.025em] text-[#0c0c0c]">{article.title}</h1>
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[14px] leading-6 text-[#4f5359] md:text-[15px]"><span>By <strong className="font-semibold text-[#111318]">{article.author || "Chinlung Today"}</strong></span><span>•</span><span>{article.date}</span><span>•</span><span>{article.readTime || article.time || "5 min read"}</span></div>
+      <div className="mt-8"><ShareStoryButton story={article} /></div>
     </header>
     <figure className="my-8 md:my-12"><img className="max-h-[760px] w-full bg-[#ddd9d1] object-contain" src={article.image} alt={article.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#666b70]">{article.imageCredit || "Chinlung Today"}</figcaption></figure>
     <div className="mx-auto grid max-w-[930px] gap-8 md:grid-cols-[150px_1fr]"><aside className="border-t border-[#182536] pt-3 text-[10px] font-semibold tracking-[.12em] uppercase">Long-form article</aside><div className="article-reading-text">{paragraphs.map((paragraph, index) => <p className={index === 0 ? "mt-0 first-letter:float-left first-letter:mr-2 first-letter:font-serif first-letter:text-7xl first-letter:leading-[.8]" : undefined} key={`${index}-${paragraph.slice(0, 30)}`}>{paragraph}</p>)}</div></div>
