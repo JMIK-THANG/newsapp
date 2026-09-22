@@ -34,7 +34,7 @@ function LatestNewsCard({ story, className = "" }) {
           {story.category}{" "}
           <span className="font-normal text-[#5f6368]">· {story.time}</span>
         </p>
-        <h3 className="m-0 line-clamp-3 text-[17px] leading-[1.3] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
+        <h3 className="m-0 line-clamp-3 font-serif text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
           <Link
             className="transition hover:opacity-65"
             to={storyPath}
@@ -195,7 +195,7 @@ export default function HeroSection() {
                     {currentLeadStory.title}
                   </Link>
                 </h1>
-                <p className="mb-0 line-clamp-2 max-w-[850px] pt-2 text-[15px] leading-[1.55] text-[#4f5359]" title={currentLeadStory.summary}>
+                <p className="mb-0 line-clamp-2 max-w-[850px] pt-2 text-[16px] leading-[1.6] text-[#303940]" title={currentLeadStory.summary}>
                   {currentLeadStory.summary}
                 </p>
                 <div className="mt-2.5 flex flex-col items-start gap-2 border-t border-[#dcdde0] pt-2 sm:flex-row sm:items-center sm:justify-between">
@@ -236,7 +236,7 @@ export default function HeroSection() {
                         · {story.time}
                       </span>
                     </p>
-                    <h3 className="m-0 line-clamp-2 text-[17px] leading-[1.35] font-semibold tracking-[-.01em] text-[#111318]" title={story.title}>
+                    <h3 className="m-0 line-clamp-3 font-serif text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
                       <Link
                         className="transition hover:opacity-65"
                         to={story.slug ? `/news/story/${story.slug}` : `/news/story/popular-${index + 1}`}

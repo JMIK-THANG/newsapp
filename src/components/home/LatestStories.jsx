@@ -13,7 +13,7 @@ export default function LatestStories() {
       <div className="mx-auto max-w-[1380px]">
         <div className="border-b border-[#dcdde0] pb-6">
           <div>
-            <h2 className="m-0 inline-flex items-center gap-2 text-[18px] font-bold tracking-[-.01em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Editor’s Picks</h2>
+            <h2 className="m-0 inline-flex items-center gap-2 font-serif text-[28px] font-semibold tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Editor’s Picks</h2>
           </div>
         </div>
 
@@ -26,7 +26,7 @@ export default function LatestStories() {
             <div className="pt-6">
               <p className="mb-3 text-[12px] font-semibold text-[#4f9488] uppercase">{feature.topic || feature.category} <span className="font-normal text-[#5f6368]">• {feature.readTime}</span></p>
               <h3 className="m-0 line-clamp-2 max-w-3xl font-serif text-[clamp(27px,2.5vw,38px)] leading-[1.08] tracking-[-.025em] text-[#111318]" title={feature.title}><Link className="transition hover:opacity-65" to={`/news/story/${feature.slug}`}>{feature.title}</Link></h3>
-              <p className="mb-0 max-w-2xl text-[15px] leading-6 text-[#4f5359]">{feature.summary}</p>
+              <p className="mb-0 max-w-2xl text-[16px] leading-7 text-[#303940]">{feature.summary}</p>
               <p className="mt-5 text-[12px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{feature.author}</span> · {feature.date}</p>
             </div>
           </article>
@@ -36,7 +36,7 @@ export default function LatestStories() {
               <article className="group grid grid-cols-[1fr_104px] gap-4 py-5 sm:grid-cols-[1fr_140px]" key={story.title}>
                 <div className="flex flex-col">
                   <p className="mb-3 text-[12px] font-semibold text-[#4f9488] uppercase">{story.topic || story.category} <span className="font-normal text-[#5f6368]">• {story.readTime}</span></p>
-                  <h3 className="m-0 line-clamp-2 text-[clamp(17px,1.5vw,22px)] leading-[1.3] font-semibold tracking-[-.015em] text-[#111318]" title={story.title}><Link className="transition hover:opacity-65" to={`/news/story/${story.slug}`}>{story.title}</Link></h3>
+                  <h3 className="m-0 line-clamp-3 font-serif text-[clamp(21px,1.7vw,25px)] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318]" title={story.title}><Link className="transition hover:opacity-65" to={`/news/story/${story.slug}`}>{story.title}</Link></h3>
                   <p className="mt-auto mb-0 pt-4 text-[12px] font-medium text-[#5f6368]">{story.author} · {story.date}</p>
                 </div>
                 <Link className="relative min-h-[130px] overflow-hidden rounded-[4px] bg-[#e8edf2]" to={`/news/story/${story.slug}`} tabIndex="-1">
