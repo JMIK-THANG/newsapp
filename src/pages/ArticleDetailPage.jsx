@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getNewsArticle, getRelatedNewsArticles } from "../hooks/useNews";
 import { shortStoryPath } from "../utils/storyPath";
+import ShareStoryButton from "../components/ui/ShareStoryButton";
 
 const sectionStories = { news: newsPageStories, editorial: editorialStories, articles: articleStories, sports: sportsStories, business: businessStories };
 const sectionNames = { news: "News", editorial: "Editorial", articles: "Articles", sports: "Sports", business: "Business" };
@@ -99,6 +100,7 @@ export default function ArticleDetailPage({ section }) {
         <header className="mx-auto max-w-[800px] text-center">
           <h1 className="m-0 font-serif text-[clamp(32px,4.4vw,50px)] leading-[1.1] tracking-[-.03em] text-[#0c0c0c]">{story.title}</h1>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-[#5f6368]"><span>By <strong className="font-semibold text-[#111318]">{story.author || authors[section]}</strong></span><span>•</span><span>{publishedDate}</span><span>•</span><span>{story.time || "6 min read"}</span></div>
+          <div className="mt-5"><ShareStoryButton story={story} /></div>
         </header>
 
         <figure className="my-7 md:my-8"><img className="aspect-[16/8.5] w-full object-cover" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>

@@ -4,6 +4,7 @@ const paths = {
   close: <path d="m6 6 12 12M18 6 6 18"/>,
   arrow: <path d="M5 12h14M14 7l5 5-5 5"/>,
   chevron: <path d="m7 9 5 5 5-5"/>,
+  share: <><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.3 10.9 7.4-4.6M8.3 13.1l7.4 4.6"/></>,
 };
 
 export default function Icon({ name }) {
