@@ -9,6 +9,19 @@
 html { max-width: 100%; overflow-x: clip; scroll-behavior: smooth; background: #eae6de; }
 body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #eae6de; color: #182536; font-family: "DM Sans", sans-serif; font-weight: 400; }
 
+/* Full-story reading copy follows a newspaper-style serif treatment. */
+.article-reading-text {
+  color: #0c0c0c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+@media (min-width: 768px) {
+  .article-reading-text { font-size: 21px; line-height: 1.72; }
+}
+
 /* A soft paper surface reduces glare while preserving the publication's contrast. */
 .bg-white { background-color: #f8f6f1; }
 

@@ -96,20 +96,20 @@ export default function ArticleDetailPage({ section }) {
         </div>
 
         <header className="mx-auto max-w-[800px] text-center">
-          <h1 className="m-0 font-serif text-[clamp(27px,3vw,38px)] leading-[1.16] tracking-[-.025em] text-[#0c0c0c]">{story.title}</h1>
+          <h1 className="m-0 font-serif text-[clamp(32px,4.4vw,50px)] leading-[1.1] tracking-[-.03em] text-[#0c0c0c]">{story.title}</h1>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-[#5f6368]"><span>By <strong className="font-semibold text-[#111318]">{story.author || authors[section]}</strong></span><span>•</span><span>{publishedDate}</span><span>•</span><span>{story.time || "6 min read"}</span></div>
         </header>
 
         <figure className="my-7 md:my-8"><img className="aspect-[16/8.5] w-full object-cover" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
 
         <div className="mx-auto max-w-[760px]">
-          <div className="border-t border-[#dcdde0] pt-7 font-sans text-[17px] leading-8 font-normal text-[#0c0c0c] md:text-[18px]">
+          <div className="article-reading-text border-t border-[#dcdde0] pt-7 text-[#0c0c0c]">
             {articleParagraphs.map((paragraph, index) => {
               const isNumberedItem = /^\d+[.)]\s/.test(paragraph);
               const isColorKey = /^[🔴🟢🔵]/u.test(paragraph);
               const isShortHeading = paragraph.length < 90 && !/[.!?]$/.test(paragraph) && index > 0;
 
-              if (isShortHeading) return <h2 className="mt-10 mb-3 font-serif text-[25px] leading-tight tracking-[-.02em] text-[#111318] lg:text-[29px]" key={`${index}-${paragraph}`}>{paragraph}</h2>;
+              if (isShortHeading) return <h2 className="mt-10 mb-3 font-serif text-[28px] leading-tight tracking-[-.02em] text-[#111318] lg:text-[34px]" key={`${index}-${paragraph}`}>{paragraph}</h2>;
               if (isNumberedItem) return <p className="my-3 border-l-2 border-[#4f9488] py-1 pl-4" key={`${index}-${paragraph}`}>{paragraph}</p>;
               if (isColorKey) return <p className="my-4 bg-[#f1eee8] px-4 py-3 text-[16px] leading-7 lg:text-[19px] lg:leading-8" key={`${index}-${paragraph}`}>{paragraph}</p>;
               return <p className={`${index === 0 ? "mt-0" : "mt-5"} mb-0 whitespace-pre-line`} key={`${index}-${paragraph}`}>{paragraph}</p>;
