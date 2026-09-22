@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { shortStoryPath } from "../../utils/storyPath";
 import useNews from "../../hooks/useNews";
 
 function HeadlineSet({ stories, duplicate = false }) {
@@ -11,7 +12,7 @@ function HeadlineSet({ stories, duplicate = false }) {
         <span className="latest-ticker__item" key={`${duplicate ? "duplicate-" : ""}${story.id || story.slug}`}>
           <Link
             className="latest-ticker__link"
-            to={`/news/story/${story.slug}`}
+            to={shortStoryPath(story)}
             tabIndex={duplicate ? -1 : undefined}
           >
             {story.title}

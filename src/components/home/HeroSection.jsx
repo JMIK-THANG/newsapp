@@ -3,6 +3,7 @@ import useNews from "../../hooks/useNews";
 import Icon from "../ui/Icon";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { shortStoryPath } from "../../utils/storyPath";
 
 function SectionHeading({ title }) {
   return (
@@ -15,7 +16,7 @@ function SectionHeading({ title }) {
 }
 
 function LatestNewsCard({ story, className = "" }) {
-  const storyPath = story.content_type === "article" ? `/articles/${story.slug}` : `/news/story/${story.slug}`;
+  const storyPath = shortStoryPath(story);
 
   return (
     <article className={`group min-w-0 snap-start border-t-[3px] border-[#182536] pt-2.5 ${className}`}>
@@ -173,7 +174,7 @@ export default function HeroSection() {
             <div>
               <Link
                 className="relative block h-[clamp(250px,62vw,380px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(430px,48svh,540px)]"
-                to={`/news/story/${currentLeadStory.slug}`}
+                to={shortStoryPath(currentLeadStory)}
               >
                 <img
                   className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-[1.015]"
@@ -191,7 +192,7 @@ export default function HeroSection() {
                   className="m-0 line-clamp-2 max-w-[900px] font-serif text-[clamp(23px,1.95vw,32px)] leading-[1.12] tracking-[-.02em] text-[#111318]"
                   title={currentLeadStory.title}
                 >
-                  <Link className="transition hover:opacity-65" to={`/news/story/${currentLeadStory.slug}`}>
+                  <Link className="transition hover:opacity-65" to={shortStoryPath(currentLeadStory)}>
                     {currentLeadStory.title}
                   </Link>
                 </h1>
@@ -207,7 +208,7 @@ export default function HeroSection() {
                   </p>
                   <Link
                     className="flex items-center gap-2 text-sm font-bold text-[#182536]"
-                    to={`/news/story/${currentLeadStory.slug}`}
+                    to={shortStoryPath(currentLeadStory)}
                   >
                     Read full story <Icon name="arrow" />
                   </Link>
@@ -239,7 +240,7 @@ export default function HeroSection() {
                     <h3 className="m-0 line-clamp-3 font-serif text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
                       <Link
                         className="transition hover:opacity-65"
-                        to={story.slug ? `/news/story/${story.slug}` : `/news/story/popular-${index + 1}`}
+                        to={story.id ? shortStoryPath(story) : `/news/story/popular-${index + 1}`}
                       >
                         {story.title}
                       </Link>
@@ -247,7 +248,7 @@ export default function HeroSection() {
                   </div>
                   <Link
                     className="aspect-[4/3] overflow-hidden rounded-[4px] bg-[#e8edf2]"
-                    to={story.slug ? `/news/story/${story.slug}` : `/news/story/popular-${index + 1}`}
+                    to={story.id ? shortStoryPath(story) : `/news/story/popular-${index + 1}`}
                     tabIndex="-1"
                   >
                     <img
@@ -289,7 +290,7 @@ export default function HeroSection() {
               </p>
             </form>
             <Link
-              className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-4 text-[13px] font-semibold text-[#111318] transition hover:opacity-60"
+              className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-6 pb-2 text-[14px] font-semibold text-[#111318] transition hover:opacity-60"
               to="/news"
             >
               See all most read <Icon name="arrow" />
@@ -297,7 +298,7 @@ export default function HeroSection() {
           </aside>
 
           <section
-            className="order-2 min-w-0 py-5 xl:order-3 xl:col-span-2 xl:border-t xl:border-[#dcdde0] xl:px-7 xl:py-6"
+            className="order-2 min-w-0 pt-8 pb-6 xl:order-3 xl:col-span-2 xl:border-t xl:border-[#dcdde0] xl:px-7 xl:pt-8 xl:pb-7"
             aria-labelledby="latest-news-title"
           >
             <div className="flex items-end justify-end">

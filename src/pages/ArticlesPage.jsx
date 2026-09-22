@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import useNews from "../hooks/useNews";
 import { articleStories } from "../data/sectionPageData";
+import { shortStoryPath } from "../utils/storyPath";
 
 export default function ArticlesPage() {
   const { categorySlug } = useParams();
@@ -10,8 +11,9 @@ export default function ArticlesPage() {
   const allArticles = categoryName
     ? availableArticles.filter((article) => article.category === categoryName)
     : availableArticles;
-  const pathFor = (article, index) =>
-    article.slug ? `/articles/${article.slug}` : index === 0 ? "/articles/featured" : `/articles/story-${index}`;
+  const pathFor = (article, index) => /^\d+$/.test(String(article.id ?? ""))
+    ? shortStoryPath(article)
+    : article.slug ? `/articles/${article.slug}` : index === 0 ? "/articles/featured" : `/articles/story-${index}`;
 
   return (
     <main className="bg-[#f1eee8] px-3 py-7 md:px-6 md:py-10">

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import useNews from "../../hooks/useNews";
 import Icon from "../ui/Icon";
+import { shortStoryPath } from "../../utils/storyPath";
 
 export default function LatestArticles() {
   const { news: articles, isLoading } = useNews({ contentType: "article" });
@@ -23,13 +24,13 @@ export default function LatestArticles() {
         <div className="grid gap-x-5 gap-y-8 sm:grid-cols-2 xl:grid-cols-4">
           {latestArticles.map((article) => (
             <article className="group min-w-0" key={article.id || article.slug}>
-              <Link className="block aspect-[16/10] overflow-hidden bg-[#ddd9d1]" to={`/articles/${article.slug}`}>
+              <Link className="block aspect-[16/10] overflow-hidden bg-[#ddd9d1]" to={shortStoryPath(article)}>
                 <img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" src={article.image} alt={article.imageAlt} />
               </Link>
               <div className="border-b border-[#c8c3ba] py-4">
                 <p className="mb-2 text-[11px] font-bold tracking-[.08em] text-[#4f9488] uppercase">{article.category} · {article.readTime}</p>
                 <h3 className="m-0 line-clamp-2 font-serif text-[clamp(21px,2vw,27px)] leading-[1.14] tracking-[-.025em]" title={article.title}>
-                  <Link to={`/articles/${article.slug}`}>{article.title}</Link>
+                  <Link to={shortStoryPath(article)}>{article.title}</Link>
                 </h3>
                 <p className="home-story-summary mt-3 line-clamp-2">{article.summary}</p>
               </div>

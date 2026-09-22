@@ -2,13 +2,14 @@ import { editorialStories } from "../data/sectionPageData";
 import Icon from "../components/ui/Icon";
 import { Link } from "react-router-dom";
 import useNews from "../hooks/useNews";
+import { shortStoryPath } from "../utils/storyPath";
 
 export default function EditorialPage() {
   const { news } = useNews();
   const publishedEditorials = news.filter((story) => story.category === "Editorial");
   const usingPublishedEditorials = publishedEditorials.length > 0;
   const [lead, ...stories] = usingPublishedEditorials ? publishedEditorials : editorialStories;
-  const storyPath = (story, fallbackPath) => usingPublishedEditorials ? `/news/story/${story.slug}` : fallbackPath;
+  const storyPath = (story, fallbackPath) => usingPublishedEditorials ? shortStoryPath(story) : fallbackPath;
 
   return (
     <main className="bg-white px-3 py-10 md:px-6 md:py-14">

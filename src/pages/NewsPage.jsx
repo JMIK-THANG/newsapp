@@ -3,6 +3,7 @@ import { newsPageStories } from "../data/news";
 import Icon from "../components/ui/Icon";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useNews from "../hooks/useNews";
+import { shortStoryPath } from "../utils/storyPath";
 
 const filters = ["All News", "Chin News", "Myanmar News", "International News"];
 
@@ -18,7 +19,7 @@ export default function NewsPage() {
   const mostRead = useMemo(() => databaseNews
     .filter((story) => Number(story.views) > 0)
     .sort((first, second) => Number(second.views) - Number(first.views))
-    .slice(0, 4), [databaseNews]);
+    .slice(0, 5), [databaseNews]);
   const stories = useMemo(() => {
     const categoryStories = activeFilter === "All News"
       ? allStories
@@ -29,7 +30,9 @@ export default function NewsPage() {
       .filter(Boolean)
       .some((value) => value.toLocaleLowerCase().includes(normalizedQuery)));
   }, [activeFilter, allStories, searchQuery]);
-  const storyPath = (story) => story.slug
+  const storyPath = (story) => /^\d+$/.test(String(story.id ?? ""))
+    ? shortStoryPath(story)
+    : story.slug
     ? `/news/story/${story.slug}`
     : `/news/story/article-${newsPageStories.indexOf(story) + 1}`;
 
