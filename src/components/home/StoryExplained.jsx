@@ -24,7 +24,7 @@ export default function StoryExplained() {
               <span className="text-[10px] font-semibold tracking-[.07em] text-[#5f6368] uppercase">{explainer.category} · {explainer.readTime}</span>
             </div>
             <h2 id="explainer-title" className="m-0 max-w-2xl font-serif text-[clamp(32px,4vw,54px)] leading-[1.02] tracking-[-.04em] text-[#182536]">{explainer.question}</h2>
-            {explainer.introduction && <p className="mt-5 mb-0 max-w-2xl text-[17px] leading-8 text-[#303940]">{explainer.introduction}</p>}
+            {explainer.introduction && <p className="home-story-summary mt-5 mb-0 max-w-2xl">{explainer.introduction}</p>}
             <div className="mt-7 border-l-[3px] border-[#8f2427] bg-[#f1eee8] px-5 py-4">
               <p className="mb-2 text-[10px] font-bold tracking-[.12em] text-[#8f2427] uppercase">In brief</p>
               <p className="m-0 font-serif text-[22px] leading-8 text-[#182536]">{explainer.takeaway}</p>
@@ -36,7 +36,7 @@ export default function StoryExplained() {
               <article className="grid gap-3 py-5 sm:grid-cols-[48px_145px_1fr] sm:items-start" key={item.label}>
                 <span className="font-serif text-2xl text-[#b7b1a7]" aria-hidden="true">{item.number}</span>
                 <h3 className="m-0 font-serif text-[19px] leading-tight font-semibold text-[#182536]">{item.label}</h3>
-                <p className="m-0 line-clamp-3 text-[16px] leading-7 text-[#303940]">{item.text}</p>
+                <p className="home-story-summary m-0 line-clamp-3">{item.text}</p>
               </article>
             ))}
             <div className="py-5 sm:flex sm:justify-end">

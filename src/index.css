@@ -22,6 +22,17 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   .article-reading-text { font-size: 21px; line-height: 1.72; }
 }
 
+.home-story-summary {
+  color: #182536;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .home-story-summary { font-size: 21px; }
+}
+
 /* A soft paper surface reduces glare while preserving the publication's contrast. */
 .bg-white { background-color: #f8f6f1; }
 

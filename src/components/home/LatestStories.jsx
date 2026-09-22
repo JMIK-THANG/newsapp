@@ -26,7 +26,7 @@ export default function LatestStories() {
             <div className="pt-6">
               <p className="mb-3 text-[12px] font-semibold text-[#4f9488] uppercase">{feature.topic || feature.category} <span className="font-normal text-[#5f6368]">• {feature.readTime}</span></p>
               <h3 className="m-0 line-clamp-2 max-w-3xl font-serif text-[clamp(27px,2.5vw,38px)] leading-[1.08] tracking-[-.025em] text-[#111318]" title={feature.title}><Link className="transition hover:opacity-65" to={`/news/story/${feature.slug}`}>{feature.title}</Link></h3>
-              <p className="mb-0 max-w-2xl text-[16px] leading-7 text-[#303940]">{feature.summary}</p>
+              <p className="home-story-summary mb-0 max-w-2xl">{feature.summary}</p>
               <p className="mt-5 text-[12px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{feature.author}</span> · {feature.date}</p>
             </div>
           </article>

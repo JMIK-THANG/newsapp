@@ -31,7 +31,7 @@ export default function LatestArticles() {
                 <h3 className="m-0 line-clamp-2 font-serif text-[clamp(21px,2vw,27px)] leading-[1.14] tracking-[-.025em]" title={article.title}>
                   <Link to={`/articles/${article.slug}`}>{article.title}</Link>
                 </h3>
-                <p className="mt-3 line-clamp-2 text-[16px] leading-7 text-[#303940]">{article.summary}</p>
+                <p className="home-story-summary mt-3 line-clamp-2">{article.summary}</p>
               </div>
             </article>
           ))}

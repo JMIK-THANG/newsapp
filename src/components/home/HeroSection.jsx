@@ -195,7 +195,7 @@ export default function HeroSection() {
                     {currentLeadStory.title}
                   </Link>
                 </h1>
-                <p className="mb-0 line-clamp-2 max-w-[850px] pt-2 text-[16px] leading-[1.6] text-[#303940]" title={currentLeadStory.summary}>
+                <p className="home-story-summary mb-0 line-clamp-2 max-w-[850px] pt-2" title={currentLeadStory.summary}>
                   {currentLeadStory.summary}
                 </p>
                 <div className="mt-2.5 flex flex-col items-start gap-2 border-t border-[#dcdde0] pt-2 sm:flex-row sm:items-center sm:justify-between">
