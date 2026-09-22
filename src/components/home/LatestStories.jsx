@@ -4,7 +4,7 @@ import useNews from "../../hooks/useNews";
 
 export default function LatestStories() {
   const { news } = useNews();
-  const editorPicks = news.filter((story) => story.isEditorPick).slice(0, 4);
+  const editorPicks = news.filter((story) => story.isEditorPick);
   if (editorPicks.length === 0) return null;
   const [feature, ...stories] = editorPicks;
 

@@ -103,7 +103,7 @@ export default function ArticleDetailPage({ section }) {
         <figure className="my-7 md:my-8"><img className="aspect-[16/8.5] w-full object-cover" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
 
         <div className="mx-auto max-w-[760px]">
-          <div className="border-t border-[#dcdde0] pt-7 text-[17px] leading-[1.9] text-[#292c31] md:text-[18px] lg:text-[21px] lg:leading-[1.8]">
+          <div className="border-t border-[#dcdde0] pt-7 font-sans text-[17px] leading-[1.9] font-normal text-[#292c31] md:text-[18px] lg:leading-[1.85]">
             {articleParagraphs.map((paragraph, index) => {
               const isNumberedItem = /^\d+[.)]\s/.test(paragraph);
               const isColorKey = /^[🔴🟢🔵]/u.test(paragraph);

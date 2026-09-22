@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { mostReadStories, newsPageStories } from "../data/news";
+import { newsPageStories } from "../data/news";
 import Icon from "../components/ui/Icon";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useNews from "../hooks/useNews";
@@ -15,6 +15,10 @@ export default function NewsPage() {
   const activeFilter = filters.find((item) => item.toLowerCase().startsWith(filter || "all")) || "All News";
   const [visibleCount, setVisibleCount] = useState(6);
   const allStories = databaseNews.length > 0 ? databaseNews : newsPageStories;
+  const mostRead = useMemo(() => databaseNews
+    .filter((story) => Number(story.views) > 0)
+    .sort((first, second) => Number(second.views) - Number(first.views))
+    .slice(0, 4), [databaseNews]);
   const stories = useMemo(() => {
     const categoryStories = activeFilter === "All News"
       ? allStories
@@ -45,7 +49,7 @@ export default function NewsPage() {
               <h1 id="news-page-title" className="m-0 font-serif text-[clamp(32px,4vw,48px)] leading-[1.05] tracking-[-.035em] text-[#111318]">{searchQuery ? "Search results" : "Latest News"}</h1>
               <p className="mt-3 mb-0 max-w-2xl text-sm leading-6 text-[#4f5359]">{searchQuery ? `${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”` : "The latest reporting from Chin communities, Myanmar, and around the world—updated throughout the day."}</p>
             </div>
-            <p className="m-0 text-[11px] font-medium text-[#5f6368]">Wednesday, August 26, 2026</p>
+            <p className="m-0 text-[11px] font-medium text-[#5f6368]">Updated throughout the day</p>
           </div>
         </header>
 
@@ -76,15 +80,16 @@ export default function NewsPage() {
             <div className="border-t-2 border-[#111318]">
               <h2 id="news-most-read-title" className="m-0 border-b border-[#dcdde0] py-4 text-xl font-bold text-[#111318]">Most Read</h2>
               <div className="divide-y divide-[#dcdde0]">
-                {mostReadStories.map((story, index) => (
+                {mostRead.map((story) => (
                   <article className="grid grid-cols-[1fr_88px] gap-4 py-4" key={story.title}>
                     <div>
                       <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">{story.category} <span className="font-normal text-[#5f6368]">· {story.time}</span></p>
-                      <h3 className="m-0 line-clamp-2 text-[17px] leading-[1.35] font-semibold text-[#111318]" title={story.title}><Link className="transition hover:opacity-60" to={`/news/story/popular-${index + 1}`}>{story.title}</Link></h3>
+                      <h3 className="m-0 line-clamp-2 text-[17px] leading-[1.45] font-medium text-[#111318]" title={story.title}><Link className="transition hover:opacity-60" to={storyPath(story)}>{story.title}</Link></h3>
                     </div>
-                    <Link className="aspect-square overflow-hidden bg-[#e8edf2]" to={`/news/story/popular-${index + 1}`} tabIndex="-1"><img className="h-full w-full object-cover" src={story.image} alt={story.imageAlt} /></Link>
+                    <Link className="aspect-square overflow-hidden bg-[#e8edf2]" to={storyPath(story)} tabIndex="-1"><img className="h-full w-full object-cover" src={story.image} alt={story.imageAlt} /></Link>
                   </article>
                 ))}
+                {mostRead.length === 0 && <p className="m-0 py-6 text-sm leading-6 text-[#5f6368]">Most-read stories will appear here as readers open published news.</p>}
               </div>
             </div>
           </aside>

@@ -73,7 +73,7 @@ export default function ManageNews() {
   return (
     <main className="min-h-[70vh] bg-[#f1eee8] px-3 py-8 md:px-6 md:py-10">
       <div className="mx-auto max-w-[1200px]">
-        <AdminHeader title="Manage News" description="Search, organize, edit, remove, and select up to four published news stories for Editor’s Picks." />
+        <AdminHeader title="Manage News" description="Search, organize, edit, remove, and select published news stories for Editor’s Picks." />
 
         <section className="rounded-xl border border-[#dcdde0] bg-white p-4 shadow-[0_14px_40px_rgba(24,37,54,.05)] md:p-6" aria-labelledby="manage-list-title">
           <div className="flex flex-col gap-4 border-b border-[#dcdde0] pb-5 md:flex-row md:items-end md:justify-between">

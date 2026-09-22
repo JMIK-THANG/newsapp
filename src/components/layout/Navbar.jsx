@@ -8,6 +8,7 @@ const navigation = [
   { label: "Articles", to: "/articles", children: ["News Articles", "Cahram"] },
   { label: "Sports", to: "/sports" },
   { label: "Business", to: "/business" },
+  { label: "About", to: "/about" },
 ];
 
 const childPath = (label) => {
@@ -79,7 +80,7 @@ export default function Navbar() {
         <span className="relative block h-11 w-[64px] shrink-0 overflow-hidden xl:h-12 xl:w-[70px]" aria-hidden="true">
           <img className="absolute top-0 left-0 w-[64px] max-w-none xl:w-[70px]" src="/chinlung-today-logo.png" alt="" />
         </span>
-        <span className="grid leading-[.9]"><strong className="font-serif text-xl xl:text-[22px]">Chinlung</strong><small className="mt-[5px] text-[9px] font-bold tracking-[.23em] text-[#4f5359] uppercase xl:text-[10px]">Today</small></span>
+        <strong className="whitespace-nowrap font-serif text-[18px] leading-none font-semibold text-[#182536] sm:text-xl xl:text-[22px]">Chinlung Today</strong>
       </Link>
       <DesktopNavigation openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} closePanels={closePanels} />
       <div className="col-start-2 row-start-1 flex items-center gap-1 justify-self-end xl:col-start-3"><button className="grid size-10 cursor-pointer place-items-center border-0 bg-transparent text-[#182536] transition hover:text-[#9b1c1f] xl:size-11 [&_svg]:xl:size-[22px]" type="button" aria-label="Open search" onClick={() => setSearchOpen(!searchOpen)}><Icon name={searchOpen ? "close" : "search"} /></button><button className="grid size-10 cursor-pointer place-items-center border-0 bg-[#182536] text-white xl:hidden" type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Icon name={menuOpen ? "close" : "menu"} /></button></div>
