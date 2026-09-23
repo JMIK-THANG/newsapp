@@ -199,7 +199,7 @@ export default function HeroSection() {
                 <p className="home-story-summary mb-0 line-clamp-2 max-w-[850px] pt-2" title={currentLeadStory.summary}>
                   {currentLeadStory.summary}
                 </p>
-                <div className="mt-4 flex items-center justify-between gap-3 border-t border-[#dcdde0] pt-3">
+                <div className="mt-5 flex items-center justify-between gap-3 rounded-[6px] border border-[#d7d4ce] bg-[#f1eee8] px-3 py-3 sm:px-4">
                   <p className="m-0 min-w-0 truncate text-[13px] font-medium text-[#5f6368]">
                     By{" "}
                     <span className="font-semibold text-[#111318]">
@@ -207,7 +207,7 @@ export default function HeroSection() {
                     </span>
                   </p>
                   <Link
-                    className="flex shrink-0 items-center gap-2 rounded-full bg-[#182536] px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-[#8f2427]"
+                    className="flex shrink-0 items-center gap-2 rounded-full bg-[#182536] px-3.5 py-2 text-[11px] font-semibold tracking-[.02em] text-white transition hover:bg-[#8f2427] sm:px-4 sm:text-[12px]"
                     to={shortStoryPath(currentLeadStory)}
                   >
                     Read full story <Icon name="arrow" />
@@ -301,10 +301,10 @@ export default function HeroSection() {
             className="order-2 min-w-0 pt-8 pb-6 xl:order-3 xl:col-span-2 xl:border-t xl:border-[#dcdde0] xl:px-7 xl:pt-8 xl:pb-7"
             aria-labelledby="latest-news-title"
           >
-            <div className="flex items-end justify-end">
+            <div className="mb-6 flex items-center justify-end border-y border-[#d7d4ce] py-4">
               <h2 id="latest-news-title" className="sr-only">Latest News</h2>
               <Link
-                className="flex items-center gap-2 bg-[#182536] px-4 py-2.5 text-[11px] font-bold tracking-[.05em] text-white uppercase transition hover:bg-[#9b1c1f]"
+                className="flex items-center gap-2 rounded-full border border-[#182536] bg-transparent px-4 py-2 text-[11px] font-semibold tracking-[.05em] text-[#182536] uppercase transition hover:bg-[#182536] hover:text-white"
                 to="/news"
               >
                 View all news <Icon name="arrow" />

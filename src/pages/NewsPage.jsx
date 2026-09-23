@@ -69,7 +69,7 @@ export default function NewsPage() {
                   <div className="flex min-w-0 flex-col py-0.5">
                     <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">{story.category} <span className="font-normal text-[#5f6368]">· {story.date}</span></p>
                     <h2 className="m-0 line-clamp-2 text-[clamp(20px,2vw,27px)] leading-[1.15] font-semibold tracking-[-.025em] text-[#111318]" title={story.title}><Link className="transition hover:opacity-60" to={storyPath(story)}>{story.title}</Link></h2>
-                    <p className="my-3 line-clamp-2 text-[15px] leading-6 text-[#4f5359]" title={story.summary}>{story.summary}</p>
+                    <p className="home-story-summary my-3 line-clamp-2" title={story.summary}>{story.summary}</p>
                     <p className="mt-auto mb-0 text-[12px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{story.author}</span></p>
                   </div>
                 </article>

@@ -26,7 +26,7 @@ export default function NewsSectionLayout({ eyebrow, title, description, stories
           <div className="flex flex-col justify-center">
             <p className="mb-3 text-[12px] font-semibold text-[#4f9488] uppercase">{feature.category} <span className="font-normal text-[#5f6368]">· {feature.date}</span></p>
             <h2 className="m-0 line-clamp-2 font-serif text-[clamp(28px,3vw,42px)] leading-[1.08] tracking-[-.035em] text-[#111318]" title={feature.title}>{feature.title}</h2>
-            <p className="my-4 text-[15px] leading-6 text-[#4f5359]">{feature.summary}</p>
+            <p className="home-story-summary my-4">{feature.summary}</p>
             <Link className="flex w-fit items-center gap-2 text-sm font-semibold text-[#111318]" to={storyPath(feature, 0, true)}>Read story <Icon name="arrow" /></Link>
           </div>
         </section>
@@ -37,7 +37,7 @@ export default function NewsSectionLayout({ eyebrow, title, description, stories
               <Link className="mb-4 block aspect-[16/9] overflow-hidden bg-[#e8edf2]" to={storyPath(story, index + 1)}><img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" src={story.image} alt={story.imageAlt} /></Link>
               <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">{story.category} <span className="font-normal text-[#5f6368]">· {story.date}</span></p>
               <h2 className="m-0 line-clamp-2 text-xl leading-[1.25] font-semibold tracking-[-.02em] text-[#111318]" title={story.title}><Link className="transition hover:opacity-60" to={storyPath(story, index + 1)}>{story.title}</Link></h2>
-              <p className="mt-3 mb-0 text-[15px] leading-6 text-[#4f5359]">{story.summary}</p>
+              <p className="home-story-summary mt-3 mb-0">{story.summary}</p>
             </article>
           ))}
         </section>
