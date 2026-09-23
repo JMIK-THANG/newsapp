@@ -199,15 +199,15 @@ export default function HeroSection() {
                 <p className="home-story-summary mb-0 line-clamp-2 max-w-[850px] pt-2" title={currentLeadStory.summary}>
                   {currentLeadStory.summary}
                 </p>
-                <div className="mt-2.5 flex flex-col items-start gap-2 border-t border-[#dcdde0] pt-2 sm:flex-row sm:items-center sm:justify-between">
-                  <p className="m-0 text-[12px] font-medium text-[#5f6368]">
+                <div className="mt-4 flex items-center justify-between gap-3 border-t border-[#dcdde0] pt-3">
+                  <p className="m-0 min-w-0 truncate text-[13px] font-medium text-[#5f6368]">
                     By{" "}
                     <span className="font-semibold text-[#111318]">
                       {currentLeadStory.author}
                     </span>
                   </p>
                   <Link
-                    className="flex items-center gap-2 text-sm font-bold text-[#182536]"
+                    className="flex shrink-0 items-center gap-2 rounded-full bg-[#182536] px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-[#8f2427]"
                     to={shortStoryPath(currentLeadStory)}
                   >
                     Read full story <Icon name="arrow" />

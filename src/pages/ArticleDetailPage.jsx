@@ -98,7 +98,7 @@ export default function ArticleDetailPage({ section }) {
         </div>
 
         <header className="mx-auto max-w-[800px] text-center">
-          <h1 className="m-0 font-serif text-[clamp(32px,4.4vw,50px)] leading-[1.1] tracking-[-.03em] text-[#0c0c0c]">{story.title}</h1>
+          <h1 className="m-0 font-serif text-[clamp(28px,3.6vw,42px)] leading-[1.14] tracking-[-.025em] text-[#0c0c0c]">{story.title}</h1>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-[#5f6368]"><span>By <strong className="font-semibold text-[#111318]">{story.author || authors[section]}</strong></span><span>•</span><span>{publishedDate}</span><span>•</span><span>{story.time || "6 min read"}</span></div>
           <div className="mt-5"><ShareStoryButton story={story} /></div>
         </header>

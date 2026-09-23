@@ -26,5 +26,5 @@ export default function ShareStoryButton({ story, path }) {
 
   const label = status === "copied" ? "Link copied" : status === "shared" ? "Shared" : status === "error" ? "Try again" : "Share story";
 
-  return <button className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#182536] bg-transparent px-4 py-2 text-sm font-medium text-[#182536] transition hover:bg-[#182536] hover:text-white" type="button" onClick={shareStory}><Icon name="share" />{label}</button>;
+  return <button className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-[#182536] bg-transparent px-3 py-1.5 text-xs font-medium text-[#182536] transition hover:bg-[#182536] hover:text-white [&_svg]:size-4" type="button" onClick={shareStory}><Icon name="share" />{label}</button>;
 }
