@@ -18,6 +18,7 @@ import ContactPage from "./pages/ContactPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import AboutPage from "./pages/AboutPage";
 import ExplainerPage from "./pages/ExplainerPage";
+import PodcastsPage from "./pages/PodcastsPage";
 import Admin from "./pages/Admin/Admin";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import ManageNews from "./pages/Admin/ManageNews";
@@ -53,6 +54,7 @@ export default function App() {
     <Route path="/sports/:storyKey" element={<ArticleDetailPage section="sports" />} />
     <Route path="/business" element={<BusinessPage />} />
     <Route path="/business/:storyKey" element={<ArticleDetailPage section="business" />} />
+    <Route path="/podcasts" element={<PodcastsPage />} />
     <Route path="/contact" element={<ContactPage />} />
     <Route path="/privacy" element={<PrivacyPage />} />
     <Route path="/about" element={<AboutPage />} />

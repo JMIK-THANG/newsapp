@@ -12,7 +12,7 @@ const sections = [
 export default function AboutPage() {
   return (
     <main className="bg-white px-3 py-10 md:px-6 md:py-14" aria-labelledby="about-title">
-      <div className="mx-auto max-w-[1080px]">
+      <div className="mx-auto max-w-[1380px]">
         <header className="border-b border-[#dcdde0] pb-9">
           <p className="mb-3 text-[11px] font-semibold tracking-[.08em] text-[#4f9488] uppercase">About us</p>
           <h1 id="about-title" className="m-0 max-w-4xl font-serif text-[clamp(38px,5vw,64px)] leading-[1.04] tracking-[-.04em] text-[#111318]">Chinlung Today Media</h1>

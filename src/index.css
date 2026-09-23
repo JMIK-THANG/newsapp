@@ -1,27 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "DM Sans", sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Roboto", Arial, sans-serif;
+  --font-serif: "Roboto", Arial, sans-serif;
 }
 
 html { max-width: 100%; overflow-x: clip; scroll-behavior: smooth; background: #eae6de; }
-body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #eae6de; color: #182536; font-family: "DM Sans", sans-serif; font-weight: 400; }
+body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #eae6de; color: #182536; font-family: "Roboto", Arial, sans-serif; font-weight: 400; }
 
 /* Consistent, compact reading copy across cards and full-story pages. */
 .article-reading-text,
 .home-story-summary {
   color: #303940;
-  font-family: "DM Sans", sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 @media (min-width: 768px) {
   .article-reading-text,
-  .home-story-summary { font-size: 18px; line-height: 1.55; }
+  .home-story-summary { font-size: 20px; line-height: 1.65; }
 }
 
 .article-indented > p:not(:first-child) { text-indent: 2em; }

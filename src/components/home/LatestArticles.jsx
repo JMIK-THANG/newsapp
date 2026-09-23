@@ -28,10 +28,11 @@ export default function LatestArticles() {
                 <img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" src={article.image} alt={article.imageAlt} />
               </Link>
               <div className="border-b border-[#c8c3ba] py-4">
-                <p className="mb-2 text-[11px] font-bold tracking-[.08em] text-[#4f9488] uppercase">{article.category} · {article.readTime}</p>
+                <p className="mb-2 text-[11px] font-bold tracking-[.08em] text-[#4f9488] uppercase">{article.category}</p>
                 <h3 className="m-0 line-clamp-2 font-serif text-[clamp(21px,2vw,27px)] leading-[1.14] tracking-[-.025em]" title={article.title}>
                   <Link to={shortStoryPath(article)}>{article.title}</Link>
                 </h3>
+                <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{article.date}</p>
                 <p className="home-story-summary mt-3 line-clamp-2">{article.summary}</p>
               </div>
             </article>

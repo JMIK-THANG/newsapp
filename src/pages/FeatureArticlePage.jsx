@@ -25,7 +25,7 @@ export default function FeatureArticlePage() {
   if (!article) return <main className="min-h-[60vh] bg-[#f1eee8] px-6 py-20 text-center"><h1 className="font-serif text-4xl">{error || "Loading article…"}</h1><Link className="underline" to="/articles">Return to Articles</Link></main>;
   const paragraphs = article.content?.length ? article.content : [article.summary];
 
-  return <main className="bg-[#f1eee8] px-3 py-8 md:px-6 md:py-12"><article className="mx-auto max-w-[1280px]">
+  return <main className="bg-[#f1eee8] px-3 py-8 md:px-6 md:py-12"><article className="mx-auto max-w-[1380px]">
     <div className="mb-6 flex items-center justify-between gap-4 border-b border-[#c8c6c0] pb-3">
       <nav className="flex items-center gap-2 text-[11px] font-medium text-[#5f6368]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><Link className="hover:text-[#111318]" to="/articles">Articles</Link></nav>
       <p className="m-0 text-right text-[10px] font-semibold tracking-[.07em] text-[#4f9488] uppercase">{article.category || "Feature"}</p>

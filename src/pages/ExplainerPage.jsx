@@ -10,7 +10,7 @@ export default function ExplainerPage() {
 
   return (
     <main className="bg-[#fcfbf8] px-3 py-10 md:px-6 md:py-14">
-      <article className="mx-auto max-w-[1100px]">
+      <article className="mx-auto max-w-[1380px]">
         <nav className="mb-9 flex items-center gap-2 text-[11px] font-medium text-[#5f6368]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><span>The Story, Explained</span></nav>
         <header className="grid gap-8 border-b-2 border-[#111318] pb-9 lg:grid-cols-[1.25fr_.75fr] lg:items-end">
           <div><p className="mb-4 inline-flex items-center gap-2 text-[11px] font-bold tracking-[.05em] text-[#4f9488] uppercase after:h-px after:w-9 after:bg-[#4f9488]">The story, explained</p><h1 className="m-0 max-w-4xl font-serif text-[clamp(34px,4.8vw,54px)] leading-[1.08] tracking-[-.035em] text-[#111318]">{explainer.question}</h1></div>

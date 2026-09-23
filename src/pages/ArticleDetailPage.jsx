@@ -91,7 +91,7 @@ export default function ArticleDetailPage({ section }) {
 
   return (
     <main className="bg-white px-3 py-9 md:px-6 md:py-12">
-      <article className="mx-auto max-w-[1100px]">
+      <article className="mx-auto max-w-[1380px]">
         <div className="mb-5 flex items-center justify-between gap-4 border-b border-[#dcdde0] pb-3">
           <nav className="flex items-center gap-2 text-[11px] font-medium text-[#5f6368]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><Link className="hover:text-[#111318]" to={`/${section}`}>{sectionName}</Link></nav>
           <p className="m-0 text-right text-[10px] font-semibold tracking-[.06em] text-[#4f9488] uppercase">{story.category}</p>
@@ -122,9 +122,9 @@ export default function ArticleDetailPage({ section }) {
         </div>
       </article>
 
-      {(!databaseStory || related.length > 0) && <section className="mx-auto mt-14 max-w-[1100px] border-t-2 border-[#111318] pt-6" aria-labelledby="related-title">
+      {(!databaseStory || related.length > 0) && <section className="mx-auto mt-14 max-w-[1380px] border-t-2 border-[#111318] pt-6" aria-labelledby="related-title">
         <div className="mb-5 flex items-end justify-between gap-4"><div><h2 id="related-title" className="m-0 text-[28px] font-semibold">Related News</h2><p className="mt-1 mb-0 text-sm text-[#5f6368]">Stories connected to this report</p></div><Link className="flex items-center gap-2 text-sm font-medium" to={`/${section}`}>View section <Icon name="arrow" /></Link></div>
-        {related.length > 0 && <div className="grid gap-6 sm:grid-cols-3">{related.map((item) => { const relatedKey = section === "news" ? `article-${stories.indexOf(item) + 1}` : storyRouteKey(stories, item); const relatedPath = databaseStory ? shortStoryPath(item) : section === "news" ? `/news/story/${relatedKey}` : `/${section}/${relatedKey}`; return <article key={item.id || item.title}><Link className="mb-3 block aspect-[16/9] overflow-hidden bg-[#e8edf2]" to={relatedPath}><img className="h-full w-full object-cover" src={item.image} alt={item.imageAlt} /></Link><p className="mb-2 text-[13px] font-semibold text-[#4f9488] uppercase">{item.category} <span className="font-normal text-[#5f6368]">· {item.time || item.date}</span></p><h3 className="m-0 line-clamp-3 font-serif text-[21px] leading-[1.25] font-semibold text-[#111318] md:text-[24px]" title={item.title}><Link to={relatedPath}>{item.title}</Link></h3></article>; })}</div>}
+        {related.length > 0 && <div className="grid gap-6 sm:grid-cols-3">{related.map((item) => { const relatedKey = section === "news" ? `article-${stories.indexOf(item) + 1}` : storyRouteKey(stories, item); const relatedPath = databaseStory ? shortStoryPath(item) : section === "news" ? `/news/story/${relatedKey}` : `/${section}/${relatedKey}`; return <article key={item.id || item.title}><Link className="mb-3 block aspect-[16/9] overflow-hidden bg-[#e8edf2]" to={relatedPath}><img className="h-full w-full object-cover" src={item.image} alt={item.imageAlt} /></Link><p className="mb-2 text-[13px] font-semibold text-[#4f9488] uppercase">{item.category}</p><h3 className="m-0 line-clamp-3 font-serif text-[21px] leading-[1.25] font-semibold text-[#111318] md:text-[24px]" title={item.title}><Link to={relatedPath}>{item.title}</Link></h3><p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{item.date}</p></article>; })}</div>}
       </section>}
     </main>
   );

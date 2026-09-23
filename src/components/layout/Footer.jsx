@@ -64,7 +64,7 @@ export default function Footer() {
             <Link className="text-[17px] font-normal text-[#303940] transition hover:text-[#182536]" to="/">Home</Link>
             {navigationItems.map((item) => <Link className="text-[17px] font-normal text-[#303940] transition hover:text-[#182536]" key={item} to={`/${item.toLowerCase()}`}>{item}</Link>)}
           </nav>
-          <div className="flex gap-5 text-[17px] font-normal text-[#303940]"><Link className="hover:text-[#182536]" to="/about">About</Link><Link className="hover:text-[#182536]" to="/contact">Contact</Link><Link className="hover:text-[#182536]" to="/privacy">Privacy</Link></div>
+          <div className="flex flex-wrap gap-5 text-[17px] font-normal text-[#303940]"><a className="hover:text-[#b72025]" href="https://www.youtube.com/@chinlungtoday" target="_blank" rel="noreferrer">YouTube</a><Link className="hover:text-[#182536]" to="/about">About</Link><Link className="hover:text-[#182536]" to="/contact">Contact</Link><Link className="hover:text-[#182536]" to="/privacy">Privacy</Link></div>
         </div>
 
         <div className="flex flex-col gap-3 border-t border-[#cfd2d3] pt-5 text-[15px] leading-6 text-[#4f5359] sm:flex-row sm:items-center sm:justify-between">

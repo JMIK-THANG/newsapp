@@ -4,6 +4,7 @@ export const navigationItems = [
   "Articles",
   "Sports",
   "Business",
+  "Podcasts",
 ];
 
 export const leadStory = {
@@ -169,6 +170,7 @@ export const explainerSourceStory = {
 export const mostReadStories = [
   {
     category: "International News",
+    date: "September 23, 2026",
     title: "AI investment reshapes the global technology race",
     time: "5 min",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80",
@@ -176,6 +178,7 @@ export const mostReadStories = [
   },
   {
     category: "Business",
+    date: "September 23, 2026",
     title: "Markets respond as central banks signal a new direction",
     time: "4 min",
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=500&q=80",
@@ -183,6 +186,7 @@ export const mostReadStories = [
   },
   {
     category: "International News",
+    date: "September 23, 2026",
     title: "Researchers discover a promising path to cleaner energy",
     time: "7 min",
     image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80",
@@ -190,6 +194,7 @@ export const mostReadStories = [
   },
   {
     category: "International News",
+    date: "September 23, 2026",
     title: "Cities rethink public spaces for a rapidly changing climate",
     time: "6 min",
     image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=500&q=80",

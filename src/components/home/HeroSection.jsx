@@ -32,8 +32,7 @@ function LatestNewsCard({ story, className = "" }) {
       </Link>
       <div className="pt-2.5">
         <p className="mb-1 text-[12px] font-bold tracking-[.05em] uppercase text-[#4f9488]">
-          {story.category}{" "}
-          <span className="font-normal text-[#5f6368]">· {story.time}</span>
+          {story.category}
         </p>
         <h3 className="m-0 line-clamp-3 font-serif text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
           <Link
@@ -43,6 +42,7 @@ function LatestNewsCard({ story, className = "" }) {
             {story.title}
           </Link>
         </h3>
+        <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{story.date}</p>
       </div>
     </article>
   );
@@ -184,9 +184,6 @@ export default function HeroSection() {
               </Link>
 
               <div className="flex min-w-0 flex-col pt-3">
-                <p className="mb-2 text-[12px] font-medium text-[#5f6368] uppercase">
-                  {currentLeadStory.date} · {currentLeadStory.readTime}
-                </p>
                 <h1
                   id="lead-title"
                   className="m-0 line-clamp-2 max-w-[900px] font-serif text-[clamp(23px,1.95vw,32px)] leading-[1.12] tracking-[-.02em] text-[#111318]"
@@ -196,6 +193,7 @@ export default function HeroSection() {
                     {currentLeadStory.title}
                   </Link>
                 </h1>
+                <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{currentLeadStory.date}</p>
                 <p className="home-story-summary mb-0 line-clamp-2 max-w-[850px] pt-2" title={currentLeadStory.summary}>
                   {currentLeadStory.summary}
                 </p>
@@ -231,12 +229,7 @@ export default function HeroSection() {
                   key={story.title}
                 >
                   <div className="flex flex-col justify-center">
-                    <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">
-                      {story.category}{" "}
-                      <span className="font-normal text-[#5f6368]">
-                        · {story.time}
-                      </span>
-                    </p>
+                    <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">{story.category}</p>
                     <h3 className="m-0 line-clamp-3 font-serif text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
                       <Link
                         className="transition hover:opacity-65"
@@ -245,6 +238,7 @@ export default function HeroSection() {
                         {story.title}
                       </Link>
                     </h3>
+                    <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{story.date}</p>
                   </div>
                   <Link
                     className="aspect-[4/3] overflow-hidden rounded-[4px] bg-[#e8edf2]"
@@ -301,8 +295,9 @@ export default function HeroSection() {
             className="order-2 min-w-0 pt-8 pb-6 xl:order-3 xl:col-span-2 xl:border-t xl:border-[#dcdde0] xl:px-7 xl:pt-8 xl:pb-7"
             aria-labelledby="latest-news-title"
           >
-            <div className="mb-6 flex items-center justify-end border-y border-[#d7d4ce] py-4">
-              <h2 id="latest-news-title" className="sr-only">Latest News</h2>
+            <div className="mb-6 flex items-center gap-3">
+              <h2 id="latest-news-title" className="m-0 bg-[#182536] px-4 py-2 text-[15px] font-medium tracking-[.04em] text-white uppercase sm:text-[16px]">News</h2>
+              <span className="h-px min-w-4 flex-1 bg-[#182536]" aria-hidden="true" />
               <Link
                 className="flex items-center gap-2 rounded-full border border-[#182536] bg-transparent px-4 py-2 text-[11px] font-semibold tracking-[.05em] text-[#182536] uppercase transition hover:bg-[#182536] hover:text-white"
                 to="/news"

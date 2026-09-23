@@ -13,7 +13,7 @@ export default function ContactPage() {
 
   return (
     <main className="bg-white px-3 py-10 md:px-6 md:py-14" aria-labelledby="contact-title">
-      <div className="mx-auto max-w-[1180px]">
+      <div className="mx-auto max-w-[1380px]">
         <header className="border-b border-[#dcdde0] pb-7">
           <p className="mb-2 inline-flex items-center gap-2 text-[11px] font-bold tracking-[.04em] text-[#4f9488] uppercase after:h-px after:w-9 after:bg-[#4f9488]">Get in touch</p>
           <h1 id="contact-title" className="m-0 font-serif text-[clamp(42px,6vw,72px)] leading-none tracking-[-.045em] text-[#111318]">Contact us</h1>

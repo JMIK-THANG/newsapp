@@ -3,17 +3,18 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import Icon from "../ui/Icon";
 
 const navigation = [
-  { label: "News", to: "/news", children: ["Chin News", "Myanmar News", "International News"] },
+  { label: "News", to: "/news", children: ["Chin News", "Myanmar News", "International News", "Sports", "Business"] },
   { label: "Editorial", to: "/editorial" },
   { label: "Articles", to: "/articles", children: ["News Articles", "Cahram"] },
-  { label: "Sports", to: "/sports" },
-  { label: "Business", to: "/business" },
+  { label: "Podcasts", to: "/podcasts" },
   { label: "About", to: "/about" },
 ];
 
 const childPath = (label) => {
   if (label === "News Articles") return "/articles/category/news-articles";
   if (label === "Cahram") return "/articles/category/cahram";
+  if (label === "Sports") return "/sports";
+  if (label === "Business") return "/business";
   return label.endsWith("News") ? `/news/category/${label.replace(" News", "").toLowerCase()}` : "/articles";
 };
 
