@@ -31,7 +31,7 @@ export default function FeatureArticlePage() {
       <p className="m-0 text-right text-[10px] font-semibold tracking-[.07em] text-[#4f9488] uppercase">{article.category || "Feature"}</p>
     </div>
     <header className="mx-auto max-w-[900px] text-center">
-      <h1 className="m-0 font-serif text-[clamp(27px,3.3vw,38px)] leading-[1.16] tracking-[-.02em] text-[#0c0c0c]">{article.title}</h1>
+      <h1 className="m-0 font-serif text-[clamp(25px,3vw,35px)] leading-[1.18] tracking-[-.018em] text-[#0c0c0c]">{article.title}</h1>
       <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[14px] leading-6 text-[#4f5359] md:text-[15px]"><span>By <strong className="font-semibold text-[#111318]">{article.author || "Chinlung Today"}</strong></span><span>•</span><span>{article.date}</span><span>•</span><span>{article.readTime || article.time || "5 min read"}</span></div>
       <div className="mt-8"><ShareStoryButton story={article} /></div>
     </header>
