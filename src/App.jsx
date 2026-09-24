@@ -43,6 +43,7 @@ export default function App() {
     <Route path="/news" element={<NewsPage />} />
     <Route path="/news/category/:filter" element={<NewsPage />} />
     <Route path="/news/story/:storyKey" element={<ArticleDetailPage section="news" />} />
+    <Route path="/news/:storyKey" element={<ArticleDetailPage section="news" />} />
     <Route path="/n/:storyKey" element={<ArticleDetailPage section="news" />} />
     <Route path="/editorial" element={<EditorialPage />} />
     <Route path="/editorial/:storyKey" element={<ArticleDetailPage section="editorial" />} />

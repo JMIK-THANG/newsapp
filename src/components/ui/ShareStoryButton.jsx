@@ -1,22 +1,21 @@
 import { useState } from "react";
-import { shortStoryPath } from "../../utils/storyPath";
 import Icon from "./Icon";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000/api";
+const publicSiteUrl = "https://chinlungtoday.com";
 
 export default function ShareStoryButton({ story, path }) {
   const [status, setStatus] = useState("idle");
 
   const shareStory = async () => {
     const hasDatabaseId = /^\d+$/.test(String(story?.id ?? ""));
-    const relativePath = hasDatabaseId ? shortStoryPath(story) : path;
+    const relativePath = hasDatabaseId
+      ? story?.content_type === "article" ? `/articles/${story.id}` : `/news/${story.id}`
+      : path;
     const regularUrl = relativePath
-      ? `${window.location.origin}${window.location.pathname}#${relativePath}`
+      ? `${window.location.origin}${relativePath}`
       : window.location.href;
-    const shareKind = story?.content_type === "article" ? "a" : "n";
-    const previewVersion = encodeURIComponent(story?.updated_at || story?.published_at || story?.id || "1");
     const url = hasDatabaseId
-      ? `${backendUrl.replace(/\/api\/?$/, "")}/share/${shareKind}/${story.id}?v=${previewVersion}&card=2`
+      ? `${publicSiteUrl}${relativePath}`
       : regularUrl;
 
     try {
