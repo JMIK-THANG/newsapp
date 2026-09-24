@@ -92,7 +92,7 @@ export default function ArticleDetailPage({ section }) {
   return (
     <main className="bg-white px-3 py-9 md:px-6 md:py-12">
       <article className="mx-auto max-w-[1380px]">
-        <div className="mb-7 flex items-center justify-between gap-4 border-b border-[#dcdde0] pb-4">
+        <div className="mx-auto mb-5 flex max-w-[980px] flex-wrap items-center justify-center gap-x-4 gap-y-2 border-b border-[#dcdde0] pb-3 sm:justify-between">
           <nav className="flex items-center gap-2.5 text-[14px] font-normal text-[#5f6368]" aria-label="Breadcrumb"><Link className="transition hover:text-[#111318]" to="/">Home</Link><span className="text-[#9aa0a6]">/</span><Link className="transition hover:text-[#111318]" to={`/${section}`}>{sectionName}</Link></nav>
           <p className="m-0 rounded-full bg-[#e7efec] px-3 py-1.5 text-right text-[11px] font-semibold tracking-[.05em] text-[#397d73] uppercase">{story.category}</p>
         </div>
