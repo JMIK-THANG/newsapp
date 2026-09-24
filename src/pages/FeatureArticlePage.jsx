@@ -26,9 +26,9 @@ export default function FeatureArticlePage() {
   const paragraphs = article.content?.length ? article.content : [article.summary];
 
   return <main className="bg-[#f1eee8] px-3 py-8 md:px-6 md:py-12"><article className="mx-auto max-w-[1380px]">
-    <div className="mb-6 flex items-center justify-between gap-4 border-b border-[#c8c6c0] pb-3">
-      <nav className="flex items-center gap-2 text-[11px] font-medium text-[#5f6368]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><Link className="hover:text-[#111318]" to="/articles">Articles</Link></nav>
-      <p className="m-0 text-right text-[10px] font-semibold tracking-[.07em] text-[#4f9488] uppercase">{article.category || "Feature"}</p>
+    <div className="mx-auto mb-5 flex w-full max-w-[900px] items-center justify-between gap-4 border-b border-[#c8c6c0] pb-3">
+      <nav className="flex items-center gap-2.5 text-[14px] font-normal text-[#5f6368]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span className="text-[#9aa0a6]">/</span><Link className="hover:text-[#111318]" to="/articles">Articles</Link></nav>
+      <p className="m-0 rounded-full bg-[#e7efec] px-3 py-1.5 text-right text-[11px] font-semibold tracking-[.05em] text-[#397d73] uppercase">{article.category || "Feature"}</p>
     </div>
     <header className="mx-auto max-w-[900px] text-center">
       <h1 className="m-0 font-serif text-[clamp(25px,3vw,35px)] leading-[1.18] tracking-[-.018em] text-[#0c0c0c]">{article.title}</h1>
