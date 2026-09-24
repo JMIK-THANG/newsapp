@@ -92,9 +92,9 @@ export default function ArticleDetailPage({ section }) {
   return (
     <main className="bg-white px-3 py-9 md:px-6 md:py-12">
       <article className="mx-auto max-w-[1380px]">
-        <div className="mb-5 flex items-center justify-between gap-4 border-b border-[#dcdde0] pb-3">
-          <nav className="flex items-center gap-2 text-[11px] font-medium text-[#5f6368]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><Link className="hover:text-[#111318]" to={`/${section}`}>{sectionName}</Link></nav>
-          <p className="m-0 text-right text-[10px] font-semibold tracking-[.06em] text-[#4f9488] uppercase">{story.category}</p>
+        <div className="mb-7 flex items-center justify-between gap-4 border-b border-[#dcdde0] pb-4">
+          <nav className="flex items-center gap-2.5 text-[14px] font-normal text-[#5f6368]" aria-label="Breadcrumb"><Link className="transition hover:text-[#111318]" to="/">Home</Link><span className="text-[#9aa0a6]">/</span><Link className="transition hover:text-[#111318]" to={`/${section}`}>{sectionName}</Link></nav>
+          <p className="m-0 rounded-full bg-[#e7efec] px-3 py-1.5 text-right text-[11px] font-semibold tracking-[.05em] text-[#397d73] uppercase">{story.category}</p>
         </div>
 
         <header className="mx-auto max-w-[800px] text-center">
@@ -103,7 +103,7 @@ export default function ArticleDetailPage({ section }) {
           <div className="mt-5"><ShareStoryButton story={story} /></div>
         </header>
 
-        <figure className="my-7 md:my-8"><img className="aspect-[16/8.5] w-full object-cover" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
+        <figure className="my-7 md:my-8"><img className="max-h-[820px] w-full bg-[#e8e4dc] object-contain" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
 
         <div className="mx-auto max-w-[760px]">
           <div className="article-reading-text border-t border-[#dcdde0] pt-7 text-[#0c0c0c]">

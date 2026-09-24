@@ -14,8 +14,9 @@ export default function ShareStoryButton({ story, path }) {
       ? `${window.location.origin}${window.location.pathname}#${relativePath}`
       : window.location.href;
     const shareKind = story?.content_type === "article" ? "a" : "n";
+    const previewVersion = encodeURIComponent(story?.updated_at || story?.published_at || story?.id || "1");
     const url = hasDatabaseId
-      ? `${backendUrl.replace(/\/api\/?$/, "")}/share/${shareKind}/${story.id}`
+      ? `${backendUrl.replace(/\/api\/?$/, "")}/share/${shareKind}/${story.id}?v=${previewVersion}`
       : regularUrl;
 
     try {
