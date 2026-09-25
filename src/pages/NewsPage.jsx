@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
 import useNews from "../hooks/useNews";
 import { shortStoryPath } from "../utils/storyPath";
 
-const filters = ["All News", "Chin News", "Myanmar News", "International News"];
+const filters = ["All News", "Chin News", "Myanmar News", "International News", "Sports", "Business"];
 
 export default function NewsPage() {
   const { news: databaseNews } = useNews();
