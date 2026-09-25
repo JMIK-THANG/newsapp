@@ -27,7 +27,7 @@ function findStory(section, stories, storyKey) {
     const index = Number(storyKey.replace("story-", ""));
     return stories[index] || stories[0];
   }
-  return section === "news" || section === "articles" ? null : stories[0];
+  return null;
 }
 
 const storyRouteKey = (stories, story) => {
@@ -62,7 +62,7 @@ export default function ArticleDetailPage({ section }) {
   const story = databaseStory || staticStory;
   const sectionName = sectionNames[section];
   useEffect(() => {
-    if (!["news", "articles"].includes(section) || staticStory) return;
+    if (staticStory) return;
 
     getNewsArticle(storyKey)
       .then(setDatabaseStory)
