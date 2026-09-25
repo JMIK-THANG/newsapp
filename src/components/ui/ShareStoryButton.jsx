@@ -19,7 +19,10 @@ export default function ShareStoryButton({ story, path }) {
 
     try {
       if (navigator.share) {
-        await navigator.share({ title: story?.title || document.title, text: story?.summary || "", url });
+        // A URL-only payload lets WhatsApp and Messenger generate their native
+        // rich card from the page's Open Graph metadata. Including summary text
+        // causes some clients to send a plain text message instead.
+        await navigator.share({ url });
         setStatus("shared");
       } else {
         await navigator.clipboard.writeText(url);
