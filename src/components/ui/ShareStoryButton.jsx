@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { shortStoryPath } from "../../utils/storyPath";
 import Icon from "./Icon";
 
 const publicSiteUrl = "https://chinlungtoday.com";
@@ -8,9 +9,7 @@ export default function ShareStoryButton({ story, path }) {
 
   const shareStory = async () => {
     const hasDatabaseId = /^\d+$/.test(String(story?.id ?? ""));
-    const relativePath = hasDatabaseId
-      ? story?.content_type === "article" ? `/articles/${story.id}` : `/news/${story.id}`
-      : path;
+    const relativePath = hasDatabaseId ? shortStoryPath(story) : path;
     const regularUrl = relativePath
       ? `${window.location.origin}${relativePath}`
       : window.location.href;
