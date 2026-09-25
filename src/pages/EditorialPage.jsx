@@ -31,7 +31,18 @@ export default function EditorialPage() {
 
         <section className="grid gap-10 py-8 lg:grid-cols-[1fr_280px]" aria-label="More editorials">
           <div className="divide-y divide-[#dcdde0] border-y border-[#dcdde0]">
-            {stories.map((story, index) => <article className="py-6" key={story.id || story.title}><p className="mb-2 text-[12px] font-medium text-[#4f9488] uppercase">Editorial</p><h2 className="m-0 line-clamp-2 text-[clamp(22px,2.5vw,30px)] leading-[1.18] font-semibold tracking-[-.025em]" title={story.title}><Link className="hover:opacity-60" to={storyPath(story, `/editorial/story-${index + 1}`)}>{story.title}</Link></h2><p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{story.date}</p><p className="home-story-summary mt-3 mb-0 max-w-3xl">{story.summary}</p></article>)}
+            {stories.map((story, index) => {
+              const path = storyPath(story, `/editorial/story-${index + 1}`);
+              return <article className="grid gap-5 py-6 sm:grid-cols-[minmax(0,1fr)_180px] sm:items-center" key={story.id || story.title}>
+                <div className="min-w-0">
+                  <p className="mb-2 text-[12px] font-medium text-[#4f9488] uppercase">Editorial</p>
+                  <h2 className="m-0 line-clamp-2 text-[clamp(22px,2.5vw,30px)] leading-[1.18] font-semibold tracking-[-.025em]" title={story.title}><Link className="hover:opacity-60" to={path}>{story.title}</Link></h2>
+                  <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{story.date}</p>
+                  <p className="home-story-summary mt-3 mb-0 line-clamp-2 max-w-3xl">{story.summary}</p>
+                </div>
+                {story.image && <Link className="order-first aspect-[16/10] overflow-hidden bg-[#e8edf2] sm:order-none" to={path} tabIndex="-1"><img className="h-full w-full object-cover transition duration-500 hover:scale-[1.025]" src={story.image} alt={story.imageAlt || story.title} /></Link>}
+              </article>;
+            })}
           </div>
           <aside className="h-fit border-t-2 border-[#111318] bg-[#f7f5ef] p-5"><h2 className="m-0 text-base font-bold">About our editorials</h2><p className="mb-0 text-[13px] leading-5 text-[#4f5359]">Editorials represent the collective view of the publication, not an individual writer. News reporting remains separate and independent.</p></aside>
         </section>
