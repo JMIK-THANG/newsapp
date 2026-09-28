@@ -103,7 +103,7 @@ export default function ArticleDetailPage({ section }) {
           <div className="mt-5"><ShareStoryButton story={story} /></div>
         </header>
 
-        <figure className="my-7 md:my-8"><img className="max-h-[820px] w-full bg-[#e8e4dc] object-contain" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
+        <figure className="mx-auto my-6 max-w-[1180px] md:my-7"><img className="max-h-[560px] w-full bg-[#e8e4dc] object-contain" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
 
         <div className="mx-auto max-w-[760px]">
           <div className="article-reading-text border-t border-[#dcdde0] pt-7 text-[#0c0c0c]">

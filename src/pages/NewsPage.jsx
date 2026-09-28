@@ -50,7 +50,7 @@ export default function NewsPage() {
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <h1 id="news-page-title" className="m-0 font-serif text-[clamp(32px,4vw,48px)] leading-[1.05] tracking-[-.035em] text-[#111318]">{searchQuery ? "Search results" : "Latest News"}</h1>
-              <p className="mt-3 mb-0 max-w-2xl text-sm leading-6 text-[#4f5359]">{searchQuery ? `${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”` : "The latest reporting from Chin communities, Myanmar, and around the world—updated throughout the day."}</p>
+              <p className="mt-3 mb-0 max-w-2xl text-sm leading-6 text-[#4f5359]">{searchQuery ? `${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”` : "The latest stories from Chin, Myanmar, and around the world, covering the events and issues that matter most."}</p>
             </div>
             <p className="m-0 text-[11px] font-medium text-[#5f6368]">Updated throughout the day</p>
           </div>

@@ -40,7 +40,7 @@ export default function Footer() {
               <span className="grid size-12 place-items-center rounded-[15px_15px_15px_5px] bg-[#4f9488] text-base font-semibold text-white">CT.</span>
               <span className="grid leading-none"><strong className="text-xl font-semibold">Chinlung Today</strong><small className="mt-2 text-[9px] font-medium tracking-[.18em] text-[#6b7075] uppercase">Local · National · Global</small></span>
             </Link>
-            <p className="mt-5 mb-0 max-w-[570px] text-[clamp(18px,1.8vw,24px)] leading-[1.4] font-normal text-[#303940]">Independent reporting and clear perspectives from our communities and around the world.</p>
+            <p className="mt-5 mb-0 max-w-[570px] text-[clamp(18px,1.8vw,24px)] leading-[1.4] font-normal text-[#303940]">Independent journalism serving Chin communities, Myanmar, and readers around the world.</p>
           </div>
 
           <div className="lg:justify-self-end">

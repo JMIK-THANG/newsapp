@@ -82,8 +82,8 @@ export default function Navbar() {
   return <header ref={headerRef} className="sticky top-0 z-40 border-b border-[#d9d9d6] bg-white px-3 md:px-6">
     <div className="mx-auto grid min-h-[72px] max-w-[1380px] grid-cols-[1fr_auto] items-center gap-3 bg-white xl:min-h-[84px] xl:grid-cols-[1fr_auto_1fr]">
       <Link className="col-start-1 row-start-1 flex shrink-0 items-center gap-2.5 justify-self-start" to="/" aria-label="Chinlung Today home" onClick={goHome}>
-        <span className="relative block h-11 w-[64px] shrink-0 overflow-hidden xl:h-12 xl:w-[70px]" aria-hidden="true">
-          <img className="absolute top-0 left-0 w-[64px] max-w-none xl:w-[70px]" src="/chinlung-today-logo.png" alt="" />
+        <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-full bg-[#f1eee8] xl:size-12" aria-hidden="true">
+          <img className="h-full w-full object-contain p-1.5" src="/chinlung-today-logo-round.png" alt="" />
         </span>
         <strong className="whitespace-nowrap font-serif text-xl leading-none font-semibold text-[#182536] sm:text-[22px] xl:text-[25px]">Chinlung Today</strong>
       </Link>
