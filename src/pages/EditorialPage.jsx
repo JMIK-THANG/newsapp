@@ -24,7 +24,7 @@ export default function EditorialPage() {
           <Link className="group block aspect-[16/9] overflow-hidden bg-[#e8edf2]" to={storyPath(lead, "/editorial/featured")}><img className="h-full w-full object-contain transition duration-700 group-hover:scale-[1.015]" src={lead.image} alt={lead.imageAlt} /></Link>
           <div className="flex flex-col justify-center">
             <p className="mb-3 inline-flex items-center gap-2 text-[11px] font-bold tracking-[.04em] text-[#4f9488] uppercase after:h-px after:w-9 after:bg-[#4f9488]">The editorial board</p>
-            <h2 className="m-0 line-clamp-2 font-serif text-[clamp(28px,3vw,42px)] leading-[1.08] tracking-[-.035em]" title={lead.title}><Link to={storyPath(lead, "/editorial/featured")}>{lead.title}</Link></h2>
+            <h2 className="m-0 line-clamp-2 font-serif text-[clamp(28px,3vw,42px)] leading-[1.08] font-semibold tracking-[-.035em]" title={lead.title}><Link to={storyPath(lead, "/editorial/featured")}>{lead.title}</Link></h2>
             <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{lead.date}</p>
             <p className="home-story-summary my-4">{lead.summary}</p>
             <Link className="flex w-fit items-center gap-2 text-sm font-semibold text-[#111318]" to={storyPath(lead, "/editorial/featured")}>Read editorial <Icon name="arrow" /></Link>

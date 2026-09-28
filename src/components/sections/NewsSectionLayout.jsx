@@ -25,7 +25,7 @@ export default function NewsSectionLayout({ eyebrow, title, description, stories
           <Link className="group block aspect-[16/9] overflow-hidden bg-[#e8edf2]" to={storyPath(feature, 0, true)}><img className="h-full w-full object-contain transition duration-700 group-hover:scale-[1.015]" src={feature.image} alt={feature.imageAlt} /></Link>
           <div className="flex flex-col justify-center">
             <p className="mb-3 text-[12px] font-semibold text-[#4f9488] uppercase">{feature.category}</p>
-            <h2 className="m-0 line-clamp-2 font-serif text-[clamp(28px,3vw,42px)] leading-[1.08] tracking-[-.035em] text-[#111318]" title={feature.title}>{feature.title}</h2>
+            <h2 className="m-0 line-clamp-2 font-serif text-[clamp(28px,3vw,42px)] leading-[1.08] font-semibold tracking-[-.035em] text-[#111318]" title={feature.title}>{feature.title}</h2>
             <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{feature.date}</p>
             <p className="home-story-summary my-4">{feature.summary}</p>
             <Link className="flex w-fit items-center gap-2 text-sm font-semibold text-[#111318]" to={storyPath(feature, 0, true)}>Read story <Icon name="arrow" /></Link>
