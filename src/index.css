@@ -36,11 +36,13 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 
 .latest-ticker {
   display: flex;
-  width: 100%;
+  width: calc(100% - 24px);
   height: 40px;
-  max-width: 100%;
+  max-width: 1380px;
+  margin: 14px auto 0;
   overflow: hidden;
-  border-block: 1px solid #d6d2ca;
+  border: 1px solid #d6d2ca;
+  border-radius: 6px;
   background: #f1eee8;
   color: #182536;
 }
@@ -123,7 +125,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 }
 
 @media (min-width: 768px) {
-  .latest-ticker { height: 42px; }
+  .latest-ticker { width: calc(100% - 48px); height: 42px; margin-top: 18px; }
   .latest-ticker__label { padding-inline: 14px; font-size: 11px; }
   .latest-ticker__link { padding-inline: 28px; font-size: 14px; }
   .latest-ticker__track { animation-duration: 34s; }

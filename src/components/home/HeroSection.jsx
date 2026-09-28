@@ -156,7 +156,7 @@ export default function HeroSection() {
   }
 
   return (
-    <main id="top" className="bg-[#f1eee8] px-3 pt-4 pb-6 md:px-6 md:pt-5 md:pb-8">
+    <main id="top" className="bg-[#f1eee8] px-3 pt-6 pb-6 md:px-6 md:pt-8 md:pb-8">
       <section className="mx-auto max-w-[1380px]" aria-labelledby="lead-title">
         <div className="grid min-w-0 overflow-hidden border-x border-b border-[#dcdde0] bg-white px-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] xl:px-0">
           <article className="group order-1 min-w-0 border-b border-[#dcdde0] py-4 xl:border-r xl:border-b-0 xl:px-6">
@@ -173,7 +173,7 @@ export default function HeroSection() {
 
             <div>
               <Link
-                className="relative block h-[clamp(250px,62vw,380px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(360px,40svh,460px)]"
+                className="relative block h-[clamp(270px,64vw,400px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(420px,46svh,520px)]"
                 to={shortStoryPath(currentLeadStory)}
               >
                 <img
