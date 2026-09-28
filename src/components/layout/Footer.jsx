@@ -40,12 +40,12 @@ export default function Footer() {
               <span className="grid size-12 place-items-center rounded-[15px_15px_15px_5px] bg-[#4f9488] text-base font-semibold text-white">CT.</span>
               <span className="grid leading-none"><strong className="text-xl font-semibold">Chinlung Today</strong><small className="mt-2 text-[9px] font-medium tracking-[.18em] text-[#6b7075] uppercase">Local · National · Global</small></span>
             </Link>
-            <p className="mt-5 mb-0 max-w-[570px] text-[clamp(18px,1.8vw,24px)] leading-[1.4] font-normal text-[#303940]">Independent journalism serving Chin communities, Myanmar, and readers around the world.</p>
+            <p className="mt-5 mb-0 max-w-[570px] text-[18px] leading-7 font-normal text-[#303940]">Independent and fact-based reporting from Chin, Myanmar, and around the world.</p>
           </div>
 
           <div className="lg:justify-self-end">
             <p className="mb-4 text-[10px] font-semibold tracking-[.14em] text-[#4f9488] uppercase">The 5-minute brief</p>
-            <p className="mt-0 mb-4 max-w-[460px] text-[18px] leading-7 text-[#303940]">Get the day’s most important stories and updates delivered to your inbox.</p>
+            <p className="mt-0 mb-4 max-w-[460px] text-[18px] leading-7 font-normal text-[#303940]">Get the day’s most important stories and updates delivered to your inbox.</p>
             <form id="newsletter-form" className="flex max-w-[430px] flex-col gap-2 sm:flex-row" onSubmit={handleSubscribe}>
               <label className="sr-only" htmlFor="newsletter-email">Email address</label>
               <input className="min-w-0 flex-1 rounded-[8px] border border-[#c8c9c7] bg-white px-4 py-3 text-sm text-[#182536] outline-none placeholder:text-[#7a828d] focus:border-[#4f9488]" id="newsletter-email" type="email" value={email} onChange={(event) => { setEmail(event.target.value); setStatus("idle"); }} placeholder="Email address" autoComplete="email" required />
@@ -61,13 +61,17 @@ export default function Footer() {
 
         <div className="grid gap-7 py-7 md:grid-cols-[1fr_auto] md:items-center">
           <nav className="flex flex-wrap gap-x-6 gap-y-3" aria-label="Footer navigation">
-            <Link className="text-[17px] font-normal text-[#303940] transition hover:text-[#182536]" to="/">Home</Link>
-            {navigationItems.map((item) => <Link className="text-[17px] font-normal text-[#303940] transition hover:text-[#182536]" key={item} to={`/${item.toLowerCase()}`}>{item}</Link>)}
+            <Link className="text-[16px] font-medium text-[#303940] transition hover:text-[#182536]" to="/">Home</Link>
+            {navigationItems.map((item) => <Link className="text-[16px] font-medium text-[#303940] transition hover:text-[#182536]" key={item} to={`/${item.toLowerCase()}`}>{item}</Link>)}
           </nav>
-          <div className="flex flex-wrap gap-5 text-[17px] font-normal text-[#303940]"><a className="hover:text-[#b72025]" href="https://www.youtube.com/@chinlungtoday" target="_blank" rel="noreferrer">YouTube</a><Link className="hover:text-[#182536]" to="/about">About</Link><Link className="hover:text-[#182536]" to="/contact">Contact</Link><Link className="hover:text-[#182536]" to="/privacy">Privacy</Link></div>
+          <div className="flex flex-wrap items-center gap-3 text-[16px] font-medium text-[#303940]">
+            <a className="inline-flex items-center gap-2 rounded-full border border-[#c7c9c8] px-3 py-2 transition hover:border-[#1877f2] hover:text-[#1877f2] [&_svg]:size-4" href="https://www.facebook.com/ChinlungTodayMedia" target="_blank" rel="noreferrer" aria-label="Follow Chinlung Today on Facebook"><Icon name="facebook" />Facebook</a>
+            <a className="inline-flex items-center gap-2 rounded-full border border-[#c7c9c8] px-3 py-2 transition hover:border-[#b72025] hover:text-[#b72025] [&_svg]:size-4" href="https://www.youtube.com/@chinlungtoday" target="_blank" rel="noreferrer" aria-label="Watch Chinlung Today on YouTube"><Icon name="youtube" />YouTube</a>
+            <Link className="hover:text-[#182536]" to="/about">About</Link><Link className="hover:text-[#182536]" to="/contact">Contact</Link><Link className="hover:text-[#182536]" to="/privacy">Privacy</Link>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-[#cfd2d3] pt-5 text-[15px] leading-6 text-[#4f5359] sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 border-t border-[#cfd2d3] pt-5 text-[14px] leading-6 font-normal text-[#4f5359] sm:flex-row sm:items-center sm:justify-between">
           <p className="m-0">© 2026 Chinlung Today. All rights reserved.</p>
           <p className="m-0">Designed and built by <a className="font-medium text-[#182536] underline decoration-[#4f9488]/60 underline-offset-4 transition hover:decoration-[#4f9488]" href="https://portfolio-website-sx94.onrender.com/" target="_blank" rel="noreferrer">JMIK Thang</a></p>
         </div>

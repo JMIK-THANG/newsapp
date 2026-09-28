@@ -64,14 +64,14 @@ export default function NewsPage() {
           <section id="news-feed" aria-label={`${activeFilter} stories`}>
             <div className="divide-y divide-[#dcdde0] border-y border-[#dcdde0]">
               {stories.slice(0, visibleCount).map((story) => (
-                <article className="group grid gap-5 py-6 sm:grid-cols-[210px_1fr]" key={story.title}>
-                  <Link className="aspect-[16/10] overflow-hidden bg-[#e8edf2]" to={storyPath(story)} tabIndex="-1"><img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" src={story.image} alt={story.imageAlt} /></Link>
-                  <div className="flex min-w-0 flex-col py-0.5">
+                <article className="group flow-root py-6" key={story.title}>
+                  <Link className="mb-4 block aspect-[16/10] overflow-hidden bg-[#e8edf2] sm:float-left sm:mr-5 sm:mb-2 sm:w-[210px]" to={storyPath(story)} tabIndex="-1"><img className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.015]" src={story.image} alt={story.imageAlt} /></Link>
+                  <div className="py-0.5">
                     <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">{story.category}</p>
                     <h2 className="m-0 line-clamp-2 text-[clamp(20px,2vw,27px)] leading-[1.15] font-semibold tracking-[-.025em] text-[#111318]" title={story.title}><Link className="transition hover:opacity-60" to={storyPath(story)}>{story.title}</Link></h2>
                     <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{story.date}</p>
-                    <p className="home-story-summary my-3 line-clamp-2" title={story.summary}>{story.summary}</p>
-                    <p className="mt-auto mb-0 text-[12px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{story.author}</span></p>
+                    <p className="my-3 text-[15px] leading-7 font-normal text-[#303940]">{story.summary}</p>
+                    <p className="mb-0 text-[12px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{story.author}</span></p>
                   </div>
                 </article>
               ))}

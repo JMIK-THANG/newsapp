@@ -92,24 +92,24 @@ export default function ArticleDetailPage({ section }) {
   return (
     <main className="bg-white px-3 py-6 md:px-6 md:py-8">
       <article className="mx-auto max-w-[1380px]">
-        <header className="border-b border-[#dcdde0] pb-5">
+        <header className="border-b border-[#dcdde0] pb-7">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <nav className="flex items-center gap-2 text-[12px] font-medium text-[#69717a]" aria-label="Breadcrumb"><Link className="transition hover:text-[#111318]" to="/">Home</Link><span className="text-[#a7aaad]">/</span><Link className="transition hover:text-[#111318]" to={`/${section}`}>{sectionName}</Link></nav>
             <p className="m-0 text-[11px] font-bold tracking-[.08em] text-[#397d73] uppercase">{story.category}</p>
           </div>
-          <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-            <div className="max-w-[1040px]">
-              <h1 className="m-0 font-serif text-[clamp(27px,3.2vw,40px)] leading-[1.12] font-semibold tracking-[-.025em] text-[#0c0c0c]">{story.title}</h1>
-              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-[#5f6368]"><span>By <strong className="font-semibold text-[#111318]">{story.author || authors[section]}</strong></span><span>•</span><span>{publishedDate}</span><span>•</span><span>{story.time || "6 min read"}</span></div>
+          <div className="mt-5 grid gap-7 lg:grid-cols-[minmax(300px,.78fr)_minmax(0,1.22fr)] lg:items-center xl:gap-12">
+            <div className="min-w-0 py-1">
+              <h1 className="m-0 font-serif text-[clamp(30px,3.5vw,48px)] leading-[1.08] font-semibold tracking-[-.035em] text-[#0c0c0c]">{story.title}</h1>
+              <p className="mt-5 mb-0 text-[clamp(16px,1.35vw,20px)] leading-[1.6] text-[#303940]">{summary}</p>
+              <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-[#5f6368]"><span>By <strong className="font-semibold text-[#111318]">{story.author || authors[section]}</strong></span><span>•</span><span>{publishedDate}</span><span>•</span><span>{story.time || "6 min read"}</span></div>
+              <div className="mt-4"><ShareStoryButton story={story} /></div>
             </div>
-            <div className="justify-self-start lg:justify-self-end"><ShareStoryButton story={story} /></div>
+            <figure className="m-0 min-w-0"><img className="max-h-[560px] w-full bg-[#e8e4dc] object-contain" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
           </div>
         </header>
 
-        <figure className="mx-auto mt-5 mb-6 max-w-[1180px]"><img className="max-h-[560px] w-full bg-[#e8e4dc] object-contain" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
-
-        <div className="mx-auto max-w-[760px]">
-          <div className="article-reading-text border-t border-[#dcdde0] pt-7 text-[#0c0c0c]">
+        <div className="mx-auto mt-7 max-w-[760px]">
+          <div className="article-reading-text text-[#0c0c0c]">
             {articleParagraphs.map((paragraph, index) => {
               const isNumberedItem = /^\d+[.)]\s/.test(paragraph);
               const isColorKey = /^[🔴🟢🔵]/u.test(paragraph);
