@@ -147,7 +147,7 @@ export default function HeroSection() {
   if (isLoading) {
     return (
       <main className="bg-[#f1eee8] px-3 pt-3 pb-6 md:px-6 md:pt-4 md:pb-8" aria-label="Loading homepage stories">
-        <div className="mx-auto max-w-[1380px] border-x border-b border-[#dcdde0] bg-white p-4 xl:p-6">
+        <div className="mx-auto max-w-[1600px] border-x border-b border-[#dcdde0] bg-white p-4 xl:p-6">
           <div className="h-6 w-32 animate-pulse rounded bg-[#dedbd4]" />
           <div className="mt-4 h-[clamp(300px,52vw,560px)] animate-pulse rounded-[6px] bg-[#e8e4dc]" />
         </div>
@@ -157,7 +157,7 @@ export default function HeroSection() {
 
   return (
     <main id="top" className="bg-[#f1eee8] px-3 pt-6 pb-6 md:px-6 md:pt-8 md:pb-8">
-      <section className="mx-auto max-w-[1380px]" aria-labelledby="lead-title">
+      <section className="mx-auto max-w-[1600px]" aria-labelledby="lead-title">
         <div className="grid min-w-0 overflow-hidden border-x border-b border-[#dcdde0] bg-white px-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] xl:px-0">
           <article className="group order-1 min-w-0 border-b border-[#dcdde0] py-4 xl:border-r xl:border-b-0 xl:px-6">
             <div className="mb-2.5 flex items-end justify-between">

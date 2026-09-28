@@ -9,8 +9,22 @@
 html { max-width: 100%; overflow-x: clip; scroll-behavior: smooth; background: #eae6de; }
 body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #eae6de; color: #182536; font-family: "Roboto", Arial, sans-serif; font-weight: 400; }
 
-/* Consistent, compact reading copy across cards and full-story pages. */
-.article-reading-text,
+/* Clear, high-contrast long-form reading treatment. */
+.article-reading-text {
+  color: #17191c;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.62;
+}
+
+.article-reading-text h2,
+.article-reading-text h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+/* Compact summary copy used outside full-story reading pages. */
 .home-story-summary {
   color: #303940;
   font-family: "Roboto", Arial, sans-serif;
@@ -20,11 +34,9 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 }
 
 @media (min-width: 768px) {
-  .article-reading-text,
+  .article-reading-text { font-size: 22px; line-height: 1.58; }
   .home-story-summary { font-size: 20px; line-height: 1.65; }
 }
-
-.article-indented > p:not(:first-child) { text-indent: 2em; }
 
 /* A soft paper surface reduces glare while preserving the publication's contrast. */
 .bg-white { background-color: #f8f6f1; }
@@ -38,13 +50,14 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   display: flex;
   width: calc(100% - 24px);
   height: 40px;
-  max-width: 1380px;
+  max-width: 1600px;
   margin: 14px auto 0;
   overflow: hidden;
   border: 1px solid #d6d2ca;
-  border-radius: 6px;
-  background: #f1eee8;
+  border-radius: 10px;
+  background: #fff;
   color: #182536;
+  box-shadow: 0 8px 24px rgb(24 37 54 / 6%);
 }
 
 .latest-ticker__label {
@@ -55,9 +68,9 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   align-items: center;
   gap: 6px;
   padding: 0 10px;
-  border-right: 1px solid #cbc5bb;
-  background: #e8e3da;
-  color: #8f2427;
+  border-right: 1px solid #182536;
+  background: #182536;
+  color: #fff;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .08em;
@@ -69,8 +82,8 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   width: 5px;
   height: 5px;
   border-radius: 999px;
-  background: #8f2427;
-  opacity: .85;
+  background: #d45457;
+  opacity: 1;
 }
 
 .latest-ticker__viewport {
