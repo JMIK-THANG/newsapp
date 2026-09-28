@@ -83,7 +83,7 @@ export default function Navbar() {
     <div className="mx-auto grid min-h-[78px] max-w-[1380px] grid-cols-[1fr_auto] items-center gap-3 bg-white xl:min-h-[94px] xl:grid-cols-[1fr_auto_1fr]">
       <Link className="col-start-1 row-start-1 flex shrink-0 items-center gap-2.5 justify-self-start" to="/" aria-label="Chinlung Today home" onClick={goHome}>
         <span className="block size-12 shrink-0 xl:size-14" aria-hidden="true">
-          <img className="h-full w-full object-contain" src="/chinlung-today-logo-circle.svg" alt="" />
+          <img className="h-full w-full object-contain" src="/chinlung-today-logo-transparent.png" alt="" />
         </span>
         <strong className="whitespace-nowrap font-serif text-[22px] leading-none font-bold text-[#182536] sm:text-[24px] xl:text-[27px]">Chinlung Today</strong>
       </Link>

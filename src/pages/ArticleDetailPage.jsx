@@ -92,18 +92,21 @@ export default function ArticleDetailPage({ section }) {
   return (
     <main className="bg-white px-3 py-6 md:px-6 md:py-8">
       <article className="mx-auto max-w-[1380px]">
-        <div className="mx-auto mb-3 flex w-full max-w-[1380px] flex-nowrap items-center justify-between gap-3 border-b border-[#dcdde0] pb-2.5">
-          <nav className="flex items-center gap-2.5 text-[14px] font-normal text-[#5f6368]" aria-label="Breadcrumb"><Link className="transition hover:text-[#111318]" to="/">Home</Link><span className="text-[#9aa0a6]">/</span><Link className="transition hover:text-[#111318]" to={`/${section}`}>{sectionName}</Link></nav>
-          <p className="m-0 rounded-full bg-[#e7efec] px-3 py-1.5 text-right text-[11px] font-semibold tracking-[.05em] text-[#397d73] uppercase">{story.category}</p>
-        </div>
-
-        <header className="mx-auto max-w-[800px] text-center">
-          <h1 className="m-0 font-serif text-[clamp(26px,3.2vw,38px)] leading-[1.16] font-semibold tracking-[-.02em] text-[#0c0c0c]">{story.title}</h1>
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-[#5f6368]"><span>By <strong className="font-semibold text-[#111318]">{story.author || authors[section]}</strong></span><span>•</span><span>{publishedDate}</span><span>•</span><span>{story.time || "6 min read"}</span></div>
-          <div className="mt-3"><ShareStoryButton story={story} /></div>
+        <header className="border-b border-[#dcdde0] pb-5">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <nav className="flex items-center gap-2 text-[12px] font-medium text-[#69717a]" aria-label="Breadcrumb"><Link className="transition hover:text-[#111318]" to="/">Home</Link><span className="text-[#a7aaad]">/</span><Link className="transition hover:text-[#111318]" to={`/${section}`}>{sectionName}</Link></nav>
+            <p className="m-0 text-[11px] font-bold tracking-[.08em] text-[#397d73] uppercase">{story.category}</p>
+          </div>
+          <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+            <div className="max-w-[1040px]">
+              <h1 className="m-0 font-serif text-[clamp(27px,3.2vw,40px)] leading-[1.12] font-semibold tracking-[-.025em] text-[#0c0c0c]">{story.title}</h1>
+              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-[#5f6368]"><span>By <strong className="font-semibold text-[#111318]">{story.author || authors[section]}</strong></span><span>•</span><span>{publishedDate}</span><span>•</span><span>{story.time || "6 min read"}</span></div>
+            </div>
+            <div className="justify-self-start lg:justify-self-end"><ShareStoryButton story={story} /></div>
+          </div>
         </header>
 
-        <figure className="mx-auto mt-4 mb-6 max-w-[1180px]"><img className="max-h-[560px] w-full bg-[#e8e4dc] object-contain" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
+        <figure className="mx-auto mt-5 mb-6 max-w-[1180px]"><img className="max-h-[560px] w-full bg-[#e8e4dc] object-contain" src={story.image} alt={story.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#5f6368]">{story.imageCredit || "Reporting and photography for Chinlung Today."}</figcaption></figure>
 
         <div className="mx-auto max-w-[760px]">
           <div className="article-reading-text border-t border-[#dcdde0] pt-7 text-[#0c0c0c]">
