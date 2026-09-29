@@ -35,11 +35,11 @@ export default function NewsPage() {
 
   return <main id="news-page" className="bg-white px-5 py-9 sm:px-6 md:py-12" aria-labelledby="news-page-title">
     <div className="mx-auto max-w-[1420px]">
-      <header className={`border-b border-[#dcdde0] ${searchQuery || activeFilter === "All News" ? "pb-7 md:pb-9" : "pb-5 md:pb-7"}`}>
+      <header className={`border-b border-[#dcdde0] ${searchQuery || activeFilter === "All News" ? "pb-5 md:pb-8" : "pb-4 md:pb-7"}`}>
         <p className="mb-3 text-[10px] font-bold tracking-[.14em] text-[#397d73] uppercase">The newsroom</p>
         <div className="max-w-[820px]">
           <h1 id="news-page-title" className="article-display-font m-0 text-[clamp(40px,7vw,64px)] leading-[1] font-semibold tracking-[-.04em] text-[#182536]">{searchQuery ? "Search results" : activeFilter}</h1>
-          {(searchQuery || activeFilter === "All News") && <p className="mt-4 mb-0 max-w-[760px] text-[17px] leading-7 text-[#4f5962]">{searchQuery ? `${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”` : "The latest reporting from Chin communities, Myanmar, and around the world."}</p>}
+          {(searchQuery || activeFilter === "All News") && <p className="mt-2.5 mb-0 max-w-[760px] text-[16px] leading-6 text-[#4f5962] sm:mt-4 sm:text-[17px] sm:leading-7">{searchQuery ? `${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”` : "The latest reporting from Chin communities, Myanmar, and around the world."}</p>}
         </div>
       </header>
 
