@@ -63,10 +63,10 @@ export default function FeatureArticlePage() {
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
   };
 
-  return <main className="bg-white px-5 py-6 sm:px-6 sm:py-7 lg:py-10">
+  return <main className="bg-white px-5 py-5 sm:px-6 sm:py-7 lg:py-10">
     <Seo title={article.title} description={article.summary || article.title} canonicalPath={canonicalPath} image={article.image} type="article" schema={articleSchema} />
     <article className="mx-auto max-w-[1420px]">
-      <nav className="mb-4 flex flex-wrap items-center gap-2 text-[13px] font-medium text-[#69717a] sm:mb-5" aria-label="Breadcrumb">
+      <nav className="mb-3 flex flex-wrap items-center gap-2 text-[12px] font-medium text-[#69717a] sm:mb-5 sm:text-[13px]" aria-label="Breadcrumb">
         <Link className="text-[#182536] hover:text-[#397d73]" to="/">Home</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to="/articles">Articles</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={categoryPath(article.category, "articles")}>{article.category}</Link>
@@ -75,13 +75,13 @@ export default function FeatureArticlePage() {
         <div className="min-w-0">
           <header className="max-w-[1050px]">
             <CategoryBadge category={article.category || "Feature"} />
-            <h1 className="article-display-font mt-2 mb-0 max-w-[940px] text-[clamp(40px,10.5vw,42px)] leading-[1.06] font-bold tracking-[-.035em] text-[#182536] sm:mt-5 lg:text-[clamp(42px,4.2vw,58px)]">{article.title}</h1>
-            {article.summary && <p className="mt-4 mb-0 max-w-[920px] text-[19px] leading-[1.58] text-[#39424a] sm:mt-5 lg:text-[clamp(18px,1.7vw,24px)] lg:leading-[1.55]">{article.summary}</p>}
-            <div className="mt-5 sm:mt-6"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /></div>
-            <div className="mt-5"><ShareStoryButton story={article} /></div>
+            <h1 className="article-display-font mt-2.5 mb-0 max-w-[940px] text-[clamp(32px,8.5vw,38px)] leading-[1.04] font-bold tracking-[-.03em] text-[#182536] sm:mt-4 sm:text-[40px] lg:mt-5 lg:text-[clamp(42px,4.2vw,58px)] lg:leading-[1.06] lg:tracking-[-.035em]">{article.title}</h1>
+            {article.summary && <p className="mt-3.5 mb-0 max-w-[920px] text-[17px] leading-[1.55] text-[#39424a] sm:mt-5 sm:text-[19px] sm:leading-[1.58] lg:text-[clamp(18px,1.7vw,24px)] lg:leading-[1.55]">{article.summary}</p>}
+            <div className="mt-4 sm:mt-6"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /></div>
+            <div className="mt-4 sm:mt-5"><ShareStoryButton story={article} /></div>
           </header>
-          <div className="mt-6 sm:mt-8"><ArticleImage story={article} /></div>
-          <div className="article-reading-text mt-9 max-w-[980px] text-[#111318]">{paragraphs.map((paragraph, index) => <p className={index === 0 ? "mt-0" : "mt-6"} key={`${index}-${paragraph.slice(0, 30)}`}>{paragraph}</p>)}</div>
+          <div className="mt-5 sm:mt-8"><ArticleImage story={article} /></div>
+          <div className="article-reading-text mt-7 max-w-[980px] text-[#111318] sm:mt-9">{paragraphs.map((paragraph, index) => <p className={index === 0 ? "mt-0" : "mt-6"} key={`${index}-${paragraph.slice(0, 30)}`}>{paragraph}</p>)}</div>
           {recommendations("mt-12 xl:hidden")}
           <footer className="mt-12 max-w-[980px] border-t border-[#dcdde0] pt-6"><Link className="inline-flex rounded-full bg-[#182536] px-5 py-3 text-xs font-bold text-white" to="/articles">View all articles</Link></footer>
         </div>

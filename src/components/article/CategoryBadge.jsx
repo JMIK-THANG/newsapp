@@ -10,5 +10,5 @@ const categoryStyles = {
 
 export default function CategoryBadge({ category }) {
   if (!category) return null;
-  return <span className="inline-flex items-stretch gap-2"><span className="w-[3px] rounded-full bg-[#2f8175] xl:hidden" aria-hidden="true"/><span className={`inline-flex w-fit rounded-[5px] px-3 py-1.5 text-[11px] font-bold tracking-[.08em] uppercase ${categoryStyles[category] || "bg-[#e7efec] text-[#286a5d]"}`}>{category}</span></span>;
+  return <span className="inline-flex items-stretch gap-2"><span className="w-[3px] rounded-full bg-[#2f8175] xl:hidden" aria-hidden="true"/><span className={`inline-flex w-fit rounded-[5px] px-2.5 py-1.5 text-[10px] font-bold tracking-[.08em] uppercase sm:px-3 sm:text-[11px] ${categoryStyles[category] || "bg-[#e7efec] text-[#286a5d]"}`}>{category}</span></span>;
 }
