@@ -93,25 +93,25 @@ export default function ArticleDetailPage({ section }) {
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
   };
 
-  return <main className="bg-white px-5 py-5 sm:px-6 sm:py-7 lg:py-10">
+  return <main className="bg-white px-4 py-5 sm:px-5 sm:py-8 lg:px-6 lg:py-10">
     <Seo title={story.title} description={summary} canonicalPath={canonicalPath} image={story.image} type="article" schema={articleSchema} />
-    <article className="mx-auto max-w-[1420px]">
+    <article className="mx-auto max-w-[1280px]">
       <nav className="mb-3 flex flex-wrap items-center gap-2 text-[12px] font-medium text-[#69717a] sm:mb-5 sm:text-[13px]" aria-label="Breadcrumb">
         <Link className="text-[#182536] hover:text-[#397d73]" to="/">Home</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={`/${section}`}>{sectionNames[section]}</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={categoryPath(story.category, section)}>{story.category}</Link>
       </nav>
-      <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start xl:gap-12">
+      <div className="grid justify-center gap-12 xl:grid-cols-[minmax(0,860px)_320px] xl:items-start xl:gap-14">
         <div className="min-w-0">
-          <header className="max-w-[1050px]">
+          <header className="max-w-[860px]">
             <CategoryBadge category={story.category} />
-            <h1 className="article-display-font mt-2 mb-0 max-w-[940px] text-[clamp(26px,7.1vw,32px)] leading-[1.07] font-bold tracking-[-.025em] text-[#182536] sm:mt-4 sm:text-[40px] lg:mt-5 lg:text-[clamp(42px,4.2vw,58px)] lg:leading-[1.06] lg:tracking-[-.035em]">{story.title}</h1>
-            <p className="mt-3 mb-0 max-w-[920px] text-[16px] leading-[1.5] text-[#39424a] sm:mt-5 sm:text-[19px] sm:leading-[1.58] lg:text-[clamp(18px,1.7vw,24px)] lg:leading-[1.55]">{summary}</p>
-            <div className="mt-3.5 sm:mt-6"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
-            <div className="mt-3.5 sm:mt-5"><ShareStoryButton story={story} /></div>
+            <h1 className="article-display-font mt-3 mb-0 max-w-[860px] text-[clamp(28px,7.2vw,30px)] leading-[1.16] font-bold tracking-[-.02em] text-[#182536] sm:mt-4 sm:text-[38px] sm:leading-[1.1] lg:mt-5 lg:text-[clamp(40px,3.8vw,52px)] lg:leading-[1.08] lg:tracking-[-.03em]">{story.title}</h1>
+            <p className="mt-4 mb-0 max-w-[820px] text-[17px] leading-[1.6] text-[#39424a] sm:mt-5 sm:text-[18px] lg:text-[20px]">{summary}</p>
+            <div className="mt-5"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
+            <div className="mt-5"><ShareStoryButton story={story} /></div>
           </header>
-          <div className="mt-4 sm:mt-8"><ArticleImage story={story} /></div>
-          <div className="article-reading-text mt-7 max-w-[980px] text-[#111318] sm:mt-9">
+          <div className="mt-7 sm:mt-9"><ArticleImage story={story} /></div>
+          <div className="article-reading-text story-reading-text mt-8 max-w-[760px] text-[#111318] sm:mt-10">
             {articleParagraphs.map((paragraph, index) => {
               const isNumberedItem = /^\d+[.)]\s/.test(paragraph);
               const isColorKey = /^[🔴🟢🔵]/u.test(paragraph);
@@ -123,9 +123,9 @@ export default function ArticleDetailPage({ section }) {
             })}
             {story.sources && <aside className="mt-10 border-t border-[#dcdde0] pt-5"><h2 className="mt-0 mb-3 text-sm font-semibold">Sources and further reading</h2><ul className="m-0 space-y-2 pl-5 text-sm leading-6">{story.sources.map((source) => <li key={source.url}><a className="text-[#397d73] underline underline-offset-3" href={source.url} target="_blank" rel="noreferrer">{source.label}</a></li>)}</ul></aside>}
           </div>
-          {recommendations("mt-12 xl:hidden")}
+          {recommendations("mt-14 xl:hidden")}
         </div>
-        {recommendations("hidden xl:sticky xl:top-[118px] xl:block")}
+        {recommendations("hidden xl:sticky xl:top-[118px] xl:block xl:pt-1")}
       </div>
     </article>
   </main>;

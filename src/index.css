@@ -24,6 +24,12 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   font-weight: 700;
 }
 
+/* Shared story pages use a calmer, narrower reading measure than landing pages. */
+.story-reading-text {
+  font-size: 17px;
+  line-height: 1.7;
+}
+
 .article-display-font {
   font-family: Georgia, "Times New Roman", serif;
 }
@@ -39,6 +45,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 
 @media (min-width: 768px) {
   .article-reading-text { font-size: 22px; line-height: 1.58; }
+  .story-reading-text { font-size: 18px; line-height: 1.7; }
   .home-story-summary { font-size: 20px; line-height: 1.65; }
 }
 
