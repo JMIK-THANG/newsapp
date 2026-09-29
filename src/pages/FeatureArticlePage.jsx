@@ -48,7 +48,7 @@ export default function FeatureArticlePage() {
 
   return <main className="bg-white px-4 py-7 sm:px-6 lg:py-10">
     <article className="mx-auto max-w-[1420px]">
-      <nav className="mb-7 flex items-center gap-2 text-[13px] font-medium text-[#69717a]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><Link className="hover:text-[#111318]" to="/articles">Articles</Link></nav>
+      <nav className="mb-5 flex items-center gap-2 text-[13px] font-medium text-[#69717a]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><Link className="hover:text-[#111318]" to="/articles">Articles</Link></nav>
       <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start xl:gap-12">
         <div className="min-w-0">
           <header className="max-w-[1050px]">

@@ -85,10 +85,7 @@ export default function Navbar() {
         <span className="block size-12 shrink-0 xl:size-14" aria-hidden="true">
           <img className="h-full w-full object-contain" src="/chinlung-today-logo-transparent.png" alt="" />
         </span>
-        <span className="flex flex-col">
-          <strong className="whitespace-nowrap font-serif text-[22px] leading-none font-bold text-[#182536] sm:text-[24px] xl:text-[27px]">Chinlung Today</strong>
-          <span className="mt-1 hidden text-[8px] font-bold tracking-[.22em] text-[#4f5359] uppercase xl:block">News · People · Our Community</span>
-        </span>
+        <strong className="whitespace-nowrap font-serif text-[22px] leading-none font-bold text-[#182536] sm:text-[24px] xl:text-[27px]">Chinlung Today</strong>
       </Link>
       <DesktopNavigation openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} closePanels={closePanels} onHomeClick={goHome} />
       <div className="col-start-2 row-start-1 flex items-center gap-1 justify-self-end xl:col-start-3"><button className="grid size-10 cursor-pointer place-items-center border-0 bg-transparent text-[#182536] transition hover:text-[#9b1c1f] xl:size-11 [&_svg]:xl:size-[22px]" type="button" aria-label="Open search" onClick={() => setSearchOpen(!searchOpen)}><Icon name={searchOpen ? "close" : "search"} /></button><button className="grid size-10 cursor-pointer place-items-center border-0 bg-[#182536] text-white xl:hidden" type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Icon name={menuOpen ? "close" : "menu"} /></button></div>
