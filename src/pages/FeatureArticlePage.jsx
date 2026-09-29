@@ -47,9 +47,9 @@ export default function FeatureArticlePage() {
   const related = source.filter((item) => item.category === article.category).filter((item) => String(item.id) !== String(article.id) && item.title !== article.title).slice(0, 4).map((item) => ({ ...item, path: publishedArticles.length ? shortStoryPath(item) : fallbackPath(item) }));
   const recommendations = (className) => <ArticleRecommendations className={className} category={article.category} stories={related} seeAllPath={categoryPath(article.category, "articles")} />;
 
-  return <main className="bg-white px-4 py-7 sm:px-6 lg:py-10">
+  return <main className="bg-white px-5 py-6 sm:px-6 sm:py-7 lg:py-10">
     <article className="mx-auto max-w-[1420px]">
-      <nav className="mb-5 flex flex-wrap items-center gap-2 text-[13px] font-medium text-[#69717a]" aria-label="Breadcrumb">
+      <nav className="mb-4 flex flex-wrap items-center gap-2 text-[13px] font-medium text-[#69717a] sm:mb-5" aria-label="Breadcrumb">
         <Link className="text-[#182536] hover:text-[#397d73]" to="/">Home</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to="/articles">Articles</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={categoryPath(article.category, "articles")}>{article.category}</Link>
@@ -58,9 +58,9 @@ export default function FeatureArticlePage() {
         <div className="min-w-0">
           <header className="max-w-[1050px]">
             <CategoryBadge category={article.category || "Feature"} />
-            <h1 className="article-display-font mt-5 mb-0 max-w-[940px] text-[clamp(34px,4.2vw,58px)] leading-[1.06] font-bold tracking-[-.035em] text-[#182536]">{article.title}</h1>
-            {article.summary && <p className="mt-5 mb-0 max-w-[920px] text-[clamp(18px,1.7vw,24px)] leading-[1.55] text-[#39424a]">{article.summary}</p>}
-            <div className="mt-6"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /></div>
+            <h1 className="article-display-font mt-3 mb-0 max-w-[940px] text-[clamp(42px,11.5vw,46px)] leading-[1.06] font-bold tracking-[-.035em] text-[#182536] sm:mt-5 lg:text-[clamp(42px,4.2vw,58px)]">{article.title}</h1>
+            {article.summary && <p className="mt-4 mb-0 max-w-[920px] text-[20px] leading-[1.6] text-[#39424a] sm:mt-5 lg:text-[clamp(18px,1.7vw,24px)] lg:leading-[1.55]">{article.summary}</p>}
+            <div className="mt-5 sm:mt-6"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={article} /></div>
           </header>
           <div className="mt-8"><ArticleImage story={article} /></div>

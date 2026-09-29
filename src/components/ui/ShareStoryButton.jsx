@@ -26,12 +26,21 @@ export default function ShareStoryButton({ story, path }) {
     }
   };
 
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setStatus("copied");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   const label = status === "copied" ? "Link copied" : status === "shared" ? "Shared" : status === "error" ? "Try again" : "Share this story";
 
   return <div className="flex flex-wrap items-center gap-2" aria-label="Story and social links">
     <button className="inline-flex min-h-9 cursor-pointer items-center gap-1.5 rounded-full border border-[#182536] bg-transparent px-4 py-1.5 text-xs font-semibold text-[#182536] transition hover:bg-[#182536] hover:text-white [&_svg]:size-4" type="button" onClick={shareStory}><Icon name="share" />{label}</button>
     <a className={`${circleClass} border-[#c9d8ee] text-[#1877f2] hover:border-[#1877f2] hover:bg-[#1877f2] hover:text-white`} href="https://www.facebook.com/ChinlungTodayMedia" target="_blank" rel="noreferrer" aria-label="Visit Chinlung Today on Facebook" title="Facebook"><Icon name="facebook" /></a>
     <a className={`${circleClass} border-[#c9e8da] text-[#179b62] hover:border-[#179b62] hover:bg-[#179b62] hover:text-white`} href={`https://wa.me/?text=${encodeURIComponent(url)}`} target="_blank" rel="noreferrer" aria-label="Share this story on WhatsApp" title="WhatsApp"><Icon name="whatsapp" /></a>
-    <a className={`${circleClass} border-[#f0cdd0] text-[#d1242f] hover:border-[#d1242f] hover:bg-[#d1242f] hover:text-white`} href="https://www.youtube.com/@chinlungtoday" target="_blank" rel="noreferrer" aria-label="Visit Chinlung Today on YouTube" title="YouTube"><Icon name="youtube" /></a>
+    <button className={`${circleClass} cursor-pointer border-[#d7dadd] text-[#53606b] hover:border-[#182536] hover:bg-[#182536] hover:text-white`} type="button" onClick={copyLink} aria-label="Copy story link" title="Copy link"><Icon name="link" /></button>
   </div>;
 }

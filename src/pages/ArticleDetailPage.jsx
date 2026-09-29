@@ -77,9 +77,9 @@ export default function ArticleDetailPage({ section }) {
 
   const recommendations = (className) => <ArticleRecommendations className={className} category={story.category} stories={related} seeAllPath={categoryPath(story.category, section)} />;
 
-  return <main className="bg-white px-4 py-7 sm:px-6 lg:py-10">
+  return <main className="bg-white px-5 py-6 sm:px-6 sm:py-7 lg:py-10">
     <article className="mx-auto max-w-[1420px]">
-      <nav className="mb-5 flex flex-wrap items-center gap-2 text-[13px] font-medium text-[#69717a]" aria-label="Breadcrumb">
+      <nav className="mb-4 flex flex-wrap items-center gap-2 text-[13px] font-medium text-[#69717a] sm:mb-5" aria-label="Breadcrumb">
         <Link className="text-[#182536] hover:text-[#397d73]" to="/">Home</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={`/${section}`}>{sectionNames[section]}</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={categoryPath(story.category, section)}>{story.category}</Link>
@@ -88,9 +88,9 @@ export default function ArticleDetailPage({ section }) {
         <div className="min-w-0">
           <header className="max-w-[1050px]">
             <CategoryBadge category={story.category} />
-            <h1 className="article-display-font mt-5 mb-0 max-w-[940px] text-[clamp(34px,4.2vw,58px)] leading-[1.06] font-bold tracking-[-.035em] text-[#182536]">{story.title}</h1>
-            <p className="mt-5 mb-0 max-w-[920px] text-[clamp(18px,1.7vw,24px)] leading-[1.55] text-[#39424a]">{summary}</p>
-            <div className="mt-6"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
+            <h1 className="article-display-font mt-3 mb-0 max-w-[940px] text-[clamp(42px,11.5vw,46px)] leading-[1.06] font-bold tracking-[-.035em] text-[#182536] sm:mt-5 lg:text-[clamp(42px,4.2vw,58px)]">{story.title}</h1>
+            <p className="mt-4 mb-0 max-w-[920px] text-[20px] leading-[1.6] text-[#39424a] sm:mt-5 lg:text-[clamp(18px,1.7vw,24px)] lg:leading-[1.55]">{summary}</p>
+            <div className="mt-5 sm:mt-6"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={story} /></div>
           </header>
           <div className="mt-8"><ArticleImage story={story} /></div>
