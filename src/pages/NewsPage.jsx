@@ -32,15 +32,15 @@ export default function NewsPage() {
     const path = nextFilter === "All News" ? "/news" : `/news/category/${nextFilter.replace(" News", "").toLowerCase()}`;
     navigate(searchQuery ? `${path}?search=${encodeURIComponent(searchQuery)}` : path);
   };
-  const filterClass = (item, mobile = false) => `relative cursor-pointer border-0 bg-transparent py-3.5 font-semibold whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${mobile ? "min-w-0 px-0.5 text-center text-[clamp(10px,2.8vw,13px)]" : "shrink-0 py-4 text-left text-[15px]"} ${activeFilter === item ? "text-[#182536] after:absolute after:right-[12%] after:bottom-[-1px] after:left-[12%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#69717a] hover:text-[#182536]"}`;
+  const filterClass = (item, mobile = false) => `relative cursor-pointer border-0 bg-transparent font-bold whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${mobile ? "min-w-0 px-0.5 py-3 text-center text-[clamp(11px,2.8vw,13px)] tracking-[-.015em]" : "shrink-0 py-4 text-left text-[15px]"} ${activeFilter === item ? "text-[#182536] after:absolute after:right-[12%] after:bottom-[-1px] after:left-[12%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#69717a] hover:text-[#182536]"}`;
 
-  return <main id="news-page" className="bg-white px-5 py-9 sm:px-6 md:py-12" aria-labelledby="news-page-title">
+  return <main id="news-page" className="bg-white px-5 py-5 sm:px-6 sm:py-8 md:py-12" aria-labelledby="news-page-title">
     <div className="mx-auto max-w-[1420px]">
-      <header className={`border-b border-[#dcdde0] ${searchQuery || activeFilter === "All News" ? "pb-5 md:pb-8" : "pb-4 md:pb-7"}`}>
-        <p className="mb-3 text-[10px] font-bold tracking-[.14em] text-[#397d73] uppercase">The newsroom</p>
+      <header className={`border-b border-[#dcdde0] ${searchQuery || activeFilter === "All News" ? "pb-4 md:pb-8" : "pb-3 md:pb-7"}`}>
+        <p className="mb-2 text-[10px] font-bold tracking-[.14em] text-[#397d73] uppercase sm:mb-3">The newsroom</p>
         <div className="max-w-[820px]">
-          <h1 id="news-page-title" className="article-display-font m-0 text-[clamp(40px,7vw,64px)] leading-[1] font-semibold tracking-[-.04em] text-[#182536]">{searchQuery ? "Search results" : activeFilter}</h1>
-          {(searchQuery || activeFilter === "All News") && <p className="mt-2.5 mb-0 max-w-[760px] text-[16px] leading-6 text-[#4f5962] sm:mt-4 sm:text-[17px] sm:leading-7">{searchQuery ? `${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”` : "The latest reporting from Chin communities, Myanmar, and around the world."}</p>}
+          <h1 id="news-page-title" className="article-display-font m-0 text-[clamp(36px,6.5vw,64px)] leading-[1] font-semibold tracking-[-.04em] text-[#182536]">{searchQuery ? "Search results" : activeFilter}</h1>
+          {(searchQuery || activeFilter === "All News") && <p className="mt-2 mb-0 max-w-[760px] text-[15px] leading-6 text-[#4f5962] sm:mt-4 sm:text-[17px] sm:leading-7">{searchQuery ? `${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”` : "The latest reporting from Chin communities, Myanmar, and around the world."}</p>}
         </div>
       </header>
 
@@ -49,8 +49,8 @@ export default function NewsPage() {
           <div className="grid grid-cols-4 border-b border-[#dcdde0] px-2">
             {filters.slice(0, 4).map((item) => <button className={filterClass(item, true)} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
           </div>
-          <div className="flex justify-center gap-8 px-2">
-            {filters.slice(4).map((item) => <button className={`${filterClass(item, true)} w-[28%]`} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
+          <div className="grid grid-cols-4 px-2">
+            {filters.slice(4).map((item, index) => <button className={`${filterClass(item, true)} ${index === 0 ? "col-start-2" : "col-start-3"}`} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
           </div>
         </div>
         <div className="hidden min-w-max gap-7 sm:flex">
@@ -58,7 +58,7 @@ export default function NewsPage() {
         </div>
       </nav>
 
-      <div className="grid gap-12 pt-5 md:pt-7 xl:grid-cols-[minmax(0,1fr)_360px] xl:gap-14">
+      <div className="grid gap-12 pt-3 sm:pt-5 md:pt-7 xl:grid-cols-[minmax(0,1fr)_360px] xl:gap-14">
         <section id="news-feed" aria-label={`${activeFilter} stories`}>
           <div className="divide-y divide-[#dcdde0] border-b border-[#dcdde0]">
             {stories.slice(0, visibleCount).map((story) => <NewsListCard story={story} path={storyPath(story)} key={story.id || story.title} />)}

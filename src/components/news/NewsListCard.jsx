@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function NewsListCard({ story, path }) {
-  return <article className="group grid gap-4 py-6 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:py-7">
+  return <article className="group grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-6 sm:py-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:py-7">
     <Link className="aspect-[16/10] overflow-hidden rounded-[6px] bg-[#e8edf2]" to={path} tabIndex="-1" aria-hidden="true">
       <img className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.025]" src={story.image} alt="" loading="lazy" decoding="async" />
     </Link>
