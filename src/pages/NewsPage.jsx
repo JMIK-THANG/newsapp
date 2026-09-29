@@ -32,6 +32,7 @@ export default function NewsPage() {
     const path = nextFilter === "All News" ? "/news" : `/news/category/${nextFilter.replace(" News", "").toLowerCase()}`;
     navigate(searchQuery ? `${path}?search=${encodeURIComponent(searchQuery)}` : path);
   };
+  const filterClass = (item, mobile = false) => `relative cursor-pointer border-0 bg-transparent py-3.5 font-semibold whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${mobile ? "min-w-0 px-0.5 text-center text-[clamp(10px,2.8vw,13px)]" : "shrink-0 py-4 text-left text-[15px]"} ${activeFilter === item ? "text-[#182536] after:absolute after:right-[12%] after:bottom-[-1px] after:left-[12%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#69717a] hover:text-[#182536]"}`;
 
   return <main id="news-page" className="bg-white px-5 py-9 sm:px-6 md:py-12" aria-labelledby="news-page-title">
     <div className="mx-auto max-w-[1420px]">
@@ -44,8 +45,16 @@ export default function NewsPage() {
       </header>
 
       <nav id="news-filters" className="-mx-5 border-b border-[#dcdde0] sm:mx-0" aria-label="News categories">
-        <div className="grid grid-cols-2 sm:flex sm:min-w-max sm:gap-7">
-          {filters.map((item) => <button className={`relative min-w-0 cursor-pointer border-0 border-b border-[#dcdde0] bg-transparent px-2 py-4 text-center text-[14px] font-semibold whitespace-nowrap transition even:border-l sm:shrink-0 sm:border-0 sm:px-0 sm:text-left sm:text-[15px] focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${activeFilter === item ? "text-[#182536] after:absolute after:right-[18%] after:bottom-[-1px] after:left-[18%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#69717a] hover:text-[#182536]"}`} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
+        <div className="sm:hidden">
+          <div className="grid grid-cols-4 border-b border-[#dcdde0] px-2">
+            {filters.slice(0, 4).map((item) => <button className={filterClass(item, true)} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
+          </div>
+          <div className="flex justify-center gap-8 px-2">
+            {filters.slice(4).map((item) => <button className={`${filterClass(item, true)} w-[28%]`} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
+          </div>
+        </div>
+        <div className="hidden min-w-max gap-7 sm:flex">
+          {filters.map((item) => <button className={filterClass(item)} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
         </div>
       </nav>
 

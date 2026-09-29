@@ -105,12 +105,12 @@ export default function ArticleDetailPage({ section }) {
         <div className="min-w-0">
           <header className="max-w-[1050px]">
             <CategoryBadge category={story.category} />
-            <h1 className="article-display-font mt-2.5 mb-0 max-w-[940px] text-[clamp(29px,7.75vw,35px)] leading-[1.06] font-bold tracking-[-.03em] text-[#182536] sm:mt-4 sm:text-[40px] lg:mt-5 lg:text-[clamp(42px,4.2vw,58px)] lg:leading-[1.06] lg:tracking-[-.035em]">{story.title}</h1>
-            <p className="mt-3.5 mb-0 max-w-[920px] text-[17px] leading-[1.55] text-[#39424a] sm:mt-5 sm:text-[19px] sm:leading-[1.58] lg:text-[clamp(18px,1.7vw,24px)] lg:leading-[1.55]">{summary}</p>
-            <div className="mt-4 sm:mt-6"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
-            <div className="mt-4 sm:mt-5"><ShareStoryButton story={story} /></div>
+            <h1 className="article-display-font mt-2 mb-0 max-w-[940px] text-[clamp(26px,7.1vw,32px)] leading-[1.07] font-bold tracking-[-.025em] text-[#182536] sm:mt-4 sm:text-[40px] lg:mt-5 lg:text-[clamp(42px,4.2vw,58px)] lg:leading-[1.06] lg:tracking-[-.035em]">{story.title}</h1>
+            <p className="mt-3 mb-0 max-w-[920px] text-[16px] leading-[1.5] text-[#39424a] sm:mt-5 sm:text-[19px] sm:leading-[1.58] lg:text-[clamp(18px,1.7vw,24px)] lg:leading-[1.55]">{summary}</p>
+            <div className="mt-3.5 sm:mt-6"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
+            <div className="mt-3.5 sm:mt-5"><ShareStoryButton story={story} /></div>
           </header>
-          <div className="mt-5 sm:mt-8"><ArticleImage story={story} /></div>
+          <div className="mt-4 sm:mt-8"><ArticleImage story={story} /></div>
           <div className="article-reading-text mt-7 max-w-[980px] text-[#111318] sm:mt-9">
             {articleParagraphs.map((paragraph, index) => {
               const isNumberedItem = /^\d+[.)]\s/.test(paragraph);
