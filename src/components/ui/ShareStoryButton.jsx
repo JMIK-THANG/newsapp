@@ -45,6 +45,5 @@ export default function ShareStoryButton({ story, path }) {
       {copyStatus === "copied" && <span className="absolute bottom-[calc(100%+6px)] left-1/2 -translate-x-1/2 rounded bg-[#182536] px-2 py-1 text-[10px] font-semibold whitespace-nowrap text-white" role="status">Copied!</span>}
       {copyStatus === "error" && <span className="sr-only" role="status">Unable to copy link.</span>}
     </span>
-    <a className={`${circleClass} border-[#f0cdd0] text-[#d1242f] hover:border-[#d1242f] hover:bg-[#d1242f] hover:text-white`} href="https://www.youtube.com/@chinlungtoday" target="_blank" rel="noreferrer" aria-label="Visit Chinlung Today on YouTube" title="YouTube"><Icon name="youtube" /></a>
   </div>;
 }
