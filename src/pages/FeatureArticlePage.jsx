@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { articleStories } from "../data/sectionPageData";
-import { getNewsArticle } from "../hooks/useNews";
+import ArticleImage from "../components/article/ArticleImage";
+import ArticleMeta from "../components/article/ArticleMeta";
+import ArticleRecommendations from "../components/article/ArticleRecommendations";
+import CategoryBadge from "../components/article/CategoryBadge";
 import ShareStoryButton from "../components/ui/ShareStoryButton";
+import { articleStories } from "../data/sectionPageData";
+import useNews, { getNewsArticle } from "../hooks/useNews";
+import { categoryPath } from "../utils/categoryPath";
+import { shortStoryPath } from "../utils/storyPath";
 
 function staticArticle(key) {
   if (key === "featured") return articleStories[0];
@@ -10,46 +16,55 @@ function staticArticle(key) {
   return null;
 }
 
+function fallbackPath(story) {
+  const index = articleStories.indexOf(story);
+  return `/articles/${index === 0 ? "featured" : `story-${index}`}`;
+}
+
 export default function FeatureArticlePage() {
   const { storyKey } = useParams();
   const fallback = staticArticle(storyKey);
   const [article, setArticle] = useState(fallback);
   const [error, setError] = useState("");
+  const { news: publishedArticles } = useNews({ contentType: "article" });
 
   useEffect(() => {
     if (fallback) return;
     getNewsArticle(storyKey).then(setArticle).catch((requestError) => setError(requestError.message));
   }, [fallback, storyKey]);
 
+  if (!article) return <main className="min-h-[60vh] bg-white px-6 py-20 text-center"><h1 className="font-serif text-4xl">{error || "Loading article…"}</h1><Link className="underline" to="/articles">Return to Articles</Link></main>;
 
-  if (!article) return <main className="min-h-[60vh] bg-[#f1eee8] px-6 py-20 text-center"><h1 className="font-serif text-4xl">{error || "Loading article…"}</h1><Link className="underline" to="/articles">Return to Articles</Link></main>;
   const normalizedTitle = article.title?.trim().toLocaleLowerCase().replace(/\s+/g, " ");
   const normalizedSummary = article.summary?.trim().toLocaleLowerCase().replace(/\s+/g, " ");
-  const paragraphs = (article.content?.length ? article.content : [])
-    .map((paragraph) => paragraph.trim())
-    .filter((paragraph) => {
-      if (!paragraph) return false;
-      const normalizedParagraph = paragraph.toLocaleLowerCase().replace(/\s+/g, " ");
-      return normalizedParagraph !== normalizedTitle && normalizedParagraph !== normalizedSummary;
-    });
+  const paragraphs = (article.content?.length ? article.content : []).map((paragraph) => paragraph.trim()).filter((paragraph) => {
+    if (!paragraph) return false;
+    const normalizedParagraph = paragraph.toLocaleLowerCase().replace(/\s+/g, " ");
+    return normalizedParagraph !== normalizedTitle && normalizedParagraph !== normalizedSummary;
+  });
+  const source = publishedArticles.length ? publishedArticles : articleStories;
+  const related = source.filter((item) => item.category === article.category).filter((item) => String(item.id) !== String(article.id) && item.title !== article.title).slice(0, 4).map((item) => ({ ...item, path: publishedArticles.length ? shortStoryPath(item) : fallbackPath(item) }));
+  const recommendations = (className) => <ArticleRecommendations className={className} category={article.category} stories={related} seeAllPath={categoryPath(article.category, "articles")} />;
 
-  return <main className="bg-[#fff] px-3 py-6 md:px-6 md:py-8"><article className="mx-auto max-w-[1540px]">
-    <header className="border-b border-[#c8c6c0] pb-7">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <nav className="flex items-center gap-2 text-[12px] font-medium text-[#69717a]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span className="text-[#a7aaad]">/</span><Link className="hover:text-[#111318]" to="/articles">Articles</Link></nav>
-        <p className="m-0 text-[11px] font-bold tracking-[.08em] text-[#397d73] uppercase">{article.category || "Feature"}</p>
-      </div>
-      <div className="mt-5 grid gap-7 lg:grid-cols-[minmax(300px,.78fr)_minmax(0,1.22fr)] lg:items-center xl:gap-12">
-        <div className="min-w-0 py-1">
-          <h1 className="m-0 font-serif text-[clamp(30px,3.5vw,48px)] leading-[1.08] font-semibold tracking-[-.035em] text-[#0c0c0c]">{article.title}</h1>
-          <p className="mt-5 mb-0 text-[clamp(17px,1.45vw,23px)] leading-[1.55] text-[#303940]">{article.summary}</p>
-          <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] leading-5 text-[#4f5359] md:text-[13px]"><span>By <strong className="font-semibold text-[#111318]">{article.author || "Chinlung Today"}</strong></span><span>•</span><span>{article.date}</span><span>•</span><span>{article.readTime || article.time || "5 min read"}</span></div>
-          <div className="mt-4"><ShareStoryButton story={article} /></div>
+  return <main className="bg-white px-4 py-7 sm:px-6 lg:py-10">
+    <article className="mx-auto max-w-[1540px]">
+      <nav className="mb-7 flex items-center gap-2 text-[13px] font-medium text-[#69717a]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><Link className="hover:text-[#111318]" to="/articles">Articles</Link></nav>
+      <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_340px] xl:items-start">
+        <div className="min-w-0">
+          <header className="max-w-[1050px]">
+            <CategoryBadge category={article.category || "Feature"} />
+            <h1 className="mt-5 mb-0 max-w-[1000px] font-serif text-[clamp(36px,5vw,68px)] leading-[1.03] font-bold tracking-[-.04em] text-[#111318]">{article.title}</h1>
+            {article.summary && <p className="mt-5 mb-0 max-w-[920px] text-[clamp(18px,1.7vw,24px)] leading-[1.55] text-[#39424a]">{article.summary}</p>}
+            <div className="mt-6"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /></div>
+            <div className="mt-5"><ShareStoryButton story={article} /></div>
+          </header>
+          <div className="mt-8"><ArticleImage story={article} /></div>
+          <div className="article-reading-text mt-9 max-w-[980px] text-[#111318]">{paragraphs.map((paragraph, index) => <p className={index === 0 ? "mt-0" : "mt-6"} key={`${index}-${paragraph.slice(0, 30)}`}>{paragraph}</p>)}</div>
+          {recommendations("mt-12 xl:hidden")}
+          <footer className="mt-12 max-w-[980px] border-t border-[#dcdde0] pt-6"><Link className="inline-flex rounded-full bg-[#182536] px-5 py-3 text-xs font-bold text-white" to="/articles">View all articles</Link></footer>
         </div>
-        <figure className="m-0 min-w-0"><img className="max-h-[560px] w-full bg-[#ddd9d1] object-contain" src={article.image} alt={article.imageAlt} /><figcaption className="mt-2 text-[10px] text-[#666b70]">{article.imageCredit || "Chinlung Today"}</figcaption></figure>
+        {recommendations("hidden xl:sticky xl:top-[118px] xl:block")}
       </div>
-    </header>
-    <div className="article-reading-text mx-auto mt-8 max-w-[1100px]">{paragraphs.map((paragraph, index) => <p className={index === 0 ? "mt-0" : "mt-6"} key={`${index}-${paragraph.slice(0, 30)}`}>{paragraph}</p>)}</div>
-    <footer className="mx-auto mt-12 flex max-w-[930px] justify-between border-t border-[#182536] pt-6"><Link className="rounded-full bg-[#182536] px-5 py-3 text-xs font-bold text-white" to="/articles">View all articles</Link></footer>
-  </article></main>;
+    </article>
+  </main>;
 }
