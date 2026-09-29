@@ -58,12 +58,12 @@ export default function FeatureArticlePage() {
         <div className="min-w-0">
           <header className="max-w-[1050px]">
             <CategoryBadge category={article.category || "Feature"} />
-            <h1 className="article-display-font mt-3 mb-0 max-w-[940px] text-[clamp(42px,11.5vw,46px)] leading-[1.06] font-bold tracking-[-.035em] text-[#182536] sm:mt-5 lg:text-[clamp(42px,4.2vw,58px)]">{article.title}</h1>
-            {article.summary && <p className="mt-4 mb-0 max-w-[920px] text-[20px] leading-[1.6] text-[#39424a] sm:mt-5 lg:text-[clamp(18px,1.7vw,24px)] lg:leading-[1.55]">{article.summary}</p>}
+            <h1 className="article-display-font mt-2 mb-0 max-w-[940px] text-[clamp(40px,10.5vw,42px)] leading-[1.06] font-bold tracking-[-.035em] text-[#182536] sm:mt-5 lg:text-[clamp(42px,4.2vw,58px)]">{article.title}</h1>
+            {article.summary && <p className="mt-4 mb-0 max-w-[920px] text-[19px] leading-[1.58] text-[#39424a] sm:mt-5 lg:text-[clamp(18px,1.7vw,24px)] lg:leading-[1.55]">{article.summary}</p>}
             <div className="mt-5 sm:mt-6"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={article} /></div>
           </header>
-          <div className="mt-8"><ArticleImage story={article} /></div>
+          <div className="mt-6 sm:mt-8"><ArticleImage story={article} /></div>
           <div className="article-reading-text mt-9 max-w-[980px] text-[#111318]">{paragraphs.map((paragraph, index) => <p className={index === 0 ? "mt-0" : "mt-6"} key={`${index}-${paragraph.slice(0, 30)}`}>{paragraph}</p>)}</div>
           {recommendations("mt-12 xl:hidden")}
           <footer className="mt-12 max-w-[980px] border-t border-[#dcdde0] pt-6"><Link className="inline-flex rounded-full bg-[#182536] px-5 py-3 text-xs font-bold text-white" to="/articles">View all articles</Link></footer>

@@ -88,12 +88,12 @@ export default function ArticleDetailPage({ section }) {
         <div className="min-w-0">
           <header className="max-w-[1050px]">
             <CategoryBadge category={story.category} />
-            <h1 className="article-display-font mt-3 mb-0 max-w-[940px] text-[clamp(42px,11.5vw,46px)] leading-[1.06] font-bold tracking-[-.035em] text-[#182536] sm:mt-5 lg:text-[clamp(42px,4.2vw,58px)]">{story.title}</h1>
-            <p className="mt-4 mb-0 max-w-[920px] text-[20px] leading-[1.6] text-[#39424a] sm:mt-5 lg:text-[clamp(18px,1.7vw,24px)] lg:leading-[1.55]">{summary}</p>
+            <h1 className="article-display-font mt-2 mb-0 max-w-[940px] text-[clamp(40px,10.5vw,42px)] leading-[1.06] font-bold tracking-[-.035em] text-[#182536] sm:mt-5 lg:text-[clamp(42px,4.2vw,58px)]">{story.title}</h1>
+            <p className="mt-4 mb-0 max-w-[920px] text-[19px] leading-[1.58] text-[#39424a] sm:mt-5 lg:text-[clamp(18px,1.7vw,24px)] lg:leading-[1.55]">{summary}</p>
             <div className="mt-5 sm:mt-6"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={story} /></div>
           </header>
-          <div className="mt-8"><ArticleImage story={story} /></div>
+          <div className="mt-6 sm:mt-8"><ArticleImage story={story} /></div>
           <div className="article-reading-text mt-9 max-w-[980px] text-[#111318]">
             {articleParagraphs.map((paragraph, index) => {
               const isNumberedItem = /^\d+[.)]\s/.test(paragraph);
