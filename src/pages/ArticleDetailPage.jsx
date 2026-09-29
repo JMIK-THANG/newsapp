@@ -77,13 +77,13 @@ export default function ArticleDetailPage({ section }) {
   const recommendations = (className) => <ArticleRecommendations className={className} category={story.category} stories={related} seeAllPath={categoryPath(story.category, section)} />;
 
   return <main className="bg-white px-4 py-7 sm:px-6 lg:py-10">
-    <article className="mx-auto max-w-[1540px]">
+    <article className="mx-auto max-w-[1420px]">
       <nav className="mb-7 flex items-center gap-2 text-[13px] font-medium text-[#69717a]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><Link className="hover:text-[#111318]" to={`/${section}`}>{sectionNames[section]}</Link></nav>
-      <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_340px] xl:items-start">
+      <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start xl:gap-12">
         <div className="min-w-0">
           <header className="max-w-[1050px]">
             <CategoryBadge category={story.category} />
-            <h1 className="mt-5 mb-0 max-w-[1000px] font-serif text-[clamp(36px,5vw,68px)] leading-[1.03] font-bold tracking-[-.04em] text-[#111318]">{story.title}</h1>
+            <h1 className="article-display-font mt-5 mb-0 max-w-[940px] text-[clamp(34px,4.2vw,58px)] leading-[1.06] font-bold tracking-[-.035em] text-[#182536]">{story.title}</h1>
             <p className="mt-5 mb-0 max-w-[920px] text-[clamp(18px,1.7vw,24px)] leading-[1.55] text-[#39424a]">{summary}</p>
             <div className="mt-6"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={story} /></div>
