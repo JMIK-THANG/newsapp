@@ -4,6 +4,7 @@ import ArticleImage from "../components/article/ArticleImage";
 import ArticleMeta from "../components/article/ArticleMeta";
 import ArticleRecommendations from "../components/article/ArticleRecommendations";
 import CategoryBadge from "../components/article/CategoryBadge";
+import Icon from "../components/ui/Icon";
 import ShareStoryButton from "../components/ui/ShareStoryButton";
 import { explainerSourceStory, latestStories, leadStory, mostReadStories, newsPageStories, quickReads } from "../data/news";
 import { articleStories, businessStories, editorialStories, sportsStories } from "../data/sectionPageData";
@@ -78,7 +79,11 @@ export default function ArticleDetailPage({ section }) {
 
   return <main className="bg-white px-4 py-7 sm:px-6 lg:py-10">
     <article className="mx-auto max-w-[1420px]">
-      <nav className="mb-5 flex items-center gap-2 text-[13px] font-medium text-[#69717a]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span>/</span><Link className="hover:text-[#111318]" to={`/${section}`}>{sectionNames[section]}</Link></nav>
+      <nav className="mb-5 flex flex-wrap items-center gap-2 text-[13px] font-medium text-[#69717a]" aria-label="Breadcrumb">
+        <Link className="text-[#182536] hover:text-[#397d73]" to="/">Home</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
+        <Link className="text-[#182536] hover:text-[#397d73]" to={`/${section}`}>{sectionNames[section]}</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
+        <Link className="text-[#182536] hover:text-[#397d73]" to={categoryPath(story.category, section)}>{story.category}</Link>
+      </nav>
       <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start xl:gap-12">
         <div className="min-w-0">
           <header className="max-w-[1050px]">
