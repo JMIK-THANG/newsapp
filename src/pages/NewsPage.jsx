@@ -45,7 +45,7 @@ export default function NewsPage() {
 
       <nav id="news-filters" className="-mx-5 overflow-x-auto border-b border-[#dcdde0] px-5 sm:mx-0 sm:px-0" aria-label="News categories">
         <div className="flex min-w-max gap-7">
-          {filters.map((item) => <button className={`relative shrink-0 cursor-pointer border-0 bg-transparent py-4 text-[13px] font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${activeFilter === item ? "text-[#182536] after:absolute after:right-0 after:bottom-0 after:left-0 after:h-[3px] after:bg-[#397d73]" : "text-[#69717a] hover:text-[#182536]"}`} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
+          {filters.map((item) => <button className={`relative shrink-0 cursor-pointer border-0 bg-transparent py-4 text-[14px] font-semibold transition sm:text-[15px] focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${activeFilter === item ? "text-[#182536] after:absolute after:right-0 after:bottom-0 after:left-0 after:h-[3px] after:bg-[#397d73]" : "text-[#69717a] hover:text-[#182536]"}`} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
         </div>
       </nav>
 

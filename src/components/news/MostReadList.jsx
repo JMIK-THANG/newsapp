@@ -8,7 +8,7 @@ export default function MostReadList({ stories, storyPath }) {
       </div>
       <ol className="m-0 list-none divide-y divide-[#dcdde0] p-0">
         {stories.map((story, index) => <li className="grid grid-cols-[28px_minmax(0,1fr)_76px] gap-3 py-4" key={story.id || story.title}>
-          <span className="article-display-font text-[22px] leading-none font-bold text-[#182536]" aria-hidden="true">{index + 1}</span>
+          <span className="article-display-font text-[22px] leading-none font-normal text-[#69717a]" aria-hidden="true">{index + 1}</span>
           <div className="min-w-0">
             <p className="mt-0 mb-1.5 text-[10px] font-bold tracking-[.06em] text-[#397d73] uppercase">{story.category}</p>
             <h3 className="article-display-font m-0 line-clamp-3 text-[16px] leading-[1.3] font-semibold text-[#182536]" title={story.title}><Link className="hover:text-[#397d73]" to={storyPath(story)}>{story.title}</Link></h3>
