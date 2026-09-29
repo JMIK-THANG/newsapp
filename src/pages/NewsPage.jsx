@@ -35,17 +35,17 @@ export default function NewsPage() {
 
   return <main id="news-page" className="bg-white px-5 py-9 sm:px-6 md:py-12" aria-labelledby="news-page-title">
     <div className="mx-auto max-w-[1420px]">
-      <header className="border-b border-[#dcdde0] pb-7 md:pb-9">
+      <header className={`border-b border-[#dcdde0] ${searchQuery || activeFilter === "All News" ? "pb-7 md:pb-9" : "pb-5 md:pb-7"}`}>
         <p className="mb-3 text-[10px] font-bold tracking-[.14em] text-[#397d73] uppercase">The newsroom</p>
         <div className="max-w-[820px]">
           <h1 id="news-page-title" className="article-display-font m-0 text-[clamp(40px,7vw,64px)] leading-[1] font-semibold tracking-[-.04em] text-[#182536]">{searchQuery ? "Search results" : activeFilter}</h1>
-          <p className="mt-4 mb-0 max-w-[760px] text-[17px] leading-7 text-[#4f5962]">{searchQuery ? `${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”` : activeFilter === "All News" ? "The latest reporting from Chin communities, Myanmar, and around the world." : `The latest published reporting from ${activeFilter}.`}</p>
+          {(searchQuery || activeFilter === "All News") && <p className="mt-4 mb-0 max-w-[760px] text-[17px] leading-7 text-[#4f5962]">{searchQuery ? `${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”` : "The latest reporting from Chin communities, Myanmar, and around the world."}</p>}
         </div>
       </header>
 
-      <nav id="news-filters" className="-mx-5 overflow-x-auto border-b border-[#dcdde0] px-5 sm:mx-0 sm:px-0" aria-label="News categories">
-        <div className="flex min-w-max gap-7">
-          {filters.map((item) => <button className={`relative shrink-0 cursor-pointer border-0 bg-transparent py-4 text-[14px] font-semibold transition sm:text-[15px] focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${activeFilter === item ? "text-[#182536] after:absolute after:right-0 after:bottom-0 after:left-0 after:h-[3px] after:bg-[#397d73]" : "text-[#69717a] hover:text-[#182536]"}`} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
+      <nav id="news-filters" className="-mx-5 border-b border-[#dcdde0] sm:mx-0" aria-label="News categories">
+        <div className="grid grid-cols-2 sm:flex sm:min-w-max sm:gap-7">
+          {filters.map((item) => <button className={`relative min-w-0 cursor-pointer border-0 border-b border-[#dcdde0] bg-transparent px-2 py-4 text-center text-[14px] font-semibold whitespace-nowrap transition even:border-l sm:shrink-0 sm:border-0 sm:px-0 sm:text-left sm:text-[15px] focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${activeFilter === item ? "text-[#182536] after:absolute after:right-[18%] after:bottom-[-1px] after:left-[18%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#69717a] hover:text-[#182536]"}`} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
         </div>
       </nav>
 
