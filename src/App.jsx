@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import HeroSection from "./components/home/HeroSection";
 import LatestStories from "./components/home/LatestStories";
@@ -24,6 +24,7 @@ import AdminLogin from "./pages/Admin/AdminLogin";
 import ManageNews from "./pages/Admin/ManageNews";
 import ExplainerAdmin from "./pages/Admin/ExplainerAdmin";
 import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
+import RouteSeo from "./components/seo/RouteSeo";
 
 function ScrollToTop() {
   const location = useLocation();
@@ -37,8 +38,12 @@ function HomePage() {
   return <><LatestNewsTicker /><HeroSection /><LatestArticles /><LatestStories /><StoryExplained /></>;
 }
 
+function NotFoundPage() {
+  return <main className="min-h-[60vh] bg-white px-6 py-20 text-center"><h1 className="article-display-font m-0 text-4xl text-[#182536]">Page not found</h1><p className="mt-4 text-[#5f6368]">The page you requested does not exist.</p><Link className="mt-6 inline-block underline" to="/">Return to Chinlung Today</Link></main>;
+}
+
 export default function App() {
-  return <><ScrollToTop /><Navbar /><Routes>
+  return <><ScrollToTop /><RouteSeo /><Navbar /><Routes>
     <Route path="/" element={<HomePage />} />
     <Route path="/news" element={<NewsPage />} />
     <Route path="/news/category/:filter" element={<NewsPage />} />
@@ -67,6 +72,6 @@ export default function App() {
     <Route path="/admin/manage" element={<ProtectedAdminRoute><ManageNews /></ProtectedAdminRoute>} />
     <Route path="/admin/manage/:articleId/edit" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
     <Route path="/admin/explainers" element={<ProtectedAdminRoute><ExplainerAdmin /></ProtectedAdminRoute>} />
-    <Route path="*" element={<Navigate to="/" replace />} />
+    <Route path="*" element={<NotFoundPage />} />
   </Routes><Footer /></>;
 }

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import ArticleImage from "../components/article/ArticleImage";
 import ArticleMeta from "../components/article/ArticleMeta";
 import ArticleRecommendations from "../components/article/ArticleRecommendations";
 import CategoryBadge from "../components/article/CategoryBadge";
 import Icon from "../components/ui/Icon";
 import ShareStoryButton from "../components/ui/ShareStoryButton";
+import Seo, { SITE_NAME, SITE_URL } from "../components/seo/Seo";
 import { articleStories } from "../data/sectionPageData";
 import useNews, { getNewsArticle } from "../hooks/useNews";
 import { categoryPath } from "../utils/categoryPath";
@@ -24,6 +25,7 @@ function fallbackPath(story) {
 
 export default function FeatureArticlePage() {
   const { storyKey } = useParams();
+  const location = useLocation();
   const fallback = staticArticle(storyKey);
   const [article, setArticle] = useState(fallback);
   const [error, setError] = useState("");
@@ -46,8 +48,23 @@ export default function FeatureArticlePage() {
   const source = publishedArticles.length ? publishedArticles : articleStories;
   const related = source.filter((item) => item.category === article.category).filter((item) => String(item.id) !== String(article.id) && item.title !== article.title).slice(0, 4).map((item) => ({ ...item, path: publishedArticles.length ? shortStoryPath(item) : fallbackPath(item) }));
   const recommendations = (className) => <ArticleRecommendations className={className} category={article.category} stories={related} seeAllPath={categoryPath(article.category, "articles")} />;
+  const canonicalPath = /^\d+$/.test(String(article.id ?? "")) ? shortStoryPath(article) : location.pathname;
+  const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    ...(article.summary ? { description: article.summary } : {}),
+    ...(article.image ? { image: [article.image] } : {}),
+    ...(article.publishedAt || article.published_at ? { datePublished: article.publishedAt || article.published_at } : {}),
+    ...(article.updated_at ? { dateModified: article.updated_at } : {}),
+    ...(article.author ? { author: { "@type": "Person", name: article.author } } : {}),
+    publisher: { "@type": "NewsMediaOrganization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${SITE_URL}/chinlung-today-logo.png` } },
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  };
 
   return <main className="bg-white px-5 py-6 sm:px-6 sm:py-7 lg:py-10">
+    <Seo title={article.title} description={article.summary || article.title} canonicalPath={canonicalPath} image={article.image} type="article" schema={articleSchema} />
     <article className="mx-auto max-w-[1420px]">
       <nav className="mb-4 flex flex-wrap items-center gap-2 text-[13px] font-medium text-[#69717a] sm:mb-5" aria-label="Breadcrumb">
         <Link className="text-[#182536] hover:text-[#397d73]" to="/">Home</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>

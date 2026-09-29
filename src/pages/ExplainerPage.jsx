@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import Icon from "../components/ui/Icon";
 import ShareStoryButton from "../components/ui/ShareStoryButton";
 import useExplainer from "../hooks/useExplainer";
+import Seo, { SITE_NAME, SITE_URL } from "../components/seo/Seo";
 
 export default function ExplainerPage() {
   const { slug } = useParams();
@@ -10,6 +11,16 @@ export default function ExplainerPage() {
 
   return (
     <main className="bg-[#fff] px-3 py-8 md:px-6 md:py-10">
+      <Seo title={explainer.question} description={explainer.introduction} canonicalPath={`/explainers/${explainer.slug}`} type="article" schema={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: explainer.question,
+        description: explainer.introduction,
+        ...(explainer.created_at ? { datePublished: explainer.created_at } : {}),
+        ...(explainer.updated_at ? { dateModified: explainer.updated_at } : {}),
+        publisher: { "@type": "NewsMediaOrganization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${SITE_URL}/chinlung-today-logo.png` } },
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/explainers/${explainer.slug}` },
+      }} />
       <article className="mx-auto max-w-[1380px]">
         <div className="mx-auto mb-4 flex w-full max-w-[1380px] flex-nowrap items-center justify-between gap-3 border-b border-[#dcdde0] pb-3"><nav className="flex items-center gap-2.5 text-[14px] font-normal text-[#5f6368]" aria-label="Breadcrumb"><Link className="hover:text-[#111318]" to="/">Home</Link><span className="text-[#9aa0a6]">/</span><span>Explainers</span></nav><p className="m-0 rounded-full bg-[#e7efec] px-3 py-1.5 text-[11px] font-semibold tracking-[.05em] text-[#397d73] uppercase">{explainer.category}</p></div>
         <header className="grid gap-8 border-b-2 border-[#111318] pb-9 lg:grid-cols-[1.25fr_.75fr] lg:items-end">
