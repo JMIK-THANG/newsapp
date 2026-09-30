@@ -75,7 +75,7 @@ export default function FeatureArticlePage() {
         <div className="min-w-0">
           <header className="max-w-[860px]">
             <CategoryBadge category={article.category || "Feature"} />
-            <h1 className="article-display-font mt-3 mb-0 max-w-[860px] text-[clamp(28px,7.2vw,30px)] leading-[1.16] font-bold tracking-[-.02em] text-[#182536] sm:mt-4 sm:text-[38px] sm:leading-[1.1] lg:mt-5 lg:text-[clamp(40px,3.8vw,52px)] lg:leading-[1.08] lg:tracking-[-.03em]">{article.title}</h1>
+            <h1 className="article-display-font story-detail-headline">{article.title}</h1>
             {article.summary && <p className="mt-4 mb-0 max-w-[820px] text-[17px] leading-[1.6] text-[#39424a] sm:mt-5 sm:text-[18px] lg:text-[20px]">{article.summary}</p>}
             <div className="mt-5"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={article} /></div>

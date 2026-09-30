@@ -34,6 +34,35 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   font-family: Georgia, "Times New Roman", serif;
 }
 
+/* Keep every individual news and feature article title visually identical. */
+.story-detail-headline {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  max-width: 860px;
+  font-size: clamp(28px, 7.2vw, 30px);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  color: #182536;
+}
+
+@media (min-width: 640px) {
+  .story-detail-headline {
+    margin-top: 1rem;
+    font-size: 38px;
+    line-height: 1.1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .story-detail-headline {
+    margin-top: 1.25rem;
+    font-size: clamp(40px, 3.8vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+}
+
 /* Compact summary copy used outside full-story reading pages. */
 .home-story-summary {
   color: #303940;
