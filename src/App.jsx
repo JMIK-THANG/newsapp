@@ -3,7 +3,6 @@ import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import HeroSection from "./components/home/HeroSection";
 import LatestStories from "./components/home/LatestStories";
-import StoryExplained from "./components/home/StoryExplained";
 import LatestArticles from "./components/home/LatestArticles";
 import Footer from "./components/layout/Footer";
 import NewsPage from "./pages/NewsPage";
@@ -21,7 +20,7 @@ import PodcastsPage from "./pages/PodcastsPage";
 import Admin from "./pages/Admin/Admin";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import ManageNews from "./pages/Admin/ManageNews";
-import ExplainerAdmin from "./pages/Admin/ExplainerAdmin";
+import PodcastAdmin from "./pages/Admin/PodcastAdmin";
 import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
 import RouteSeo from "./components/seo/RouteSeo";
 
@@ -34,7 +33,7 @@ function ScrollToTop() {
 }
 
 function HomePage() {
-  return <><HeroSection /><LatestArticles /><LatestStories /><StoryExplained /></>;
+  return <><HeroSection /><LatestArticles /><LatestStories /></>;
 }
 
 function NotFoundPage() {
@@ -70,7 +69,7 @@ export default function App() {
     <Route path="/admin/articles/new" element={<ProtectedAdminRoute><Admin key="post-article" defaultContentType="article" /></ProtectedAdminRoute>} />
     <Route path="/admin/manage" element={<ProtectedAdminRoute><ManageNews /></ProtectedAdminRoute>} />
     <Route path="/admin/manage/:articleId/edit" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
-    <Route path="/admin/explainers" element={<ProtectedAdminRoute><ExplainerAdmin /></ProtectedAdminRoute>} />
+    <Route path="/admin/podcasts" element={<ProtectedAdminRoute><PodcastAdmin /></ProtectedAdminRoute>} />
     <Route path="*" element={<NotFoundPage />} />
   </Routes><Footer /></>;
 }

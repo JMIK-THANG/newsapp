@@ -26,7 +26,7 @@ export default function AdminHeader({ eyebrow = "Private newsroom", title, descr
         <NavLink className={linkClass} to="/admin" end>Post News</NavLink>
         <NavLink className={linkClass} to="/admin/articles/new">Post Article</NavLink>
         <NavLink className={linkClass} to="/admin/manage">Manage News</NavLink>
-        <NavLink className={linkClass} to="/admin/explainers">Explainers</NavLink>
+        <NavLink className={linkClass} to="/admin/podcasts">Podcasts</NavLink>
       </nav>
     </header>
   );
