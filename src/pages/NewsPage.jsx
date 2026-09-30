@@ -8,6 +8,12 @@ import useNews from "../hooks/useNews";
 import { shortStoryPath } from "../utils/storyPath";
 
 const filters = ["All News", "Chin News", "Myanmar News", "International News", "Sports", "Business"];
+const MOST_READ_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
+
+function isInMostReadWindow(story) {
+  const publishedTime = new Date(story.publishedAt || story.published_at || story.date).getTime();
+  return Number.isFinite(publishedTime) && publishedTime >= Date.now() - MOST_READ_WINDOW_MS;
+}
 
 export default function NewsPage() {
   const { news: databaseNews, isLoading } = useNews();
@@ -19,10 +25,10 @@ export default function NewsPage() {
   const activeFilter = filters.find((item) => item.toLowerCase().startsWith(filter || "all")) || "All News";
   const [visibleCount, setVisibleCount] = useState(8);
   const allStories = databaseNews.length > 0 ? databaseNews : newsPageStories;
-  const mostRead = useMemo(() => databaseNews.filter((story) => Number(story.views) > 0).sort((first, second) => Number(second.views) - Number(first.views)).slice(0, 5), [databaseNews]);
+  const mostRead = useMemo(() => databaseNews.filter(isInMostReadWindow).filter((story) => Number(story.views) > 0).sort((first, second) => Number(second.views) - Number(first.views)).slice(0, 5), [databaseNews]);
   const stories = useMemo(() => {
     const categoryStories = activeFilter === "All News" ? allStories : allStories.filter((story) => story.category === activeFilter);
-    const orderedStories = mostReadMode ? [...categoryStories].sort((first, second) => Number(second.views || 0) - Number(first.views || 0)) : categoryStories;
+    const orderedStories = mostReadMode ? categoryStories.filter(isInMostReadWindow).sort((first, second) => Number(second.views || 0) - Number(first.views || 0)) : categoryStories;
     if (!searchQuery) return orderedStories;
     const normalizedQuery = searchQuery.toLocaleLowerCase();
     return orderedStories.filter((story) => [story.title, story.summary, story.category, story.author].filter(Boolean).some((value) => value.toLocaleLowerCase().includes(normalizedQuery)));

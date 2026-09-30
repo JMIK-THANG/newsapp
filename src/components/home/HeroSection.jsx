@@ -5,6 +5,13 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { shortStoryPath } from "../../utils/storyPath";
 
+const MOST_READ_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
+
+function isInMostReadWindow(story) {
+  const publishedTime = new Date(story.publishedAt || story.published_at || story.date).getTime();
+  return Number.isFinite(publishedTime) && publishedTime >= Date.now() - MOST_READ_WINDOW_MS;
+}
+
 function SectionHeading({ title }) {
   return (
     <div className="border-b border-[#dcdde0] pb-3">
@@ -137,6 +144,7 @@ export default function HeroSection() {
     .slice(0, 30);
   const latestNews = databaseLatest.length ? databaseLatest : latestStories;
   const databaseMostRead = [...news]
+    .filter(isInMostReadWindow)
     .sort((first, second) => Number(second.views || 0) - Number(first.views || 0))
     .slice(0, 3);
   const currentMostRead = databaseMostRead.length >= 3
