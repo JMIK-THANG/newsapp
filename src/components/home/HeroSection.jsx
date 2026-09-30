@@ -8,7 +8,7 @@ import { shortStoryPath } from "../../utils/storyPath";
 function SectionHeading({ title }) {
   return (
     <div className="border-b border-[#dcdde0] pb-3">
-      <h2 className="m-0 inline-flex items-center gap-2 text-[20px] xl:text-[21px] font-bold tracking-[-.02em] text-[#111318] after:h-px after:w-9 after:bg-[#4f9488]">
+      <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[24px] leading-tight font-semibold tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">
         {title}
       </h2>
     </div>
@@ -34,7 +34,7 @@ function LatestNewsCard({ story, className = "" }) {
         <p className="mb-1 text-[12px] font-bold tracking-[.05em] uppercase text-[#4f9488]">
           {story.category}
         </p>
-        <h3 className="m-0 line-clamp-3 font-serif text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
+        <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
           <Link
             className="transition hover:opacity-65"
             to={storyPath}
@@ -162,7 +162,7 @@ export default function HeroSection() {
           <article className="group order-1 min-w-0 border-b border-[#dcdde0] py-4 xl:border-r xl:border-b-0 xl:px-6">
             <div className="mb-2.5 flex items-end justify-between">
               <div>
-                <h2 className="m-0 inline-flex items-center gap-2 text-[20px] xl:text-[21px] font-bold tracking-[-.02em] text-[#111318] after:h-px after:w-9 after:bg-[#4f9488]">
+                <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[24px] leading-tight font-semibold tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">
                   Top Story
                 </h2>
               </div>
@@ -186,7 +186,7 @@ export default function HeroSection() {
               <div className="flex min-w-0 flex-col pt-3">
                 <h1
                   id="lead-title"
-                  className="m-0 line-clamp-2 max-w-[900px] font-serif text-[clamp(23px,1.95vw,32px)] leading-[1.12] tracking-[-.02em] text-[#111318]"
+                  className="article-display-font m-0 line-clamp-2 max-w-[900px] text-[clamp(23px,1.95vw,32px)] leading-[1.12] font-semibold tracking-[-.02em] text-[#111318]"
                   title={currentLeadStory.title}
                 >
                   <Link className="transition hover:opacity-65" to={shortStoryPath(currentLeadStory)}>
@@ -230,7 +230,7 @@ export default function HeroSection() {
                 >
                   <div className="flex flex-col justify-center">
                     <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">{story.category}</p>
-                    <h3 className="m-0 line-clamp-3 font-serif text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
+                    <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
                       <Link
                         className="transition hover:opacity-65"
                         to={story.id ? shortStoryPath(story) : `/news/story/popular-${index + 1}`}

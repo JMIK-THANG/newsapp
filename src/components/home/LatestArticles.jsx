@@ -14,7 +14,7 @@ export default function LatestArticles() {
     <section className="border-t border-[#d5d1c9] bg-[#f1eee8] px-3 py-10 md:px-6 md:py-14" aria-labelledby="latest-articles-title">
       <div className="mx-auto max-w-[1380px]">
         <header className="mb-6 flex items-end justify-between gap-5 border-b border-[#182536] pb-4">
-          <h2 id="latest-articles-title" className="article-display-font m-0 text-[clamp(28px,3vw,40px)] leading-none font-semibold tracking-[-.035em] text-[#182536]">Articles</h2>
+          <h2 id="latest-articles-title" className="article-display-font m-0 inline-flex items-center gap-2 text-[24px] leading-tight font-semibold tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Articles</h2>
           <Link className="hidden items-center gap-2 text-[11px] font-bold tracking-[.05em] uppercase sm:flex" to="/articles">View all articles <Icon name="arrow" /></Link>
         </header>
 

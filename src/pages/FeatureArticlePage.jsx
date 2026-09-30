@@ -65,13 +65,13 @@ export default function FeatureArticlePage() {
 
   return <main className="bg-white px-4 py-5 sm:px-5 sm:py-8 lg:px-6 lg:py-10">
     <Seo title={article.title} description={article.summary || article.title} canonicalPath={canonicalPath} image={article.image} type="article" schema={articleSchema} />
-    <article className="mx-auto max-w-[1280px]">
+    <article className="mx-auto max-w-[1380px]">
       <nav className="mb-3 flex flex-wrap items-center gap-2 text-[12px] font-medium text-[#69717a] sm:mb-5 sm:text-[13px]" aria-label="Breadcrumb">
         <Link className="text-[#182536] hover:text-[#397d73]" to="/">Home</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to="/articles">Articles</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={categoryPath(article.category, "articles")}>{article.category}</Link>
       </nav>
-      <div className="grid justify-center gap-12 xl:grid-cols-[minmax(0,860px)_320px] xl:items-start xl:gap-14">
+      <div className="grid gap-12 xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start xl:gap-14">
         <div className="min-w-0">
           <header className="max-w-[860px]">
             <CategoryBadge category={article.category || "Feature"} />
