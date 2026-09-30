@@ -34,7 +34,7 @@ function LatestNewsCard({ story, className = "" }) {
         <p className="mb-1 text-[12px] font-bold tracking-[.05em] uppercase text-[#4f9488]">
           {story.category}
         </p>
-        <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
+        <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.005em] text-[#111318] xl:text-[22px]" title={story.title}>
           <Link
             className="transition hover:opacity-65"
             to={storyPath}
@@ -137,8 +137,7 @@ export default function HeroSection() {
     .slice(0, 30);
   const latestNews = databaseLatest.length ? databaseLatest : latestStories;
   const databaseMostRead = [...news]
-    .filter((story) => story.slug !== databaseTopStory?.slug)
-    .sort((first, second) => second.views - first.views)
+    .sort((first, second) => Number(second.views || 0) - Number(first.views || 0))
     .slice(0, 3);
   const currentMostRead = databaseMostRead.length >= 3
     ? databaseMostRead

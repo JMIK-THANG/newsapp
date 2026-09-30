@@ -34,7 +34,7 @@ export function normalizeNewsArticle(article) {
 }
 
 export async function getNewsArticle(slug) {
-  const response = await fetch(`${backendUrl}/news/${slug}`);
+  const response = await fetch(`${backendUrl}/news/${slug}`, { cache: "no-store" });
   const data = await response.json();
 
   if (!response.ok) {
@@ -111,7 +111,7 @@ export default function useNews({ admin = false, contentType = "news" } = {}) {
   const getNews = useCallback(async () => {
     try {
       setError("");
-      const response = await fetch(`${backendUrl}/news?limit=100&type=${contentType}`);
+      const response = await fetch(`${backendUrl}/news?limit=100&type=${contentType}`, { cache: "no-store" });
       const data = await response.json();
 
       if (!response.ok) {
@@ -233,6 +233,7 @@ export default function useNews({ admin = false, contentType = "news" } = {}) {
     const token = localStorage.getItem("adminToken");
     fetch(admin ? `${backendUrl}/news/admin/all` : `${backendUrl}/news?limit=100&type=${contentType}`, {
       headers: admin ? { Authorization: `Bearer ${token}` } : undefined,
+      cache: "no-store",
     })
       .then(async (response) => {
         const data = await response.json();
