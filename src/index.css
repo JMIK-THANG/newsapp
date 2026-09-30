@@ -42,16 +42,16 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 
 @media (min-width: 640px) {
   .story-detail-headline {
-    font-size: 38px;
-    line-height: 1.1;
+    font-size: 34px;
+    line-height: 1.12;
   }
 }
 
 @media (min-width: 1024px) {
   .story-detail-headline {
-    font-size: clamp(40px, 3.8vw, 52px);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
+    font-size: clamp(36px, 3vw, 46px);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
   }
 }
 

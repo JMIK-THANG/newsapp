@@ -19,7 +19,7 @@ export default function ArticlesPage() {
     <main className="bg-[#f1eee8] px-3 py-7 md:px-6 md:py-10">
       <div className="mx-auto max-w-[1380px]">
         <header className="grid gap-4 border-y border-[#182536] py-5 md:grid-cols-[1fr_1fr] md:items-end">
-          <h1 className="article-display-font m-0 text-[clamp(42px,6vw,64px)] leading-[.95] font-semibold tracking-[-.04em] text-[#182536]">{categoryName === "News Article" ? "News Articles" : categoryName || "Articles"}</h1>
+          <h1 className="article-display-font m-0 text-[clamp(36px,5.5vw,54px)] leading-[1] font-semibold tracking-[-.035em] text-[#182536]">{categoryName === "News Article" ? "News Articles" : categoryName || "Articles"}</h1>
           <p className="m-0 max-w-xl text-[14px] leading-6 text-[#4f5359] md:justify-self-end">
             {categoryName === "Cahram" ? "Cahram writing published for thoughtful, deeper reading." : categoryName === "News Article" ? "News features and analysis that go beyond the daily headline." : "Features, profiles, essays, and analysis written for slower, deeper reading."}
           </p>
@@ -43,7 +43,7 @@ export default function ArticlesPage() {
                 </Link>
                 <div className="border-b border-[#c8c6c0] py-4">
                   <p className="mb-2 text-[12px] font-bold tracking-[.1em] text-[#4f9488] uppercase">{article.category || "Article"}</p>
-                  <h3 className="article-display-font m-0 text-[clamp(21px,2vw,27px)] leading-[1.12] font-semibold tracking-[-.025em]">
+                  <h3 className="article-display-font m-0 text-[20px] leading-[1.18] font-semibold tracking-[-.01em] lg:text-[25px]">
                     <Link to={pathFor(article, index)}>{article.title}</Link>
                   </h3>
                   <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{article.date}</p>
