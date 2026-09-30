@@ -4,7 +4,6 @@ import Navbar from "./components/layout/Navbar";
 import HeroSection from "./components/home/HeroSection";
 import LatestStories from "./components/home/LatestStories";
 import StoryExplained from "./components/home/StoryExplained";
-import LatestNewsTicker from "./components/home/LatestNewsTicker";
 import LatestArticles from "./components/home/LatestArticles";
 import Footer from "./components/layout/Footer";
 import NewsPage from "./pages/NewsPage";
@@ -35,7 +34,7 @@ function ScrollToTop() {
 }
 
 function HomePage() {
-  return <><LatestNewsTicker /><HeroSection /><LatestArticles /><LatestStories /><StoryExplained /></>;
+  return <><HeroSection /><LatestArticles /><LatestStories /><StoryExplained /></>;
 }
 
 function NotFoundPage() {

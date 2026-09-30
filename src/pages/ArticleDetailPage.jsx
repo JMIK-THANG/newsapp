@@ -3,7 +3,6 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import ArticleImage from "../components/article/ArticleImage";
 import ArticleMeta from "../components/article/ArticleMeta";
 import ArticleRecommendations from "../components/article/ArticleRecommendations";
-import CategoryBadge from "../components/article/CategoryBadge";
 import Icon from "../components/ui/Icon";
 import ShareStoryButton from "../components/ui/ShareStoryButton";
 import Seo, { SITE_NAME, SITE_URL } from "../components/seo/Seo";
@@ -104,7 +103,6 @@ export default function ArticleDetailPage({ section }) {
       <div className="grid gap-12 xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start xl:gap-14">
         <div className="min-w-0">
           <header className="max-w-[860px]">
-            <CategoryBadge category={story.category} />
             <h1 className="article-display-font story-detail-headline">{story.title}</h1>
             <p className="mt-4 mb-0 max-w-[820px] text-[17px] leading-[1.6] text-[#39424a] sm:mt-5 sm:text-[18px] lg:text-[20px]">{summary}</p>
             <div className="mt-5"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
