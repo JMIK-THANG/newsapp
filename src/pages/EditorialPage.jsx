@@ -1,54 +1,47 @@
-import { editorialStories } from "../data/sectionPageData";
-import Icon from "../components/ui/Icon";
 import { Link } from "react-router-dom";
+import NewsListCard from "../components/news/NewsListCard";
+import Icon from "../components/ui/Icon";
+import { editorialStories } from "../data/sectionPageData";
 import useNews from "../hooks/useNews";
 import { shortStoryPath } from "../utils/storyPath";
 
 export default function EditorialPage() {
-  const { news } = useNews();
+  const { news, isLoading } = useNews();
   const publishedEditorials = news.filter((story) => story.category === "Editorial");
   const usingPublishedEditorials = publishedEditorials.length > 0;
   const [lead, ...stories] = usingPublishedEditorials ? publishedEditorials : editorialStories;
   const storyPath = (story, fallbackPath) => usingPublishedEditorials ? shortStoryPath(story) : fallbackPath;
 
-  return (
-    <main className="bg-white px-3 py-10 md:px-6 md:py-14">
-      <div className="mx-auto max-w-[1380px]">
-        <header className="border-b border-[#dcdde0] pb-7">
-          <p className="mb-2 inline-flex items-center gap-2 text-[11px] font-bold tracking-[.04em] text-[#4f9488] uppercase after:h-px after:w-9 after:bg-[#4f9488]">Our perspective</p>
-          <h1 className="m-0 font-serif text-[clamp(38px,5vw,64px)] leading-none tracking-[-.04em] text-[#111318]">Editorial</h1>
-          <p className="mt-4 mb-0 max-w-2xl text-sm leading-6 text-[#4f5359]">Independent analysis and informed opinion from the Chinlung Today editorial team, grounded in evidence, public interest, and respect for our readers.</p>
-        </header>
+  if (isLoading && !lead) return <main className="min-h-[60vh] bg-white px-6 py-16 text-center text-sm text-[#69717a]">Loading editorials…</main>;
 
-        <article className="grid gap-8 border-b border-[#dcdde0] py-8 lg:grid-cols-[1.25fr_.75fr] lg:items-center">
-          <Link className="group block aspect-[16/9] overflow-hidden bg-[#e8edf2]" to={storyPath(lead, "/editorial/featured")}><img className="h-full w-full object-contain transition duration-700 group-hover:scale-[1.015]" src={lead.image} alt={lead.imageAlt} /></Link>
-          <div className="flex flex-col justify-center">
-            <p className="mb-3 inline-flex items-center gap-2 text-[11px] font-bold tracking-[.04em] text-[#4f9488] uppercase after:h-px after:w-9 after:bg-[#4f9488]">The editorial board</p>
-            <h2 className="m-0 line-clamp-2 font-serif text-[clamp(28px,3vw,42px)] leading-[1.08] font-semibold tracking-[-.035em]" title={lead.title}><Link to={storyPath(lead, "/editorial/featured")}>{lead.title}</Link></h2>
-            <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{lead.date}</p>
-            <p className="home-story-summary my-4">{lead.summary}</p>
-            <Link className="flex w-fit items-center gap-2 text-sm font-semibold text-[#111318]" to={storyPath(lead, "/editorial/featured")}>Read editorial <Icon name="arrow" /></Link>
-          </div>
-        </article>
+  return <main className="bg-white px-5 py-5 sm:px-6 sm:py-8 lg:py-9">
+    <div className="mx-auto max-w-[1380px]">
+      <header className="border-b border-[#dcdde0] pb-4 md:pb-6">
+        <h1 className="article-display-font m-0 text-[clamp(36px,6.5vw,64px)] leading-[1] font-semibold tracking-[-.04em] text-[#182536]">Editorial</h1>
+        <p className="mt-2 mb-0 max-w-[760px] text-[15px] leading-6 text-[#4f5962] sm:mt-4 sm:text-[17px] sm:leading-7">Independent analysis and informed opinion from the Chinlung Today editorial team.</p>
+      </header>
 
-        <section className="grid gap-10 py-8 lg:grid-cols-[1fr_280px]" aria-label="More editorials">
-          <div className="divide-y divide-[#dcdde0] border-y border-[#dcdde0]">
-            {stories.map((story, index) => {
-              const path = storyPath(story, `/editorial/story-${index + 1}`);
-              return <article className="grid gap-5 py-6 sm:grid-cols-[minmax(0,1fr)_180px] sm:items-center" key={story.id || story.title}>
-                <div className="min-w-0">
-                  <p className="mb-2 text-[12px] font-medium text-[#4f9488] uppercase">Editorial</p>
-                  <h2 className="m-0 line-clamp-2 text-[clamp(22px,2.5vw,30px)] leading-[1.18] font-semibold tracking-[-.025em]" title={story.title}><Link className="hover:opacity-60" to={path}>{story.title}</Link></h2>
-                  <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{story.date}</p>
-                  <p className="home-story-summary mt-3 mb-0 line-clamp-2 max-w-3xl">{story.summary}</p>
-                </div>
-                {story.image && <Link className="order-first aspect-[16/10] overflow-hidden bg-[#e8edf2] sm:order-none" to={path} tabIndex="-1"><img className="h-full w-full object-contain transition duration-500 hover:scale-[1.015]" src={story.image} alt={story.imageAlt || story.title} /></Link>}
-              </article>;
-            })}
-          </div>
-          <aside className="h-fit border-t-2 border-[#111318] bg-[#f7f5ef] p-5"><h2 className="m-0 text-base font-bold">About our editorials</h2><p className="mb-0 text-[13px] leading-5 text-[#4f5359]">Editorials represent the collective view of the publication, not an individual writer. News reporting remains separate and independent.</p></aside>
+      {lead && <article className="grid gap-6 border-b border-[#dcdde0] py-6 sm:py-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,.65fr)] lg:items-center lg:gap-10">
+        <Link className="group block aspect-[16/9] overflow-hidden rounded-[6px] bg-[#e8edf2]" to={storyPath(lead, "/editorial/featured")}><img className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.015]" src={lead.image} alt={lead.imageAlt || lead.title} /></Link>
+        <div className="flex min-w-0 flex-col justify-center">
+          <p className="m-0 text-[11px] font-bold tracking-[.07em] text-[#397d73] uppercase">Featured editorial</p>
+          <h2 className="article-display-font mt-3 mb-0 line-clamp-3 text-[clamp(28px,3.2vw,42px)] leading-[1.08] font-semibold tracking-[-.025em] text-[#182536]" title={lead.title}><Link className="transition hover:text-[#397d73]" to={storyPath(lead, "/editorial/featured")}>{lead.title}</Link></h2>
+          <p className="mt-3 mb-0 text-[16px] leading-7 text-[#3f474f]">{lead.summary}</p>
+          <p className="mt-3 mb-0 text-[12px] text-[#69717a]">{lead.date}{lead.author ? <> · By <strong className="font-semibold text-[#303940]">{lead.author}</strong></> : null}</p>
+          <Link className="mt-5 inline-flex w-fit items-center gap-2 text-[13px] font-bold text-[#182536] transition hover:text-[#397d73]" to={storyPath(lead, "/editorial/featured")}>Read editorial <Icon name="arrow" /></Link>
+        </div>
+      </article>}
+
+      <div className="grid gap-10 pt-3 sm:pt-5 xl:grid-cols-[minmax(0,1fr)_320px] xl:gap-14">
+        <section className="divide-y divide-[#dcdde0] border-b border-[#dcdde0]" aria-label="More editorials">
+          {stories.map((story, index) => <NewsListCard story={story} path={storyPath(story, `/editorial/story-${index + 1}`)} key={story.id || story.title} />)}
+          {stories.length === 0 && <p className="py-12 text-center text-sm text-[#69717a]">More editorials will appear here.</p>}
         </section>
+        <aside className="h-fit border-t-2 border-[#182536] bg-[#f1eee8] p-5 sm:p-6 xl:sticky xl:top-[118px]">
+          <h2 className="article-display-font m-0 text-[22px] font-semibold text-[#182536]">About our editorials</h2>
+          <p className="mt-3 mb-0 text-[14px] leading-6 text-[#4f5962]">Editorials represent the collective view of the publication, not an individual writer. News reporting remains separate and independent.</p>
+        </aside>
       </div>
-    </main>
-  );
+    </div>
+  </main>;
 }
