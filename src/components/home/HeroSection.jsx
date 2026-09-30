@@ -285,7 +285,7 @@ export default function HeroSection() {
             </form>
             <Link
               className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-6 pb-2 text-[14px] font-semibold text-[#111318] transition hover:opacity-60"
-              to="/news"
+              to="/news?sort=most-read"
             >
               See all most read <Icon name="arrow" />
             </Link>

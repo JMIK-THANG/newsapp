@@ -15,31 +15,35 @@ export default function NewsPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("search")?.trim() || "";
+  const mostReadMode = searchParams.get("sort") === "most-read";
   const activeFilter = filters.find((item) => item.toLowerCase().startsWith(filter || "all")) || "All News";
   const [visibleCount, setVisibleCount] = useState(8);
   const allStories = databaseNews.length > 0 ? databaseNews : newsPageStories;
   const mostRead = useMemo(() => databaseNews.filter((story) => Number(story.views) > 0).sort((first, second) => Number(second.views) - Number(first.views)).slice(0, 5), [databaseNews]);
   const stories = useMemo(() => {
     const categoryStories = activeFilter === "All News" ? allStories : allStories.filter((story) => story.category === activeFilter);
-    if (!searchQuery) return categoryStories;
+    const orderedStories = mostReadMode ? [...categoryStories].sort((first, second) => Number(second.views || 0) - Number(first.views || 0)) : categoryStories;
+    if (!searchQuery) return orderedStories;
     const normalizedQuery = searchQuery.toLocaleLowerCase();
-    return categoryStories.filter((story) => [story.title, story.summary, story.category, story.author].filter(Boolean).some((value) => value.toLocaleLowerCase().includes(normalizedQuery)));
-  }, [activeFilter, allStories, searchQuery]);
+    return orderedStories.filter((story) => [story.title, story.summary, story.category, story.author].filter(Boolean).some((value) => value.toLocaleLowerCase().includes(normalizedQuery)));
+  }, [activeFilter, allStories, mostReadMode, searchQuery]);
 
   const storyPath = (story) => /^\d+$/.test(String(story.id ?? "")) ? shortStoryPath(story) : story.slug ? `/news/story/${story.slug}` : `/news/story/article-${newsPageStories.indexOf(story) + 1}`;
   const selectFilter = (nextFilter) => {
     setVisibleCount(8);
     const path = nextFilter === "All News" ? "/news" : `/news/category/${nextFilter.replace(" News", "").toLowerCase()}`;
-    navigate(searchQuery ? `${path}?search=${encodeURIComponent(searchQuery)}` : path);
+    const nextParams = new URLSearchParams();
+    if (searchQuery) nextParams.set("search", searchQuery);
+    if (mostReadMode) nextParams.set("sort", "most-read");
+    navigate(`${path}${nextParams.size ? `?${nextParams}` : ""}`);
   };
-  const filterClass = (item, mobile = false) => `relative cursor-pointer border-0 bg-transparent font-bold whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${mobile ? "min-w-0 px-0.5 py-3 text-center text-[clamp(11px,2.8vw,13px)] tracking-[-.015em]" : "shrink-0 py-3.5 text-left text-[16px]"} ${activeFilter === item ? "text-[#182536] after:absolute after:right-[12%] after:bottom-[-1px] after:left-[12%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#69717a] hover:text-[#182536]"}`;
+  const filterClass = (item, mobile = false) => `relative cursor-pointer border-0 bg-transparent font-bold whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${mobile ? "min-w-0 px-0.5 py-3 text-center text-[clamp(12px,3vw,14px)] tracking-[-.015em]" : "shrink-0 py-3.5 text-left text-[17px]"} ${activeFilter === item ? "text-[#182536] after:absolute after:right-[12%] after:bottom-[-1px] after:left-[12%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#59636d] hover:text-[#182536]"}`;
 
   return <main id="news-page" className="bg-white px-5 py-5 sm:px-6 sm:py-8 md:py-8 lg:py-9" aria-labelledby="news-page-title">
     <div className="mx-auto max-w-[1380px]">
       <header className={`border-b border-[#dcdde0] ${searchQuery || activeFilter === "All News" ? "pb-4 md:pb-6" : "pb-3 md:pb-5"}`}>
-        <p className="mb-2 text-[10px] font-bold tracking-[.14em] text-[#397d73] uppercase sm:mb-3">The newsroom</p>
         <div className="max-w-[820px]">
-          <h1 id="news-page-title" className="article-display-font m-0 text-[clamp(36px,6.5vw,64px)] leading-[1] font-semibold tracking-[-.04em] text-[#182536]">{searchQuery ? "Search results" : activeFilter}</h1>
+          <h1 id="news-page-title" className="article-display-font m-0 text-[clamp(36px,6.5vw,64px)] leading-[1] font-semibold tracking-[-.04em] text-[#182536]">{searchQuery ? "Search results" : mostReadMode && activeFilter === "All News" ? "Most Read" : activeFilter}</h1>
           {(searchQuery || activeFilter === "All News") && <p className="mt-2 mb-0 max-w-[760px] text-[15px] leading-6 text-[#4f5962] sm:mt-4 sm:text-[17px] sm:leading-7">{searchQuery ? `${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”` : "The latest reporting from Chin communities, Myanmar, and around the world."}</p>}
         </div>
       </header>
