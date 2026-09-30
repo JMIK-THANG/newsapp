@@ -1,6 +1,8 @@
 import usePodcasts from "../hooks/usePodcasts";
+import { youtubeThumbnail } from "../utils/youtube";
 
 function EpisodeVideo({ episode }) {
+  if (episode.youtube_id) return <div className="aspect-video w-full bg-[#111318]"><iframe className="h-full w-full" src={`https://www.youtube-nocookie.com/embed/${episode.youtube_id}`} title={episode.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen /></div>;
   return <video className="aspect-video w-full bg-[#111318] object-cover" controls preload="metadata" poster={episode.thumbnail_url || undefined}>
     <source src={episode.video_url} />
     Your browser does not support this video.
@@ -9,7 +11,7 @@ function EpisodeVideo({ episode }) {
 
 function EpisodeMeta({ episode }) {
   const date = episode.published_at ? new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(new Date(episode.published_at)) : "";
-  return <p className="mt-3 mb-0 text-[12px] font-medium tracking-[.02em] text-[#69717a]">{date}{date && episode.presenter ? " · " : ""}{episode.presenter}</p>;
+  return <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-[12px] font-medium tracking-[.02em] text-[#69717a]"><p className="m-0">{date}{date && episode.presenter ? " · " : ""}{episode.presenter}</p>{episode.youtube_url && <a className="font-bold text-[#9b1c1f] underline decoration-[#9b1c1f]/35 underline-offset-4 hover:decoration-[#9b1c1f]" href={episode.youtube_url} target="_blank" rel="noreferrer">Watch on YouTube</a>}</div>;
 }
 
 export default function PodcastsPage() {
@@ -42,7 +44,7 @@ export default function PodcastsPage() {
         {moreEpisodes.length > 0 && <section className="py-9" aria-labelledby="more-podcasts-title">
           <div className="mb-6 flex items-center gap-3"><h2 id="more-podcasts-title" className="article-display-font m-0 text-[24px] font-semibold text-[#182536]">More episodes</h2><span className="h-px flex-1 bg-[#4f9488]" /></div>
           <div className="grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
-            {moreEpisodes.map((episode) => <article className="min-w-0" key={episode.id}><div className="overflow-hidden rounded-[5px]"><EpisodeVideo episode={episode} /></div><h3 className="article-display-font mt-4 mb-0 text-[24px] leading-[1.15] font-semibold text-[#182536]">{episode.title}</h3><p className="mt-2 mb-0 line-clamp-3 text-[14px] leading-6 text-[#4f5962]">{episode.description}</p><EpisodeMeta episode={episode} /></article>)}
+            {moreEpisodes.map((episode) => <article className="min-w-0" key={episode.id}><div className="overflow-hidden rounded-[5px] bg-[#111318]" style={{ backgroundImage: `url(${episode.thumbnail_url || youtubeThumbnail(episode.youtube_id)})` }}><EpisodeVideo episode={episode} /></div><h3 className="article-display-font mt-4 mb-0 text-[24px] leading-[1.15] font-semibold text-[#182536]">{episode.title}</h3><p className="mt-2 mb-0 line-clamp-3 text-[14px] leading-6 text-[#4f5962]">{episode.description}</p><EpisodeMeta episode={episode} /></article>)}
           </div>
         </section>}
       </>}
