@@ -26,7 +26,7 @@ export default function LatestStories() {
             </Link>
             <div className="pt-6">
               <p className="mb-3 text-[12px] font-semibold text-[#4f9488] uppercase">{feature.topic || feature.category}</p>
-              <h3 className="article-display-font m-0 line-clamp-3 max-w-3xl text-[20px] leading-[1.22] font-semibold tracking-[-.01em] text-[#111318] xl:text-[22px]" title={feature.title}><Link className="transition hover:opacity-65" to={shortStoryPath(feature)}>{feature.title}</Link></h3>
+              <h3 className="article-display-font m-0 line-clamp-3 max-w-3xl text-[20px] leading-[1.22] font-semibold tracking-[-.005em] text-[#111318] xl:text-[22px]" title={feature.title}><Link className="transition hover:opacity-65" to={shortStoryPath(feature)}>{feature.title}</Link></h3>
               <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{feature.date}</p>
               <p className="home-story-summary mb-0 max-w-2xl">{feature.summary}</p>
               <p className="mt-5 text-[12px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{feature.author}</span></p>
@@ -38,7 +38,7 @@ export default function LatestStories() {
               <article className="group grid grid-cols-[1fr_104px] gap-4 py-5 sm:grid-cols-[1fr_140px]" key={story.title}>
                 <div className="flex flex-col">
                   <p className="mb-3 text-[12px] font-semibold text-[#4f9488] uppercase">{story.topic || story.category} <span className="font-normal text-[#5f6368]">• {story.readTime}</span></p>
-                  <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.01em] text-[#111318] xl:text-[22px]" title={story.title}><Link className="transition hover:opacity-65" to={shortStoryPath(story)}>{story.title}</Link></h3>
+                  <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.005em] text-[#111318] xl:text-[22px]" title={story.title}><Link className="transition hover:opacity-65" to={shortStoryPath(story)}>{story.title}</Link></h3>
                   <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{story.date}</p>
                   <p className="mt-auto mb-0 pt-4 text-[12px] font-medium text-[#5f6368]">{story.author}</p>
                 </div>

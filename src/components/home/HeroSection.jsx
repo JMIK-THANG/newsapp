@@ -41,7 +41,7 @@ function LatestNewsCard({ story, className = "" }) {
         <p className="mb-1 text-[12px] font-bold tracking-[.05em] uppercase text-[#4f9488]">
           {story.category}
         </p>
-        <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.01em] text-[#111318] xl:text-[22px]" title={story.title}>
+        <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.005em] text-[#111318] xl:text-[22px]" title={story.title}>
           <Link
             className="transition hover:opacity-65"
             to={storyPath}
@@ -193,7 +193,7 @@ export default function HeroSection() {
               <div className="flex min-w-0 flex-col pt-3">
                 <h1
                   id="lead-title"
-                  className="article-display-font m-0 line-clamp-2 max-w-[900px] text-[clamp(23px,1.95vw,32px)] leading-[1.12] font-semibold tracking-[-.01em] text-[#111318]"
+                  className="article-display-font m-0 line-clamp-2 max-w-[900px] text-[clamp(23px,1.95vw,32px)] leading-[1.12] font-semibold tracking-[-.02em] text-[#111318]"
                   title={currentLeadStory.title}
                 >
                   <Link className="transition hover:opacity-65" to={shortStoryPath(currentLeadStory)}>
@@ -237,7 +237,7 @@ export default function HeroSection() {
                 >
                   <div className="flex flex-col justify-center">
                     <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">{story.category}</p>
-                    <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.01em] text-[#111318] xl:text-[22px]" title={story.title}>
+                    <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
                       <Link
                         className="transition hover:opacity-65"
                         to={story.id ? shortStoryPath(story) : `/news/story/popular-${index + 1}`}

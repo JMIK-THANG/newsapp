@@ -35,7 +35,7 @@ export default function PodcastsPage() {
           <div className="overflow-hidden rounded-[6px]"><EpisodeVideo episode={featured} /></div>
           <div>
             <p className="m-0 text-[11px] font-bold tracking-[.1em] text-[#4f9488] uppercase">Latest episode</p>
-            <h2 id="featured-podcast-title" className="article-display-font mt-3 mb-0 text-[clamp(30px,4vw,48px)] leading-[1.06] font-semibold tracking-[-.01em] text-[#182536]">{featured.title}</h2>
+            <h2 id="featured-podcast-title" className="article-display-font mt-3 mb-0 text-[clamp(30px,4vw,48px)] leading-[1.06] font-semibold tracking-[-.025em] text-[#182536]">{featured.title}</h2>
             <p className="mt-4 mb-0 text-[16px] leading-7 text-[#3f474f]">{featured.description}</p>
             <EpisodeMeta episode={featured} />
           </div>
