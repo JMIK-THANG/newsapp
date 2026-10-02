@@ -43,7 +43,7 @@ export default function NewsPage() {
     if (mostReadMode) nextParams.set("sort", "most-read");
     navigate(`${path}${nextParams.size ? `?${nextParams}` : ""}`);
   };
-  const filterClass = (item, mobile = false) => `relative cursor-pointer border-0 bg-transparent font-serif font-medium whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${mobile ? "min-w-0 px-0.5 py-3 text-center text-[clamp(12px,3vw,14px)] tracking-[-.015em]" : "shrink-0 py-3.5 text-left text-[24px]"} ${activeFilter === item ? "text-[#182536] after:absolute after:right-[12%] after:bottom-[-1px] after:left-[12%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#59636d] hover:text-[#182536]"}`;
+  const filterClass = (item, mobile = false) => `relative cursor-pointer border-0 bg-transparent font-serif font-[550] whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${mobile ? "min-w-0 px-0.5 py-3 text-center text-[clamp(12px,3vw,14px)] tracking-[-.015em]" : "shrink-0 py-3.5 text-left text-[22px]"} ${activeFilter === item ? "text-[#182536] after:absolute after:right-[12%] after:bottom-[-1px] after:left-[12%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#59636d] hover:text-[#182536]"}`;
 
   return <main id="news-page" className="bg-white px-5 py-5 sm:px-6 sm:py-8 md:py-8 lg:py-9" aria-labelledby="news-page-title">
     <div className="mx-auto max-w-[1480px]">
