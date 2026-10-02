@@ -5,7 +5,11 @@ import { shortStoryPath } from "../../utils/storyPath";
 
 export default function LatestStories() {
   const { news } = useNews();
-  const editorPicks = news.filter((story) => story.isEditorPick).slice(0, 2);
+  const selectedEditorPicks = news.filter((story) => story.isEditorPick);
+  const editorPicks = [
+    ...selectedEditorPicks,
+    ...news.filter((story) => !selectedEditorPicks.some((pick) => String(pick.id) === String(story.id))),
+  ].slice(0, 2);
   if (editorPicks.length === 0) return null;
 
   return (
@@ -17,10 +21,10 @@ export default function LatestStories() {
           </div>
         </div>
 
-        <div className={`mt-7 grid gap-8 ${editorPicks.length > 1 ? "lg:grid-cols-2" : ""} xl:gap-10`}>
+        <div className="mt-7 grid gap-8 lg:grid-cols-2 xl:gap-10">
           {editorPicks.map((story) => (
             <article className="group min-w-0" key={story.id || story.slug || story.title}>
-              <Link to={shortStoryPath(story)} className="relative block aspect-[16/9] overflow-hidden rounded-[6px] bg-[#e8edf2]">
+              <Link to={shortStoryPath(story)} className="relative block aspect-[16/8] max-h-[340px] overflow-hidden rounded-[6px] bg-[#e8edf2]">
                 <img className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" src={story.image} alt={story.imageAlt} />
                 <span className="absolute top-4 left-4 bg-white px-2.5 py-1.5 text-[11px] font-bold tracking-[.1em] text-[#182536] uppercase">Editor’s pick</span>
               </Link>

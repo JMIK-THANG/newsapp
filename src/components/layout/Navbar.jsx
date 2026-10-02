@@ -19,15 +19,15 @@ const childPath = (label) => {
 };
 
 function DesktopNavigation({ openDropdown, setOpenDropdown, closePanels, onHomeClick }) {
-  return <nav className="hidden items-center gap-[clamp(25px,2.35vw,40px)] xl:col-start-2 xl:row-start-1 xl:flex" aria-label="Main navigation">
-    <NavLink className={({ isActive }) => `relative py-9 text-[16px] font-semibold tracking-[.005em] outline-none focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2 ${isActive ? "text-[#111318] after:absolute after:right-0 after:bottom-[22px] after:left-0 after:h-[2px] after:bg-[#9b1c1f]" : "text-[#3f454b] hover:text-[#9b1c1f]"}`} to="/" onClick={onHomeClick}>Home</NavLink>
+  return <nav className="hidden items-center gap-[clamp(25px,2.35vw,40px)] xl:flex" aria-label="Main navigation">
+    <NavLink className={({ isActive }) => `relative py-9 text-[17px] font-medium tracking-[.005em] outline-none focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2 ${isActive ? "text-[#111318] after:absolute after:right-0 after:bottom-[22px] after:left-0 after:h-[2px] after:bg-[#9b1c1f]" : "text-[#3f454b] hover:text-[#9b1c1f]"}`} to="/" onClick={onHomeClick}>Home</NavLink>
     {navigation.map((item) => item.children ? <div className="relative" key={item.label} onMouseEnter={() => setOpenDropdown(item.label)} onMouseLeave={() => setOpenDropdown(null)}>
-      <button className="flex items-center gap-1.5 border-0 bg-transparent py-9 text-[16px] font-semibold tracking-[.005em] text-[#3f454b] outline-none transition hover:text-[#9b1c1f] focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2" type="button" aria-haspopup="true" aria-expanded={openDropdown === item.label} onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}>{item.label}<span className={`transition [&_svg]:size-3.5 ${openDropdown === item.label ? "rotate-180" : ""}`}><Icon name="chevron" /></span></button>
+      <button className="flex items-center gap-1.5 border-0 bg-transparent py-9 text-[17px] font-medium tracking-[.005em] text-[#3f454b] outline-none transition hover:text-[#9b1c1f] focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2" type="button" aria-haspopup="true" aria-expanded={openDropdown === item.label} onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}>{item.label}<span className={`transition [&_svg]:size-3.5 ${openDropdown === item.label ? "rotate-180" : ""}`}><Icon name="chevron" /></span></button>
       <div className={`absolute top-full left-1/2 z-50 w-56 -translate-x-1/2 rounded-[16px] border border-[#dcdde0] bg-white p-2 shadow-[0_18px_45px_rgba(32,41,56,.14)] transition duration-200 ${openDropdown === item.label ? "visible translate-y-0 opacity-100" : "invisible translate-y-2 opacity-0"}`}>
         <Link className="block rounded-xl px-4 py-3 text-sm font-semibold text-[#182536] hover:bg-[#f0f1f3]" to={item.to} onClick={closePanels}>All {item.label}</Link>
         {item.children.map((child) => <Link className="block rounded-xl px-4 py-3 text-[15px] font-semibold text-[#4f5359] transition hover:bg-[#e8edf2] hover:text-[#111318]" key={child} to={childPath(child)} onClick={closePanels}>{child}</Link>)}
       </div>
-    </div> : <NavLink className={({ isActive }) => `relative py-9 text-[16px] font-semibold tracking-[.005em] whitespace-nowrap outline-none transition focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2 ${isActive ? "text-[#111318] after:absolute after:right-0 after:bottom-[22px] after:left-0 after:h-[2px] after:bg-[#9b1c1f]" : "text-[#3f454b] hover:text-[#9b1c1f]"}`} key={item.label} to={item.to} onClick={closePanels}>{item.label}</NavLink>)}
+    </div> : <NavLink className={({ isActive }) => `relative py-9 text-[17px] font-medium tracking-[.005em] whitespace-nowrap outline-none transition focus-visible:ring-2 focus-visible:ring-[#4f9488] focus-visible:ring-offset-2 ${isActive ? "text-[#111318] after:absolute after:right-0 after:bottom-[22px] after:left-0 after:h-[2px] after:bg-[#9b1c1f]" : "text-[#3f454b] hover:text-[#9b1c1f]"}`} key={item.label} to={item.to} onClick={closePanels}>{item.label}</NavLink>)}
   </nav>;
 }
 
@@ -80,15 +80,17 @@ export default function Navbar() {
   };
 
   return <header ref={headerRef} className="sticky top-0 z-40 border-b border-[#d9d9d6] bg-white px-3 md:px-6">
-    <div className="mx-auto grid min-h-[78px] max-w-[1480px] grid-cols-[1fr_auto] items-center gap-3 bg-white xl:min-h-[94px] xl:grid-cols-[1fr_auto_1fr]">
-      <Link className="col-start-1 row-start-1 flex shrink-0 items-center gap-2.5 justify-self-start" to="/" aria-label="Chinlung Today home" onClick={goHome}>
+    <div className="mx-auto flex min-h-[78px] max-w-[1480px] items-center gap-4 bg-white xl:min-h-[94px]">
+      <Link className="flex shrink-0 items-center gap-2.5" to="/" aria-label="Chinlung Today home" onClick={goHome}>
         <span className="block size-12 shrink-0 xl:size-14" aria-hidden="true">
           <img className="h-full w-full object-contain" src="/chinlung-today-logo-transparent.png" alt="" />
         </span>
         <strong className="whitespace-nowrap font-serif text-[22px] leading-none font-bold text-[#182536] sm:text-[24px] xl:text-[27px]">Chinlung Today</strong>
       </Link>
-      <DesktopNavigation openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} closePanels={closePanels} onHomeClick={goHome} />
-      <div className="col-start-2 row-start-1 flex items-center gap-1 justify-self-end xl:col-start-3"><button className="grid size-10 cursor-pointer place-items-center border-0 bg-transparent text-[#182536] transition hover:text-[#9b1c1f] xl:size-11 [&_svg]:xl:size-[22px]" type="button" aria-label="Open search" onClick={() => setSearchOpen(!searchOpen)}><Icon name={searchOpen ? "close" : "search"} /></button><button className="grid size-10 cursor-pointer place-items-center border-0 bg-[#182536] text-white xl:hidden" type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Icon name={menuOpen ? "close" : "menu"} /></button></div>
+      <div className="ml-auto flex items-center gap-3 xl:gap-5">
+        <DesktopNavigation openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} closePanels={closePanels} onHomeClick={goHome} />
+        <div className="flex items-center gap-1"><button className="grid size-10 cursor-pointer place-items-center border-0 bg-transparent text-[#182536] transition hover:text-[#9b1c1f] xl:size-11 [&_svg]:xl:size-[22px]" type="button" aria-label="Open search" onClick={() => setSearchOpen(!searchOpen)}><Icon name={searchOpen ? "close" : "search"} /></button><button className="grid size-10 cursor-pointer place-items-center border-0 bg-[#182536] text-white xl:hidden" type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Icon name={menuOpen ? "close" : "menu"} /></button></div>
+      </div>
     </div>
 
     {searchOpen && <form className="mx-auto mt-2.5 max-w-[720px] rounded-[18px] border border-[#dcdde0] bg-white p-[18px] shadow-[0_15px_40px_rgba(32,41,56,.1)]" onSubmit={submitSearch}><label className="mb-2 block text-[11px] font-bold tracking-[.12em] uppercase" htmlFor="site-search">Search Chinlung Today</label><div className="flex gap-2"><input className="w-full rounded-[10px] border border-[#dcdde0] px-[15px] py-3 outline-none focus:border-[#4f9488]" id="site-search" autoFocus placeholder="Stories, people, places…" value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} /><button className="rounded-[10px] border-0 bg-[#182536] px-[18px] font-bold text-white" type="submit">Search</button></div></form>}
