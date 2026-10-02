@@ -19,7 +19,7 @@ export default function PodcastsPage() {
   const [featured, ...moreEpisodes] = episodes;
 
   return <main className="bg-white px-4 py-7 sm:px-6 sm:py-10 lg:py-12">
-    <div className="mx-auto max-w-[1380px]">
+    <div className="mx-auto max-w-[1280px]">
       <header className="border-b border-[#dcdde0] pb-6 sm:pb-8">
         <p className="mb-2 text-[11px] font-bold tracking-[.1em] text-[#4f9488] uppercase">Watch and listen</p>
         <h1 className="article-display-font m-0 text-[clamp(38px,6vw,64px)] leading-none font-semibold tracking-[-.035em] text-[#182536]">Podcasts</h1>
@@ -44,7 +44,7 @@ export default function PodcastsPage() {
         {moreEpisodes.length > 0 && <section className="py-9" aria-labelledby="more-podcasts-title">
           <div className="mb-6 flex items-center gap-3"><h2 id="more-podcasts-title" className="article-display-font m-0 text-[24px] font-semibold text-[#182536]">More episodes</h2><span className="h-px flex-1 bg-[#4f9488]" /></div>
           <div className="grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
-            {moreEpisodes.map((episode) => <article className="min-w-0" key={episode.id}><div className="overflow-hidden rounded-[5px] bg-[#111318]" style={{ backgroundImage: `url(${episode.thumbnail_url || youtubeThumbnail(episode.youtube_id)})` }}><EpisodeVideo episode={episode} /></div><h3 className="article-display-font mt-4 mb-0 text-[24px] leading-[1.15] font-semibold text-[#182536]">{episode.title}</h3><p className="mt-2 mb-0 line-clamp-3 text-[14px] leading-6 text-[#4f5962]">{episode.description}</p><EpisodeMeta episode={episode} /></article>)}
+            {moreEpisodes.map((episode) => <article className="min-w-0" key={episode.id}><div className="overflow-hidden rounded-[5px] bg-[#111318]" style={{ backgroundImage: `url(${episode.thumbnail_url || youtubeThumbnail(episode.youtube_id)})` }}><EpisodeVideo episode={episode} /></div><h3 className="article-display-font mt-4 mb-0 text-[20px] leading-[1.16] font-medium text-[#182536] md:text-[22px]">{episode.title}</h3><p className="mt-2 mb-0 line-clamp-3 text-[14px] leading-[1.65] text-[#4f5962]">{episode.description}</p><EpisodeMeta episode={episode} /></article>)}
           </div>
         </section>}
       </>}

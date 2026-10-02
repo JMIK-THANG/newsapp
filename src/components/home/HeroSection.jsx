@@ -1,7 +1,6 @@
 import { latestStories, leadStory, mostReadStories } from "../../data/news";
 import useNews from "../../hooks/useNews";
 import Icon from "../ui/Icon";
-import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { shortStoryPath } from "../../utils/storyPath";
 
@@ -38,10 +37,10 @@ function LatestNewsCard({ story, className = "" }) {
         />
       </Link>
       <div className="pt-2.5">
-        <p className="mb-1 text-[12px] font-bold tracking-[.05em] uppercase text-[#4f9488]">
+        <p className="mb-1 text-[13px] font-bold tracking-[.05em] uppercase text-[#397d73]">
           {story.category}
         </p>
-        <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.005em] text-[#111318] xl:text-[22px]" title={story.title}>
+        <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.16] font-medium tracking-[-.005em] text-[#111318] xl:text-[21px]" title={story.title}>
           <Link
             className="transition hover:opacity-65"
             to={storyPath}
@@ -49,100 +48,34 @@ function LatestNewsCard({ story, className = "" }) {
             {story.title}
           </Link>
         </h3>
-        <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{story.date}</p>
+        <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{story.date}</p>
       </div>
     </article>
   );
 }
 
-function LatestNewsCarousel({ stories }) {
-  const carouselRef = useRef(null);
-  const [activeStory, setActiveStory] = useState(0);
-
-  const updateActiveStory = () => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
-
-    const cards = Array.from(carousel.children).filter((card) => card.offsetParent !== null);
-    const closestCard = cards.reduce((closest, card, index) => {
-      const distance = Math.abs(card.offsetLeft - carousel.scrollLeft);
-      return distance < closest.distance ? { distance, index } : closest;
-    }, { distance: Number.POSITIVE_INFINITY, index: 0 });
-
-    setActiveStory(closestCard.index);
-  };
-
-  const goToStory = (index) => {
-    const carousel = carouselRef.current;
-    const story = carousel?.children[index];
-    if (!carousel || !story) return;
-    carousel.scrollTo({ left: story.offsetLeft, behavior: "smooth" });
-    setActiveStory(index);
-  };
-
-  const desktopPageCount = Math.ceil(stories.length / 10);
-  const desktopPage = Math.min(Math.floor(activeStory / 10), desktopPageCount - 1);
-
+function LatestNewsGrid({ stories }) {
   if (stories.length === 0) {
     return <p className="my-6 text-sm text-[#5f6368]">No latest news has been published yet.</p>;
   }
 
   return (
-    <>
-      <div
-        ref={carouselRef}
-        className="mt-4 grid w-full max-w-full min-w-0 snap-x snap-proximity auto-cols-[86%] grid-rows-1 scroll-smooth grid-flow-col gap-x-4 gap-y-7 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:auto-cols-[47%] lg:auto-cols-[calc((100%_-_3rem)/4)] lg:grid-rows-2 xl:auto-cols-[calc((100%_-_4rem)/5)]"
-        onScroll={updateActiveStory}
-      >
-        {stories.map((story, index) => <LatestNewsCard className={index >= 5 ? "hidden lg:block" : ""} key={story.slug} story={story} />)}
-      </div>
-
-      <div className={`mt-3 min-h-9 items-center justify-center gap-2 ${stories.length > 1 ? "flex" : "hidden"}`} aria-label="Latest News carousel controls">
-        <div className="flex gap-2 lg:hidden">
-          {stories.slice(0, 5).map((story, index) => (
-            <button
-              aria-label={`Show story ${index + 1}: ${story.title}`}
-              aria-current={activeStory === index ? "true" : undefined}
-              className={`h-2.5 cursor-pointer rounded-full border-0 p-0 transition-all duration-300 ${activeStory === index ? "w-7 bg-[#4f9488]" : "w-2.5 bg-[#b8c4c0] hover:bg-[#789d96]"}`}
-              key={story.slug}
-              onClick={() => goToStory(index)}
-              type="button"
-            />
-          ))}
-        </div>
-
-        {desktopPageCount > 1 && <div className="ml-auto hidden items-center gap-3 lg:flex">
-          <span className="text-[10px] font-bold tracking-[.12em] text-[#5f6368]" aria-live="polite">{desktopPage + 1} / {desktopPageCount}</span>
-          <div className="flex items-center gap-1.5" aria-label="Latest News pages">
-            {Array.from({ length: desktopPageCount }, (_, index) => (
-              <button
-                aria-label={`Show latest news page ${index + 1}`}
-                aria-current={desktopPage === index ? "true" : undefined}
-                className={`h-2 cursor-pointer rounded-full border-0 p-0 transition-all ${desktopPage === index ? "w-6 bg-[#9b1c1f]" : "w-2 bg-[#b8c4c0] hover:bg-[#789d96]"}`}
-                key={index}
-                onClick={() => goToStory(index * 10)}
-                type="button"
-              />
-            ))}
-          </div>
-          <button className="grid size-9 cursor-pointer place-items-center border border-[#182536] bg-white text-[#182536] transition hover:bg-[#182536] hover:text-white disabled:cursor-default disabled:opacity-25" disabled={desktopPage === 0} onClick={() => goToStory((desktopPage - 1) * 10)} type="button" aria-label="Show previous latest news page"><span className="rotate-180"><Icon name="arrow" /></span></button>
-          <button className="grid size-9 cursor-pointer place-items-center border border-[#182536] bg-[#182536] text-white transition hover:bg-[#9b1c1f] disabled:cursor-default disabled:opacity-25" disabled={desktopPage === desktopPageCount - 1} onClick={() => goToStory((desktopPage + 1) * 10)} type="button" aria-label="Show next latest news page"><Icon name="arrow" /></button>
-        </div>}
-      </div>
-    </>
+    <div className="mt-4 grid gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+      {stories.map((story) => (
+        <LatestNewsCard key={story.slug || story.id} story={story} />
+      ))}
+    </div>
   );
 }
 
 export default function HeroSection() {
   const { news, isLoading } = useNews();
-  const [briefEmail, setBriefEmail] = useState("");
-  const [briefStatus, setBriefStatus] = useState("idle");
   const databaseTopStory = news.find((story) => story.isTopStory);
   const currentLeadStory = databaseTopStory || leadStory;
   const databaseLatest = news
     .filter((story) => story.slug !== databaseTopStory?.slug)
-    .slice(0, 30);
-  const latestNews = databaseLatest.length ? databaseLatest : latestStories;
+    .slice(0, 8);
+  const latestNews = (databaseLatest.length ? databaseLatest : latestStories).slice(0, 8);
   const databaseMostRead = [...news]
     .filter(isInMostReadWindow)
     .sort((first, second) => Number(second.views || 0) - Number(first.views || 0))
@@ -154,7 +87,7 @@ export default function HeroSection() {
   if (isLoading) {
     return (
       <main className="bg-[#f1eee8] px-3 pt-3 pb-6 md:px-6 md:pt-4 md:pb-8" aria-label="Loading homepage stories">
-        <div className="mx-auto max-w-[1380px] border-x border-b border-[#dcdde0] bg-white p-4 xl:p-6">
+        <div className="mx-auto max-w-[1280px] border-x border-b border-[#dcdde0] bg-white p-4 xl:p-6">
           <div className="h-6 w-32 animate-pulse rounded bg-[#dedbd4]" />
           <div className="mt-4 h-[clamp(300px,52vw,560px)] animate-pulse rounded-[6px] bg-[#e8e4dc]" />
         </div>
@@ -164,7 +97,7 @@ export default function HeroSection() {
 
   return (
     <main id="top" className="bg-[#f1eee8] px-3 pt-6 pb-6 md:px-6 md:pt-8 md:pb-8">
-      <section className="mx-auto max-w-[1380px]" aria-labelledby="lead-title">
+      <section className="mx-auto max-w-[1280px]" aria-labelledby="lead-title">
         <div className="grid min-w-0 overflow-hidden border-x border-b border-[#dcdde0] bg-white px-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] xl:px-0">
           <article className="group order-1 min-w-0 border-b border-[#dcdde0] py-4 xl:border-r xl:border-b-0 xl:px-6">
             <div className="mb-2.5 flex items-end justify-between">
@@ -173,7 +106,7 @@ export default function HeroSection() {
                   Top Story
                 </h2>
               </div>
-              <span className="text-[12px] font-semibold text-[#4f9488] uppercase">
+              <span className="text-[13px] font-semibold text-[#397d73] uppercase">
                 {currentLeadStory.category}
               </span>
             </div>
@@ -193,14 +126,14 @@ export default function HeroSection() {
               <div className="flex min-w-0 flex-col pt-3">
                 <h1
                   id="lead-title"
-                  className="article-display-font m-0 line-clamp-2 max-w-[900px] text-[clamp(23px,1.95vw,32px)] leading-[1.12] font-semibold tracking-[-.02em] text-[#111318]"
+                  className="article-display-font m-0 line-clamp-3 max-w-[980px] text-[clamp(30px,3vw,44px)] leading-[1.08] font-semibold tracking-[-.025em] text-[#111318]"
                   title={currentLeadStory.title}
                 >
                   <Link className="transition hover:opacity-65" to={shortStoryPath(currentLeadStory)}>
                     {currentLeadStory.title}
                   </Link>
                 </h1>
-                <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{currentLeadStory.date}</p>
+                <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{currentLeadStory.date}</p>
                 <p className="home-story-summary mb-0 line-clamp-2 max-w-[850px] pt-2" title={currentLeadStory.summary}>
                   {currentLeadStory.summary}
                 </p>
@@ -236,8 +169,8 @@ export default function HeroSection() {
                   key={story.title}
                 >
                   <div className="flex flex-col justify-center">
-                    <p className="mb-2 text-[12px] font-semibold text-[#4f9488] uppercase">{story.category}</p>
-                    <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.22] font-semibold tracking-[-.02em] text-[#111318] xl:text-[22px]" title={story.title}>
+                    <p className="mb-2 text-[13px] font-semibold text-[#397d73] uppercase">{story.category}</p>
+                    <h3 className="article-display-font m-0 line-clamp-3 text-[19px] leading-[1.16] font-semibold tracking-[-.015em] text-[#111318] xl:text-[21px]" title={story.title}>
                       <Link
                         className="transition hover:opacity-65"
                         to={story.id ? shortStoryPath(story) : `/news/story/popular-${index + 1}`}
@@ -245,7 +178,7 @@ export default function HeroSection() {
                         {story.title}
                       </Link>
                     </h3>
-                    <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a]">{story.date}</p>
+                    <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{story.date}</p>
                   </div>
                   <Link
                     className="aspect-[4/3] overflow-hidden rounded-[4px] bg-[#e8edf2]"
@@ -261,35 +194,6 @@ export default function HeroSection() {
                 </article>
               ))}
             </div>
-            <form
-              className="mt-4 border border-[#cfd3d5] bg-[#f1eee8] p-4"
-              onSubmit={(event) => {
-                event.preventDefault();
-                setBriefStatus("demo");
-              }}
-            >
-              <p className="mb-2 text-[10px] font-bold tracking-[.12em] text-[#9b1c1f] uppercase">Get daily email updates</p>
-              <p className="mt-0 mb-3 text-[12px] leading-5 text-[#4f5359]">A concise briefing of the day’s most important stories.</p>
-              <label className="sr-only" htmlFor="hero-brief-email">Email address</label>
-              <div className="flex">
-                <input
-                  className="min-w-0 flex-1 border border-[#bfc4c5] bg-white px-3 py-2.5 text-[12px] outline-none focus:border-[#4f9488]"
-                  id="hero-brief-email"
-                  onChange={(event) => {
-                    setBriefEmail(event.target.value);
-                    setBriefStatus("idle");
-                  }}
-                  placeholder="Email address"
-                  required
-                  type="email"
-                  value={briefEmail}
-                />
-                <button className="cursor-pointer border-0 bg-[#182536] px-3 text-[10px] font-bold tracking-[.06em] text-white uppercase transition hover:bg-[#9b1c1f]" type="submit">Subscribe</button>
-              </div>
-              <p className={`mb-0 text-[10px] leading-4 text-[#5f6368] ${briefStatus === "demo" ? "mt-2" : "sr-only"}`} aria-live="polite">
-                Email delivery is coming soon. No address has been saved yet.
-              </p>
-            </form>
             <Link
               className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-6 pb-2 text-[14px] font-semibold text-[#111318] transition hover:opacity-60"
               to="/news?sort=most-read"
@@ -313,7 +217,7 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            <LatestNewsCarousel stories={latestNews} />
+            <LatestNewsGrid stories={latestNews} />
           </section>
         </div>
       </section>

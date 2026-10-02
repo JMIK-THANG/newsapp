@@ -46,7 +46,7 @@ export default function NewsPage() {
   const filterClass = (item, mobile = false) => `relative cursor-pointer border-0 bg-transparent font-bold whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${mobile ? "min-w-0 px-0.5 py-3 text-center text-[clamp(12px,3vw,14px)] tracking-[-.015em]" : "shrink-0 py-3.5 text-left text-[17px]"} ${activeFilter === item ? "text-[#182536] after:absolute after:right-[12%] after:bottom-[-1px] after:left-[12%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#59636d] hover:text-[#182536]"}`;
 
   return <main id="news-page" className="bg-white px-5 py-5 sm:px-6 sm:py-8 md:py-8 lg:py-9" aria-labelledby="news-page-title">
-    <div className="mx-auto max-w-[1380px]">
+    <div className="mx-auto max-w-[1280px]">
       <header className={`border-b border-[#dcdde0] ${searchQuery || activeFilter === "All News" ? "pb-4 md:pb-6" : "pb-3 md:pb-5"}`}>
         <div className="max-w-[820px]">
           <h1 id="news-page-title" className="article-display-font m-0 text-[clamp(34px,5.5vw,54px)] leading-[1] font-semibold tracking-[-.035em] text-[#182536]">{searchQuery ? "Search results" : mostReadMode && activeFilter === "All News" ? "Most Read" : activeFilter}</h1>

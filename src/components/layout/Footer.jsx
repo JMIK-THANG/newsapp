@@ -47,7 +47,7 @@ export default function Footer() {
   };
 
   return <footer id="subscribe" className="border-t-4 border-[#9b1c1f] bg-[#182536] px-4 text-white sm:px-6">
-    <div className="mx-auto max-w-[1380px]">
+    <div className="mx-auto max-w-[1280px]">
       <div className="grid gap-9 border-b border-white/15 py-10 lg:grid-cols-[minmax(0,1fr)_minmax(380px,.72fr)] lg:items-center lg:gap-16 lg:py-14">
         <div>
           <Link className="flex w-fit items-center gap-3.5" to="/" aria-label="Chinlung Today home">

@@ -15,7 +15,7 @@ export default function EditorialPage() {
   if (isLoading && !lead) return <main className="min-h-[60vh] bg-white px-6 py-16 text-center text-sm text-[#69717a]">Loading editorials…</main>;
 
   return <main className="bg-white px-5 py-5 sm:px-6 sm:py-8 lg:py-9">
-    <div className="mx-auto max-w-[1380px]">
+    <div className="mx-auto max-w-[1280px]">
       <header className="border-b border-[#dcdde0] pb-4 md:pb-6">
         <h1 className="article-display-font m-0 text-[clamp(34px,5.5vw,54px)] leading-[1] font-semibold tracking-[-.035em] text-[#182536]">Editorial</h1>
         <p className="mt-2 mb-0 max-w-[760px] text-[15px] leading-6 text-[#4f5962] sm:mt-4 sm:text-[17px] sm:leading-7">Independent analysis and informed opinion from the Chinlung Today editorial team.</p>
