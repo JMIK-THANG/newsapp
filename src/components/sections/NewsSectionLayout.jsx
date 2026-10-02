@@ -9,7 +9,7 @@ export default function NewsSectionLayout({ eyebrow, title, description, stories
 
   return (
     <main className="bg-white px-3 py-10 md:px-6 md:py-14">
-      <div className="mx-auto max-w-[1280px]">
+      <div className="mx-auto max-w-[1480px]">
         <header className="border-b border-[#dcdde0] pb-7">
           <p className="mb-2 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.04em] text-[#397d73] uppercase after:h-px after:w-9 after:bg-[#397d73]">{eyebrow}</p>
           <h1 className="m-0 font-serif text-[clamp(38px,5vw,64px)] leading-none tracking-[-.04em] text-[#111318]">{title}</h1>
@@ -38,8 +38,8 @@ export default function NewsSectionLayout({ eyebrow, title, description, stories
               <Link className="block aspect-[4/3] overflow-hidden bg-[#e8edf2] sm:mb-4 sm:aspect-[16/9]" to={storyPath(story, index + 1)}><img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.015]" src={story.image} alt={story.imageAlt} /></Link>
               <div className="min-w-0">
                 <p className="mb-1.5 text-[12px] font-semibold text-[#397d73] uppercase sm:mb-2 sm:text-[13px]">{story.category}</p>
-                <h2 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.16] font-medium tracking-[-.01em] text-[#111318] md:text-[21px]" title={story.title}><Link className="transition hover:opacity-60" to={storyPath(story, index + 1)}>{story.title}</Link></h2>
-                <p className="mt-2 mb-0 text-[13px] font-normal text-[#69717a] sm:text-[14px]">{story.date}</p>
+                <h2 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.16] font-semibold tracking-[-.01em] text-[#111318] md:text-[21px]" title={story.title}><Link className="transition hover:opacity-60" to={storyPath(story, index + 1)}>{story.title}</Link></h2>
+                <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{story.date}</p>
                 <p className="home-story-summary mt-3 mb-0 hidden sm:block">{story.summary}</p>
               </div>
             </article>

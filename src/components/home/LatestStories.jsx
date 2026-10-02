@@ -10,7 +10,7 @@ export default function LatestStories() {
 
   return (
     <section id="latest" className="border-t border-[#dcdde0] bg-white px-3 pt-10 pb-12 md:px-6 md:pt-12 md:pb-16" aria-label="Editor’s Picks">
-      <div className="mx-auto max-w-[1280px]">
+      <div className="mx-auto max-w-[1480px]">
         <div className="border-b border-[#dcdde0] pb-6">
           <div>
             <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[24px] leading-tight font-semibold tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Editor’s Picks</h2>
@@ -26,7 +26,7 @@ export default function LatestStories() {
               </Link>
               <div className="pt-5">
                 <p className="mb-2 text-[13px] font-semibold text-[#397d73] uppercase">{story.topic || story.category}</p>
-                <h3 className="article-display-font m-0 line-clamp-3 text-[22px] leading-[1.16] font-medium tracking-[-.01em] text-[#111318] md:text-[24px]" title={story.title}><Link className="transition hover:opacity-65" to={shortStoryPath(story)}>{story.title}</Link></h3>
+                <h3 className="article-display-font m-0 line-clamp-3 text-[22px] leading-[1.16] font-semibold tracking-[-.01em] text-[#111318] md:text-[24px]" title={story.title}><Link className="transition hover:opacity-65" to={shortStoryPath(story)}>{story.title}</Link></h3>
                 <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{story.date}</p>
                 <p className="home-story-summary mt-3 mb-0 line-clamp-3">{story.summary}</p>
                 <p className="mt-4 text-[13px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{story.author}</span></p>

@@ -15,8 +15,8 @@ export default function ArticleRecommendations({ category, stories, seeAllPath, 
       {stories.map((story) => <article className="grid grid-cols-[96px_minmax(0,1fr)] gap-3 py-1 xl:mt-4" key={story.id || story.title}>
         <Link className="aspect-[4/3] overflow-hidden rounded-[5px] bg-[#e8edf2]" to={story.path} tabIndex="-1"><img className="h-full w-full object-cover transition duration-300 hover:scale-[1.03]" src={story.image} alt={story.imageAlt || story.title} /></Link>
         <div className="min-w-0 self-center">
-          <h3 className="article-display-font m-0 line-clamp-3 text-[18px] leading-[1.16] font-medium text-[#111318]" title={story.title}><Link className="hover:text-[#397d73]" to={story.path}>{story.title}</Link></h3>
-          <p className="mt-2 mb-0 text-[12px] text-[#69717a]">{story.date}</p>
+          <h3 className="article-display-font m-0 line-clamp-3 text-[18px] leading-[1.16] font-semibold text-[#111318]" title={story.title}><Link className="hover:text-[#397d73]" to={story.path}>{story.title}</Link></h3>
+          <p className="mt-2 mb-0 text-[14px] text-[#69717a]">{story.date}</p>
         </div>
       </article>)}
     </div>

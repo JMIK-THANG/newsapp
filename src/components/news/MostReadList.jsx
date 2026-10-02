@@ -11,8 +11,8 @@ export default function MostReadList({ stories, storyPath }) {
           <span className="article-display-font text-[22px] leading-none font-normal text-[#69717a]" aria-hidden="true">{index + 1}</span>
           <div className="min-w-0">
             <p className="mt-0 mb-1.5 text-[12px] font-bold tracking-[.06em] text-[#397d73] uppercase">{story.category}</p>
-            <h3 className="article-display-font m-0 line-clamp-3 text-[19px] leading-[1.16] font-medium text-[#182536] xl:text-[20px]" title={story.title}><Link className="hover:text-[#397d73]" to={storyPath(story)}>{story.title}</Link></h3>
-            <p className="mt-2 mb-0 text-[13px] text-[#69717a]">{story.date}</p>
+            <h3 className="article-display-font m-0 line-clamp-3 text-[19px] leading-[1.16] font-semibold text-[#182536] xl:text-[20px]" title={story.title}><Link className="hover:text-[#397d73]" to={storyPath(story)}>{story.title}</Link></h3>
+            <p className="mt-2 mb-0 text-[14px] text-[#69717a]">{story.date}</p>
           </div>
           <Link className="aspect-square overflow-hidden rounded-[5px] bg-[#e8edf2]" to={storyPath(story)} tabIndex="-1" aria-hidden="true"><img className="h-full w-full object-cover" src={story.image} alt="" loading="lazy" decoding="async" /></Link>
         </li>)}

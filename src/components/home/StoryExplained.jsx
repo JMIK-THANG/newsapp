@@ -11,12 +11,12 @@ export default function StoryExplained() {
   ];
 
   if (isLoading) {
-    return <section className="bg-white px-3 py-12 md:px-6 md:py-16"><div className="mx-auto h-72 max-w-[1280px] animate-pulse bg-[#e8e4dc]" /></section>;
+    return <section className="bg-white px-3 py-12 md:px-6 md:py-16"><div className="mx-auto h-72 max-w-[1480px] animate-pulse bg-[#e8e4dc]" /></section>;
   }
 
   return (
     <section className="border-t border-[#d5d1c9] bg-white px-3 py-12 md:px-6 md:py-16" aria-labelledby="explainer-title">
-      <div className="mx-auto max-w-[1280px] border-y border-[#182536] py-7 md:py-10">
+      <div className="mx-auto max-w-[1480px] border-y border-[#182536] py-7 md:py-10">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] lg:gap-12">
           <header className="flex flex-col">
             <div className="mb-6 flex items-center justify-between gap-4">

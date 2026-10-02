@@ -94,7 +94,7 @@ export default function ArticleDetailPage({ section }) {
 
   return <main className="bg-white px-4 py-5 sm:px-5 sm:py-8 lg:px-6 lg:py-10">
     <Seo title={story.title} description={summary} canonicalPath={canonicalPath} image={story.image} type="article" schema={articleSchema} />
-    <article className="mx-auto max-w-[1280px]">
+    <article className="mx-auto max-w-[1480px]">
       <nav className="mb-3 flex flex-wrap items-center gap-2 text-[12px] font-medium text-[#69717a] sm:mb-5 sm:text-[13px]" aria-label="Breadcrumb">
         <Link className="text-[#182536] hover:text-[#397d73]" to="/">Home</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={`/${section}`}>{sectionNames[section]}</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>

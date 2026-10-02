@@ -15,7 +15,7 @@ export default function EditorialPage() {
   if (isLoading && !lead) return <main className="min-h-[60vh] bg-white px-6 py-16 text-center text-sm text-[#69717a]">Loading editorials…</main>;
 
   return <main className="bg-white px-5 py-5 sm:px-6 sm:py-8 lg:py-9">
-    <div className="mx-auto max-w-[1280px]">
+    <div className="mx-auto max-w-[1480px]">
       <header className="border-b border-[#dcdde0] pb-4 md:pb-6">
         <h1 className="article-display-font m-0 text-[clamp(34px,5.5vw,54px)] leading-[1] font-semibold tracking-[-.035em] text-[#182536]">Editorial</h1>
         <p className="mt-2 mb-0 max-w-[760px] text-[15px] leading-6 text-[#4f5962] sm:mt-4 sm:text-[17px] sm:leading-7">Independent analysis and informed opinion from the Chinlung Today editorial team.</p>
@@ -27,7 +27,7 @@ export default function EditorialPage() {
           <p className="m-0 text-[11px] font-bold tracking-[.07em] text-[#397d73] uppercase">Featured editorial</p>
           <h2 className="article-display-font mt-3 mb-0 line-clamp-3 text-[clamp(26px,2.7vw,36px)] leading-[1.12] font-semibold tracking-[-.015em] text-[#182536]" title={lead.title}><Link className="transition hover:text-[#397d73]" to={storyPath(lead, "/editorial/featured")}>{lead.title}</Link></h2>
           <p className="mt-3 mb-0 text-[16px] leading-7 text-[#3f474f]">{lead.summary}</p>
-          <p className="mt-3 mb-0 text-[12px] text-[#69717a]">{lead.date}{lead.author ? <> · By <strong className="font-semibold text-[#303940]">{lead.author}</strong></> : null}</p>
+          <p className="mt-3 mb-0 text-[14px] text-[#69717a]">{lead.date}{lead.author ? <> · By <strong className="font-semibold text-[#303940]">{lead.author}</strong></> : null}</p>
           <Link className="mt-5 inline-flex w-fit items-center gap-2 text-[13px] font-bold text-[#182536] transition hover:text-[#397d73]" to={storyPath(lead, "/editorial/featured")}>Read editorial <Icon name="arrow" /></Link>
         </div>
       </article>}
