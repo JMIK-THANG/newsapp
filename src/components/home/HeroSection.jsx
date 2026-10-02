@@ -126,7 +126,7 @@ export default function HeroSection() {
               <div className="flex min-w-0 flex-col pt-3">
                 <h1
                   id="lead-title"
-                  className="article-display-font m-0 line-clamp-3 max-w-[980px] text-[clamp(30px,3vw,44px)] leading-[1.08] font-semibold tracking-[-.025em] text-[#111318]"
+                  className="article-display-font m-0 line-clamp-3 max-w-[980px] text-[clamp(30px,3vw,44px)] leading-[1.08] font-medium tracking-[-.025em] text-[#111318]"
                   title={currentLeadStory.title}
                 >
                   <Link className="transition hover:opacity-65" to={shortStoryPath(currentLeadStory)}>
