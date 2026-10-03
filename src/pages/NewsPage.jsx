@@ -16,13 +16,13 @@ function isInMostReadWindow(story) {
 }
 
 export default function NewsPage() {
-  const { news: databaseNews, isLoading } = useNews();
   const { filter } = useParams();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("search")?.trim() || "";
   const mostReadMode = searchParams.get("sort") === "most-read";
   const activeFilter = filters.find((item) => item.toLowerCase().startsWith(filter || "all")) || "All News";
+  const { news: databaseNews, isLoading } = useNews({ category: activeFilter === "All News" ? "" : activeFilter });
   const [visibleCount, setVisibleCount] = useState(8);
   const allStories = databaseNews.length > 0 ? databaseNews : newsPageStories;
   const mostRead = useMemo(() => databaseNews.filter(isInMostReadWindow).filter((story) => Number(story.views) > 0).sort((first, second) => Number(second.views) - Number(first.views)).slice(0, 5), [databaseNews]);

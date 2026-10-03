@@ -103,7 +103,7 @@ export async function setAdminEditorPick(id, isEditorPick) {
   return { success: true, article: normalizeNewsArticle(data) };
 }
 
-export default function useNews({ admin = false, contentType = "news" } = {}) {
+export default function useNews({ admin = false, contentType = "news", category = "" } = {}) {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -111,7 +111,9 @@ export default function useNews({ admin = false, contentType = "news" } = {}) {
   const getNews = useCallback(async () => {
     try {
       setError("");
-      const response = await fetch(`${backendUrl}/news?limit=100&type=${contentType}`, { cache: "no-store" });
+      const params = new URLSearchParams({ limit: "100", type: contentType });
+      if (category) params.set("category", category);
+      const response = await fetch(`${backendUrl}/news?${params}`, { cache: "no-store" });
       const data = await response.json();
 
       if (!response.ok) {
@@ -125,7 +127,7 @@ export default function useNews({ admin = false, contentType = "news" } = {}) {
     } finally {
       setIsLoading(false);
     }
-  }, [contentType]);
+  }, [category, contentType]);
 
   const addNews = async (newArticle) => {
     try {
@@ -231,7 +233,9 @@ export default function useNews({ admin = false, contentType = "news" } = {}) {
     let cancelled = false;
 
     const token = localStorage.getItem("adminToken");
-    fetch(admin ? `${backendUrl}/news/admin/all` : `${backendUrl}/news?limit=100&type=${contentType}`, {
+    const params = new URLSearchParams({ limit: "100", type: contentType });
+    if (category) params.set("category", category);
+    fetch(admin ? `${backendUrl}/news/admin/all` : `${backendUrl}/news?${params}`, {
       headers: admin ? { Authorization: `Bearer ${token}` } : undefined,
       cache: "no-store",
     })
@@ -255,7 +259,7 @@ export default function useNews({ admin = false, contentType = "news" } = {}) {
     return () => {
       cancelled = true;
     };
-  }, [admin, contentType]);
+  }, [admin, category, contentType]);
 
   return { news, isLoading, error, addNews, updateNews, deleteNews, uploadNewsImage, getNews, getAdminNews };
 }

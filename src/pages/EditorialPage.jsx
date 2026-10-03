@@ -6,8 +6,7 @@ import useNews from "../hooks/useNews";
 import { shortStoryPath } from "../utils/storyPath";
 
 export default function EditorialPage() {
-  const { news, isLoading } = useNews();
-  const publishedEditorials = news.filter((story) => story.category === "Editorial");
+  const { news: publishedEditorials, isLoading } = useNews({ category: "Editorial" });
   const usingPublishedEditorials = publishedEditorials.length > 0;
   const [lead, ...stories] = usingPublishedEditorials ? publishedEditorials : editorialStories;
   const storyPath = (story, fallbackPath) => usingPublishedEditorials ? shortStoryPath(story) : fallbackPath;
