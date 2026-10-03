@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
 export default function NewsListCard({ story, path }) {
-  return <article className="group grid grid-cols-[minmax(108px,36%)_minmax(0,1fr)] items-start gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-6 sm:py-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:py-7">
+  return <article className="group grid grid-cols-[30%_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-6 sm:py-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:py-7">
     <Link className="aspect-[4/3] overflow-hidden rounded-[6px] bg-[#e8edf2] sm:aspect-[16/10]" to={path} tabIndex="-1" aria-hidden="true">
       <img className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.025]" src={story.image} alt="" loading="lazy" decoding="async" />
     </Link>
     <div className="min-w-0 self-center">
       <p className="m-0 text-[12px] font-bold tracking-[.06em] text-[#397d73] uppercase">{story.category}</p>
-      <h2 className="article-display-font mt-1.5 mb-0 line-clamp-3 text-[19px] leading-[1.18] font-medium tracking-[-.01em] text-[#182536] sm:mt-2.5 sm:text-[22px] lg:text-[25px]" title={story.title}>
+      <h2 className="article-display-font mt-1.5 mb-0 line-clamp-3 text-[20px] leading-[1.16] font-semibold tracking-[-.01em] text-[#182536] sm:mt-2.5 sm:text-[22px] lg:text-[25px]" title={story.title}>
         <Link className="transition hover:text-[#397d73] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#397d73]" to={path}>{story.title}</Link>
       </h2>
       <p className="mt-3 mb-0 hidden line-clamp-3 text-[16px] leading-[1.65] text-[#3f474f] sm:block">{story.summary}</p>
