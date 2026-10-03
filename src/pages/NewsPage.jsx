@@ -43,7 +43,7 @@ export default function NewsPage() {
     if (mostReadMode) nextParams.set("sort", "most-read");
     navigate(`${path}${nextParams.size ? `?${nextParams}` : ""}`);
   };
-  const filterClass = (item, mobile = false) => `relative cursor-pointer border-0 bg-transparent font-serif font-[550] whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${mobile ? "min-w-0 px-0.5 py-3 text-center text-[clamp(12px,3vw,14px)] tracking-[-.015em]" : "shrink-0 py-3.5 text-left text-[20px]"} ${activeFilter === item ? "text-[#182536] after:absolute after:right-[12%] after:bottom-[-1px] after:left-[12%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#59636d] hover:text-[#182536]"}`;
+  const filterClass = (item, mobile = false) => `relative cursor-pointer border-0 bg-transparent font-serif font-[550] whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${mobile ? "min-w-0 px-1 py-3 text-center text-[14px] tracking-[-.015em]" : "shrink-0 py-3.5 text-left text-[20px]"} ${activeFilter === item ? "text-[#182536] after:absolute after:right-[18%] after:bottom-[-1px] after:left-[18%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#59636d] hover:text-[#182536]"}`;
 
   return <main id="news-page" className="bg-white px-5 py-5 sm:px-6 sm:py-8 md:py-8 lg:py-9" aria-labelledby="news-page-title">
     <div className="mx-auto max-w-[1480px]">
@@ -56,11 +56,11 @@ export default function NewsPage() {
 
       <nav id="news-filters" className="-mx-5 border-b border-[#dcdde0] sm:mx-0" aria-label="News categories">
         <div className="sm:hidden">
-          <div className="grid grid-cols-4 border-b border-[#dcdde0] px-2">
-            {filters.slice(0, 4).map((item) => <button className={filterClass(item, true)} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
+          <div className="grid grid-cols-3 border-b border-[#dcdde0] px-2">
+            {filters.slice(0, 3).map((item) => <button className={filterClass(item, true)} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
           </div>
-          <div className="grid grid-cols-4 px-2">
-            {filters.slice(4).map((item, index) => <button className={`${filterClass(item, true)} ${index === 0 ? "col-start-2" : "col-start-3"}`} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
+          <div className="grid grid-cols-3 px-2">
+            {filters.slice(3).map((item) => <button className={filterClass(item, true)} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
           </div>
         </div>
         <div className="hidden min-w-max gap-7 sm:flex">
