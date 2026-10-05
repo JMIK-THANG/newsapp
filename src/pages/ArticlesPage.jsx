@@ -1,13 +1,13 @@
 import { Link, useParams } from "react-router-dom";
 import useNews from "../hooks/useNews";
-import { articleStories } from "../data/sectionPageData";
+import StoryLoading from "../components/news/StoryLoading";
 import { shortStoryPath } from "../utils/storyPath";
 
 export default function ArticlesPage() {
   const { categorySlug } = useParams();
-  const { news: publishedArticles } = useNews({ contentType: "article" });
+  const { news: publishedArticles, isLoading, error } = useNews({ contentType: "article" });
   const categoryName = categorySlug === "news-articles" ? "News Article" : categorySlug === "cahram" ? "Cahram" : "";
-  const availableArticles = publishedArticles.length ? publishedArticles : categoryName ? [] : articleStories;
+  const availableArticles = publishedArticles;
   const allArticles = categoryName
     ? availableArticles.filter((article) => article.category === categoryName)
     : availableArticles;
@@ -28,11 +28,13 @@ export default function ArticlesPage() {
         <section className="pt-7" aria-labelledby="all-articles-title">
           <div className="mb-5 flex items-end justify-between border-b border-[#c8c6c0] pb-3">
             <h2 id="all-articles-title" className="article-display-font m-0 text-2xl font-semibold">{categoryName === "News Article" ? "All News Articles" : categoryName ? `All ${categoryName}` : "All articles"}</h2>
-            <span className="text-xs text-[#5f6368]">{allArticles.length} published</span>
+            {!isLoading && !error && <span className="text-xs text-[#5f6368]">{allArticles.length} published</span>}
           </div>
 
+          {isLoading && <StoryLoading />}
+          {!isLoading && error && <p className="py-10 text-center text-sm text-[#8a3030]" role="alert">{error}</p>}
           <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {allArticles.map((article, index) => (
+            {!isLoading && !error && allArticles.map((article, index) => (
               <article className="mobile-story-preview group grid min-w-0 grid-cols-[116px_minmax(0,1fr)] gap-4 border-b border-[#c8c6c0] py-4 sm:block sm:border-0 sm:py-0" key={article.id || article.title}>
                 <Link className="block aspect-[4/3] overflow-hidden rounded-sm bg-[#ddd9d1] sm:aspect-[16/10]" to={pathFor(article, index)}>
                   <img
@@ -53,7 +55,7 @@ export default function ArticlesPage() {
               </article>
             ))}
           </div>
-          {allArticles.length === 0 && <div className="border-b border-[#c8c6c0] py-16 text-center"><h3 className="m-0 font-serif text-2xl">No {categoryName.toLowerCase()} published yet</h3><p className="mt-3 mb-0 text-sm text-[#5f6368]">New articles selected for this section will appear here.</p></div>}
+          {!isLoading && !error && allArticles.length === 0 && <div className="border-b border-[#c8c6c0] py-16 text-center"><h3 className="m-0 font-serif text-2xl">No {categoryName.toLowerCase() || "articles"} published yet</h3><p className="mt-3 mb-0 text-sm text-[#5f6368]">New articles selected for this section will appear here.</p></div>}
         </section>
       </div>
     </main>
