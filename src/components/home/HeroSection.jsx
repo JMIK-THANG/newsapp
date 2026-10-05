@@ -52,9 +52,9 @@ function LatestNewsGrid({ stories }) {
   }
 
   return (
-    <div className="mt-4 grid gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="mt-4 grid gap-x-5 gap-y-0 sm:gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
       {stories.map((story) => (
-        <LatestNewsCard key={story.slug || story.id} story={story} />
+        <LatestNewsCard key={story.slug || story.id} story={story} className="border-b border-[#dcdde0] pb-4 last:border-b-0 sm:last:border-b" />
       ))}
     </div>
   );
