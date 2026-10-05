@@ -71,6 +71,13 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   gap: 12px;
 }
 .most-read-preview .mobile-story-preview > a { aspect-ratio: 4 / 3; }
+.most-read-preview .mobile-story-preview h2.article-display-font {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+}
 .most-read-preview .mobile-story-preview > div > p:has(+ div) { display: none; }
 .article-display-font {
   font-family: Georgia, "Times New Roman", serif;
