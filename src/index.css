@@ -79,6 +79,17 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   letter-spacing: 0.005em;
 }
 .most-read-preview .mobile-story-preview > div > p:has(+ div) { display: none; }
+.category-more-preview .mobile-story-preview {
+  grid-template-columns: minmax(0, 1fr) 32%;
+}
+.category-more-preview .mobile-story-preview > a {
+  grid-column: 2;
+  grid-row: 1;
+}
+.category-more-preview .mobile-story-preview > div {
+  grid-column: 1;
+  grid-row: 1;
+}
 .article-display-font {
   font-family: Georgia, "Times New Roman", serif;
 }
