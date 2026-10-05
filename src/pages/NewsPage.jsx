@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import MostReadList from "../components/news/MostReadList";
+import CategoryStoriesList from "../components/news/CategoryStoriesList";
 import NewsListCard from "../components/news/NewsListCard";
 import Icon from "../components/ui/Icon";
 import StoryLoading from "../components/news/StoryLoading";
@@ -76,7 +77,7 @@ export default function NewsPage() {
           </div>
           {visibleCount < stories.length && <div className="mt-8 flex justify-center"><button className="inline-flex min-h-11 cursor-pointer items-center gap-3 rounded-full border border-[#182536] bg-transparent px-6 py-3 text-xs font-semibold text-[#182536] transition hover:bg-[#182536] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#397d73]" type="button" onClick={() => setVisibleCount((count) => count + 6)}>Load more stories <Icon name="arrow" /></button></div>}
         </section>
-        <MostReadList stories={mostRead} storyPath={storyPath} />
+        {activeFilter === "All News" ? <MostReadList stories={mostRead} storyPath={storyPath} /> : !isLoading && <CategoryStoriesList category={activeFilter} stories={databaseNews.filter((story) => story.category === activeFilter).slice(0, 5)} storyPath={storyPath} />}
       </div>
     </div>
   </main>;
