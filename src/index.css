@@ -93,6 +93,20 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 .article-display-font {
   font-family: Georgia, "Times New Roman", serif;
 }
+.podcast-page h3.article-display-font {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+}
+.podcast-page section[aria-labelledby="more-podcasts-title"] article {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dcdde0;
+}
+@media (max-width: 639px) {
+  .podcast-page h3.article-display-font { font-size: 16px; }
+}
 
 /* Match the bottom related-story list to compact mobile news previews. */
 .story-recommendations .mobile-story-preview {
