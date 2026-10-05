@@ -33,11 +33,12 @@ export default function NewsSectionLayout({ eyebrow, title, description, stories
 
         <section className="grid gap-x-7 gap-y-0 sm:grid-cols-2 lg:grid-cols-3" aria-label={`Latest ${title}`}>
           {rest.map((story, index) => (
-            <article className="group grid grid-cols-[28%_minmax(0,1fr)] items-start gap-3.5 border-b border-[#dcdde0] py-5 sm:block sm:py-7" key={story.title}>
+            <article className="mobile-story-preview group grid grid-cols-[28%_minmax(0,1fr)] items-start gap-3.5 border-b border-[#dcdde0] py-5 sm:block sm:py-7" key={story.title}>
               <Link className="block aspect-[4/3] overflow-hidden bg-[#e8edf2] sm:mb-4 sm:aspect-[16/9]" to={storyPath(story, index + 1)}><img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.015]" src={story.image} alt={story.imageAlt} /></Link>
               <div className="min-w-0">
                 <h2 className="article-display-font m-0 line-clamp-3 text-[19px] leading-[1.17] font-[550] tracking-[-.01em] text-[#111318] sm:text-[20px] sm:font-semibold md:text-[21px]" title={story.title}><Link className="transition hover:opacity-60" to={storyPath(story, index + 1)}>{story.title}</Link></h2>
                 <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{story.date}</p>
+                {story.author && <p className="mt-1 mb-0 text-[12px] text-[#69717a] sm:hidden">By {story.author}</p>}
                 <p className="home-story-summary mt-3 mb-0 hidden tracking-[.01em] sm:block">{story.summary}</p>
               </div>
             </article>

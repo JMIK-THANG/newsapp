@@ -33,7 +33,7 @@ export default function ArticlesPage() {
 
           <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {allArticles.map((article, index) => (
-              <article className="group grid min-w-0 grid-cols-[116px_minmax(0,1fr)] gap-4 border-b border-[#c8c6c0] py-4 sm:block sm:border-0 sm:py-0" key={article.id || article.title}>
+              <article className="mobile-story-preview group grid min-w-0 grid-cols-[116px_minmax(0,1fr)] gap-4 border-b border-[#c8c6c0] py-4 sm:block sm:border-0 sm:py-0" key={article.id || article.title}>
                 <Link className="block aspect-[4/3] overflow-hidden rounded-sm bg-[#ddd9d1] sm:aspect-[16/10]" to={pathFor(article, index)}>
                   <img
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
@@ -48,7 +48,7 @@ export default function ArticlesPage() {
                   </h3>
                   <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{article.date}</p>
                   <p className="home-story-summary mt-3 hidden line-clamp-3 sm:block">{article.summary}</p>
-                  <p className="mt-3 hidden text-[12px] font-semibold sm:block">By {article.author || "Chinlung Today"}</p>
+                  <p className="mt-2 text-[12px] text-[#69717a] sm:mt-3 sm:font-semibold">By {article.author || "Chinlung Today"}</p>
                 </div>
               </article>
             ))}

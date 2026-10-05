@@ -36,7 +36,7 @@ export default function LatestStories() {
               </div>
             </article>
           {sidebarStories.length > 0 && <div className="divide-y divide-[#dcdde0] border-y border-[#dcdde0]">
-            {sidebarStories.map((story) => <article className="group grid grid-cols-[1fr_104px] gap-4 py-5 sm:grid-cols-[1fr_140px]" key={story.id || story.slug || story.title}>
+            {sidebarStories.map((story) => <article className="mobile-story-preview mobile-image-first group grid grid-cols-[1fr_104px] gap-4 py-5 sm:grid-cols-[1fr_140px]" key={story.id || story.slug || story.title}>
               <div className="flex min-w-0 flex-col">
                 <p className="mb-3 text-[11px] font-semibold text-[#4f9488] uppercase">{story.topic || story.category} <span className="font-normal text-[#5f6368]">• {story.readTime}</span></p>
                 <h3 className="article-display-font m-0 line-clamp-2 text-[clamp(17px,1.5vw,22px)] leading-[1.3] font-semibold tracking-[-.015em] text-[#111318]" title={story.title}><Link className="transition hover:opacity-65" to={shortStoryPath(story)}>{story.title}</Link></h3>

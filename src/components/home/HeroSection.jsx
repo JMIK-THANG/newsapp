@@ -25,7 +25,7 @@ function LatestNewsCard({ story, className = "" }) {
   const storyPath = shortStoryPath(story);
 
   return (
-    <article className={`group min-w-0 snap-start border-t-[3px] border-[#182536] pt-2.5 ${className}`}>
+    <article className={`mobile-story-preview group min-w-0 snap-start border-t-[3px] border-[#182536] pt-2.5 ${className}`}>
       <Link
         className="block aspect-[16/9] overflow-hidden bg-[#e8edf2]"
         to={storyPath}
@@ -49,6 +49,7 @@ function LatestNewsCard({ story, className = "" }) {
           </Link>
         </h3>
         <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{story.date}</p>
+        {story.author && <p className="mt-1 mb-0 text-xs text-[#69717a] sm:hidden">By {story.author}</p>}
       </div>
     </article>
   );

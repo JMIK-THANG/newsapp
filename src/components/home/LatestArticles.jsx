@@ -20,7 +20,7 @@ export default function LatestArticles() {
 
         <div className="grid gap-x-5 gap-y-8 sm:grid-cols-2 xl:grid-cols-4">
           {latestArticles.map((article) => (
-            <article className="group min-w-0" key={article.id || article.slug}>
+            <article className="mobile-story-preview group min-w-0" key={article.id || article.slug}>
               <Link className="block aspect-[16/10] overflow-hidden bg-[#ddd9d1]" to={shortStoryPath(article)}>
                 <img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" src={article.image} alt={article.imageAlt} />
               </Link>
@@ -30,6 +30,7 @@ export default function LatestArticles() {
                   <Link to={shortStoryPath(article)}>{article.title}</Link>
                 </h3>
                 <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{article.date}</p>
+                {article.author && <p className="mt-1 mb-0 text-xs text-[#69717a] sm:hidden">By {article.author}</p>}
                 <p className="home-story-summary mt-3 line-clamp-2">{article.summary}</p>
               </div>
             </article>
