@@ -1,4 +1,5 @@
 import { latestStories, leadStory, mostReadStories } from "../../data/news";
+import MostReadList from "../news/MostReadList";
 import useNews from "../../hooks/useNews";
 import Icon from "../ui/Icon";
 import { Link } from "react-router-dom";
@@ -11,21 +12,11 @@ function isInMostReadWindow(story) {
   return Number.isFinite(publishedTime) && publishedTime >= Date.now() - MOST_READ_WINDOW_MS;
 }
 
-function SectionHeading({ title }) {
-  return (
-    <div className="border-b border-[#dcdde0] pb-3">
-      <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[24px] leading-tight font-semibold tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">
-        {title}
-      </h2>
-    </div>
-  );
-}
-
 function LatestNewsCard({ story, className = "" }) {
   const storyPath = shortStoryPath(story);
 
   return (
-    <article className={`mobile-story-preview group min-w-0 snap-start border-t-[3px] border-[#182536] pt-2.5 ${className}`}>
+    <article className={`mobile-story-preview group min-w-0 snap-start pt-2.5 ${className}`}>
       <Link
         className="block aspect-[16/9] overflow-hidden bg-[#e8edf2]"
         to={storyPath}
@@ -88,7 +79,7 @@ export default function HeroSection() {
   if (isLoading) {
     return (
       <main className="bg-[#f1eee8] px-3 pt-3 pb-6 md:px-6 md:pt-4 md:pb-8" aria-label="Loading homepage stories">
-        <div className="mx-auto max-w-[1480px] border-x border-b border-[#dcdde0] bg-white p-4 xl:p-6">
+        <div className="mx-auto max-w-[1480px] bg-white p-4 xl:p-6">
           <div className="h-6 w-32 animate-pulse rounded bg-[#dedbd4]" />
           <div className="mt-4 h-[clamp(300px,52vw,560px)] animate-pulse rounded-[6px] bg-[#e8e4dc]" />
         </div>
@@ -99,17 +90,17 @@ export default function HeroSection() {
   return (
     <main id="top" className="bg-[#f1eee8] px-3 pt-6 pb-6 md:px-6 md:pt-8 md:pb-8">
       <section className="mx-auto max-w-[1480px]" aria-labelledby="lead-title">
-        <div className="grid min-w-0 overflow-hidden border-x border-b border-[#dcdde0] bg-white px-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] xl:px-0">
-          <article className="group order-1 min-w-0 border-b border-[#dcdde0] py-4 xl:border-r xl:border-b-0 xl:px-6">
+        <div className="grid min-w-0 overflow-hidden bg-white px-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] xl:px-0">
+          <article className="group order-1 min-w-0 py-4 xl:px-6">
             <div className="mb-2.5 flex items-end justify-between">
               <div>
                 <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[24px] leading-tight font-semibold tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">
                   Top Story
                 </h2>
               </div>
-              <span className="text-[13px] font-semibold text-[#397d73] uppercase">
-                {currentLeadStory.category}
-              </span>
+              <Link className="flex items-center gap-2 text-[13px] font-semibold text-[#397d73] uppercase" to={["Sports", "Business", "Editorial"].includes(currentLeadStory.category) ? `/${currentLeadStory.category.toLowerCase()}` : `/news/category/${currentLeadStory.category.replace(" News", "").toLowerCase()}`}>
+{currentLeadStory.category} <Icon name="arrow" />
+</Link>
             </div>
 
             <div>
@@ -157,46 +148,11 @@ export default function HeroSection() {
           </article>
 
           <aside
-            className="order-3 flex min-w-0 flex-col border-t border-[#dcdde0] py-4 xl:order-2 xl:border-t-0 xl:border-l xl:px-6"
+            className="order-3 flex min-w-0 flex-col py-4 xl:order-2 xl:px-6"
             aria-labelledby="most-read-title"
           >
-            <SectionHeading
-              title="Most Read"
-            />
-            <div className="mt-1 divide-y divide-[#dcdde0]">
-              {currentMostRead.map((story, index) => (
-                <article
-                  className="group grid grid-cols-[1fr_78px] gap-3 py-3"
-                  key={story.title}
-                >
-                  <div className="flex flex-col justify-center">
-                    <p className="mb-2 text-[13px] font-semibold text-[#397d73] uppercase">{story.category}</p>
-                    <h3 className="article-display-font m-0 line-clamp-3 text-[19px] leading-[1.16] font-semibold tracking-[-.015em] text-[#111318] xl:text-[21px]" title={story.title}>
-                      <Link
-                        className="transition hover:opacity-65"
-                        to={story.id ? shortStoryPath(story) : `/news/story/popular-${index + 1}`}
-                      >
-                        {story.title}
-                      </Link>
-                    </h3>
-                    <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{story.date}</p>
-                  </div>
-                  <Link
-                    className="aspect-[4/3] overflow-hidden rounded-[4px] bg-[#e8edf2]"
-                    to={story.id ? shortStoryPath(story) : `/news/story/popular-${index + 1}`}
-                    tabIndex="-1"
-                  >
-                    <img
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                      src={story.image}
-                      alt={story.imageAlt}
-                    />
-                  </Link>
-                </article>
-              ))}
-            </div>
-            <Link
-              className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-6 pb-2 text-[14px] font-semibold text-[#111318] transition hover:opacity-60"
+            <MostReadList stories={currentMostRead} storyPath={shortStoryPath} />
+<Link className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-6 pb-2 text-[14px] font-semibold text-[#111318] transition hover:opacity-60"
               to="/news?sort=most-read"
             >
               See all most read <Icon name="arrow" />
@@ -204,21 +160,17 @@ export default function HeroSection() {
           </aside>
 
           <section
-            className="order-2 min-w-0 pt-8 pb-6 xl:order-3 xl:col-span-2 xl:border-t xl:border-[#dcdde0] xl:px-7 xl:pt-8 xl:pb-7"
+            className="order-2 min-w-0 pt-8 pb-6 xl:order-3 xl:col-span-2 xl:px-7 xl:pt-8 xl:pb-7"
             aria-labelledby="latest-news-title"
           >
             <div className="mb-6 flex items-center gap-3">
               <h2 id="latest-news-title" className="m-0 bg-[#182536] px-4 py-2 text-[15px] font-medium tracking-[.04em] text-white uppercase sm:text-[16px]">News</h2>
               <span className="h-px min-w-4 flex-1 bg-[#182536]" aria-hidden="true" />
-              <Link
-                className="flex items-center gap-2 rounded-full border border-[#182536] bg-transparent px-4 py-2 text-[11px] font-semibold tracking-[.05em] text-[#182536] uppercase transition hover:bg-[#182536] hover:text-white"
-                to="/news"
-              >
-                View all news <Icon name="arrow" />
-              </Link>
+
             </div>
 
             <LatestNewsGrid stories={latestNews} />
+<div className="mt-6 flex justify-center"><Link className="flex items-center gap-2 rounded-full bg-[#182536] px-5 py-3 text-sm font-semibold text-white" to="/news">View all news <Icon name="arrow" /></Link></div>
           </section>
         </div>
       </section>

@@ -66,6 +66,12 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   }
 }
 
+.most-read-preview .mobile-story-preview {
+  grid-template-columns: 32% minmax(0, 1fr);
+  gap: 12px;
+}
+.most-read-preview .mobile-story-preview > a { aspect-ratio: 4 / 3; }
+.most-read-preview .mobile-story-preview > div > p:has(+ div) { display: none; }
 .article-display-font {
   font-family: Georgia, "Times New Roman", serif;
 }

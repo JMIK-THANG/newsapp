@@ -45,7 +45,7 @@ export default function FeatureArticlePage() {
     return normalizedParagraph !== normalizedTitle && normalizedParagraph !== normalizedSummary;
   });
   const source = publishedArticles.length ? publishedArticles : articleStories;
-  const related = source.filter((item) => item.category === article.category).filter((item) => String(item.id) !== String(article.id) && item.title !== article.title).slice(0, 4).map((item) => ({ ...item, path: publishedArticles.length ? shortStoryPath(item) : fallbackPath(item) }));
+  const related = source.filter((item) => item.category === article.category).filter((item) => String(item.id) !== String(article.id) && item.title !== article.title).slice(0, 5).map((item) => ({ ...item, path: publishedArticles.length ? shortStoryPath(item) : fallbackPath(item) }));
   const recommendations = (className) => <ArticleRecommendations className={className} category={article.category} stories={related} seeAllPath={categoryPath(article.category, "articles")} />;
   const canonicalPath = /^\d+$/.test(String(article.id ?? "")) ? shortStoryPath(article) : location.pathname;
   const canonicalUrl = `${SITE_URL}${canonicalPath}`;

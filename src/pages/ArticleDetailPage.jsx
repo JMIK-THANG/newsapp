@@ -72,7 +72,7 @@ export default function ArticleDetailPage({ section }) {
   if (!story) return <main className="min-h-[60vh] bg-white px-6 py-16 text-center"><h1 className="font-serif text-4xl">{loadError || "Loading article…"}</h1><Link className="mt-5 inline-block underline" to="/news">Return to Latest News</Link></main>;
 
   const relatedSource = databaseStory ? databaseRelated : stories;
-  const related = relatedSource.filter((item) => item.category === story.category).filter((item) => String(item.id) !== String(story.id) && item.title !== story.title).slice(0, 4).map((item) => ({ ...item, path: databaseStory ? shortStoryPath(item) : staticStoryPath(section, stories, item) }));
+  const related = relatedSource.filter((item) => item.category === story.category).filter((item) => String(item.id) !== String(story.id) && item.title !== story.title).slice(0, 5).map((item) => ({ ...item, path: databaseStory ? shortStoryPath(item) : staticStoryPath(section, stories, item) }));
   const summary = story.summary || `A closer look at ${story.title.toLowerCase()}, why readers are following it, and what may happen next.`;
   const articleParagraphs = story.content?.length ? story.content.map((paragraph) => cleanArticleParagraph(paragraph, story)).filter(Boolean) : [summary];
 
