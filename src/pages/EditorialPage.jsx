@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
 import NewsListCard from "../components/news/NewsListCard";
 import Icon from "../components/ui/Icon";
-import { editorialStories } from "../data/sectionPageData";
+import StoryLoading from "../components/news/StoryLoading";
 import useNews from "../hooks/useNews";
 import { shortStoryPath } from "../utils/storyPath";
 
 export default function EditorialPage() {
   const { news: publishedEditorials, isLoading } = useNews({ category: "Editorial" });
-  const usingPublishedEditorials = publishedEditorials.length > 0;
-  const [lead, ...stories] = usingPublishedEditorials ? publishedEditorials : editorialStories;
-  const storyPath = (story, fallbackPath) => usingPublishedEditorials ? shortStoryPath(story) : fallbackPath;
+  const [lead, ...stories] = publishedEditorials;
+  const storyPath = shortStoryPath;
 
-  if (isLoading && !lead) return <main className="min-h-[60vh] bg-white px-6 py-16 text-center text-sm text-[#69717a]">Loading editorials…</main>;
+  if (isLoading) return <main className="bg-white px-5 py-5 sm:px-6"><div className="mx-auto max-w-[1480px]"><StoryLoading /></div></main>;
 
   return <main className="bg-white px-5 py-5 sm:px-6 sm:py-8 lg:py-9">
     <div className="mx-auto max-w-[1480px]">

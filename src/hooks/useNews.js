@@ -103,7 +103,7 @@ export async function setAdminEditorPick(id, isEditorPick) {
   return { success: true, article: normalizeNewsArticle(data) };
 }
 
-export default function useNews({ admin = false, contentType = "news", category = "" } = {}) {
+export default function useNews({ admin = false, contentType = "news", category = "", editorPicks = false } = {}) {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -113,6 +113,7 @@ export default function useNews({ admin = false, contentType = "news", category 
       setError("");
       const params = new URLSearchParams({ limit: "100", type: contentType });
       if (category) params.set("category", category);
+      if (editorPicks) params.set("editorPicks", "true");
       const response = await fetch(`${backendUrl}/news?${params}`, { cache: "no-store" });
       const data = await response.json();
 
@@ -127,7 +128,7 @@ export default function useNews({ admin = false, contentType = "news", category 
     } finally {
       setIsLoading(false);
     }
-  }, [category, contentType]);
+  }, [category, contentType, editorPicks]);
 
   const addNews = async (newArticle) => {
     try {
@@ -235,6 +236,7 @@ export default function useNews({ admin = false, contentType = "news", category 
     const token = localStorage.getItem("adminToken");
     const params = new URLSearchParams({ limit: "100", type: contentType });
     if (category) params.set("category", category);
+    if (editorPicks) params.set("editorPicks", "true");
     fetch(admin ? `${backendUrl}/news/admin/all` : `${backendUrl}/news?${params}`, {
       headers: admin ? { Authorization: `Bearer ${token}` } : undefined,
       cache: "no-store",
@@ -259,7 +261,7 @@ export default function useNews({ admin = false, contentType = "news", category 
     return () => {
       cancelled = true;
     };
-  }, [admin, category, contentType]);
+  }, [admin, category, contentType, editorPicks]);
 
   return { news, isLoading, error, addNews, updateNews, deleteNews, uploadNewsImage, getNews, getAdminNews };
 }

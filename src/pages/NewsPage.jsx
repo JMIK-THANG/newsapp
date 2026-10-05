@@ -3,7 +3,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import MostReadList from "../components/news/MostReadList";
 import NewsListCard from "../components/news/NewsListCard";
 import Icon from "../components/ui/Icon";
-import { newsPageStories } from "../data/news";
+import StoryLoading from "../components/news/StoryLoading";
 import useNews from "../hooks/useNews";
 import { shortStoryPath } from "../utils/storyPath";
 
@@ -24,7 +24,7 @@ export default function NewsPage() {
   const activeFilter = filters.find((item) => item.toLowerCase().startsWith(filter || "all")) || "All News";
   const { news: databaseNews, isLoading } = useNews({ category: activeFilter === "All News" ? "" : activeFilter });
   const [visibleCount, setVisibleCount] = useState(8);
-  const allStories = databaseNews.length > 0 ? databaseNews : newsPageStories;
+  const allStories = databaseNews;
   const mostRead = useMemo(() => databaseNews.filter(isInMostReadWindow).filter((story) => Number(story.views) > 0).sort((first, second) => Number(second.views) - Number(first.views)).slice(0, 5), [databaseNews]);
   const stories = useMemo(() => {
     const categoryStories = activeFilter === "All News" ? allStories : allStories.filter((story) => story.category === activeFilter);
@@ -34,7 +34,7 @@ export default function NewsPage() {
     return orderedStories.filter((story) => [story.title, story.summary, story.category, story.author].filter(Boolean).some((value) => value.toLocaleLowerCase().includes(normalizedQuery)));
   }, [activeFilter, allStories, mostReadMode, searchQuery]);
 
-  const storyPath = (story) => /^\d+$/.test(String(story.id ?? "")) ? shortStoryPath(story) : story.slug ? `/news/story/${story.slug}` : `/news/story/article-${newsPageStories.indexOf(story) + 1}`;
+  const storyPath = shortStoryPath;
   const selectFilter = (nextFilter) => {
     setVisibleCount(8);
     const path = nextFilter === "All News" ? "/news" : `/news/category/${nextFilter.replace(" News", "").toLowerCase()}`;
@@ -71,7 +71,7 @@ export default function NewsPage() {
       <div className="grid gap-12 pt-3 sm:pt-5 md:pt-5 xl:grid-cols-[minmax(0,1fr)_360px] xl:gap-14">
         <section id="news-feed" aria-label={`${activeFilter} stories`}>
           <div className="divide-y divide-[#dcdde0] border-b border-[#dcdde0]">
-            {stories.slice(0, visibleCount).map((story) => <NewsListCard story={story} path={storyPath(story)} key={story.id || story.title} />)}
+            {isLoading ? <StoryLoading /> : stories.slice(0, visibleCount).map((story) => <NewsListCard story={story} path={storyPath(story)} key={story.id || story.title} />)}
             {!isLoading && stories.length === 0 && <div className="px-4 py-16 text-center"><h2 className="article-display-font m-0 text-2xl text-[#182536]">No matching stories</h2><p className="mt-3 mb-0 text-sm text-[#5f6368]">Try a different headline, author, or category.</p></div>}
           </div>
           {visibleCount < stories.length && <div className="mt-8 flex justify-center"><button className="inline-flex min-h-11 cursor-pointer items-center gap-3 rounded-full border border-[#182536] bg-transparent px-6 py-3 text-xs font-semibold text-[#182536] transition hover:bg-[#182536] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#397d73]" type="button" onClick={() => setVisibleCount((count) => count + 6)}>Load more stories <Icon name="arrow" /></button></div>}

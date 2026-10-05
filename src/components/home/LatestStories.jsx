@@ -4,7 +4,7 @@ import useNews from "../../hooks/useNews";
 import { shortStoryPath } from "../../utils/storyPath";
 
 export default function LatestStories() {
-  const { news } = useNews();
+  const { news } = useNews({ category: "Editorial", editorPicks: true });
   const selectedEditorPicks = news.filter((story) => story.isEditorPick);
   const editorPicks = [
     ...selectedEditorPicks,
@@ -18,8 +18,7 @@ export default function LatestStories() {
       <div className="mx-auto max-w-[1380px]">
         <div className="border-b border-[#dcdde0] pb-6">
           <div>
-            <p className="mb-3 inline-flex items-center gap-2 text-[11px] font-bold tracking-[.04em] text-[#4f9488] uppercase after:h-px after:w-9 after:bg-[#4f9488]">Editor’s Picks</p>
-            <h2 className="article-display-font m-0 max-w-3xl text-[clamp(30px,3.3vw,46px)] leading-[1.05] font-semibold tracking-[-.035em] text-[#182536]">Stories shaping our world.</h2>
+            <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[24px] font-semibold text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Editor’s Picks</h2>
           </div>
         </div>
 
@@ -41,6 +40,7 @@ export default function LatestStories() {
               <div className="flex min-w-0 flex-col">
                 <p className="mb-3 text-[11px] font-semibold text-[#4f9488] uppercase">{story.topic || story.category} <span className="font-normal text-[#5f6368]">• {story.readTime}</span></p>
                 <h3 className="article-display-font m-0 line-clamp-2 text-[clamp(17px,1.5vw,22px)] leading-[1.3] font-semibold tracking-[-.015em] text-[#111318]" title={story.title}><Link className="transition hover:opacity-65" to={shortStoryPath(story)}>{story.title}</Link></h3>
+                <p className="mt-2 mb-0 line-clamp-3 text-[14px] leading-6 text-[#4f5359]">{story.rawContent?.replace(/<[^>]*>/g, " ") || story.summary}</p>
                 <p className="mt-auto mb-0 pt-4 text-[11px] font-medium text-[#5f6368]">{story.author} · {story.date}</p>
               </div>
               <Link className="relative min-h-[120px] overflow-hidden rounded-[4px] bg-[#e8edf2]" to={shortStoryPath(story)} tabIndex="-1"><img className="h-full w-full object-cover transition duration-500 group-hover:scale-105" src={story.image} alt={story.imageAlt} /></Link>
@@ -49,7 +49,7 @@ export default function LatestStories() {
         </div>
 
         <div className="mt-10 flex justify-center border-t border-[#dcdde0] pt-8">
-          <Link to="/news" className="group flex items-center gap-4 rounded-full bg-[#182536] px-6 py-3.5 text-xs font-semibold text-white shadow-[0_10px_24px_rgba(24,37,54,.14)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#2b4052] hover:shadow-[0_14px_30px_rgba(24,37,54,.2)]">
+          <Link to="/editorial" className="group flex items-center gap-4 rounded-full bg-[#182536] px-6 py-3.5 text-xs font-semibold text-white shadow-[0_10px_24px_rgba(24,37,54,.14)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#2b4052] hover:shadow-[0_14px_30px_rgba(24,37,54,.2)]">
             Explore all stories
             <span className="grid size-7 place-items-center rounded-full bg-white/12 transition-transform duration-300 group-hover:translate-x-1"><Icon name="arrow" /></span>
           </Link>
