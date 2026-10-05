@@ -22,9 +22,8 @@ export default function EditorialPage() {
       {lead && <article className="grid gap-6 border-b border-[#dcdde0] py-6 sm:py-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,.65fr)] lg:items-center lg:gap-10">
         <Link className="group block aspect-[16/9] overflow-hidden rounded-[6px] bg-[#e8edf2]" to={storyPath(lead, "/editorial/featured")}><img className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.015]" src={lead.image} alt={lead.imageAlt || lead.title} /></Link>
         <div className="flex min-w-0 flex-col justify-center">
-          <p className="m-0 text-[11px] font-bold tracking-[.07em] text-[#397d73] uppercase">Featured editorial</p>
           <h2 className="article-display-font mt-3 mb-0 line-clamp-3 text-[clamp(26px,2.7vw,36px)] leading-[1.12] font-semibold tracking-[-.015em] text-[#182536]" title={lead.title}><Link className="transition hover:text-[#397d73]" to={storyPath(lead, "/editorial/featured")}>{lead.title}</Link></h2>
-          <p className="mt-3 mb-0 text-[16px] leading-7 text-[#3f474f]">{lead.summary}</p>
+          <p className="mt-3 mb-0 text-[16px] leading-7 tracking-[.01em] text-[#3f474f]">{lead.summary}</p>
           <p className="mt-3 mb-0 text-[14px] text-[#69717a]">{lead.date}{lead.author ? <> · By <strong className="font-semibold text-[#303940]">{lead.author}</strong></> : null}</p>
           <Link className="mt-5 inline-flex w-fit items-center gap-2 text-[13px] font-bold text-[#182536] transition hover:text-[#397d73]" to={storyPath(lead, "/editorial/featured")}>Read editorial <Icon name="arrow" /></Link>
         </div>
@@ -32,7 +31,7 @@ export default function EditorialPage() {
 
       <div className="grid gap-10 pt-3 sm:pt-5 xl:grid-cols-[minmax(0,1fr)_320px] xl:gap-14">
         <section className="divide-y divide-[#dcdde0] border-b border-[#dcdde0]" aria-label="More editorials">
-          {stories.map((story, index) => <NewsListCard story={story} path={storyPath(story, `/editorial/story-${index + 1}`)} key={story.id || story.title} />)}
+          {stories.map((story, index) => <NewsListCard story={story} path={storyPath(story, `/editorial/story-${index + 1}`)} showCategory={false} key={story.id || story.title} />)}
           {stories.length === 0 && <p className="py-12 text-center text-sm text-[#69717a]">More editorials will appear here.</p>}
         </section>
         <aside className="h-fit border-t-2 border-[#182536] bg-[#f1eee8] p-5 sm:p-6 xl:sticky xl:top-[118px]">

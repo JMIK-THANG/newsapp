@@ -44,7 +44,7 @@ export default function NewsPage() {
     if (mostReadMode) nextParams.set("sort", "most-read");
     navigate(`${path}${nextParams.size ? `?${nextParams}` : ""}`);
   };
-  const filterClass = (item, mobile = false) => `relative cursor-pointer border-0 bg-transparent font-serif font-[550] whitespace-nowrap transition focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#397d73] ${mobile ? "min-w-0 px-1 py-3 text-center text-[14px] tracking-[-.015em]" : "shrink-0 py-3.5 text-left text-[20px]"} ${activeFilter === item ? "text-[#182536] after:absolute after:right-[18%] after:bottom-[-1px] after:left-[18%] after:h-[3px] after:bg-[#397d73] sm:after:right-0 sm:after:left-0" : "text-[#59636d] hover:text-[#182536]"}`;
+  const filterClass = (item) => `min-h-10 cursor-pointer rounded-full border px-3 py-2 text-[12px] font-semibold whitespace-nowrap transition sm:px-5 sm:text-[15px] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#397d73] ${activeFilter === item ? "border-[#182536] bg-[#182536] text-white" : "border-[#d7d4ce] bg-transparent text-[#182536] hover:border-[#397d73] hover:text-[#397d73]"}`;
 
   return <main id="news-page" className="bg-white px-5 py-5 sm:px-6 sm:py-8 md:py-8 lg:py-9" aria-labelledby="news-page-title">
     <div className="mx-auto max-w-[1480px]">
@@ -55,16 +55,8 @@ export default function NewsPage() {
         </div>
       </header>
 
-      <nav id="news-filters" className="-mx-5 border-b border-[#dcdde0] sm:mx-0" aria-label="News categories">
-        <div className="sm:hidden">
-          <div className="grid grid-cols-3 border-b border-[#dcdde0] px-2">
-            {filters.slice(0, 3).map((item) => <button className={filterClass(item, true)} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
-          </div>
-          <div className="grid grid-cols-3 px-2">
-            {filters.slice(3).map((item) => <button className={filterClass(item, true)} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
-          </div>
-        </div>
-        <div className="hidden min-w-max gap-7 sm:flex">
+      <nav id="news-filters" className="border-b border-[#dcdde0] py-4" aria-label="News categories">
+        <div className="flex flex-wrap justify-center gap-2 sm:justify-start sm:gap-3">
           {filters.map((item) => <button className={filterClass(item)} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
         </div>
       </nav>
@@ -72,7 +64,7 @@ export default function NewsPage() {
       <div className="grid gap-12 pt-3 sm:pt-5 md:pt-5 xl:grid-cols-[minmax(0,1fr)_360px] xl:gap-14">
         <section id="news-feed" aria-label={`${activeFilter} stories`}>
           <div className="divide-y divide-[#dcdde0] border-b border-[#dcdde0]">
-            {isLoading ? <StoryLoading /> : stories.slice(0, visibleCount).map((story) => <NewsListCard story={story} path={storyPath(story)} key={story.id || story.title} />)}
+            {isLoading ? <StoryLoading /> : stories.slice(0, visibleCount).map((story) => <NewsListCard story={story} path={storyPath(story)} showCategory={activeFilter === "All News"} key={story.id || story.title} />)}
             {!isLoading && stories.length === 0 && <div className="px-4 py-16 text-center"><h2 className="article-display-font m-0 text-2xl text-[#182536]">No matching stories</h2><p className="mt-3 mb-0 text-sm text-[#5f6368]">Try a different headline, author, or category.</p></div>}
           </div>
           {visibleCount < stories.length && <div className="mt-8 flex justify-center"><button className="inline-flex min-h-11 cursor-pointer items-center gap-3 rounded-full border border-[#182536] bg-transparent px-6 py-3 text-xs font-semibold text-[#182536] transition hover:bg-[#182536] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#397d73]" type="button" onClick={() => setVisibleCount((count) => count + 6)}>Load more stories <Icon name="arrow" /></button></div>}
