@@ -83,6 +83,31 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   font-family: Georgia, "Times New Roman", serif;
 }
 
+/* Match the bottom related-story list to compact mobile news previews. */
+.story-recommendations .mobile-story-preview {
+  grid-template-columns: minmax(0, 32%) minmax(0, 1fr);
+  gap: 12px;
+  padding-block: 14px;
+  align-items: start;
+}
+.story-recommendations .mobile-story-preview > a {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 2px;
+}
+.story-recommendations .mobile-story-preview h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+  margin-top: 0;
+}
+.story-recommendations .mobile-story-preview > div > div {
+  font-size: 12px;
+  margin-top: 8px;
+}
+
 /* Keep every individual news and feature article title visually identical. */
 .story-detail-headline {
   margin-top: 0;

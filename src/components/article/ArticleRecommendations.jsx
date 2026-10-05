@@ -7,9 +7,9 @@ export default function ArticleRecommendations({ category, stories, seeAllPath, 
   const headingId = useId();
   if (!stories.length) return null;
 
-  return <aside className={className} aria-labelledby={headingId}>
+  return <aside className={`story-recommendations ${className}`} aria-labelledby={headingId}>
     <div className="flex items-center justify-between gap-4">
-      <h2 id={headingId} className="article-display-font m-0 text-[19px] leading-tight font-semibold text-[#39424a]">More from {category}</h2>
+      <h2 id={headingId} className="m-0 text-[16px] leading-tight font-semibold text-[#39424a]">More from {category}</h2>
       <Link className="flex shrink-0 items-center gap-1.5 text-xs font-semibold text-[#397d73]" to={seeAllPath}>See all <Icon name="arrow" /></Link>
     </div>
     <div className="mt-3 divide-y divide-[#dcdde0]">
