@@ -52,7 +52,7 @@ export default function Footer() {
         <div>
           <Link className="flex w-fit items-center gap-3.5" to="/" aria-label="Chinlung Today home">
             <span className="grid size-[62px] shrink-0 place-items-center rounded-[6px] bg-[#f7f5f0] p-1.5" aria-hidden="true"><img className="h-full w-full object-contain" src="/chinlung-today-logo-transparent.png" alt="" /></span>
-            <span><strong className="article-display-font block text-[27px] leading-none font-bold text-white sm:text-[30px]">Chinlung Today</strong><small className="mt-2 block text-[9px] font-bold tracking-[.19em] text-[#aebac0] uppercase">News · People · Our Community</small></span>
+            <span><strong className="article-display-font block text-[27px] leading-none font-bold text-white sm:text-[30px]">Chinlung Today</strong><small className="mt-2 block text-[9px] font-bold tracking-[.19em] text-[#aebac0] uppercase">News · People</small></span>
           </Link>
           <p className="mt-6 mb-0 max-w-[620px] text-[18px] leading-8 text-[#d8dee1]">Independent and fact-based reporting from Chin, Myanmar, and around the world.</p>
           <div className="mt-7 flex flex-wrap gap-3">
@@ -84,7 +84,7 @@ export default function Footer() {
         <FooterLinks title="Company" links={companyLinks} />
         <div className="col-span-2 sm:col-span-3 lg:col-span-1">
           <h2 className="m-0 text-[11px] font-bold tracking-[.12em] text-[#76afa5] uppercase">Our purpose</h2>
-          <p className="mt-4 mb-0 max-w-sm text-[14px] leading-6 text-[#bdc7cb]">We serve readers with independent journalism centered on Chin communities, public interest, and verified information.</p>
+          <p className="mt-4 mb-0 max-w-sm text-[14px] leading-6 text-[#bdc7cb]">We serve readers with independent journalism centered on Chin, public interest, and verified information.</p>
           <Link className="mt-5 inline-flex items-center gap-2 text-[13px] font-bold text-white transition hover:text-[#76afa5]" to="/about">Learn about Chinlung Today <Icon name="arrow" /></Link>
         </div>
       </div>
