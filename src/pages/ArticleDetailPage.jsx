@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import ArticleImage from "../components/article/ArticleImage";
 import ArticleMeta from "../components/article/ArticleMeta";
-import ArticleRecommendations from "../components/article/ArticleRecommendations";
 import Icon from "../components/ui/Icon";
 import ShareStoryButton from "../components/ui/ShareStoryButton";
 import Seo, { SITE_NAME, SITE_URL } from "../components/seo/Seo";
 import { explainerSourceStory, latestStories, leadStory, mostReadStories, newsPageStories, quickReads } from "../data/news";
 import { articleStories, businessStories, editorialStories, sportsStories } from "../data/sectionPageData";
-import { getNewsArticle, getRelatedNewsArticles } from "../hooks/useNews";
+import { getNewsArticle } from "../hooks/useNews";
 import { categoryPath } from "../utils/categoryPath";
 import { shortStoryPath } from "../utils/storyPath";
 
@@ -42,20 +41,12 @@ const cleanArticleParagraph = (paragraph, story) => paragraph.split(/\r?\n/).map
   return normalizedLine !== normalizedTitle && (!normalizedSummary || normalizedLine !== normalizedSummary) && !publicationDateLine.test(line) && !standaloneDateLine.test(line) && (!story.date || normalizedLine !== story.date.toLocaleLowerCase());
 }).join("\n").trim();
 
-function staticStoryPath(section, stories, item) {
-  if (item.slug) return shortStoryPath(item);
-  const index = stories.indexOf(item);
-  if (section === "news") return `/news/story/article-${index + 1}`;
-  return `/${section}/${index === 0 ? "featured" : `story-${index}`}`;
-}
-
 export default function ArticleDetailPage({ section }) {
   const { storyKey } = useParams();
   const location = useLocation();
   const stories = sectionStories[section];
   const staticStory = findStory(section, stories, storyKey);
   const [databaseStory, setDatabaseStory] = useState(null);
-  const [databaseRelated, setDatabaseRelated] = useState([]);
   const [loadError, setLoadError] = useState("");
   const story = databaseStory || staticStory;
 
@@ -64,19 +55,12 @@ export default function ArticleDetailPage({ section }) {
     getNewsArticle(storyKey).then(setDatabaseStory).catch((error) => setLoadError(error.message));
   }, [staticStory, storyKey]);
 
-  useEffect(() => {
-    if (!databaseStory) return;
-    getRelatedNewsArticles(databaseStory.slug).then(setDatabaseRelated).catch(() => setDatabaseRelated([]));
-  }, [databaseStory]);
 
   if (!story) return <main className="min-h-[60vh] bg-white px-6 py-16 text-center"><h1 className="font-serif text-4xl">{loadError || "Loading article…"}</h1><Link className="mt-5 inline-block underline" to="/news">Return to Latest News</Link></main>;
 
-  const relatedSource = databaseStory ? databaseRelated : stories;
-  const related = relatedSource.filter((item) => item.category === story.category).filter((item) => String(item.id) !== String(story.id) && item.title !== story.title).slice(0, 5).map((item) => ({ ...item, path: databaseStory ? shortStoryPath(item) : staticStoryPath(section, stories, item) }));
   const summary = story.summary || `A closer look at ${story.title.toLowerCase()}, why readers are following it, and what may happen next.`;
   const articleParagraphs = story.content?.length ? story.content.map((paragraph) => cleanArticleParagraph(paragraph, story)).filter(Boolean) : [summary];
 
-  const recommendations = (className) => <ArticleRecommendations className={className} category={story.category} stories={related} seeAllPath={categoryPath(story.category, section)} />;
   const canonicalPath = databaseStory ? shortStoryPath(story) : location.pathname;
   const canonicalUrl = `${SITE_URL}${canonicalPath}`;
   const articleSchema = {
@@ -94,13 +78,13 @@ export default function ArticleDetailPage({ section }) {
 
   return <main className="bg-white px-4 py-5 sm:px-5 sm:py-8 lg:px-6 lg:py-10">
     <Seo title={story.title} description={summary} canonicalPath={canonicalPath} image={story.image} type="article" schema={articleSchema} />
-    <article className="mx-auto max-w-[1480px]">
+    <article className="mx-auto max-w-[1000px]">
       <nav className="mb-3 flex flex-wrap items-center gap-2 text-[12px] font-medium text-[#69717a] sm:mb-5 sm:text-[13px]" aria-label="Breadcrumb">
         <Link className="text-[#182536] hover:text-[#397d73]" to="/">Home</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={`/${section}`}>{sectionNames[section]}</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={categoryPath(story.category, section)}>{story.category}</Link>
       </nav>
-      <div className="grid gap-12 xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start xl:gap-14">
+      <div className="w-full">
         <div className="min-w-0">
           <header className="max-w-[860px]">
             <h1 className="story-headline article-display-font story-detail-headline">{story.title}</h1>
@@ -121,9 +105,7 @@ export default function ArticleDetailPage({ section }) {
             })}
             {story.sources && <aside className="mt-10 border-t border-[#dcdde0] pt-5"><h2 className="mt-0 mb-3 text-sm font-semibold">Sources and further reading</h2><ul className="m-0 space-y-2 pl-5 text-sm leading-6">{story.sources.map((source) => <li key={source.url}><a className="text-[#397d73] underline underline-offset-3" href={source.url} target="_blank" rel="noreferrer">{source.label}</a></li>)}</ul></aside>}
           </div>
-          {recommendations("mt-14 xl:hidden")}
         </div>
-        {recommendations("hidden xl:sticky xl:top-[118px] xl:block xl:pt-1")}
       </div>
     </article>
   </main>;
