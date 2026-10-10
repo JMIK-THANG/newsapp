@@ -8,7 +8,7 @@
 
 :root {
   /* Reference: homepage Editor's Picks main and sidebar headlines. */
-  --story-headline-weight: 500;
+  --story-headline-weight: 700;
 }
 
 /* Story categories use the same quiet scale as byline metadata. */
@@ -346,4 +346,22 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
     font-size: 11px;
     margin-top: 8px;
   }
+}
+
+/* Give the homepage hero sidebar a little more presence, without enlarging other lists. */
+@media (min-width: 1280px) {
+  .home-hero-most-read .most-read-preview .mobile-story-preview {
+    grid-template-columns: 30% minmax(0, 1fr);
+    gap: 12px;
+    padding-block: 24px;
+  }
+  .home-hero-most-read .most-read-preview h2.story-headline {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .home-hero-most-read .most-read-preview .mobile-story-preview > div > div {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .home-hero-most-read .story-category-label { font-size: 12px; }
 }

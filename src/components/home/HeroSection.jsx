@@ -148,15 +148,10 @@ export default function HeroSection() {
           </article>
 
           <aside
-            className="order-3 flex min-w-0 flex-col py-4 xl:order-2 xl:px-6"
-            aria-labelledby="most-read-title"
+            className="home-hero-most-read order-3 flex min-w-0 flex-col py-4 xl:order-2 xl:px-6 xl:pt-6"
+            aria-label="Most Read"
           >
             <MostReadList stories={currentMostRead} storyPath={shortStoryPath} />
-<Link className="mt-auto flex items-center gap-2 border-t border-[#dcdde0] pt-6 pb-2 text-[14px] font-semibold text-[#111318] transition hover:opacity-60"
-              to="/news?sort=most-read"
-            >
-              See all most read <Icon name="arrow" />
-            </Link>
           </aside>
 
           <section
