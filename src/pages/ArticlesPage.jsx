@@ -16,18 +16,18 @@ export default function ArticlesPage() {
     : article.slug ? `/articles/${article.slug}` : index === 0 ? "/articles/featured" : `/articles/story-${index}`;
 
   return (
-    <main className="bg-[#f1eee8] px-3 py-7 md:px-6 md:py-10">
+    <main className="bg-[#f1eee8] px-3 py-4 md:px-6 md:py-5">
       <div className="mx-auto max-w-[1280px]">
-        <header className="grid gap-4 border-y border-[#182536] py-5 md:grid-cols-[1fr_1fr] md:items-end">
-          <h1 className="article-display-font m-0 text-[clamp(36px,5.5vw,54px)] leading-[1] font-semibold tracking-[-.035em] text-[#182536]">{categoryName === "News Article" ? "News Articles" : categoryName || "Articles"}</h1>
+        <header className="grid gap-3 border-b border-[#c8c6c0] pt-1 pb-4 md:grid-cols-[1fr_1fr] md:items-end">
+          <h1 className="article-display-font m-0 text-[clamp(28px,3.5vw,38px)] leading-[1.1] font-medium tracking-[-.025em] text-[#182536]">{categoryName === "News Article" ? "News Articles" : categoryName || "Articles"}</h1>
           <p className="m-0 max-w-xl text-[14px] leading-6 text-[#4f5359] md:justify-self-end">
             {categoryName === "Cahram" ? "Cahram writing published for thoughtful, deeper reading." : categoryName === "News Article" ? "News features and analysis that go beyond the daily headline." : "Features, profiles, essays, and analysis written for slower, deeper reading."}
           </p>
         </header>
 
-        <section className="pt-7" aria-labelledby="all-articles-title">
-          <div className="mb-5 flex items-end justify-between border-b border-[#c8c6c0] pb-3">
-            <h2 id="all-articles-title" className="article-display-font m-0 text-2xl font-semibold">{categoryName === "News Article" ? "All News Articles" : categoryName ? `All ${categoryName}` : "All articles"}</h2>
+        <section className="pt-4" aria-labelledby="all-articles-title">
+          <div className="mb-4 flex items-end justify-between border-b border-[#c8c6c0] pb-2">
+            <h2 id="all-articles-title" className="article-display-font m-0 text-[19px] font-medium">{categoryName === "News Article" ? "All News Articles" : categoryName ? `All ${categoryName}` : "All articles"}</h2>
             {!isLoading && !error && <span className="text-xs text-[#5f6368]">{allArticles.length} published</span>}
           </div>
 
@@ -44,12 +44,12 @@ export default function ArticlesPage() {
                   />
                 </Link>
                 <div className="min-w-0 sm:border-b sm:border-[#c8c6c0] sm:py-4">
-                  <p className="mb-1.5 text-[10px] leading-[1.4] font-medium tracking-[.05em] text-[#397d73] uppercase sm:mb-2 sm:text-[11px]">{article.category || "Article"}</p>
-                  <h3 className="story-headline article-display-font m-0 text-[20px] leading-[1.16] tracking-[-.01em] lg:text-[23px]">
+                  <p className="story-category-label mb-1.5  leading-[1.4]   text-[#397d73]  sm:mb-2 ">{article.category || "Article"}</p>
+                  <h3 className="story-headline article-display-font m-0 text-[18px] leading-[1.25] tracking-[-.01em] lg:text-[20px]">
                     <Link to={pathFor(article, index)}>{article.title}</Link>
                   </h3>
-                  <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{article.date}</p>
-                  <p className="home-story-summary mt-3 hidden line-clamp-3 sm:block">{article.summary}</p>
+                  <p className="mt-2 mb-0 text-[12px] font-normal text-[#69717a]">{article.date}</p>
+                  <p className="mt-2 hidden line-clamp-3 text-[14px] leading-[1.6] text-[#303940] sm:block">{article.summary}</p>
                   <p className="mt-2 text-[12px] text-[#69717a] sm:mt-3 sm:font-semibold">By {article.author || "Chinlung Today"}</p>
                 </div>
               </article>

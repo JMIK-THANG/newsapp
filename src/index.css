@@ -8,7 +8,20 @@
 
 :root {
   /* Reference: homepage Editor's Picks main and sidebar headlines. */
-  --story-headline-weight: 400;
+  --story-headline-weight: 500;
+}
+
+/* Story categories use the same quiet scale as byline metadata. */
+.story-category-label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: lowercase;
+}
+@media (min-width: 640px) {
+  .story-category-label { font-size: 13px; }
+  .most-read-preview .story-category-label { font-size: 11px; }
 }
 
 html { max-width: 100%; overflow-x: clip; scroll-behavior: smooth; background: #eae6de; }

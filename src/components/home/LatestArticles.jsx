@@ -25,7 +25,7 @@ export default function LatestArticles() {
                 <img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" src={article.image} alt={article.imageAlt} />
               </Link>
               <div className="border-b border-[#c8c3ba] py-4">
-                <p className="mb-2 text-[10px] leading-[1.4] font-medium tracking-[.05em] text-[#397d73] uppercase sm:text-[11px]">{article.category}</p>
+                <p className="story-category-label mb-2  leading-[1.4]   text-[#397d73]  ">{article.category}</p>
                 <h3 className="story-headline article-display-font m-0 line-clamp-3 text-[20px] leading-[1.16] tracking-[-.005em] text-[#111318] xl:text-[21px]" title={article.title}>
                   <Link to={shortStoryPath(article)}>{article.title}</Link>
                 </h3>

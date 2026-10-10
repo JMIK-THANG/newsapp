@@ -28,7 +28,7 @@ function LatestNewsCard({ story, className = "" }) {
         />
       </Link>
       <div className="pt-2.5">
-        <p className="mb-1 text-[13px] font-bold tracking-[.05em] uppercase text-[#397d73]">
+        <p className="story-category-label mb-1     text-[#397d73]">
           {story.category}
         </p>
         <h3 className="story-headline article-display-font m-0 line-clamp-3 text-[20px] leading-[1.16] tracking-[-.005em] text-[#111318] xl:text-[21px]" title={story.title}>
@@ -98,7 +98,7 @@ export default function HeroSection() {
                   Top Story
                 </h2>
               </div>
-              <Link className="flex items-center gap-2 text-[13px] font-semibold text-[#397d73] uppercase" to={["Sports", "Business", "Editorial"].includes(currentLeadStory.category) ? `/${currentLeadStory.category.toLowerCase()}` : `/news/category/${currentLeadStory.category.replace(" News", "").toLowerCase()}`}>
+              <Link className="story-category-label flex items-center gap-2   text-[#397d73] " to={["Sports", "Business", "Editorial"].includes(currentLeadStory.category) ? `/${currentLeadStory.category.toLowerCase()}` : `/news/category/${currentLeadStory.category.replace(" News", "").toLowerCase()}`}>
 {currentLeadStory.category} <Icon name="arrow" />
 </Link>
             </div>
