@@ -91,10 +91,10 @@ export default function HeroSection() {
     <main id="top" className="bg-[#f1eee8] px-3 pt-8 pb-6 md:px-6 md:pt-9 md:pb-8">
       <section className="mx-auto max-w-[1280px]" aria-labelledby="lead-title">
         <div className="grid min-w-0 overflow-hidden bg-white px-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] xl:px-0">
-          <article className="group order-1 min-w-0 py-4 xl:px-6">
+          <article className="group order-1 min-w-0 py-6 xl:px-6">
             <div className="mb-2.5 flex items-end justify-between">
               <div>
-                <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[21px] leading-tight font-normal tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">
+                <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[21px] leading-tight font-semibold tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">
                   Top Story
                 </h2>
               </div>
@@ -105,7 +105,7 @@ export default function HeroSection() {
 
             <div>
               <Link
-                className="relative block h-[clamp(240px,55vw,350px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(300px,38svh,380px)]"
+                className="relative block h-[clamp(260px,60vw,380px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(350px,44svh,440px)]"
                 to={shortStoryPath(currentLeadStory)}
               >
                 <img
@@ -148,7 +148,7 @@ export default function HeroSection() {
           </article>
 
           <aside
-            className="home-hero-most-read order-3 flex min-w-0 flex-col py-4 xl:order-2 xl:px-6"
+            className="home-hero-most-read order-3 flex min-w-0 flex-col py-6 xl:order-2 xl:px-6"
             aria-label="Most Read"
           >
             <MostReadList stories={currentMostRead} storyPath={shortStoryPath} />
