@@ -7,7 +7,7 @@ export default function NewsListCard({ story, path, showCategory = true }) {
     </Link>
     <div className="min-w-0 self-center">
       {showCategory && <p className="m-0 text-[12px] font-bold tracking-[.06em] text-[#397d73] uppercase">{story.category}</p>}
-      <h2 className="article-display-font mt-1.5 mb-0 line-clamp-3 text-[19px] leading-[1.17] font-[550] tracking-[-.01em] text-[#182536] sm:mt-2.5 sm:text-[22px] sm:font-semibold lg:text-[25px]" title={story.title}>
+      <h2 className="story-headline article-display-font mt-1.5 mb-0 line-clamp-3 text-[19px] leading-[1.17] tracking-[-.01em] text-[#182536] sm:mt-2.5 sm:text-[22px] lg:text-[25px]" title={story.title}>
         <Link className="transition hover:text-[#397d73] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#397d73]" to={path}>{story.title}</Link>
       </h2>
       <p className="mt-3 mb-0 hidden line-clamp-3 text-[16px] leading-[1.65] tracking-[.01em] text-[#3f474f] sm:block">{story.summary}</p>

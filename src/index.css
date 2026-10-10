@@ -6,6 +6,11 @@
   --font-serif: Georgia, "Times New Roman", serif;
 }
 
+:root {
+  /* Reference: homepage Editor's Picks main and sidebar headlines. */
+  --story-headline-weight: 600;
+}
+
 html { max-width: 100%; overflow-x: clip; scroll-behavior: smooth; background: #eae6de; }
 body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #eae6de; color: #182536; font-family: "Roboto", Arial, sans-serif; font-weight: 400; }
 
@@ -139,7 +144,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   margin-bottom: 0;
   max-width: 860px;
   font-size: clamp(28px, 7.2vw, 30px);
-  font-weight: 700;
+  font-weight: var(--story-headline-weight);
   line-height: 1.16;
   letter-spacing: -0.01em;
   color: #182536;
@@ -272,7 +277,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   padding: 0 22px;
   color: #182536;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: var(--story-headline-weight);
   line-height: 1;
   text-decoration: none;
   transition: color 160ms ease;
@@ -304,4 +309,13 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 
 @media (prefers-reduced-motion: reduce) {
   .latest-ticker__track { animation-duration: 100s; }
+}
+
+/* Only story titles: keep utility and compact-preview weights in sync. */
+.story-headline,
+.mobile-story-preview h2.story-headline,
+.mobile-story-preview h3.story-headline,
+.most-read-preview .mobile-story-preview h2.story-headline,
+.story-recommendations .mobile-story-preview h2.story-headline {
+  font-weight: var(--story-headline-weight);
 }

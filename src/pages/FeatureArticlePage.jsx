@@ -73,7 +73,7 @@ export default function FeatureArticlePage() {
       <div className="grid gap-12 xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start xl:gap-14">
         <div className="min-w-0">
           <header className="max-w-[860px]">
-            <h1 className="article-display-font story-detail-headline">{article.title}</h1>
+            <h1 className="story-headline article-display-font story-detail-headline">{article.title}</h1>
             {article.summary && <p className="mt-4 mb-0 max-w-[820px] text-[17px] leading-[1.6] text-[#39424a] sm:mt-5 sm:text-[18px] lg:text-[20px]">{article.summary}</p>}
             <div className="mt-5"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={article} /></div>

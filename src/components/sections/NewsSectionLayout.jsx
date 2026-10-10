@@ -24,7 +24,7 @@ export default function NewsSectionLayout({ eyebrow, title, description, stories
         <section className="grid gap-8 border-b border-[#dcdde0] py-8 lg:grid-cols-[1.25fr_.75fr]" aria-label={`Featured ${title}`}>
           <Link className="group block aspect-[16/9] overflow-hidden bg-[#e8edf2]" to={storyPath(feature, 0, true)}><img className="h-full w-full object-contain transition duration-700 group-hover:scale-[1.015]" src={feature.image} alt={feature.imageAlt} /></Link>
           <div className="flex flex-col justify-center">
-            <h2 className="m-0 line-clamp-2 font-serif text-[clamp(28px,3vw,42px)] leading-[1.08] font-medium tracking-[-.035em] text-[#111318]" title={feature.title}>{feature.title}</h2>
+            <h2 className="story-headline m-0 line-clamp-2 font-serif text-[clamp(28px,3vw,42px)] leading-[1.08] tracking-[-.035em] text-[#111318]" title={feature.title}>{feature.title}</h2>
             <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{feature.date}</p>
             <p className="home-story-summary my-4 tracking-[.01em]">{feature.summary}</p>
             <Link className="flex w-fit items-center gap-2 text-sm font-semibold text-[#111318]" to={storyPath(feature, 0, true)}>Read story <Icon name="arrow" /></Link>
@@ -36,7 +36,7 @@ export default function NewsSectionLayout({ eyebrow, title, description, stories
             <article className="mobile-story-preview group grid grid-cols-[28%_minmax(0,1fr)] items-start gap-3.5 border-b border-[#dcdde0] py-5 sm:block sm:py-7" key={story.title}>
               <Link className="block aspect-[4/3] overflow-hidden bg-[#e8edf2] sm:mb-4 sm:aspect-[16/9]" to={storyPath(story, index + 1)}><img className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.015]" src={story.image} alt={story.imageAlt} /></Link>
               <div className="min-w-0">
-                <h2 className="article-display-font m-0 line-clamp-3 text-[19px] leading-[1.17] font-[550] tracking-[-.01em] text-[#111318] sm:text-[20px] sm:font-semibold md:text-[21px]" title={story.title}><Link className="transition hover:opacity-60" to={storyPath(story, index + 1)}>{story.title}</Link></h2>
+                <h2 className="story-headline article-display-font m-0 line-clamp-3 text-[19px] leading-[1.17] tracking-[-.01em] text-[#111318] sm:text-[20px] md:text-[21px]" title={story.title}><Link className="transition hover:opacity-60" to={storyPath(story, index + 1)}>{story.title}</Link></h2>
                 <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{story.date}</p>
                 {story.author && <p className="mt-1 mb-0 text-[12px] text-[#69717a] sm:hidden">By {story.author}</p>}
                 <p className="home-story-summary mt-3 mb-0 hidden tracking-[.01em] sm:block">{story.summary}</p>

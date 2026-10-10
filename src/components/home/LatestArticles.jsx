@@ -26,7 +26,7 @@ export default function LatestArticles() {
               </Link>
               <div className="border-b border-[#c8c3ba] py-4">
                 <p className="mb-2 text-[13px] font-bold tracking-[.06em] text-[#397d73] uppercase">{article.category}</p>
-                <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.16] font-semibold tracking-[-.005em] text-[#111318] xl:text-[21px]" title={article.title}>
+                <h3 className="story-headline article-display-font m-0 line-clamp-3 text-[20px] leading-[1.16] tracking-[-.005em] text-[#111318] xl:text-[21px]" title={article.title}>
                   <Link to={shortStoryPath(article)}>{article.title}</Link>
                 </h3>
                 <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{article.date}</p>

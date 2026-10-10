@@ -31,7 +31,7 @@ function LatestNewsCard({ story, className = "" }) {
         <p className="mb-1 text-[13px] font-bold tracking-[.05em] uppercase text-[#397d73]">
           {story.category}
         </p>
-        <h3 className="article-display-font m-0 line-clamp-3 text-[20px] leading-[1.16] font-semibold tracking-[-.005em] text-[#111318] xl:text-[21px]" title={story.title}>
+        <h3 className="story-headline article-display-font m-0 line-clamp-3 text-[20px] leading-[1.16] tracking-[-.005em] text-[#111318] xl:text-[21px]" title={story.title}>
           <Link
             className="transition hover:opacity-65"
             to={storyPath}
@@ -118,7 +118,7 @@ export default function HeroSection() {
               <div className="flex min-w-0 flex-col pt-3">
                 <h1
                   id="lead-title"
-                  className="article-display-font m-0 line-clamp-3 max-w-[980px] text-[clamp(30px,3vw,44px)] leading-[1.08] font-medium tracking-[-.025em] text-[#111318]"
+                  className="story-headline article-display-font m-0 line-clamp-3 max-w-[980px] text-[clamp(30px,3vw,44px)] leading-[1.08] tracking-[-.025em] text-[#111318]"
                   title={currentLeadStory.title}
                 >
                   <Link className="transition hover:opacity-65" to={shortStoryPath(currentLeadStory)}>

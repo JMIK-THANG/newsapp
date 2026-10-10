@@ -45,7 +45,7 @@ export default function ArticlesPage() {
                 </Link>
                 <div className="min-w-0 sm:border-b sm:border-[#c8c6c0] sm:py-4">
                   <p className="mb-1.5 text-[12px] font-bold tracking-[.07em] text-[#397d73] uppercase sm:mb-2 sm:text-[13px]">{article.category || "Article"}</p>
-                  <h3 className="article-display-font m-0 text-[20px] leading-[1.16] font-semibold tracking-[-.01em] lg:text-[23px]">
+                  <h3 className="story-headline article-display-font m-0 text-[20px] leading-[1.16] tracking-[-.01em] lg:text-[23px]">
                     <Link to={pathFor(article, index)}>{article.title}</Link>
                   </h3>
                   <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{article.date}</p>
