@@ -339,6 +339,9 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
     gap: 10px;
     padding-block: 18px;
   }
+  .category-more-preview .mobile-story-preview {
+    grid-template-columns: minmax(0, 1fr) 28%;
+  }
   .most-read-preview .mobile-story-preview h2.story-headline {
     font-size: 14px;
   }
@@ -350,6 +353,11 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 
 /* Give the homepage hero sidebar a little more presence, without enlarging other lists. */
 @media (min-width: 1280px) {
+  .home-hero-most-read > div > h2 {
+    padding-top: 0;
+    padding-bottom: 10px;
+    line-height: 1.25;
+  }
   .home-hero-most-read .most-read-preview .mobile-story-preview {
     grid-template-columns: 30% minmax(0, 1fr);
     gap: 12px;

@@ -88,7 +88,7 @@ export default function HeroSection() {
   }
 
   return (
-    <main id="top" className="bg-[#f1eee8] px-3 pt-6 pb-6 md:px-6 md:pt-5 md:pb-8">
+    <main id="top" className="bg-[#f1eee8] px-3 pt-8 pb-6 md:px-6 md:pt-9 md:pb-8">
       <section className="mx-auto max-w-[1280px]" aria-labelledby="lead-title">
         <div className="grid min-w-0 overflow-hidden bg-white px-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] xl:px-0">
           <article className="group order-1 min-w-0 py-4 xl:px-6">
@@ -148,7 +148,7 @@ export default function HeroSection() {
           </article>
 
           <aside
-            className="home-hero-most-read order-3 flex min-w-0 flex-col py-4 xl:order-2 xl:px-6 xl:pt-6"
+            className="home-hero-most-read order-3 flex min-w-0 flex-col py-4 xl:order-2 xl:px-6"
             aria-label="Most Read"
           >
             <MostReadList stories={currentMostRead} storyPath={shortStoryPath} />

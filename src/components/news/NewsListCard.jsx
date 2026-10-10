@@ -5,9 +5,9 @@ export default function NewsListCard({ story, path, showCategory = true }) {
     <Link className="aspect-[4/3] overflow-hidden rounded-[6px] bg-[#e8edf2] sm:aspect-[16/10]" to={path} tabIndex="-1" aria-hidden="true">
       <img className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.025]" src={story.image} alt="" loading="lazy" decoding="async" />
     </Link>
-    <div className="min-w-0 self-center">
+    <div className="min-w-0 self-start">
       {showCategory && <p className="story-category-label m-0  leading-[1.4]   text-[#397d73]  ">{story.category}</p>}
-      <h2 className="story-headline article-display-font mt-1.5 mb-0 line-clamp-3 text-[19px] leading-[1.17] tracking-[-.01em] text-[#182536] sm:mt-2.5 sm:text-[20px] lg:text-[22px]" title={story.title}>
+      <h2 className={`story-headline article-display-font ${showCategory ? "mt-1.5 sm:mt-2" : "mt-0"} mb-0 line-clamp-3 text-[19px] leading-[1.17] tracking-[-.01em] text-[#182536] sm:text-[20px] lg:text-[22px]`} title={story.title}>
         <Link className="transition hover:text-[#397d73] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#397d73]" to={path}>{story.title}</Link>
       </h2>
       <p className="mt-3 mb-0 hidden line-clamp-3 text-[14px] leading-[1.65] tracking-[.01em] text-[#3f474f] sm:block">{story.summary}</p>
