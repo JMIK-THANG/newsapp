@@ -18,7 +18,7 @@ export default function LatestStories() {
       <div className="mx-auto max-w-[1380px]">
         <div className="border-b border-[#dcdde0] pb-6">
           <div>
-            <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[24px] font-semibold text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Editor’s Picks</h2>
+            <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[21px] font-semibold text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Editor’s Picks</h2>
           </div>
         </div>
 

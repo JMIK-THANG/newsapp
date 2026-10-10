@@ -79,7 +79,7 @@ export default function HeroSection() {
   if (isLoading) {
     return (
       <main className="bg-[#f1eee8] px-3 pt-3 pb-6 md:px-6 md:pt-4 md:pb-8" aria-label="Loading homepage stories">
-        <div className="mx-auto max-w-[1480px] bg-white p-4 xl:p-6">
+        <div className="mx-auto max-w-[1280px] bg-white p-4 xl:p-6">
           <div className="h-6 w-32 animate-pulse rounded bg-[#dedbd4]" />
           <div className="mt-4 h-[clamp(300px,52vw,560px)] animate-pulse rounded-[6px] bg-[#e8e4dc]" />
         </div>
@@ -88,13 +88,13 @@ export default function HeroSection() {
   }
 
   return (
-    <main id="top" className="bg-[#f1eee8] px-3 pt-6 pb-6 md:px-6 md:pt-8 md:pb-8">
-      <section className="mx-auto max-w-[1480px]" aria-labelledby="lead-title">
+    <main id="top" className="bg-[#f1eee8] px-3 pt-6 pb-6 md:px-6 md:pt-5 md:pb-8">
+      <section className="mx-auto max-w-[1280px]" aria-labelledby="lead-title">
         <div className="grid min-w-0 overflow-hidden bg-white px-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(300px,.75fr)] xl:px-0">
           <article className="group order-1 min-w-0 py-4 xl:px-6">
             <div className="mb-2.5 flex items-end justify-between">
               <div>
-                <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[24px] leading-tight font-semibold tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">
+                <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[21px] leading-tight font-normal tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">
                   Top Story
                 </h2>
               </div>
@@ -105,7 +105,7 @@ export default function HeroSection() {
 
             <div>
               <Link
-                className="relative block h-[clamp(270px,64vw,400px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(420px,46svh,520px)]"
+                className="relative block h-[clamp(240px,55vw,350px)] overflow-hidden rounded-[6px] bg-[#e8edf2] xl:h-[clamp(300px,38svh,380px)]"
                 to={shortStoryPath(currentLeadStory)}
               >
                 <img
@@ -118,7 +118,7 @@ export default function HeroSection() {
               <div className="flex min-w-0 flex-col pt-3">
                 <h1
                   id="lead-title"
-                  className="story-headline article-display-font m-0 line-clamp-3 max-w-[980px] text-[clamp(30px,3vw,44px)] leading-[1.08] tracking-[-.025em] text-[#111318]"
+                  className="story-headline article-display-font m-0 line-clamp-3 max-w-[980px] text-[clamp(27px,2.5vw,34px)] leading-[1.08] tracking-[-.025em] text-[#111318]"
                   title={currentLeadStory.title}
                 >
                   <Link className="transition hover:opacity-65" to={shortStoryPath(currentLeadStory)}>

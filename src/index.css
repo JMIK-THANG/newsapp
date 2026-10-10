@@ -8,7 +8,7 @@
 
 :root {
   /* Reference: homepage Editor's Picks main and sidebar headlines. */
-  --story-headline-weight: 600;
+  --story-headline-weight: 400;
 }
 
 html { max-width: 100%; overflow-x: clip; scroll-behavior: smooth; background: #eae6de; }
@@ -188,9 +188,9 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 }
 
 @media (min-width: 768px) {
-  .article-reading-text { font-size: 22px; line-height: 1.58; }
-  .story-reading-text { font-size: 22px; line-height: 1.58; letter-spacing: 0.01em; }
-  .home-story-summary { font-size: 20px; line-height: 1.65; }
+  .article-reading-text { font-size: 20px; line-height: 1.58; }
+  .story-reading-text { font-size: 20px; line-height: 1.58; letter-spacing: 0.01em; }
+  .home-story-summary { font-size: 16px; line-height: 1.65; }
 }
 
 /* A soft paper surface reduces glare while preserving the publication's contrast. */
@@ -318,4 +318,19 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 .most-read-preview .mobile-story-preview h2.story-headline,
 .story-recommendations .mobile-story-preview h2.story-headline {
   font-weight: var(--story-headline-weight);
+}
+
+@media (min-width: 640px) {
+  .most-read-preview .mobile-story-preview {
+    grid-template-columns: 28% minmax(0, 1fr);
+    gap: 10px;
+    padding-block: 18px;
+  }
+  .most-read-preview .mobile-story-preview h2.story-headline {
+    font-size: 14px;
+  }
+  .most-read-preview .mobile-story-preview > div > div {
+    font-size: 11px;
+    margin-top: 8px;
+  }
 }

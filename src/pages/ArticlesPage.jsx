@@ -17,7 +17,7 @@ export default function ArticlesPage() {
 
   return (
     <main className="bg-[#f1eee8] px-3 py-7 md:px-6 md:py-10">
-      <div className="mx-auto max-w-[1480px]">
+      <div className="mx-auto max-w-[1280px]">
         <header className="grid gap-4 border-y border-[#182536] py-5 md:grid-cols-[1fr_1fr] md:items-end">
           <h1 className="article-display-font m-0 text-[clamp(36px,5.5vw,54px)] leading-[1] font-semibold tracking-[-.035em] text-[#182536]">{categoryName === "News Article" ? "News Articles" : categoryName || "Articles"}</h1>
           <p className="m-0 max-w-xl text-[14px] leading-6 text-[#4f5359] md:justify-self-end">
@@ -44,7 +44,7 @@ export default function ArticlesPage() {
                   />
                 </Link>
                 <div className="min-w-0 sm:border-b sm:border-[#c8c6c0] sm:py-4">
-                  <p className="mb-1.5 text-[12px] font-bold tracking-[.07em] text-[#397d73] uppercase sm:mb-2 sm:text-[13px]">{article.category || "Article"}</p>
+                  <p className="mb-1.5 text-[10px] leading-[1.4] font-medium tracking-[.05em] text-[#397d73] uppercase sm:mb-2 sm:text-[11px]">{article.category || "Article"}</p>
                   <h3 className="story-headline article-display-font m-0 text-[20px] leading-[1.16] tracking-[-.01em] lg:text-[23px]">
                     <Link to={pathFor(article, index)}>{article.title}</Link>
                   </h3>
