@@ -93,7 +93,7 @@ export default function ArticleDetailPage({ section }) {
             <div className="mt-5"><ShareStoryButton story={story} /></div>
           </header>
           <div className="mt-7 sm:mt-9"><ArticleImage story={story} /></div>
-          <div className="article-reading-text story-reading-text mt-8 max-w-[760px] text-[#111318] sm:mt-10">
+          <div className="article-reading-text story-reading-text mx-auto mt-8 max-w-[840px] text-[#111318] sm:mt-10">
             {articleParagraphs.map((paragraph, index) => {
               const isNumberedItem = /^\d+[.)]\s/.test(paragraph);
               const isColorKey = /^[🔴🟢🔵]/u.test(paragraph);

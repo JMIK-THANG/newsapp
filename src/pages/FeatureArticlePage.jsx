@@ -69,7 +69,7 @@ export default function FeatureArticlePage() {
             <div className="mt-5"><ShareStoryButton story={article} /></div>
           </header>
           <div className="mt-7 sm:mt-9"><ArticleImage story={article} /></div>
-          <div className="article-reading-text story-reading-text mt-8 max-w-[760px] text-[#111318] sm:mt-10">{paragraphs.map((paragraph, index) => <p className={index === 0 ? "mt-0" : "mt-6"} key={`${index}-${paragraph.slice(0, 30)}`}>{paragraph}</p>)}</div>
+          <div className="article-reading-text story-reading-text mx-auto mt-8 max-w-[840px] text-[#111318] sm:mt-10">{paragraphs.map((paragraph, index) => <p className={index === 0 ? "mt-0" : "mt-6"} key={`${index}-${paragraph.slice(0, 30)}`}>{paragraph}</p>)}</div>
           <footer className="mt-12 max-w-[760px] pt-2"><Link className="inline-flex rounded-full bg-[#182536] px-5 py-3 text-xs font-bold text-white" to="/articles">View all articles</Link></footer>
         </div>
       </div>
