@@ -47,13 +47,21 @@ export default function ArticleDetailPage({ section }) {
   const location = useLocation();
   const stories = sectionStories[section];
   const staticStory = findStory(section, stories, storyKey);
-  const [databaseStory, setDatabaseStory] = useState(null);
-  const [loadError, setLoadError] = useState("");
+  const [loadedStory, setLoadedStory] = useState(null);
+  const [requestError, setRequestError] = useState(null);
+  const databaseStory = loadedStory?.key === storyKey ? loadedStory.story : null;
+  const loadError = requestError?.key === storyKey ? requestError.message : "";
   const story = databaseStory || staticStory;
 
   useEffect(() => {
+    let cancelled = false;
     if (staticStory) return;
-    getNewsArticle(storyKey).then(setDatabaseStory).catch((error) => setLoadError(error.message));
+    getNewsArticle(storyKey).then((result) => {
+      if (!cancelled) setLoadedStory({ key: storyKey, story: result });
+    }).catch((error) => {
+      if (!cancelled) setRequestError({ key: storyKey, message: error.message });
+    });
+    return () => { cancelled = true; };
   }, [staticStory, storyKey]);
 
 
@@ -88,7 +96,7 @@ export default function ArticleDetailPage({ section }) {
       <div className="grid items-start gap-9 xl:grid-cols-[minmax(0,1fr)_300px]">
         <div className="min-w-0">
           <header className="max-w-[860px]">
-            <h1 className="sr-only">{story.title}</h1>
+            <h1 className="story-headline article-display-font story-detail-headline">{story.title}</h1>
             <p className="mt-4 mb-0 max-w-[820px] text-[17px] leading-[1.6] text-[#39424a] sm:mt-5 sm:text-[18px] lg:text-[20px]">{summary}</p>
             <div className="mt-5"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={story} /></div>

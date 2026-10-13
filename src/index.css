@@ -157,7 +157,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   margin-top: 0;
   margin-bottom: 0;
   max-width: 860px;
-  font-size: clamp(26px, 6.8vw, 28px);
+  font-size: clamp(28px, 7vw, 32px);
   font-weight: var(--story-headline-weight);
   line-height: 1.16;
   letter-spacing: -0.01em;
@@ -179,14 +179,14 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 
 @media (min-width: 640px) {
   .story-detail-headline {
-    font-size: 32px;
+    font-size: 36px;
     line-height: 1.12;
   }
 }
 
 @media (min-width: 1024px) {
   .story-detail-headline {
-    font-size: clamp(34px, 2.7vw, 40px);
+    font-size: clamp(38px, 3vw, 44px);
     line-height: 1.1;
     letter-spacing: -0.025em;
   }
@@ -350,6 +350,34 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   .most-read-preview .mobile-story-preview > div > div {
     font-size: 11px;
     margin-top: 8px;
+  }
+}
+
+/* Compact All News sidebar: metadata uses the full card width, not a narrow text column. */
+@media (min-width: 1280px) {
+  #news-page [aria-label="Most Read"] > h2 { padding-top: 0; padding-bottom: 14px; }
+  #news-page .most-read-preview + .most-read-preview { border-top: 1px solid #dcdde0; }
+  #news-page .most-read-preview .mobile-story-preview {
+    grid-template-columns: 80px minmax(0, 1fr);
+    column-gap: 12px;
+    row-gap: 4px;
+    padding-block: 16px;
+  }
+  #news-page .most-read-preview .mobile-story-preview > a { grid-column: 1; grid-row: 1 / span 2; }
+  #news-page .most-read-preview .mobile-story-preview > div { display: contents; }
+  #news-page .most-read-preview .story-category-label { grid-column: 2; font-size: 11px; }
+  #news-page .most-read-preview h2.story-headline {
+    grid-column: 2;
+    margin-top: 0;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+  #news-page .most-read-preview .mobile-story-preview > div > div {
+    grid-column: 1 / -1;
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.5;
+    gap: 4px 8px;
   }
 }
 

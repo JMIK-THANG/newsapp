@@ -21,12 +21,20 @@ export default function FeatureArticlePage() {
   const { storyKey } = useParams();
   const location = useLocation();
   const fallback = staticArticle(storyKey);
-  const [article, setArticle] = useState(fallback);
-  const [error, setError] = useState("");
+  const [loadedArticle, setLoadedArticle] = useState(null);
+  const [requestError, setRequestError] = useState(null);
+  const article = loadedArticle?.key === storyKey ? loadedArticle.article : fallback;
+  const error = requestError?.key === storyKey ? requestError.message : "";
 
   useEffect(() => {
+    let cancelled = false;
     if (fallback) return;
-    getNewsArticle(storyKey).then(setArticle).catch((requestError) => setError(requestError.message));
+    getNewsArticle(storyKey).then((result) => {
+      if (!cancelled) setLoadedArticle({ key: storyKey, article: result });
+    }).catch((error) => {
+      if (!cancelled) setRequestError({ key: storyKey, message: error.message });
+    });
+    return () => { cancelled = true; };
   }, [fallback, storyKey]);
 
   if (!article) return <main className="min-h-[60vh] bg-white px-6 py-20 text-center"><h1 className="font-serif text-4xl">{error || "Loading article…"}</h1><Link className="underline" to="/articles">Return to Articles</Link></main>;
@@ -64,7 +72,7 @@ export default function FeatureArticlePage() {
       <div className="grid items-start gap-9 xl:grid-cols-[minmax(0,1fr)_300px]">
         <div className="min-w-0">
           <header className="max-w-[860px]">
-            <h1 className="sr-only">{article.title}</h1>
+            <h1 className="story-headline article-display-font story-detail-headline">{article.title}</h1>
             {article.summary && <p className="mt-4 mb-0 max-w-[820px] text-[17px] leading-[1.6] text-[#39424a] sm:mt-5 sm:text-[18px] lg:text-[20px]">{article.summary}</p>}
             <div className="mt-5"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={article} /></div>
