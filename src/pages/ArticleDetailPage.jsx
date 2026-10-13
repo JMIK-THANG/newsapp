@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import ArticleImage from "../components/article/ArticleImage";
 import ArticleMeta from "../components/article/ArticleMeta";
+import RelatedStories from "../components/article/RelatedStories";
 import Icon from "../components/ui/Icon";
 import ShareStoryButton from "../components/ui/ShareStoryButton";
 import Seo, { SITE_NAME, SITE_URL } from "../components/seo/Seo";
@@ -84,7 +85,7 @@ export default function ArticleDetailPage({ section }) {
         <Link className="text-[#182536] hover:text-[#397d73]" to={`/${section}`}>{sectionNames[section]}</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={categoryPath(story.category, section)}>{story.category}</Link>
       </nav>
-      <div className="w-full">
+      <div className="grid items-start gap-9 xl:grid-cols-[minmax(0,1fr)_300px]">
         <div className="min-w-0">
           <header className="max-w-[860px]">
             <h1 className="story-headline article-display-font story-detail-headline">{story.title}</h1>
@@ -106,6 +107,7 @@ export default function ArticleDetailPage({ section }) {
             {story.sources && <aside className="mt-10 border-t border-[#dcdde0] pt-5"><h2 className="mt-0 mb-3 text-sm font-semibold">Sources and further reading</h2><ul className="m-0 space-y-2 pl-5 text-sm leading-6">{story.sources.map((source) => <li key={source.url}><a className="text-[#397d73] underline underline-offset-3" href={source.url} target="_blank" rel="noreferrer">{source.label}</a></li>)}</ul></aside>}
           </div>
         </div>
+        <RelatedStories story={story} />
       </div>
     </article>
   </main>;

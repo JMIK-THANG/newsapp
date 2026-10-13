@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import ArticleImage from "../components/article/ArticleImage";
 import ArticleMeta from "../components/article/ArticleMeta";
+import RelatedStories from "../components/article/RelatedStories";
 import Icon from "../components/ui/Icon";
 import ShareStoryButton from "../components/ui/ShareStoryButton";
 import Seo, { SITE_NAME, SITE_URL } from "../components/seo/Seo";
@@ -60,7 +61,7 @@ export default function FeatureArticlePage() {
         <Link className="text-[#182536] hover:text-[#397d73]" to="/articles">Articles</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={categoryPath(article.category, "articles")}>{article.category}</Link>
       </nav>
-      <div className="w-full">
+      <div className="grid items-start gap-9 xl:grid-cols-[minmax(0,1fr)_300px]">
         <div className="min-w-0">
           <header className="max-w-[860px]">
             <h1 className="story-headline article-display-font story-detail-headline">{article.title}</h1>
@@ -72,6 +73,7 @@ export default function FeatureArticlePage() {
           <div className="article-reading-text story-reading-text mx-auto mt-8 max-w-[840px] text-[#111318] sm:mt-10">{paragraphs.map((paragraph, index) => <p className={index === 0 ? "mt-0" : "mt-6"} key={`${index}-${paragraph.slice(0, 30)}`}>{paragraph}</p>)}</div>
           <footer className="mt-12 max-w-[760px] pt-2"><Link className="inline-flex rounded-full bg-[#182536] px-5 py-3 text-xs font-bold text-white" to="/articles">View all articles</Link></footer>
         </div>
+        <RelatedStories story={article} />
       </div>
     </article>
   </main>;
