@@ -36,10 +36,9 @@ const cleanArticleParagraph = (paragraph, story) => paragraph.split(/\r?\n/).map
   if (!line) return false;
   const normalizedLine = line.toLocaleLowerCase().replace(/\s+/g, " ");
   const normalizedTitle = story.title.toLocaleLowerCase().replace(/\s+/g, " ");
-  const normalizedSummary = story.summary?.toLocaleLowerCase().replace(/\s+/g, " ");
   const publicationDateLine = /^(?:by\s+)?chinlung today(?:\s+newsroom)?(?:\s*[|/·•:—–-]\s*(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2},?\s+\d{4})?\.?$/i;
   const standaloneDateLine = /^(?:published\s*:?[ ]*)?(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2},?\s+\d{4}\.?$/i;
-  return normalizedLine !== normalizedTitle && (!normalizedSummary || normalizedLine !== normalizedSummary) && !publicationDateLine.test(line) && !standaloneDateLine.test(line) && (!story.date || normalizedLine !== story.date.toLocaleLowerCase());
+  return normalizedLine !== normalizedTitle && !publicationDateLine.test(line) && !standaloneDateLine.test(line) && (!story.date || normalizedLine !== story.date.toLocaleLowerCase());
 }).join("\n").trim();
 
 export default function ArticleDetailPage({ section }) {
@@ -97,7 +96,6 @@ export default function ArticleDetailPage({ section }) {
         <div className="min-w-0">
           <header className="max-w-[860px]">
             <h1 className="story-headline article-display-font story-detail-headline">{story.title}</h1>
-            <p className="mt-4 mb-0 max-w-[820px] text-[17px] leading-[1.6] text-[#39424a] sm:mt-5 sm:text-[18px] lg:text-[20px]">{summary}</p>
             <div className="mt-5"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={story} /></div>
           </header>

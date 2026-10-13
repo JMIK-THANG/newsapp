@@ -40,11 +40,10 @@ export default function FeatureArticlePage() {
   if (!article) return <main className="min-h-[60vh] bg-white px-6 py-20 text-center"><h1 className="font-serif text-4xl">{error || "Loading article…"}</h1><Link className="underline" to="/articles">Return to Articles</Link></main>;
 
   const normalizedTitle = article.title?.trim().toLocaleLowerCase().replace(/\s+/g, " ");
-  const normalizedSummary = article.summary?.trim().toLocaleLowerCase().replace(/\s+/g, " ");
   const paragraphs = (article.content?.length ? article.content : []).map((paragraph) => paragraph.trim()).filter((paragraph) => {
     if (!paragraph) return false;
     const normalizedParagraph = paragraph.toLocaleLowerCase().replace(/\s+/g, " ");
-    return normalizedParagraph !== normalizedTitle && normalizedParagraph !== normalizedSummary;
+    return normalizedParagraph !== normalizedTitle;
   });
   const canonicalPath = /^\d+$/.test(String(article.id ?? "")) ? shortStoryPath(article) : location.pathname;
   const canonicalUrl = `${SITE_URL}${canonicalPath}`;
@@ -73,7 +72,6 @@ export default function FeatureArticlePage() {
         <div className="min-w-0">
           <header className="max-w-[860px]">
             <h1 className="story-headline article-display-font story-detail-headline">{article.title}</h1>
-            {article.summary && <p className="mt-4 mb-0 max-w-[820px] text-[17px] leading-[1.6] text-[#39424a] sm:mt-5 sm:text-[18px] lg:text-[20px]">{article.summary}</p>}
             <div className="mt-5"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={article} /></div>
           </header>
