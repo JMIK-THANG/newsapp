@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export const SITE_URL = "https://chinlungtoday.com";
 export const SITE_NAME = "Chinlung Today";
-export const HOMEPAGE_TITLE = "Chin News & Falam News | Chin Lung Today";
+export const HOMEPAGE_TITLE = SITE_NAME;
 export const HOMEPAGE_DESCRIPTION = "Read Chin news and Falam news from Chinlung Today, with reporting in Falam Chin on Chin State, Myanmar, and events affecting Chin communities.";
 export const DEFAULT_DESCRIPTION = "Chinlung Today is a news and information website serving the Chin community with reporting and Falam Chin content from Chin State, Myanmar, and around the world.";
 export const DEFAULT_IMAGE = `${SITE_URL}/chinlung-today-logo.png`;

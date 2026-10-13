@@ -2,7 +2,7 @@
 
 ## Changes
 
-- Homepage title: `Chin News & Falam News | Chin Lung Today` in initial HTML and React metadata (without a duplicate brand suffix).
+- Homepage title: `Chinlung Today` in initial HTML and React metadata, per the owner's brand-only title preference. Chin/Falam search relevance remains in the description and visible introduction.
 - Matching homepage description and social metadata; canonical remains `https://chinlungtoday.com/`.
 - A short, visible introduction inside the existing homepage News section describes Chin/Falam news and reporting in Falam Chin. Existing typography, article URLs, layouts, and functionality are unchanged.
 
