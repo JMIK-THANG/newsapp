@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
-import Seo, { DEFAULT_DESCRIPTION, DEFAULT_IMAGE, SITE_NAME, SITE_URL } from "./Seo";
+import Seo, { HOMEPAGE_DESCRIPTION, HOMEPAGE_TITLE, DEFAULT_IMAGE, SITE_NAME, SITE_URL } from "./Seo";
 
 const routeMetadata = {
-  "/": { title: SITE_NAME, description: DEFAULT_DESCRIPTION },
+  "/": { title: HOMEPAGE_TITLE, titleIsComplete: true, description: HOMEPAGE_DESCRIPTION },
   "/news": { title: "All News", description: "Read the latest news from Chin communities, Myanmar, and around the world from Chinlung Today." },
   "/editorial": { title: "Editorial", description: "Editorials and perspectives from Chinlung Today." },
   "/articles": { title: "Articles", description: "Long-form articles and analysis from Chinlung Today." },

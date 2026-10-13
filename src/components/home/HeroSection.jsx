@@ -164,6 +164,7 @@ export default function HeroSection() {
 
             </div>
 
+            <p className="mt-0 mb-6 max-w-[860px] text-sm leading-relaxed text-[#39424a] sm:text-base">Chinlung Today covers Chin news and Falam news, with reporting in Falam Chin on Chin State, Myanmar, and events affecting Chin communities. Read the latest reports, editorials, and articles below.</p>
             <LatestNewsGrid stories={latestNews} />
 <div className="mt-6 flex justify-center"><Link className="flex items-center gap-2 rounded-full bg-[#182536] px-5 py-3 text-sm font-semibold text-white" to="/news">View all news <Icon name="arrow" /></Link></div>
           </section>

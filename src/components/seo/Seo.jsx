@@ -2,6 +2,8 @@ import { useEffect } from "react";
 
 export const SITE_URL = "https://chinlungtoday.com";
 export const SITE_NAME = "Chinlung Today";
+export const HOMEPAGE_TITLE = "Chin News & Falam News | Chin Lung Today";
+export const HOMEPAGE_DESCRIPTION = "Read Chin news and Falam news from Chinlung Today, with reporting in Falam Chin on Chin State, Myanmar, and events affecting Chin communities.";
 export const DEFAULT_DESCRIPTION = "Chinlung Today is a news and information website serving the Chin community with reporting and Falam Chin content from Chin State, Myanmar, and around the world.";
 export const DEFAULT_IMAGE = `${SITE_URL}/chinlung-today-logo.png`;
 
@@ -16,6 +18,7 @@ const setMeta = (selector, attributes) => {
 
 export default function Seo({
   title = SITE_NAME,
+  titleIsComplete = false,
   description = DEFAULT_DESCRIPTION,
   canonicalPath = "/",
   image = DEFAULT_IMAGE,
@@ -25,7 +28,7 @@ export default function Seo({
 }) {
   useEffect(() => {
     const canonicalUrl = new URL(canonicalPath, SITE_URL).href;
-    const fullTitle = title === SITE_NAME ? SITE_NAME : `${title} | ${SITE_NAME}`;
+    const fullTitle = titleIsComplete || title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
     document.title = fullTitle;
     setMeta('meta[name="description"]', { name: "description", content: description });
     setMeta('meta[name="robots"]', { name: "robots", content: robots });
@@ -58,7 +61,7 @@ export default function Seo({
     } else {
       existingSchema?.remove();
     }
-  }, [canonicalPath, description, image, robots, schema, title, type]);
+  }, [canonicalPath, description, image, robots, schema, title, titleIsComplete, type]);
 
   return null;
 }
