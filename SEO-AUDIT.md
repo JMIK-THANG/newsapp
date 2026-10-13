@@ -2,9 +2,9 @@
 
 ## Changes
 
-- Homepage title: `Chinlung Today` in initial HTML and React metadata, per the owner's brand-only title preference. Chin/Falam search relevance remains in the description and visible introduction.
+- Homepage title: `Chinlung Today` in initial HTML and React metadata, per the owner's brand-only title preference. Chin/Falam search relevance remains in the description and existing news coverage.
 - Matching homepage description and social metadata; canonical remains `https://chinlungtoday.com/`.
-- A short, visible introduction inside the existing homepage News section describes Chin/Falam news and reporting in Falam Chin. Existing typography, article URLs, layouts, and functionality are unchanged.
+- The newly added visible introduction was removed at the owner's request. Existing visible content, typography, article URLs, layouts, and functionality are unchanged.
 
 ## Rendering and discovery evidence
 
@@ -25,7 +25,7 @@ A browser DOM check is not Google's URL Inspection result. No Search Console acc
 
 After deployment, in Google Search Console:
 
-1. Inspect the homepage; Test live URL; confirm title, description, introduction, and canonical.
+1. Inspect the homepage; Test live URL; confirm title, description, and canonical.
 2. Inspect the tested article above and at least one longer `/articles/` URL; Test live URL → View tested page → HTML. Search for both the first and final substantive paragraphs, outside JSON-LD. Check loaded resources and errors if missing.
 3. Compare the indexed URL's rendered HTML with the live test. Confirm Google-selected canonical equals the existing article URL.
 4. Submit/check `https://chinlungtoday.com/sitemap.xml` and request indexing for the homepage and representative articles. Submission does not guarantee indexing or ranking.
