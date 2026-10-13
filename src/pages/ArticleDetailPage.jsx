@@ -88,13 +88,13 @@ export default function ArticleDetailPage({ section }) {
       <div className="grid items-start gap-9 xl:grid-cols-[minmax(0,1fr)_300px]">
         <div className="min-w-0">
           <header className="max-w-[860px]">
-            <h1 className="story-headline article-display-font story-detail-headline">{story.title}</h1>
+            <h1 className="sr-only">{story.title}</h1>
             <p className="mt-4 mb-0 max-w-[820px] text-[17px] leading-[1.6] text-[#39424a] sm:mt-5 sm:text-[18px] lg:text-[20px]">{summary}</p>
             <div className="mt-5"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
             <div className="mt-5"><ShareStoryButton story={story} /></div>
           </header>
           <div className="mt-7 sm:mt-9"><ArticleImage story={story} /></div>
-          <div className="article-reading-text story-reading-text mx-auto mt-8 max-w-[840px] text-[#111318] sm:mt-10">
+          <div className="article-reading-text story-reading-text mt-8 w-full text-[#111318] sm:mt-10">
             {articleParagraphs.map((paragraph, index) => {
               const isNumberedItem = /^\d+[.)]\s/.test(paragraph);
               const isColorKey = /^[🔴🟢🔵]/u.test(paragraph);
