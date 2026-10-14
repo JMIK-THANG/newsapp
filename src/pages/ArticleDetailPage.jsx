@@ -86,7 +86,7 @@ export default function ArticleDetailPage({ section }) {
 
   return <main className="bg-white px-5 py-5 sm:px-6 sm:py-8 lg:py-9">
     <Seo title={story.title} description={summary} canonicalPath={canonicalPath} image={story.image} type="article" schema={articleSchema} />
-    <article className="mx-auto max-w-[1280px]">
+    <article className="mx-auto max-w-[1160px]">
       <nav className="mb-3 flex flex-wrap items-center gap-2 text-[12px] font-medium text-[#69717a] sm:mb-5 sm:text-[13px]" aria-label="Breadcrumb">
         <Link className="text-[#182536] hover:text-[#397d73]" to="/">Home</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to={`/${section}`}>{sectionNames[section]}</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
@@ -96,10 +96,9 @@ export default function ArticleDetailPage({ section }) {
         <div className="min-w-0">
           <header className="max-w-[860px]">
             <h1 className="story-headline article-display-font story-detail-headline">{story.title}</h1>
-            <div className="mt-5"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /></div>
-            <div className="mt-5"><ShareStoryButton story={story} /></div>
+            <div className="mt-4 flex flex-col gap-4 border-b border-[#dcdde0] pb-4 sm:flex-row sm:items-center sm:justify-between"><ArticleMeta author={story.author || authors[section]} date={story.date || "August 26, 2026"} readTime={story.readTime || story.time || "6 min read"} /><ShareStoryButton story={story} /></div>
           </header>
-          <div className="mt-7 sm:mt-9"><ArticleImage story={story} /></div>
+          <div className="mt-5 sm:mt-6"><ArticleImage story={story} /></div>
           <div className="article-reading-text story-reading-text mt-8 w-full text-[#111318] sm:mt-10">
             {articleParagraphs.map((paragraph, index) => {
               const isNumberedItem = /^\d+[.)]\s/.test(paragraph);

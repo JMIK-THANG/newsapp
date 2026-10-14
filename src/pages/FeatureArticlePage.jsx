@@ -62,7 +62,7 @@ export default function FeatureArticlePage() {
 
   return <main className="bg-white px-5 py-5 sm:px-6 sm:py-8 lg:py-9">
     <Seo title={article.title} description={article.summary || article.title} canonicalPath={canonicalPath} image={article.image} type="article" schema={articleSchema} />
-    <article className="mx-auto max-w-[1280px]">
+    <article className="mx-auto max-w-[1160px]">
       <nav className="mb-3 flex flex-wrap items-center gap-2 text-[12px] font-medium text-[#69717a] sm:mb-5 sm:text-[13px]" aria-label="Breadcrumb">
         <Link className="text-[#182536] hover:text-[#397d73]" to="/">Home</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
         <Link className="text-[#182536] hover:text-[#397d73]" to="/articles">Articles</Link><span className="-rotate-90 [&_svg]:size-3" aria-hidden="true"><Icon name="chevron" /></span>
@@ -72,10 +72,9 @@ export default function FeatureArticlePage() {
         <div className="min-w-0">
           <header className="max-w-[860px]">
             <h1 className="story-headline article-display-font story-detail-headline">{article.title}</h1>
-            <div className="mt-5"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /></div>
-            <div className="mt-5"><ShareStoryButton story={article} /></div>
+            <div className="mt-4 flex flex-col gap-4 border-b border-[#dcdde0] pb-4 sm:flex-row sm:items-center sm:justify-between"><ArticleMeta author={article.author || "Chinlung Today"} date={article.date} readTime={article.readTime || article.time || "5 min read"} /><ShareStoryButton story={article} /></div>
           </header>
-          <div className="mt-7 sm:mt-9"><ArticleImage story={article} /></div>
+          <div className="mt-5 sm:mt-6"><ArticleImage story={article} /></div>
           <div className="article-reading-text story-reading-text mt-8 w-full text-[#111318] sm:mt-10">{paragraphs.map((paragraph, index) => <p className={index === 0 ? "mt-0" : "mt-6"} key={`${index}-${paragraph.slice(0, 30)}`}>{paragraph}</p>)}</div>
           <footer className="mt-12 max-w-[760px] pt-2"><Link className="inline-flex rounded-full bg-[#182536] px-5 py-3 text-xs font-bold text-white" to="/articles">View all articles</Link></footer>
         </div>

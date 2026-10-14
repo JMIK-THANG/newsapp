@@ -335,6 +335,18 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   font-weight: var(--story-headline-weight);
 }
 
+/* Individual story titles follow the reference's quieter sans-serif scale. */
+.story-headline.story-detail-headline {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: clamp(26px, 6vw, 30px);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: normal;
+}
+@media (min-width: 640px) {
+  .story-headline.story-detail-headline { font-size: 34px; line-height: 1.5; }
+}
+
 @media (min-width: 640px) {
   .most-read-preview .mobile-story-preview {
     grid-template-columns: 28% minmax(0, 1fr);
