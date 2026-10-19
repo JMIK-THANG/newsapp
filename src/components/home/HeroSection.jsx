@@ -1,5 +1,6 @@
 import { latestStories, leadStory, mostReadStories } from "../../data/news";
 import MostReadList from "../news/MostReadList";
+import HomeStoryMeta from "./HomeStoryMeta";
 import useNews from "../../hooks/useNews";
 import Icon from "../ui/Icon";
 import { Link } from "react-router-dom";
@@ -39,8 +40,8 @@ function LatestNewsCard({ story, className = "" }) {
             {story.title}
           </Link>
         </h3>
-        <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{story.date}</p>
-        {story.author && <p className="mt-1 mb-0 text-xs text-[#69717a] sm:hidden">By {story.author}</p>}
+        <HomeStoryMeta story={story} className="mt-2 mb-0" />
+        <p className="home-card-preview home-story-summary mt-3 mb-0 hidden sm:line-clamp-2">{story.summary}</p>
       </div>
     </article>
   );

@@ -49,8 +49,9 @@ export default function ArticlesPage() {
                     <Link to={pathFor(article, index)}>{article.title}</Link>
                   </h3>
                   <p className="mt-2 mb-0 text-[12px] font-normal text-[#69717a]">{article.date}</p>
-                  <p className="mt-2 hidden line-clamp-3 text-[14px] leading-[1.6] text-[#303940] sm:block">{article.summary}</p>
+                  <p className="mt-2 hidden text-[14px] leading-[1.6] text-[#303940] sm:line-clamp-2">{article.summary}</p>
                   <p className="mt-2 text-[12px] text-[#69717a] sm:mt-3 sm:font-semibold">By {article.author || "Chinlung Today"}</p>
+                  <Link className="mt-3 inline-flex text-[12px] font-semibold text-[#397d73] underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#397d73]" to={pathFor(article, index)} aria-label={`Read full article: ${article.title}`}>Read full article</Link>
                 </div>
               </article>
             ))}

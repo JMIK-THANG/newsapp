@@ -12,14 +12,14 @@ export default function EditorialPage() {
 
   if (isLoading) return <main className="bg-white px-5 py-5 sm:px-6"><div className="mx-auto max-w-[1280px]"><StoryLoading /></div></main>;
 
-  return <main id="editorial-page" className="bg-white px-5 py-5 sm:px-6 sm:py-8 lg:py-9">
+  return <main id="editorial-page" className="bg-white px-5 py-4 sm:px-6 sm:py-5">
     <div className="mx-auto max-w-[1280px]">
-      <header className="border-b border-[#dcdde0] pb-4 md:pb-6">
-        <h1 className="article-display-font m-0 text-[clamp(34px,5.5vw,54px)] leading-[1] font-semibold tracking-[-.035em] text-[#182536]">Editorial</h1>
-        <p className="mt-2 mb-0 max-w-[760px] text-[15px] leading-6 text-[#4f5962] sm:mt-4 sm:text-[17px] sm:leading-7">Independent analysis and informed opinion from the Chinlung Today editorial team.</p>
+      <header className="border-b border-[#dcdde0] pb-3">
+        <h1 className="article-display-font m-0 text-[clamp(30px,4vw,40px)] leading-[1.1] font-semibold tracking-[-.025em] text-[#182536]">Editorial</h1>
+        <p className="mt-2 mb-0 max-w-[760px] text-[13px] leading-5 text-[#4f5962]">Independent analysis and informed opinion from the Chinlung Today editorial team.</p>
       </header>
 
-      {lead && <article className="grid gap-6 border-b border-[#dcdde0] py-6 sm:py-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,.65fr)] lg:items-center lg:gap-10">
+      {lead && <article className="grid gap-6 border-b border-[#dcdde0] py-4 sm:py-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,.65fr)] lg:items-center lg:gap-10">
         <Link className="group block aspect-[16/9] overflow-hidden rounded-[6px] bg-[#e8edf2]" to={storyPath(lead, "/editorial/featured")}><img className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.015]" src={lead.image} alt={lead.imageAlt || lead.title} /></Link>
         <div className="flex min-w-0 flex-col justify-center">
           <h2 className="story-headline article-display-font mt-3 mb-0 line-clamp-3 text-[clamp(26px,2.7vw,36px)] leading-[1.12] tracking-[-.015em] text-[#182536]" title={lead.title}><Link className="transition hover:text-[#397d73]" to={storyPath(lead, "/editorial/featured")}>{lead.title}</Link></h2>
