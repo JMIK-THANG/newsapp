@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useNews from "../../hooks/useNews";
 import Icon from "../ui/Icon";
 import { shortStoryPath } from "../../utils/storyPath";
+import HomeStoryMeta from "./HomeStoryMeta";
 
 export default function LatestArticles() {
   const { news: articles, isLoading } = useNews({ contentType: "article" });
@@ -14,7 +15,7 @@ export default function LatestArticles() {
     <section className="border-t border-[#d5d1c9] bg-[#f1eee8] px-3 py-10 md:px-6 md:py-14" aria-labelledby="latest-articles-title">
       <div className="mx-auto max-w-[1280px]">
         <header className="mb-6 flex items-end justify-between gap-5 border-b border-[#182536] pb-4">
-          <h2 id="latest-articles-title" className="article-display-font m-0 inline-flex items-center gap-2 text-[21px] leading-tight font-normal tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Articles</h2>
+          <h2 id="latest-articles-title" className="home-section-title article-display-font m-0 inline-flex items-center gap-2 text-[21px] leading-tight tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Articles</h2>
           <Link className="hidden items-center gap-2 text-[11px] font-bold tracking-[.05em] uppercase sm:flex" to="/articles">View all articles <Icon name="arrow" /></Link>
         </header>
 
@@ -26,12 +27,11 @@ export default function LatestArticles() {
               </Link>
               <div className="border-b border-[#c8c3ba] py-4">
                 <p className="story-category-label mb-2  leading-[1.4]   text-[#397d73]  ">{article.category}</p>
-                <h3 className="story-headline article-display-font m-0 line-clamp-3 text-[20px] leading-[1.16] tracking-[-.005em] text-[#111318] xl:text-[21px]" title={article.title}>
+                <h3 className="home-card-title story-headline article-display-font m-0 line-clamp-3" title={article.title}>
                   <Link to={shortStoryPath(article)}>{article.title}</Link>
                 </h3>
-                <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{article.date}</p>
-                {article.author && <p className="mt-1 mb-0 text-xs text-[#69717a] sm:hidden">By {article.author}</p>}
-                <p className="home-story-summary mt-3 line-clamp-2">{article.summary}</p>
+                <HomeStoryMeta story={article} className="mt-2 mb-0" />
+                <p className="home-card-preview home-story-summary mt-3 line-clamp-2">{article.summary}</p>
               </div>
             </article>
           ))}

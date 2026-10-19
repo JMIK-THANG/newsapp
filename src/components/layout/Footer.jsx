@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Icon from "../ui/Icon";
 
 const newsroomLinks = [
-  ["Latest News", "/news"],
+  ["All News", "/news"],
   ["Chin News", "/news/category/chin"],
   ["Myanmar News", "/news/category/myanmar"],
   ["International", "/news/category/international"],

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-export default function NewsListCard({ story, path, showCategory = true }) {
-  return <article className="mobile-story-preview group grid grid-cols-[28%_minmax(0,1fr)] items-start gap-3.5 py-5 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-5 sm:py-6 lg:grid-cols-[200px_minmax(0,1fr)] lg:py-5">
+export default function NewsListCard({ story, path, showCategory = true, showReadTime = true }) {
+  return <article className="news-list-card mobile-story-preview group grid grid-cols-[28%_minmax(0,1fr)] items-start gap-3.5 py-5 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-5 sm:py-6 lg:grid-cols-[200px_minmax(0,1fr)] lg:py-5">
     <Link className="aspect-[4/3] overflow-hidden rounded-[6px] bg-[#e8edf2] sm:aspect-[16/10]" to={path} tabIndex="-1" aria-hidden="true">
       <img className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.025]" src={story.image} alt="" loading="lazy" decoding="async" />
     </Link>
@@ -14,7 +14,7 @@ export default function NewsListCard({ story, path, showCategory = true }) {
       <div className="mt-2.5 flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[14px] text-[#69717a] sm:mt-3 sm:gap-x-3 sm:gap-y-1 sm:text-[13px]">
         <span>{story.date}</span>
         {story.author && <><span aria-hidden="true">•</span><span className="inline-flex items-center gap-1.5">By <strong className="font-semibold text-[#303940]">{story.author}</strong></span></>}
-        {(story.readTime || story.time) && <><span className="hidden sm:inline" aria-hidden="true">•</span><span className="hidden sm:inline-flex sm:items-center sm:gap-1.5">{story.readTime || story.time}</span></>}
+        {showReadTime && (story.readTime || story.time) && <><span className="hidden sm:inline" aria-hidden="true">•</span><span className="hidden sm:inline-flex sm:items-center sm:gap-1.5">{story.readTime || story.time}</span></>}
       </div>
     </div>
   </article>;

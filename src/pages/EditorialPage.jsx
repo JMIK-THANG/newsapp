@@ -12,7 +12,7 @@ export default function EditorialPage() {
 
   if (isLoading) return <main className="bg-white px-5 py-5 sm:px-6"><div className="mx-auto max-w-[1280px]"><StoryLoading /></div></main>;
 
-  return <main className="bg-white px-5 py-5 sm:px-6 sm:py-8 lg:py-9">
+  return <main id="editorial-page" className="bg-white px-5 py-5 sm:px-6 sm:py-8 lg:py-9">
     <div className="mx-auto max-w-[1280px]">
       <header className="border-b border-[#dcdde0] pb-4 md:pb-6">
         <h1 className="article-display-font m-0 text-[clamp(34px,5.5vw,54px)] leading-[1] font-semibold tracking-[-.035em] text-[#182536]">Editorial</h1>

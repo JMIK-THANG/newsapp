@@ -71,10 +71,10 @@ export default function HeroSection() {
   const databaseMostRead = [...news]
     .filter(isInMostReadWindow)
     .sort((first, second) => Number(second.views || 0) - Number(first.views || 0))
-    .slice(0, 3);
-  const currentMostRead = databaseMostRead.length >= 3
+    .slice(0, 4);
+  const currentMostRead = databaseMostRead.length
     ? databaseMostRead
-    : mostReadStories.slice(0, 3);
+    : mostReadStories.slice(0, 4);
 
   if (isLoading) {
     return (
@@ -98,9 +98,6 @@ export default function HeroSection() {
                   Top Story
                 </h2>
               </div>
-              <Link className="story-category-label flex items-center gap-2   text-[#397d73] " to={["Sports", "Business", "Editorial"].includes(currentLeadStory.category) ? `/${currentLeadStory.category.toLowerCase()}` : `/news/category/${currentLeadStory.category.replace(" News", "").toLowerCase()}`}>
-{currentLeadStory.category} <Icon name="arrow" />
-</Link>
             </div>
 
             <div>
@@ -151,7 +148,7 @@ export default function HeroSection() {
             className="home-hero-most-read order-3 flex min-w-0 flex-col py-6 xl:order-2 xl:px-6"
             aria-label="Most Read"
           >
-            <MostReadList stories={currentMostRead} storyPath={shortStoryPath} />
+            <MostReadList stories={currentMostRead} storyPath={shortStoryPath} showReadTime={false} />
           </aside>
 
           <section

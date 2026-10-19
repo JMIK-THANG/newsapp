@@ -2,6 +2,7 @@ import Icon from "../ui/Icon";
 import { Link } from "react-router-dom";
 import useNews from "../../hooks/useNews";
 import { shortStoryPath } from "../../utils/storyPath";
+import HomeStoryMeta from "./HomeStoryMeta";
 
 export default function LatestStories() {
   const { news } = useNews({ category: "Editorial", editorPicks: true });
@@ -18,7 +19,7 @@ export default function LatestStories() {
       <div className="mx-auto max-w-[1380px]">
         <div className="border-b border-[#dcdde0] pb-6">
           <div>
-            <h2 className="article-display-font m-0 inline-flex items-center gap-2 text-[21px] font-semibold text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Editor’s Picks</h2>
+            <h2 className="home-section-title article-display-font m-0 inline-flex items-center gap-2 text-[21px] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Editor’s Picks</h2>
           </div>
         </div>
 
@@ -30,20 +31,20 @@ export default function LatestStories() {
               </Link>
               <div className="pt-6">
                 <p className="story-category-label mb-3   text-[#4f9488] ">{feature.topic || feature.category} <span className="font-normal text-[#5f6368]">• {feature.readTime}</span></p>
-                <h3 className="story-headline article-display-font m-0 line-clamp-2 max-w-3xl text-[clamp(27px,2.5vw,38px)] leading-[1.08] tracking-[-.025em] text-[#111318]" title={feature.title}><Link className="transition hover:opacity-65" to={shortStoryPath(feature)}>{feature.title}</Link></h3>
-                <p className="home-story-summary mt-3 mb-0 line-clamp-3 max-w-2xl">{feature.summary}</p>
-                <p className="mt-5 text-[11px] font-medium text-[#5f6368]">By <span className="font-semibold text-[#111318]">{feature.author}</span> · {feature.date}</p>
+                <h3 className="home-card-title story-headline article-display-font m-0 line-clamp-2 max-w-3xl" title={feature.title}><Link className="transition hover:opacity-65" to={shortStoryPath(feature)}>{feature.title}</Link></h3>
+                <p className="home-card-preview home-story-summary mt-3 mb-0 line-clamp-3 max-w-2xl">{feature.summary}</p>
+                <HomeStoryMeta story={feature} className="mt-5 mb-0" />
               </div>
             </article>
           {sidebarStories.length > 0 && <div className="divide-y divide-[#dcdde0] border-y border-[#dcdde0]">
             {sidebarStories.map((story) => <article className="mobile-story-preview mobile-image-first group grid grid-cols-[1fr_104px] gap-4 py-5 sm:grid-cols-[1fr_140px]" key={story.id || story.slug || story.title}>
               <div className="flex min-w-0 flex-col">
                 <p className="story-category-label mb-3   text-[#4f9488] ">{story.topic || story.category} <span className="font-normal text-[#5f6368]">• {story.readTime}</span></p>
-                <h3 className="story-headline article-display-font m-0 line-clamp-2 text-[clamp(17px,1.5vw,22px)] leading-[1.3] tracking-[-.015em] text-[#111318]" title={story.title}><Link className="transition hover:opacity-65" to={shortStoryPath(story)}>{story.title}</Link></h3>
-                <p className="mt-2 mb-0 line-clamp-3 text-[14px] leading-6 text-[#4f5359]">{story.rawContent?.replace(/<[^>]*>/g, " ") || story.summary}</p>
-                <p className="mt-auto mb-0 pt-4 text-[11px] font-medium text-[#5f6368]">{story.author} · {story.date}</p>
+                <h3 className="home-card-title story-headline article-display-font m-0 line-clamp-2" title={story.title}><Link className="transition hover:opacity-65" to={shortStoryPath(story)}>{story.title}</Link></h3>
+                <p className="home-card-preview mt-2 mb-0 line-clamp-3">{story.rawContent?.replace(/<[^>]*>/g, " ") || story.summary}</p>
+                <HomeStoryMeta story={story} className="mt-auto mb-0 pt-4" />
               </div>
-              <Link className="relative min-h-[120px] overflow-hidden rounded-[4px] bg-[#e8edf2]" to={shortStoryPath(story)} tabIndex="-1"><img className="h-full w-full object-cover transition duration-500 group-hover:scale-105" src={story.image} alt={story.imageAlt} /></Link>
+              <Link className="editor-pick-image relative self-start overflow-hidden rounded-[4px] bg-transparent" to={shortStoryPath(story)} tabIndex="-1"><img className="block h-auto w-full object-contain" src={story.image} alt={story.imageAlt} /></Link>
             </article>)}
           </div>}
         </div>
