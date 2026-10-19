@@ -30,8 +30,8 @@ export default function LatestArticles() {
                 <h3 className="home-card-title story-headline article-display-font m-0 line-clamp-3" title={article.title}>
                   <Link to={shortStoryPath(article)}>{article.title}</Link>
                 </h3>
-                <HomeStoryMeta story={article} className="mt-2 mb-0" />
-                <p className="home-card-preview home-story-summary mt-3 line-clamp-2">{article.summary}</p>
+                <p className="home-card-preview home-story-summary mt-3 mb-0 line-clamp-2">{article.summary}</p>
+                <HomeStoryMeta story={article} className="mt-4 mb-0" />
               </div>
             </article>
           ))}

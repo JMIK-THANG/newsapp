@@ -545,7 +545,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 :is(#latest, [aria-labelledby="latest-articles-title"]) .home-section-title {
   font-weight: 700;
 }
-:is(#latest, [aria-labelledby="latest-articles-title"]) .home-card-title {
+:is(#latest, [aria-labelledby="latest-articles-title"], [aria-labelledby="latest-news-title"]) .home-card-title {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 22px;
   font-weight: 700;

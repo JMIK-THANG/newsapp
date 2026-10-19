@@ -32,7 +32,7 @@ function LatestNewsCard({ story, className = "" }) {
         <p className="story-category-label mb-1     text-[#397d73]">
           {story.category}
         </p>
-        <h3 className="story-headline article-display-font m-0 line-clamp-3 text-[20px] leading-[1.16] tracking-[-.005em] text-[#111318] xl:text-[21px]" title={story.title}>
+        <h3 className="home-card-title story-headline article-display-font m-0 line-clamp-3" title={story.title}>
           <Link
             className="transition hover:opacity-65"
             to={storyPath}
@@ -40,8 +40,8 @@ function LatestNewsCard({ story, className = "" }) {
             {story.title}
           </Link>
         </h3>
-        <HomeStoryMeta story={story} className="mt-2 mb-0" />
         <p className="home-card-preview home-story-summary mt-3 mb-0 hidden sm:line-clamp-2">{story.summary}</p>
+        <HomeStoryMeta story={story} className="mt-4 mb-0" />
       </div>
     </article>
   );
