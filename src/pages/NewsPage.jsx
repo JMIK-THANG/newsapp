@@ -55,7 +55,7 @@ export default function NewsPage() {
       </header>
 
       <nav id="news-filters" className="border-b border-[#dcdde0] py-3" aria-label="News categories">
-        <div className="-mx-3 sm:hidden">
+        <div className="mobile-news-filters sm:hidden">
           <div className="grid grid-cols-[.8fr_1fr_1.2fr_1.5fr] gap-1">
             {filters.slice(0, 4).map((item) => <button className={`${filterClass(item)} min-w-0 !px-1 !text-[clamp(9px,2.65vw,12px)] tracking-[-.02em]`} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
           </div>

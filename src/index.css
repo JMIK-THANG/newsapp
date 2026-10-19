@@ -415,3 +415,67 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   }
   .home-hero-most-read .story-category-label { font-size: 12px; }
 }
+
+/* Mobile listing cards only; desktop and full-story typography stay unchanged. */
+@media (max-width: 639px) {
+  .mobile-story-preview,
+  .most-read-preview .mobile-story-preview,
+  .story-recommendations .mobile-story-preview {
+    grid-template-columns: 108px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    min-width: 0;
+    padding-block: 14px;
+  }
+  .category-more-preview .mobile-story-preview {
+    grid-template-columns: minmax(0, 1fr) 108px;
+  }
+  .mobile-story-preview > a,
+  .most-read-preview .mobile-story-preview > a,
+  .story-recommendations .mobile-story-preview > a {
+    width: 108px;
+    height: 90px;
+    min-height: 0;
+    aspect-ratio: auto;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+  .mobile-story-preview > a img { width: 100%; height: 100%; object-fit: cover; }
+  .mobile-story-preview > div { min-width: 0; }
+  .mobile-story-preview :is(h2, h3).story-headline {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: normal;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 0;
+  }
+  .mobile-story-preview .story-category-label {
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-size: 11px;
+    line-height: 1.35;
+    color: #397d73;
+  }
+  .mobile-story-preview > div > div,
+  .mobile-story-preview > div > p:not(.story-category-label):not(.home-story-summary):not([class*="line-clamp"]) {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #69717a;
+  }
+  .mobile-story-preview > div > div { gap: 4px 7px; margin-top: 8px; }
+  .mobile-story-preview > div > div strong { font-weight: 400; color: inherit; }
+  .mobile-story-preview > div > div svg { display: none; }
+  .mobile-news-filters > .grid { gap: 4px; }
+  .mobile-news-filters button {
+    min-height: 36px;
+    padding-block: 7px;
+    font-weight: 500;
+  }
+  .mobile-news-filters > .flex button { min-width: 92px; }
+}
