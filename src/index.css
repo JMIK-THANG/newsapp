@@ -684,12 +684,12 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 .category-more-preview .news-list-card strong { font-weight: 400; color: inherit; }
 
 @media (min-width: 640px) {
-  /* Retain All News summaries; stretch thumbnails to the full text block. */
-  #news-feed .news-list-card { align-items: stretch; }
+  /* Keep desktop listing photos landscape, independent of text length. */
+  #news-feed .news-list-card { align-items: start; }
   #news-feed .news-list-card > a {
-    align-self: stretch;
-    height: 100%;
-    min-height: 125px;
+    align-self: start;
+    height: 140px;
+    min-height: 0;
     aspect-ratio: auto;
   }
   #news-feed .news-list-card > div { align-self: stretch; }
@@ -810,7 +810,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   #top > section > div { grid-template-columns: minmax(0, 1fr) 364px; }
   #top > section > div > article { padding: 20px 16px 16px 24px; }
   #top .home-hero-most-read { padding: 20px 24px 16px 16px; }
-  #top > section > div > article > div:nth-child(2) > a { height: 350px; }
+  #top > section > div > article > div:nth-child(2) > a { height: 390px; }
   #top #lead-title { font-size: 32px; line-height: 1.15; letter-spacing: normal; }
   #top .home-hero-most-read .most-read-list > h2 { padding: 0 0 10px; line-height: 1.25; }
 }

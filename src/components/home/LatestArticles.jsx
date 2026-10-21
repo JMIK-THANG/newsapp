@@ -14,9 +14,10 @@ export default function LatestArticles() {
   return (
     <section className="border-t border-[#d5d1c9] bg-[#f1eee8] px-3 py-10 md:px-6 md:py-14" aria-labelledby="latest-articles-title">
       <div className="mx-auto max-w-[1200px]">
-        <header className="mb-6 flex items-end justify-between gap-5 border-b border-[#182536] pb-4">
-          <h2 id="latest-articles-title" className="home-section-title article-display-font m-0 inline-flex items-center gap-2 text-[21px] leading-tight tracking-[-.02em] text-[#182536] after:h-px after:w-9 after:bg-[#4f9488]">Articles</h2>
-          <Link className="hidden items-center gap-2 text-[11px] font-bold tracking-[.05em] uppercase sm:flex" to="/articles">View all articles <Icon name="arrow" /></Link>
+        <header className="mb-4 flex items-center gap-4">
+          <h2 id="latest-articles-title" className="home-section-title article-display-font m-0 text-[21px] leading-tight text-[#182536]">Articles</h2>
+          <span className="h-px min-w-4 flex-1 bg-[#182536]" aria-hidden="true" />
+          <Link className="inline-flex min-h-10 shrink-0 items-center gap-2 text-[12px] font-semibold text-[#397d73] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3" to="/articles">View all articles <Icon name="arrow" /></Link>
         </header>
 
         <div className="grid gap-x-5 gap-y-8 sm:grid-cols-2 xl:grid-cols-4">
@@ -37,7 +38,6 @@ export default function LatestArticles() {
           ))}
         </div>
 
-        <Link className="mt-7 flex w-full items-center justify-center gap-2 bg-[#182536] px-4 py-3 text-xs font-bold text-white sm:hidden" to="/articles">View all articles <Icon name="arrow" /></Link>
       </div>
     </section>
   );
