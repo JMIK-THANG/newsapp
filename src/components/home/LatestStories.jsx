@@ -26,8 +26,8 @@ export default function LatestStories() {
 
         <div className={`mt-7 grid gap-8 ${sidebarStories.length ? "lg:grid-cols-[1.05fr_.95fr]" : ""} xl:gap-12`}>
           <article className="group min-w-0">
-              <Link to={shortStoryPath(feature)} className="relative block aspect-[16/8.5] overflow-hidden rounded-[6px] bg-[#e8edf2]">
-                <img className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" src={feature.image} alt={feature.imageAlt} />
+              <Link to={shortStoryPath(feature)} className="relative block overflow-hidden rounded-[6px] bg-[#e8edf2]">
+                <img className="block h-auto w-full" src={feature.image} alt={feature.imageAlt} />
               </Link>
               <div className="pt-6">
                 <p className="story-category-label mb-2 text-[#4f9488]">{feature.topic || feature.category}</p>
