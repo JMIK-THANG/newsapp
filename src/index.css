@@ -31,7 +31,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 /* Clear, high-contrast long-form reading treatment. */
 .article-reading-text {
   color: #17191c;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--story-body-font);
   font-size: 18px;
   font-weight: 400;
   line-height: 1.62;
@@ -800,4 +800,90 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   font-size: inherit;
   line-height: inherit;
   font-weight: 400;
+}
+
+/* Capped desktop hero: same reading scale on laptops and larger monitors. */
+#top .top-story-meta { font-size: 12px; line-height: 1.5; color: #69717a; }
+@media (min-width: 1280px) {
+  #top { padding-top: 24px; }
+  #top > section { max-width: 1200px; }
+  #top > section > div { grid-template-columns: minmax(0, 1fr) 364px; }
+  #top > section > div > article { padding: 20px 16px 16px 24px; }
+  #top .home-hero-most-read { padding: 20px 24px 16px 16px; }
+  #top > section > div > article > div:nth-child(2) > a { height: 350px; }
+  #top #lead-title { font-size: 32px; line-height: 1.15; letter-spacing: normal; }
+  #top .home-hero-most-read .most-read-list > h2 { padding: 0 0 10px; line-height: 1.25; }
+}
+#root .story-sidebar .news-list-card {
+  grid-template-columns: 110px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  padding-block: 16px;
+}
+#root .story-sidebar .news-list-card > a {
+  grid-column: 1; grid-row: 1; width: 110px; height: 83px;
+  min-height: 0; aspect-ratio: 4 / 3; align-self: start;
+}
+#root .story-sidebar .news-list-card > div {
+  display: flex; flex-direction: column; grid-column: 2; grid-row: 1;
+  min-height: 0; min-width: 0;
+}
+#root .story-sidebar .news-list-card > div > p:not(.story-category-label) { display: none; }
+#root .story-sidebar .news-list-card .story-category-label { font-size: 10px; margin: 0 0 4px; }
+#root .story-sidebar .news-list-card h2.story-headline {
+  margin: 0; font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px; font-weight: 600; line-height: 1.3;
+}
+#root .story-sidebar .news-list-card > div > div {
+  margin-top: 8px; padding-top: 0; font-size: 11px; line-height: 1.45;
+}
+
+/* Publication-wide type system; preserve each component's responsive size. */
+#root :is(h1, h2, h3, h4, h5, h6),
+#root .mobile-story-preview[class] :is(h2, h3).story-headline,
+#root .story-sidebar .news-list-card h2.story-headline {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+}
+#root .story-headline.story-detail-headline {
+  line-height: 1.25;
+}
+#root #news-feed .news-list-card h2.story-headline {
+  line-height: 1.3;
+  letter-spacing: normal;
+}
+#root :is(.story-category-label, .home-card-meta, .article-reading-text, .story-reading-text),
+#root nav, #root nav :is(a, button) {
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+/* A quieter homepage news grid; compact mobile rows remain unchanged. */
+@media (min-width: 1280px) {
+  #latest > div,
+  [aria-labelledby="latest-articles-title"] > div { max-width: 1144px; }
+}
+@media (min-width: 640px) {
+  #root [aria-labelledby="latest-articles-title"] .home-card-title,
+  #root #latest .mobile-story-preview .home-card-title { font-size: 20px; line-height: 1.3; }
+  #root #latest .mobile-story-preview { grid-template-columns: minmax(0, 1fr) 160px; gap: 12px; }
+  #root #latest .editor-pick-image { width: 160px; height: 100px; margin-top: 0; }
+  #root #latest .editor-pick-image img { width: 100%; height: 100%; object-fit: contain; }
+}
+@media (min-width: 640px) {
+  #root [aria-labelledby="latest-news-title"] > div.grid { row-gap: 24px; }
+  #root [aria-labelledby="latest-news-title"] article.mobile-story-preview {
+    display: flex; flex-direction: column; padding-top: 0;
+  }
+  #root [aria-labelledby="latest-news-title"] .news-card-copy {
+    display: flex; flex-direction: column; flex: 1;
+  }
+  #root [aria-labelledby="latest-news-title"] .home-card-title {
+    font-size: 20px; line-height: 1.3; min-height: 78px;
+  }
+  #root [aria-labelledby="latest-news-title"] .home-card-preview {
+    font-size: 14px; line-height: 1.65; min-height: 46.2px; margin-top: 10px;
+  }
+  #root [aria-labelledby="latest-news-title"] .home-card-meta {
+    margin-top: auto; padding-top: 16px;
+  }
 }

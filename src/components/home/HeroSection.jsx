@@ -28,7 +28,7 @@ function LatestNewsCard({ story, className = "" }) {
           alt={story.imageAlt}
         />
       </Link>
-      <div className="pt-2.5">
+      <div className="news-card-copy pt-2.5">
         <p className="story-category-label mb-1     text-[#397d73]">
           {story.category}
         </p>
@@ -41,7 +41,7 @@ function LatestNewsCard({ story, className = "" }) {
           </Link>
         </h3>
         <p className="home-card-preview home-story-summary mt-3 mb-0 hidden sm:line-clamp-2">{story.summary}</p>
-        <HomeStoryMeta story={story} className="mt-4 mb-0" />
+        <HomeStoryMeta story={story} showAuthor={false} className="mt-4 mb-0" />
       </div>
     </article>
   );
@@ -123,24 +123,16 @@ export default function HeroSection() {
                     {currentLeadStory.title}
                   </Link>
                 </h1>
-                <p className="mt-2 mb-0 text-[14px] font-normal text-[#69717a]">{currentLeadStory.date}</p>
+                <HomeStoryMeta story={currentLeadStory} className="top-story-meta mt-2 mb-0" />
                 <p className="home-story-summary mb-0 line-clamp-2 max-w-[850px] pt-2" title={currentLeadStory.summary}>
                   {currentLeadStory.summary}
                 </p>
-                <div className="mt-5 flex items-center justify-between gap-3 rounded-[6px] border border-[#d7d4ce] bg-[#f1eee8] px-3 py-3 sm:px-4">
-                  <p className="m-0 min-w-0 truncate text-[13px] font-medium text-[#5f6368]">
-                    By{" "}
-                    <span className="font-semibold text-[#111318]">
-                      {currentLeadStory.author}
-                    </span>
-                  </p>
                   <Link
-                    className="flex shrink-0 items-center gap-2 rounded-full bg-[#182536] px-3.5 py-2 text-[11px] font-semibold tracking-[.02em] text-white transition hover:bg-[#8f2427] sm:px-4 sm:text-[12px]"
+                    className="mt-3 inline-flex min-h-10 w-fit items-center gap-2 text-[13px] font-semibold text-[#397d73] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3"
                     to={shortStoryPath(currentLeadStory)}
                   >
                     Read full story <Icon name="arrow" />
                   </Link>
-                </div>
               </div>
             </div>
           </article>
@@ -156,14 +148,13 @@ export default function HeroSection() {
             className="order-2 min-w-0 pt-8 pb-6 xl:order-3 xl:col-span-2 xl:px-7 xl:pt-8 xl:pb-7"
             aria-labelledby="latest-news-title"
           >
-            <div className="mb-6 flex items-center gap-3">
-              <h2 id="latest-news-title" className="m-0 bg-[#182536] px-4 py-2 text-[15px] font-medium tracking-[.04em] text-white uppercase sm:text-[16px]">News</h2>
+            <div className="mb-4 flex items-center gap-4">
+              <h2 id="latest-news-title" className="m-0 text-[21px] leading-tight text-[#182536]">News</h2>
               <span className="h-px min-w-4 flex-1 bg-[#182536]" aria-hidden="true" />
-
+              <Link className="inline-flex min-h-10 shrink-0 items-center gap-2 text-[12px] font-semibold text-[#397d73] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3" to="/news">View all news <Icon name="arrow" /></Link>
             </div>
 
             <LatestNewsGrid stories={latestNews} />
-<div className="mt-6 flex justify-center"><Link className="flex items-center gap-2 rounded-full bg-[#182536] px-5 py-3 text-sm font-semibold text-white" to="/news">View all news <Icon name="arrow" /></Link></div>
           </section>
         </div>
       </section>
