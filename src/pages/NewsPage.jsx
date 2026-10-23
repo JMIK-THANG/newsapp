@@ -55,13 +55,8 @@ export default function NewsPage() {
       </header>
 
       <nav id="news-filters" className="border-b border-[#dcdde0] py-2" aria-label="News categories">
-        <div className="mobile-news-filters sm:hidden">
-          <div className="grid grid-cols-[.8fr_1fr_1.2fr_1.5fr] gap-1">
-            {filters.slice(0, 4).map((item) => <button className={`${filterClass(item)} min-w-0 !px-1 tracking-[-.02em]`} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
-          </div>
-          <div className="mt-2 flex justify-center gap-2">
-            {filters.slice(4).map((item) => <button className={filterClass(item)} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
-          </div>
+        <div className="mobile-news-scroll flex gap-2 overflow-x-auto sm:hidden" tabIndex={0} aria-label="Scroll news categories">
+          {filters.map((item) => <button className={`${filterClass(item)} shrink-0`} key={item} type="button" aria-pressed={activeFilter === item} onClick={(event) => { selectFilter(item); event.currentTarget.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" }); }}>{item}</button>)}
         </div>
         <div className="hidden flex-wrap gap-3 sm:flex">
           {filters.map((item) => <button className={filterClass(item)} key={item} type="button" aria-pressed={activeFilter === item} onClick={() => selectFilter(item)}>{item}</button>)}
@@ -71,7 +66,7 @@ export default function NewsPage() {
       <div className={`grid gap-12 pt-1 sm:pt-2 xl:gap-9 ${activeFilter === "All News" ? "xl:grid-cols-[minmax(0,1fr)_300px]" : ""}`}>
         <section id="news-feed" aria-label={`${activeFilter} stories`}>
           <div className="divide-y divide-[#dcdde0] border-b border-[#dcdde0]">
-            {isLoading ? <StoryLoading /> : stories.slice(0, visibleCount).map((story) => <NewsListCard story={story} path={storyPath(story)} showCategory={activeFilter === "All News"} showReadMore key={story.id || story.title} />)}
+            {isLoading ? <StoryLoading /> : stories.slice(0, visibleCount).map((story) => <NewsListCard story={story} path={storyPath(story)} showCategory showReadMore key={story.id || story.title} />)}
             {!isLoading && stories.length === 0 && <div className="px-4 py-16 text-center"><h2 className="article-display-font m-0 text-2xl text-[#182536]">No matching stories</h2><p className="mt-3 mb-0 text-sm text-[#5f6368]">Try a different headline, author, or category.</p></div>}
           </div>
           {visibleCount < stories.length && <div className="mt-8 flex justify-center"><button className="inline-flex min-h-11 cursor-pointer items-center gap-3 rounded-full border border-[#182536] bg-transparent px-6 py-3 text-xs font-semibold text-[#182536] transition hover:bg-[#182536] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#397d73]" type="button" onClick={() => setVisibleCount((count) => count + 6)}>Load more stories <Icon name="arrow" /></button></div>}

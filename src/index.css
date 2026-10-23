@@ -688,7 +688,7 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   #news-feed .news-list-card { align-items: start; }
   #news-feed .news-list-card > a {
     align-self: start;
-    height: 140px;
+    height: 125px;
     min-height: 0;
     aspect-ratio: auto;
   }
@@ -815,27 +815,29 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   #top .home-hero-most-read .most-read-list > h2 { padding: 0 0 10px; line-height: 1.25; }
 }
 #root .story-sidebar .news-list-card {
-  grid-template-columns: 110px minmax(0, 1fr);
+  grid-template-columns: 96px minmax(0, 1fr);
   align-items: start;
   gap: 12px;
   padding-block: 16px;
 }
 #root .story-sidebar .news-list-card > a {
-  grid-column: 1; grid-row: 1; width: 110px; height: 83px;
+  grid-column: 1; grid-row: 1; width: 96px; height: 72px;
   min-height: 0; aspect-ratio: 4 / 3; align-self: start;
 }
 #root .story-sidebar .news-list-card > div {
   display: flex; flex-direction: column; grid-column: 2; grid-row: 1;
-  min-height: 0; min-width: 0;
+  min-height: 72px; min-width: 0;
 }
 #root .story-sidebar .news-list-card > div > p:not(.story-category-label) { display: none; }
-#root .story-sidebar .news-list-card .story-category-label { font-size: 10px; margin: 0 0 4px; }
+#root .story-sidebar .news-list-card .story-category-label { font-size: 9px; line-height: 1.2; margin: 0 0 3px; }
 #root .story-sidebar .news-list-card h2.story-headline {
   margin: 0; font-family: Georgia, "Times New Roman", serif;
-  font-size: 18px; font-weight: 600; line-height: 1.3;
+  font-size: 16px; font-weight: 600; line-height: 1.3;
+  display: -webkit-box; -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; overflow: hidden;
 }
 #root .story-sidebar .news-list-card > div > div {
-  margin-top: 8px; padding-top: 0; font-size: 11px; line-height: 1.45;
+  margin-top: 5px; padding-top: 0; font-size: 10.5px; line-height: 1.4;
 }
 
 /* Publication-wide type system; preserve each component's responsive size. */
@@ -849,8 +851,22 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   line-height: 1.25;
 }
 #root #news-feed .news-list-card h2.story-headline {
-  line-height: 1.3;
+  line-height: 1.35;
   letter-spacing: normal;
+}
+
+/* Shared editorial-style listing cards, including related-story previews.
+   Sidebar-specific sizing remains independent. */
+@media (min-width: 640px) {
+  #root .news-list-card h2.story-headline { font-size: 18px; line-height: 1.35; letter-spacing: normal; }
+  #root .news-list-card > div > p:not(.story-category-label) {
+    max-width: none; font-size: 14px; line-height: 1.65;
+  }
+  #root .news-list-card > div > div { font-size: 12px; line-height: 1.5; }
+  #root .news-list-card > div > div strong { font-weight: 400; color: inherit; }
+  #root .news-list-card:not(.story-sidebar .news-list-card) > a {
+    height: 125px; min-height: 0; aspect-ratio: 16 / 10; align-self: start;
+  }
 }
 #root :is(.story-category-label, .home-card-meta, .article-reading-text, .story-reading-text),
 #root nav, #root nav :is(a, button) {
@@ -858,6 +874,16 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 }
 
 /* A quieter homepage news grid; compact mobile rows remain unchanged. */
+.mobile-news-scroll { overscroll-behavior-x: contain; scrollbar-width: none; -ms-overflow-style: none; padding: 3px 2px; }
+.mobile-news-scroll::-webkit-scrollbar { display: none; }
+#root #news-feed .news-list-card { padding-block: 14px; gap: 14px; }
+#root #news-feed .news-list-card .story-category-label {
+  font-size: 10px; line-height: 1.3; margin: 0 0 3px;
+}
+#root #news-feed .news-list-card h2.story-headline { margin-top: 0; }
+#root #news-feed .news-list-card > div > p:not(.story-category-label) { margin-top: 6px; }
+#root #news-feed .news-list-card > div > div { margin-top: 7px; }
+#root #news-feed .news-list-card > div > a { margin-top: 5px; font-size: 11px; line-height: 1.5; }
 @media (min-width: 1280px) {
   #latest > div,
   [aria-labelledby="latest-articles-title"] > div { max-width: 1144px; }
