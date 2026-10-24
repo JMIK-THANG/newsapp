@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -9,7 +10,7 @@
 :root {
   /* Shared typography matching the editorial reference. */
   --story-headline-weight: 700;
-  --story-body-font: "Roboto", Arial, sans-serif;
+  --story-body-font: "Rethink Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
 }
 
 /* Story categories use the same quiet scale as byline metadata. */
@@ -17,8 +18,12 @@
   font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
-  letter-spacing: normal;
   text-transform: uppercase;
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale;
+  
+ 
+  letter-spacing: 0.05em; 
 }
 @media (min-width: 640px) {
   .story-category-label { font-size: 13px; }
@@ -876,7 +881,8 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 .mobile-news-scroll { overscroll-behavior-x: contain; scrollbar-width: none; -ms-overflow-style: none; padding: 3px 2px; }
 .mobile-news-scroll::-webkit-scrollbar { display: none; }
 @media (max-width: 639px) {
-  .mobile-news-scroll > button { min-width: 0; padding-inline: 10px; font-size: 11px; }
+  .mobile-news-scroll > button { min-width: 0; min-height: 40px; padding-inline: 8.5px; font-size: 11px; }
+  #news-page #news-page-title { font-size: 28px; line-height: 1.15; letter-spacing: -.02em; }
 }
 #root #news-feed .news-list-card { padding-block: 14px; gap: 14px; }
 #root #news-feed .news-list-card .story-category-label {
@@ -922,4 +928,26 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   #root [aria-labelledby="latest-news-title"] .home-card-meta {
     margin-top: auto; padding-top: 16px;
   }
+}
+
+/* Reading copy follows the requested TOI paragraph treatment, not headlines
+   or interface labels. Keep preview sizing and truncation component-specific. */
+#root :is(.article-reading-text, .story-reading-text) {
+  font-family: var(--story-body-font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: normal;
+}
+#root :is(.article-reading-text, .story-reading-text) :is(p, li, blockquote) {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+}
+#root :is(.home-story-summary, .home-card-preview),
+#root .news-list-card > div > p:not(.story-category-label) {
+  font-family: var(--story-body-font);
+  line-height: 1.75;
+  letter-spacing: normal;
 }
