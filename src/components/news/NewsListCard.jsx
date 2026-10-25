@@ -10,7 +10,7 @@ export default function NewsListCard({ story, path, showCategory = true, showRea
       <h2 className={`story-headline article-display-font ${showCategory ? "mt-1.5 sm:mt-2" : "mt-0"} mb-0 line-clamp-3 text-[19px] leading-[1.17] tracking-[-.01em] text-[#182536] sm:text-[20px] lg:text-[22px]`} title={story.title}>
         <Link className="transition hover:text-[#397d73] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#397d73]" to={path}>{story.title}</Link>
       </h2>
-      <p className="mt-3 mb-0 hidden max-w-[72ch] text-[14px] leading-[1.65] tracking-[.01em] text-[#3f474f] sm:line-clamp-2">{story.summary}</p>
+      <p className="story-preview-text mt-3 mb-0 hidden max-w-[72ch] text-[16px] leading-[1.75] tracking-[.01em] text-[#3f474f] sm:line-clamp-2">{story.summary}</p>
       <div className="mt-2.5 flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[14px] text-[#69717a] sm:mt-3 sm:gap-x-3 sm:gap-y-1 sm:text-[13px]">
         <span>{story.date}</span>
         {showAuthor && story.author && <><span aria-hidden="true">•</span><span className="inline-flex items-center gap-1.5">By <strong className="font-semibold text-[#303940]">{story.author}</strong></span></>}

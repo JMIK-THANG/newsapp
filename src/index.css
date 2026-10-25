@@ -951,3 +951,23 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   line-height: 1.75;
   letter-spacing: normal;
 }
+
+/* One preview-copy size everywhere; preserve existing visibility and clamps. */
+#root :is(.home-story-summary, .home-card-preview, .story-preview-text),
+#root .podcast-page p:is(.line-clamp-2, .whitespace-pre-line),
+#root #news-feed .news-list-card .story-preview-text,
+#root #latest .home-card-preview,
+#root [aria-labelledby="latest-news-title"] .home-card-preview,
+#root [aria-labelledby="latest-articles-title"] .home-card-preview {
+  font-family: var(--story-body-font);
+  font-size: 16px;
+  line-height: 1.75;
+}
+#root #news-feed .news-list-card.mobile-story-preview h2.story-headline {
+  font-size: 20px;
+  line-height: 1.35;
+}
+@media (min-width: 1024px) {
+  #root #news-feed .news-list-card { grid-template-columns: 220px minmax(0, 1fr); }
+  #root #news-feed .news-list-card > a { width: 220px; height: 150px; }
+}
