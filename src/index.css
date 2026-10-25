@@ -893,13 +893,15 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
 #root #news-feed .news-list-card > div > div { margin-top: 7px; }
 #root #news-feed .news-list-card > div > a { margin-top: 5px; font-size: 11px; line-height: 1.5; }
 @media (min-width: 640px) {
-  #root #news-feed .news-list-card { align-items: center; column-gap: 16px; }
-  #root #news-feed .news-list-card > div { align-self: center; }
+  #root #news-feed .news-list-card { align-items: start; column-gap: 16px; }
+  #root #news-feed .news-list-card > div { align-self: start; }
   #root #news-feed .news-list-card .story-category-label { margin-bottom: 4px; }
   #root #news-feed .news-list-card > div > p:not(.story-category-label) { margin-top: 6px; }
   #root #news-feed .news-list-card > div > div { margin-top: 8px; gap: 4px 8px; }
-  #root #news-feed .news-list-card > div > a { margin-top: 4px; }
+  #root #news-feed .news-list-card > div > a { margin-top: 2px; }
 }
+#root #news-page .most-read-list > h2 { padding-top: 0; padding-bottom: 10px; }
+#root #news-page .most-read-list > .most-read-preview:first-of-type .news-list-card { padding-top: 0; }
 @media (min-width: 1280px) {
   #latest > div,
   [aria-labelledby="latest-articles-title"] > div { max-width: 1144px; }
