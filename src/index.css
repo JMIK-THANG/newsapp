@@ -932,14 +932,17 @@ body, #root { min-width: 320px; max-width: 100%; overflow-x: clip; background: #
   }
 }
 
-/* Reading copy follows the requested TOI paragraph treatment, not headlines
-   or interface labels. Keep preview sizing and truncation component-specific. */
+/* Full-story reading size follows the larger visual reference. Preview copy,
+   headings and interface labels retain their independent scales. */
 #root :is(.article-reading-text, .story-reading-text) {
   font-family: var(--story-body-font);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.75;
+  line-height: 1.6;
   letter-spacing: normal;
+}
+@media (min-width: 768px) {
+  #root :is(.article-reading-text, .story-reading-text) { font-size: 20px; }
 }
 #root :is(.article-reading-text, .story-reading-text) :is(p, li, blockquote) {
   font-family: inherit;
