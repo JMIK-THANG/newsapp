@@ -14,16 +14,16 @@ export default function EditorialPage() {
 
   return <main id="editorial-page" className="bg-white px-5 py-4 sm:px-6 sm:py-5">
     <div className="mx-auto max-w-[1280px]">
-      <header className="border-b border-[#dcdde0] pb-3">
+      <header className="flex flex-col gap-2 border-b border-[#dcdde0] pb-4 lg:flex-row lg:items-end lg:justify-between lg:gap-8">
         <h1 className="article-display-font m-0 text-[clamp(30px,4vw,40px)] leading-[1.1] font-semibold tracking-[-.025em] text-[#182536]">Editorial</h1>
-        <p className="mt-2 mb-0 max-w-[760px] text-[13px] leading-5 text-[#4f5962]">Independent analysis and informed opinion from the Chinlung Today editorial team.</p>
+        <p className="m-0 max-w-[560px] text-[16px] leading-[1.6] text-[#4f5962]">Independent analysis and informed opinion from the Chinlung Today editorial team.</p>
       </header>
 
-      {lead && <article className="grid gap-6 border-b border-[#dcdde0] py-4 sm:py-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,.65fr)] lg:items-center lg:gap-10">
+      {lead && <article className="grid gap-5 border-b border-[#dcdde0] py-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)] lg:items-start lg:gap-8">
         <Link className="group block aspect-[16/9] overflow-hidden rounded-[6px] bg-[#e8edf2]" to={storyPath(lead, "/editorial/featured")}><img className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.015]" src={lead.image} alt={lead.imageAlt || lead.title} /></Link>
         <div className="flex min-w-0 flex-col justify-center">
-          <h2 className="story-headline article-display-font mt-3 mb-0 line-clamp-3 text-[clamp(26px,2.7vw,36px)] leading-[1.12] tracking-[-.015em] text-[#182536]" title={lead.title}><Link className="transition hover:text-[#397d73]" to={storyPath(lead, "/editorial/featured")}>{lead.title}</Link></h2>
-          <p className="story-preview-text mt-3 mb-0 text-[16px] leading-7 tracking-[.01em] text-[#3f474f]">{lead.summary}</p>
+          <h2 className="story-headline article-display-font mt-0 mb-0 text-[clamp(26px,2.3vw,32px)] leading-[1.2] tracking-[-.015em] text-[#182536]" title={lead.title}><Link className="transition hover:text-[#397d73]" to={storyPath(lead, "/editorial/featured")}>{lead.title}</Link></h2>
+          <p className="story-preview-text mt-3 mb-0 line-clamp-3 text-[16px] leading-7 text-[#3f474f]">{lead.summary}</p>
           <p className="mt-3 mb-0 text-[14px] text-[#69717a]">{lead.date}{lead.author ? <> · By <strong className="font-semibold text-[#303940]">{lead.author}</strong></> : null}</p>
           <Link className="mt-5 inline-flex w-fit items-center gap-2 text-[13px] font-bold text-[#182536] transition hover:text-[#397d73]" to={storyPath(lead, "/editorial/featured")}>Read editorial <Icon name="arrow" /></Link>
         </div>
@@ -36,7 +36,7 @@ export default function EditorialPage() {
         </section>
         <aside className="h-fit border-t-2 border-[#182536] bg-[#f1eee8] p-5 sm:p-6 xl:sticky xl:top-[118px]">
           <h2 className="article-display-font m-0 text-[22px] font-semibold text-[#182536]">About our editorials</h2>
-          <p className="mt-3 mb-0 text-[14px] leading-6 text-[#4f5962]">Editorials represent the collective view of the publication, not an individual writer. News reporting remains separate and independent.</p>
+          <p className="story-preview-text mt-3 mb-0 text-[16px] leading-7 text-[#4f5962]">Editorials represent the collective view of the publication, not an individual writer. News reporting remains separate and independent.</p>
         </aside>
       </div>
     </div>
