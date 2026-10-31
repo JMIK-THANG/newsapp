@@ -1334,6 +1334,70 @@ body,
 }
 
 /* Homepage refinement: one paper surface and aligned lead/sidebar columns. */
+/* Match mobile story previews to the homepage News cards without changing
+   desktop layouts or full article typography. */
+@media (max-width: 639px) {
+  #root nav[aria-label="Mobile navigation"] :is(a, button) {
+    font-size: 16px;
+  }
+  #root .mobile-story-preview,
+  #root .story-sidebar .news-list-card,
+  #root #news-feed .news-list-card {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    padding-block: 14px;
+  }
+  #root .mobile-story-preview > a,
+  #root .story-sidebar .news-list-card > a,
+  #root #news-feed .news-list-card > a {
+    grid-column: 1;
+    grid-row: 1;
+    width: 110px;
+    height: 80px;
+    min-height: 0;
+    aspect-ratio: auto;
+    margin-top: 0;
+    border-radius: 5px;
+  }
+  #root .mobile-story-preview > a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #root .mobile-story-preview > div,
+  #root .story-sidebar .news-list-card > div {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 0;
+    padding-top: 0;
+  }
+  #root .mobile-story-preview :is(h2, h3).story-headline,
+  #root #news-feed .news-list-card.mobile-story-preview h2.story-headline,
+  #root .story-sidebar .news-list-card h2.story-headline {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: normal;
+    -webkit-line-clamp: 3;
+  }
+  #root .mobile-story-preview .story-category-label,
+  #root .story-sidebar .news-list-card .story-category-label {
+    margin: 0 0 4px;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  #root .news-list-card > div > div,
+  #root .story-sidebar .news-list-card > div > div {
+    margin-top: 8px;
+    padding-top: 0;
+    font-size: 11px;
+    line-height: 1.5;
+    gap: 4px 6px;
+  }
+}
 #root #top {
   background: #f8f6f1;
 }
