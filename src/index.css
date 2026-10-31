@@ -1377,10 +1377,10 @@ body,
    desktop layouts or full article typography. */
 @media (max-width: 639px) {
   #root nav[aria-label="Mobile navigation"] :is(a, button) {
-    font-size: 16px;
+    font-size: 14px;
   }
   #root #news-filters .mobile-news-scroll > button {
-    font-size: 16px;
+    font-size: 14px;
   }
   #root .mobile-story-preview,
   #root .story-sidebar .news-list-card,
