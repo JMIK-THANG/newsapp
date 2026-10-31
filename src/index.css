@@ -1339,7 +1339,7 @@ body,
   #root .mobile-story-preview .story-headline,
   #root .story-headline.story-detail-headline {
     font-family: Georgia, "Times New Roman", serif !important;
-    font-size: 22px !important;
+    font-size: 16px !important;
     font-weight: 700 !important;
     line-height: 1.35 !important;
     letter-spacing: normal !important;
@@ -1387,9 +1387,9 @@ body,
   #root #news-feed .news-list-card {
     display: grid;
     grid-template-columns: 110px minmax(0, 1fr);
-    align-items: start;
-    gap: 12px;
-    padding-block: 14px;
+    align-items: stretch;
+    gap: 10px;
+    padding-block: 12px;
   }
   #root .mobile-story-preview > a,
   #root .story-sidebar .news-list-card > a,
@@ -1397,8 +1397,9 @@ body,
     grid-column: 1;
     grid-row: 1;
     width: 110px;
-    height: 80px;
-    min-height: 0;
+    height: 100%;
+    min-height: 80px;
+    align-self: stretch;
     aspect-ratio: auto;
     margin-top: 0;
     border-radius: 5px;
@@ -1412,14 +1413,15 @@ body,
   #root .story-sidebar .news-list-card > div {
     grid-column: 2;
     grid-row: 1;
-    min-height: 0;
+    min-height: 80px;
+    align-self: start;
     padding-top: 0;
   }
   #root .mobile-story-preview :is(h2, h3).story-headline,
   #root #news-feed .news-list-card.mobile-story-preview h2.story-headline,
   #root .story-sidebar .news-list-card h2.story-headline {
     margin: 0;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 1.35;
     letter-spacing: normal;
@@ -1427,13 +1429,13 @@ body,
   }
   #root .mobile-story-preview .story-category-label,
   #root .story-sidebar .news-list-card .story-category-label {
-    margin: 0 0 4px;
+    margin: 0 0 2px;
     font-size: 11px;
-    line-height: 1.35;
+    line-height: 1.2;
   }
   #root .news-list-card > div > div,
   #root .story-sidebar .news-list-card > div > div {
-    margin-top: 8px;
+    margin-top: 6px;
     padding-top: 0;
     font-size: 11px;
     line-height: 1.5;
