@@ -1340,6 +1340,9 @@ body,
   #root nav[aria-label="Mobile navigation"] :is(a, button) {
     font-size: 16px;
   }
+  #root #news-filters .mobile-news-scroll > button {
+    font-size: 16px;
+  }
   #root .mobile-story-preview,
   #root .story-sidebar .news-list-card,
   #root #news-feed .news-list-card {
@@ -1377,7 +1380,7 @@ body,
   #root #news-feed .news-list-card.mobile-story-preview h2.story-headline,
   #root .story-sidebar .news-list-card h2.story-headline {
     margin: 0;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     line-height: 1.35;
     letter-spacing: normal;
