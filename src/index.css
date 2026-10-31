@@ -1333,6 +1333,23 @@ body,
   }
 }
 
+/* A single mobile headline contract, including article titles and sidebars.
+   Explicit priority prevents older page-specific typography from diverging. */
+@media (max-width: 639px) {
+  #root .mobile-story-preview .story-headline,
+  #root .story-headline.story-detail-headline {
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    letter-spacing: normal !important;
+  }
+  #root .story-headline.story-detail-headline {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+  }
+}
 /* Homepage refinement: one paper surface and aligned lead/sidebar columns. */
 /* Match mobile story previews to the homepage News cards without changing
    desktop layouts or full article typography. */
