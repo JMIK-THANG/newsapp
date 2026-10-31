@@ -1349,6 +1349,10 @@ body,
     overflow: visible;
     -webkit-line-clamp: unset;
   }
+  /* Restore the original compact homepage News headlines. */
+  #root #top [aria-labelledby="latest-news-title"] .home-card-title {
+    font-size: 18px !important;
+  }
 }
 /* Homepage refinement: one paper surface and aligned lead/sidebar columns. */
 /* Match mobile story previews to the homepage News cards without changing
