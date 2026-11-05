@@ -47,7 +47,7 @@ export default function NewsPage() {
 
   return <main id="news-page" className="bg-white px-5 py-4 sm:px-6 sm:py-5" aria-labelledby="news-page-title">
     <div className="mx-auto max-w-[1280px]">
-      <header className="pb-2 sm:pb-3">
+      <header className={`${searchQuery ? "pb-2" : "sr-only sm:not-sr-only"} sm:pb-3`}>
         <div className="max-w-[820px]">
           <h1 id="news-page-title" className="article-display-font m-0 text-[clamp(30px,4vw,40px)] leading-[1] font-normal tracking-[-.035em] text-[#182536]">{searchQuery ? "Search results" : mostReadMode && activeFilter === "All News" ? "Most Read" : activeFilter}</h1>
           {searchQuery && <p className="mt-2 mb-0 max-w-[760px] text-[14px] leading-6 text-[#4f5962]">{`${stories.length} result${stories.length === 1 ? "" : "s"} for “${searchQuery}”`}</p>}
@@ -63,7 +63,7 @@ export default function NewsPage() {
         </div>
       </nav>
 
-      <div className={`grid gap-12 pt-1 sm:pt-2 xl:gap-9 ${activeFilter === "All News" ? "xl:grid-cols-[minmax(0,1fr)_300px]" : ""}`}>
+      <div className={`news-listing-layout grid gap-12 pt-1 sm:pt-2 xl:gap-9 ${activeFilter === "All News" ? "xl:grid-cols-[minmax(0,1fr)_300px]" : ""}`}>
         <section id="news-feed" aria-label={`${activeFilter} stories`}>
           <div className="divide-y divide-[#dcdde0] border-b border-[#dcdde0]">
             {isLoading ? <StoryLoading /> : stories.slice(0, visibleCount).map((story) => <NewsListCard story={story} path={storyPath(story)} showCategory showReadMore key={story.id || story.title} />)}

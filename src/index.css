@@ -1372,6 +1372,46 @@ body,
     line-height: 1.2;
   }
 }
+/* Compact mobile listings share the same spacing across every news filter. */
+@media (max-width: 639px) {
+  #root #news-page {
+    padding: 20px 16px 16px;
+  }
+  #root #news-page #news-page-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  #root #news-page #news-filters,
+  #root #news-filters .mobile-news-scroll {
+    padding-block: 0;
+  }
+  #root #news-page .news-listing-layout {
+    padding-top: 16px;
+  }
+  #root #news-page #news-feed .news-list-card {
+    padding-block: 16px;
+  }
+  #root #news-page #news-feed .news-list-card > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  #root #news-page #news-feed .news-list-card > div > * {
+    margin: 0;
+  }
+  #root #news-page #news-feed .news-list-card h2.story-headline {
+    font-size: 15px !important;
+  }
+  #root #news-page #news-feed .news-list-card > div > a {
+    display: none;
+  }
+}
 /* Homepage refinement: one paper surface and aligned lead/sidebar columns. */
 /* Match mobile story previews to the homepage News cards without changing
    desktop layouts or full article typography. */
