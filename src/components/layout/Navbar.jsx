@@ -80,16 +80,16 @@ export default function Navbar() {
   };
 
   return <header ref={headerRef} className="sticky top-0 z-40 border-b border-[#d9d9d6] bg-white px-3 md:px-6">
-    <div className="mx-auto flex min-h-[78px] max-w-[1280px] items-center gap-4 bg-white xl:min-h-[76px]">
-      <Link className="flex shrink-0 items-center gap-2.5" to="/" aria-label="Chinlung Today home" onClick={goHome}>
-        <span className="block size-12 shrink-0 xl:size-11" aria-hidden="true">
+    <div className="mx-auto max-w-[1280px] bg-white">
+      <Link className="relative flex min-h-[86px] items-center justify-center border-b border-[#9b1c1f]/30 py-5 sm:min-h-[112px]" to="/" aria-label="Chinlung Today home" onClick={goHome}>
+        <span className="absolute left-0 hidden size-12 sm:block lg:size-16" aria-hidden="true">
           <img className="h-full w-full object-contain" src="/chinlung-today-logo-transparent.png" alt="" />
         </span>
-        <strong className="whitespace-nowrap font-serif text-[23px] leading-none font-bold text-[#182536] sm:text-[26px] xl:text-[25px]">Chinlung Today</strong>
+        <strong className="whitespace-nowrap font-serif text-[clamp(32px,6vw,64px)] leading-none font-bold tracking-[-.045em] text-[#182536]">Chinlung Today</strong>
       </Link>
-      <div className="ml-auto flex items-center gap-3 xl:gap-5">
+      <div className="relative flex min-h-[48px] items-center justify-end xl:justify-center">
         <DesktopNavigation openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} closePanels={closePanels} onHomeClick={goHome} />
-        <div className="flex items-center gap-1"><button className="grid size-10 cursor-pointer place-items-center border-0 bg-transparent text-[#182536] transition hover:text-[#9b1c1f] xl:size-11 [&_svg]:xl:size-[22px]" type="button" aria-label="Open search" onClick={() => setSearchOpen(!searchOpen)}><Icon name={searchOpen ? "close" : "search"} /></button><button className="grid size-10 cursor-pointer place-items-center border-0 bg-[#182536] text-white xl:hidden" type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Icon name={menuOpen ? "close" : "menu"} /></button></div>
+        <div className="flex items-center gap-1 xl:absolute xl:right-0"><button className="grid size-10 cursor-pointer place-items-center border-0 bg-transparent text-[#182536] transition hover:text-[#9b1c1f] xl:size-11 [&_svg]:xl:size-[22px]" type="button" aria-label="Open search" onClick={() => setSearchOpen(!searchOpen)}><Icon name={searchOpen ? "close" : "search"} /></button><button className="grid size-10 cursor-pointer place-items-center border-0 bg-[#182536] text-white xl:hidden" type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Icon name={menuOpen ? "close" : "menu"} /></button></div>
       </div>
     </div>
 
