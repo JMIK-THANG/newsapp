@@ -85,7 +85,7 @@ export default function Navbar() {
         <span className="block size-12 shrink-0 xl:size-11" aria-hidden="true">
           <img className="h-full w-full object-contain" src="/chinlung-today-logo-transparent.png" alt="" />
         </span>
-        <strong className="max-xl:absolute max-xl:left-1/2 max-xl:-translate-x-1/2 whitespace-nowrap font-serif text-[23px] leading-none font-bold text-[#182536] sm:text-[26px] xl:text-[25px]">Chinlung Today</strong>
+        <strong className="max-xl:absolute max-xl:left-1/2 max-xl:-translate-x-1/2 whitespace-nowrap font-serif text-[clamp(23px,6.4vw,28px)] leading-none font-bold tracking-[.015em] text-[#182536] sm:text-[32px] xl:text-[30px]">Chinlung Today</strong>
       </Link>
       <div className="ml-auto flex items-center gap-3 xl:gap-5">
         <DesktopNavigation openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} closePanels={closePanels} onHomeClick={goHome} />
